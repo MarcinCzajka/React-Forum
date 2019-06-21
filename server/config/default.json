@@ -1,0 +1,3 @@
+{
+    "database": "mongodb+srv://ReactForum:ReactForum123@reactforumcluster-vfrsk.azure.mongodb.net/test?retryWrites=true&w=majority"
+}
