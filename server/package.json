@@ -1,0 +1,14 @@
+{
+  "name": "react-forum-server",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.17.0",
+    "joi": "^14.3.1",
+    "mongoose": "^5.6.0"
+  }
+}
