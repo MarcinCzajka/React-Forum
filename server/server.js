@@ -4,6 +4,9 @@ const postsRouter = require('./routes/postsRouter');
 const app = express();
 require('./database')();
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use('/api/posts', postsRouter);
 
 const port = process.env.PORT || 5000;

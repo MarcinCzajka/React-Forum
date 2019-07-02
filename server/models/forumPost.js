@@ -3,16 +3,14 @@ const Joi = require('joi');
 
 const ForumPostSchema = new mongoose.Schema({
     authorId: {
-        type: String,
-        required: true
+        type: String
     },
     date: {
         type: Date,
-        required: true
+        default: Date.now
     },
     content: {
-        type: String,
-        required: true
+        type: String
     },
     responseTo: {
         type: String
@@ -23,9 +21,11 @@ const ForumPost = mongoose.model('ForumPost', ForumPostSchema);
 
 function validateForumPost(forumPost) {
     const schema = {
-        content: Joi.string()
+        authorId: Joi.string(),
+        date: Joi.date(),
+        content: Joi.string(),
+        responseTo: Joi.string()
     };
-    
     return Joi.validate(forumPost, schema)
 };
 

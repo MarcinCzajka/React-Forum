@@ -9,6 +9,7 @@ class Test extends React.Component {
 	}
 	
 	componentDidMount() {
+		this.populatePosts();
 		this.getPosts();
 	}
 	
@@ -23,9 +24,9 @@ class Test extends React.Component {
 			url: "/api/posts/"
 		})
 		.then(res => {
-			console.log(res.data)
+			console.log(res)
 			this.setState({
-				posts: res.data[1]
+				posts: ""
 			});
 		});
 	}
@@ -35,37 +36,14 @@ class Test extends React.Component {
 			method: "post",
 			url: "/api/posts/",
 			data: {
-				
+				authorId: "5d1b9e227d1217155c9ba4fe",
+				content: "Hello test post"
 			}
 		})
+		.then(res => {
+			console.log(res);
+		});
 	}
-	
-    authorId: {
-        type: String,
-        required: true
-    },
-    date: {
-        type: Date,
-        required: true
-    },
-    content: {
-        type: String,
-        required: true
-    },
-    responseTo: {
-        type: String
-    }
-	
-	  postReservation = async () => {
-    const reservationResponse = await basePath({
-      method: "put",
-      url: "/api/screenings/" + this.props.screeningId,
-      data: {
-        selectedSeats: this.props.selectedSeats,
-        isOccupied: true
-      },
-      withCredentials: true
-    });
 	
 	
 }

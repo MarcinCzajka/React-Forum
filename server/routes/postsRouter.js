@@ -10,13 +10,17 @@ router.get("/", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
+    console.log(req.body)
     const { error } = validateForumPost(req.body);
 	if(error) return res.status(400).send(error.details[0].message);
+    
+    console.log(req.body)
+    const post = new ForumPost(req.body);
+    
+    console.log(post);
 	
-	const posts = new ForumPost(req.body);
-	
-	await posts.save();
-	res.send(posts);
+	await post.save();
+	res.send(post);
 });
 
 module.exports = router;
