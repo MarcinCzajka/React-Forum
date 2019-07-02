@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "npm run start-server && npm run start-client",
-    "start-server": "node server/server.js",
+    "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "nodemon server/server.js",
     "start-client": "cd client && npm start"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.1"
   }
 }
