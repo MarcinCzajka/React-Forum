@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const {database} = require('./config/default.json');
+const {database} = require('./default.json');
 
 module.exports = () => {
     mongoose.connect(database, {useNewUrlParser: true})
