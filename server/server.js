@@ -2,7 +2,7 @@ const express = require('express');
 const postsRouter = require('./routes/postsRouter');
 
 const app = express();
-require('./database')();
+require('./config/database')();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
