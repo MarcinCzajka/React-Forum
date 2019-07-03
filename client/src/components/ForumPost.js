@@ -1,20 +1,30 @@
 import React from 'react';
 import basePath from '../api/basePath';
 
-class Test extends React.Component {
+class ForumPost extends React.Component {
 	constructor(props) {
 		super(props);
 		
-		this.state = { posts: "hello test" };
+		this.state = { 
+			id: this.props.postId,
+			authorId: "5d1b9e227d1217155c9ba4fe",
+			content: "Hello test post",
+			date: "2019-07-03T21:00:06.144Z"
+		};
 	}
 	
 	componentDidMount() {
-		this.populatePosts();
 		this.getPosts();
 	}
 	
 	render() {
-		return <div>{this.state.posts}</div>
+		return (
+			<div>
+				{this.state.date}
+				{this.state.authorId}
+				{this.state.content}
+			</div>
+		)
 	}
 
 
@@ -48,4 +58,4 @@ class Test extends React.Component {
 	
 }
 
-export default Test;
+export default ForumPost;

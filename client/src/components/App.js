@@ -1,11 +1,11 @@
 import React from 'react';
-import Test from './test';
+import ForumPost from './ForumPost';
 
 
 
 class App extends React.Component {
     render() {
-        return <Test />
+        return <ForumPost postId="5d1d17568f43ae22c4671bb7" />
     }
 };
 
