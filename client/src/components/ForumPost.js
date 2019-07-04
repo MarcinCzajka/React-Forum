@@ -1,7 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import "semantic-ui-css/semantic.min.css";
-import { Button, Container, Header, Modal } from "semantic-ui-react";
+import { Header, Comment} from "semantic-ui-react";
+import moment from "moment";
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -9,53 +10,66 @@ class ForumPost extends React.Component {
 		
 		this.state = { 
 			id: this.props.postId,
-			authorId: "5d1b9e227d1217155c9ba4fe",
-			content: "Hello test post",
-			date: "2019-07-03T21:00:06.144Z"
+			authorId: "",
+			content: "",
+			date: "",
+			authorNick: "",
+			avatar: ""
 		};
 	}
 	
 	componentDidMount() {
-		this.getPosts();
+		this.getPostDetails();
 	}
 	
 	render() {
 		return (
-			<container>
-				<header>{this.state.date}{this.state.authorId}</header>
-				{this.state.content}
-			</container>
+			<Comment size='massive'>
+				<Comment.Avatar src={this.state.avatar}></Comment.Avatar>
+				<Comment.Content>
+					<Comment.Author as='string'>{this.state.authorNick}</Comment.Author>
+					<Comment.Metadata>{this.state.date}</Comment.Metadata>
+					<Comment.Text>{this.state.content}</Comment.Text>
+
+					<Comment.Actions>
+						<a>Reply</a>
+					</Comment.Actions>
+				</Comment.Content>
+			</Comment>
 		)
 	}
 
-
-	getPosts = async () => {
+	getPostDetails = async () => {
 		await basePath({
 			method: "get",
-			url: "/api/posts/"
+			url: `/api/posts/${this.state.id}`
 		})
 		.then(res => {
-			console.log(res)
 			this.setState({
-				posts: ""
+				authorId: res.data.authorId || "",
+				content: res.data.content || "",
+				date: moment(res.data.date)
+					.format("MMMM Do YYYY, h:mm:ss")
+					.toString()
+			});
+		})
+		.then(() => {
+			this.getPostAuthor()
+		});
+	};
+
+	getPostAuthor = async () => {
+		await basePath({
+			method: "get",
+			url: `/api/users/${this.state.authorId}`
+		})
+		.then(res => {
+			this.setState({
+				authorNick: res.data.nick || "",
+				avatar: res.data.avatar || ""
 			});
 		});
-	}
-	
-	populatePosts = async () => {
-		await basePath({
-			method: "post",
-			url: "/api/posts/",
-			data: {
-				authorId: "5d1b9e227d1217155c9ba4fe",
-				content: "Hello test post"
-			}
-		})
-		.then(res => {
-			console.log(res);
-		});
-	}
-	
+	};
 	
 }
 

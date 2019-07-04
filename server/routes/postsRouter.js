@@ -9,15 +9,18 @@ router.get("/", async (req, res) => {
     res.send(posts);
 });
 
+router.get("/:id", async (req, res) => {
+    const post = await ForumPost.findById(req.params.id);
+    if(!post) return res.status(400).send('This post doesnt exist anymore.');
+
+    res.send(post);
+});
+
 router.post("/", async (req, res) => {
-    console.log(req.body)
     const { error } = validateForumPost(req.body);
 	if(error) return res.status(400).send(error.details[0].message);
     
-    console.log(req.body)
     const post = new ForumPost(req.body);
-    
-    console.log(post);
 	
 	await post.save();
 	res.send(post);
