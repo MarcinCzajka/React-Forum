@@ -1,5 +1,7 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import "semantic-ui-css/semantic.min.css";
+import { Button, Container, Header, Modal } from "semantic-ui-react";
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -19,11 +21,10 @@ class ForumPost extends React.Component {
 	
 	render() {
 		return (
-			<div>
-				{this.state.date}
-				{this.state.authorId}
+			<container>
+				<header>{this.state.date}{this.state.authorId}</header>
 				{this.state.content}
-			</div>
+			</container>
 		)
 	}
 
