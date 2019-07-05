@@ -15,12 +15,15 @@ class ForumPost extends React.Component {
 			date: "",
 			authorNick: "",
 			avatar: "",
-			cssVisible: "hidden"
+			cssVisible: "hidden",
+			replyContent: "",
+			childrenPosts: []
 		};
 	}
 	
 	componentDidMount() {
 		this.getPostDetails();
+		this.getChildrenPosts();
 	}
 	
 	render() {
@@ -58,8 +61,23 @@ class ForumPost extends React.Component {
 		this.setState({cssVisible: this.state.cssVisible === "hidden" ? "shown" : "hidden"});
 	}
 
+	updateReplyContent = content => {
+		this.setState({replyContent: content});
+	};
+
 	postReply = async () => {
-		
+		await basePath({
+			method: "post",
+			url: `/api/posts/${this.state.id}`,
+			data: {
+				authorId: this.state.authorId,
+				content: this.state.replyContent,
+				responseTo: this.state.id
+			}
+		})
+		.then(() => {
+			this.showReplyForm();
+		});
 	}
 
 	getPostDetails = async () => {
@@ -94,6 +112,16 @@ class ForumPost extends React.Component {
 		});
 	};
 	
+	getChildrenPosts = async () => {
+		await basePath({
+			method: "get",
+			url: `/api/posts/?responseTo=${this.state.Id}`
+		})
+		.then(res => {
+			console.log(res.data)
+			//this.setState({childrenPosts: res.data})
+		})
+	};
 }
 
 export default ForumPost;
