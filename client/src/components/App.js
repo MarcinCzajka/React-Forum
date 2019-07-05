@@ -1,12 +1,12 @@
 import React from 'react';
-import ForumPost from './ForumPost';
+import ForumPostsGroup from './ForumPostsGroup';
 import "semantic-ui-css/semantic.min.css";
 
 
 
 class App extends React.Component {
     render() {
-        return <ForumPost postId="5d1d17568f43ae22c4671bb7" />
+        return <ForumPostsGroup />
     }
 };
 

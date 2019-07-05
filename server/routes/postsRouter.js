@@ -6,14 +6,14 @@ router.get("/", async (req, res) => {
     const posts = await ForumPost.find();
     if(!posts) return res.status(400).send('There are no posts in this room.');
 
-    res.send(posts);
+    res.status(200).send(posts);
 });
 
 router.get("/:id", async (req, res) => {
     const post = await ForumPost.findById(req.params.id);
     if(!post) return res.status(400).send('This post doesnt exist anymore.');
 
-    res.send(post);
+    res.status(200).send(post);
 });
 
 router.post("/", async (req, res) => {
@@ -23,7 +23,14 @@ router.post("/", async (req, res) => {
     const post = new ForumPost(req.body);
 	
 	await post.save();
-	res.send(post);
+	res.status(200).send(post);
+});
+
+router.delete("/:id", async (req, res) => {
+    const result = ForumPost.findByIdAndDelete(req.params.id);
+    
+    console.log(req.params.id)
+    res.status(200).send("Post deleted.");
 });
 
 module.exports = router;

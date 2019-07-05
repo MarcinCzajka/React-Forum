@@ -15,9 +15,8 @@ class ForumPost extends React.Component {
 			date: "",
 			authorNick: "",
 			avatar: "",
-			cssVisible: "hidden",
-			replyContent: "",
-			childrenPosts: []
+			cssVisibility: "hidden",
+			replyContent: ""
 		};
 	}
 	
@@ -43,10 +42,11 @@ class ForumPost extends React.Component {
 
 						<Comment.Actions>
 							<Button onClick={this.changeReplyFormVisibility}>Reply</Button>
+							<Button onClick={this.removeThisPost}>Delete</Button>
 						</Comment.Actions>
 
-						<Form reply className={this.state.cssVisible}>
-							<Form.TextArea onChange={e => this.updateReplyContent(e.target.value)} />
+						<Form reply className={this.state.cssVisibility}>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyContent(e.target.value)} />
 							<Button onClick={this.postReply} content='Add Reply' labelPosition='left' icon='edit' primary />
 						</Form>
 					</Comment.Content>
@@ -57,7 +57,7 @@ class ForumPost extends React.Component {
 	}
 
 	changeReplyFormVisibility = () => {
-		this.setState({cssVisible: this.state.cssVisible === "hidden" ? "shown" : "hidden"});
+		this.setState({cssVisibility: this.state.cssVisibility === "hidden" ? "shown" : "hidden"});
 	}
 
 	updateReplyContent = content => {
@@ -75,7 +75,6 @@ class ForumPost extends React.Component {
 			}
 		})
 		.then((res) => {
-			console.log(res)
 			this.changeReplyFormVisibility();
 		});
 	}
@@ -109,6 +108,16 @@ class ForumPost extends React.Component {
 				authorNick: res.data.nick || "",
 				avatar: res.data.avatar || ""
 			});
+		});
+	};
+
+	removeThisPost = async () => {
+		await basePath({
+			method: "delete",
+			url: `/api/posts/${this.state.id}`
+		})
+		.then(() => {
+			this.props.refreshPostsList();
 		});
 	};
 };
