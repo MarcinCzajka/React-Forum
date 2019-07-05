@@ -1,8 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import "semantic-ui-css/semantic.min.css";
-import { Header, Comment} from "semantic-ui-react";
+import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
+import './ForumPost.css';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -14,7 +14,8 @@ class ForumPost extends React.Component {
 			content: "",
 			date: "",
 			authorNick: "",
-			avatar: ""
+			avatar: "",
+			cssVisible: "hidden"
 		};
 	}
 	
@@ -24,19 +25,41 @@ class ForumPost extends React.Component {
 	
 	render() {
 		return (
-			<Comment size='massive'>
-				<Comment.Avatar src={this.state.avatar}></Comment.Avatar>
-				<Comment.Content>
-					<Comment.Author as='string'>{this.state.authorNick}</Comment.Author>
-					<Comment.Metadata>{this.state.date}</Comment.Metadata>
-					<Comment.Text>{this.state.content}</Comment.Text>
+			<div className="ui large comments">
+				<Comment className="comment">
+					<Comment.Avatar 
+						className="avatar" 
+						src={this.state.avatar} >
+					</Comment.Avatar>
 
-					<Comment.Actions>
-						<a>Reply</a>
-					</Comment.Actions>
-				</Comment.Content>
-			</Comment>
-		)
+					<Comment.Content>
+						<Comment.Author className="author" as='string'>{this.state.authorNick}</Comment.Author>
+						<Comment.Metadata className="metadata">
+							<span className="date">{this.state.date}</span>
+						</Comment.Metadata>
+						<Comment.Text className="text">{this.state.content}</Comment.Text>
+
+						<Comment.Actions>
+							<Button onClick={this.showReplyForm}>Reply</Button>
+						</Comment.Actions>
+
+						<Form reply className={this.state.cssVisible}>
+							<Form.TextArea />
+							<Button content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
+					</Comment.Content>
+
+				</Comment>
+			</div>
+		);
+	}
+
+	showReplyForm = () => {
+		this.setState({cssVisible: this.state.cssVisible === "hidden" ? "shown" : "hidden"});
+	}
+
+	postReply = async () => {
+		
 	}
 
 	getPostDetails = async () => {
@@ -54,11 +77,11 @@ class ForumPost extends React.Component {
 			});
 		})
 		.then(() => {
-			this.getPostAuthor()
+			this.getPostAuthorDetails()
 		});
 	};
 
-	getPostAuthor = async () => {
+	getPostAuthorDetails = async () => {
 		await basePath({
 			method: "get",
 			url: `/api/users/${this.state.authorId}`

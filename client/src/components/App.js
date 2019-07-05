@@ -1,5 +1,6 @@
 import React from 'react';
 import ForumPost from './ForumPost';
+import "semantic-ui-css/semantic.min.css";
 
 
 
