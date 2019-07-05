@@ -23,7 +23,6 @@ class ForumPost extends React.Component {
 	
 	componentDidMount() {
 		this.getPostDetails();
-		this.getChildrenPosts();
 	}
 	
 	render() {
@@ -43,12 +42,12 @@ class ForumPost extends React.Component {
 						<Comment.Text className="text">{this.state.content}</Comment.Text>
 
 						<Comment.Actions>
-							<Button onClick={this.showReplyForm}>Reply</Button>
+							<Button onClick={this.changeReplyFormVisibility}>Reply</Button>
 						</Comment.Actions>
 
 						<Form reply className={this.state.cssVisible}>
-							<Form.TextArea />
-							<Button content='Add Reply' labelPosition='left' icon='edit' primary />
+							<Form.TextArea onChange={e => this.updateReplyContent(e.target.value)} />
+							<Button onClick={this.postReply} content='Add Reply' labelPosition='left' icon='edit' primary />
 						</Form>
 					</Comment.Content>
 
@@ -57,7 +56,7 @@ class ForumPost extends React.Component {
 		);
 	}
 
-	showReplyForm = () => {
+	changeReplyFormVisibility = () => {
 		this.setState({cssVisible: this.state.cssVisible === "hidden" ? "shown" : "hidden"});
 	}
 
@@ -68,15 +67,16 @@ class ForumPost extends React.Component {
 	postReply = async () => {
 		await basePath({
 			method: "post",
-			url: `/api/posts/${this.state.id}`,
+			url: `/api/posts/`,
 			data: {
 				authorId: this.state.authorId,
 				content: this.state.replyContent,
 				responseTo: this.state.id
 			}
 		})
-		.then(() => {
-			this.showReplyForm();
+		.then((res) => {
+			console.log(res)
+			this.changeReplyFormVisibility();
 		});
 	}
 
@@ -111,17 +111,6 @@ class ForumPost extends React.Component {
 			});
 		});
 	};
-	
-	getChildrenPosts = async () => {
-		await basePath({
-			method: "get",
-			url: `/api/posts/?responseTo=${this.state.Id}`
-		})
-		.then(res => {
-			console.log(res.data)
-			//this.setState({childrenPosts: res.data})
-		})
-	};
-}
+};
 
 export default ForumPost;
