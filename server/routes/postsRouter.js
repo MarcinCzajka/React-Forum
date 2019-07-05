@@ -26,10 +26,11 @@ router.post("/", async (req, res) => {
 	res.status(200).send(post);
 });
 
+
 router.delete("/:id", async (req, res) => {
-    const result = ForumPost.findByIdAndDelete(req.params.id);
+    const result = await ForumPost.findByIdAndDelete(req.params.id)
+    if (!result) return res.status(400).send('No post exists under given ID.')
     
-    console.log(req.params.id)
     res.status(200).send("Post deleted.");
 });
 

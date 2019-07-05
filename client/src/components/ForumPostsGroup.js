@@ -12,7 +12,7 @@ class ForumPostGroup extends React.Component {
             posts: []
         }
 
-        this.refreshPostsList = this.refreshPostsList.bind(this);
+        this.removePostFromState = this.removePostFromState.bind(this);
     }
 
     componentDidMount() {
@@ -20,8 +20,9 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
+        console.log(this.state.posts)
         const component = this.state.posts.map(item => {
-            return <ForumPost postId={item} refreshPostsList={this.refreshPostsList}></ForumPost>
+            return <ForumPost postId={item} removePostFromState={this.removePostFromState}></ForumPost>
         });
 
         return (
@@ -45,9 +46,20 @@ class ForumPostGroup extends React.Component {
         });
     };
 
-    refreshPostsList = () => {
-        this.fetchForumPosts();
-    };
+    removePostFromState(id) {
+        const posts = this.state.posts;
+        let index = posts.findIndex(item => {
+          return item === id;
+        });
+        if (index !== -1) {
+            posts.splice(index, 1);
+    
+            this.setState({
+            posts: posts
+            });
+        }
+      }
+
 }
 
 export default ForumPostGroup;

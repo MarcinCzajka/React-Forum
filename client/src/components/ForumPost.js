@@ -76,6 +76,7 @@ class ForumPost extends React.Component {
 		})
 		.then((res) => {
 			this.changeReplyFormVisibility();
+			this.setState({replyContent: ""})
 		});
 	}
 
@@ -116,8 +117,10 @@ class ForumPost extends React.Component {
 			method: "delete",
 			url: `/api/posts/${this.state.id}`
 		})
-		.then(() => {
-			this.props.refreshPostsList();
+		.then(res => {
+			if(res.status === 200){
+				this.props.removePostFromState(this.state.id);
+			}
 		});
 	};
 };
