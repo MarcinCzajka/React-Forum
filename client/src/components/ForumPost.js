@@ -65,19 +65,10 @@ class ForumPost extends React.Component {
 	};
 
 	postReply = async () => {
-		await basePath({
-			method: "post",
-			url: `/api/posts/`,
-			data: {
-				authorId: this.state.authorId,
-				content: this.state.replyContent,
-				responseTo: this.state.id
-			}
-		})
-		.then((res) => {
-			this.changeReplyFormVisibility();
-			this.setState({replyContent: ""})
-		});
+		this.props.handleReplyToPost(this.state.id, this.state.replyContent);
+
+		this.changeReplyFormVisibility();
+		this.setState({replyContent: ""});
 	}
 
 	getPostDetails = async () => {

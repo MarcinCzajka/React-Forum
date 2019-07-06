@@ -22,7 +22,7 @@ class ForumPostGroup extends React.Component {
     render() {
         const component = this.state.posts.map(item => {
             if(item.shouldPostRender === false) return "";
-            return <ForumPost postId={item.id} key={item.key} removePostFromState={this.removePostFromState}></ForumPost>
+            return <ForumPost postId={item.id} key={item.key} handleReplyToPost={this.handleReplyToPost} removePostFromState={this.removePostFromState}></ForumPost>
         });
 
         return (
@@ -41,7 +41,7 @@ class ForumPostGroup extends React.Component {
             let i = 0;
             const array = res.data.map(item => {
                 i++;
-                return {id: item._id, key: "ForumPost"+i, shouldPostRender: true};
+                return {id: item._id, key: item._id, shouldPostRender: true};
             });
 
             this.setState({posts: array});
@@ -59,6 +59,31 @@ class ForumPostGroup extends React.Component {
                 posts: posts
             });
         }
+      }
+
+      handleReplyToPost = async (replyToId, replyMessage) => {
+          await basePath({
+			method: "post",
+			url: `/api/posts/`,
+			data: {
+				authorId: "5d1b9e227d1217155c9ba4fe",
+				content: replyMessage,
+				responseTo: replyToId
+			}
+		})
+		.then((res) => {
+            const posts = this.state.posts.slice();
+            
+            posts.push({
+                id: res.data._id,
+                key: res.data._id,
+                shouldPostRender: true
+            });
+
+            this.setState({
+                posts: posts
+            });
+		});
       }
 
 }
