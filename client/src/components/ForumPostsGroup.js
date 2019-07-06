@@ -20,9 +20,9 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
-        console.log(this.state.posts)
         const component = this.state.posts.map(item => {
-            return <ForumPost postId={item} removePostFromState={this.removePostFromState}></ForumPost>
+            if(item.shouldPostRender === false) return "";
+            return <ForumPost postId={item.id} key={item.key} removePostFromState={this.removePostFromState}></ForumPost>
         });
 
         return (
@@ -38,8 +38,10 @@ class ForumPostGroup extends React.Component {
             url: `/api/posts/`
         })
         .then(res => {
+            let i = 0;
             const array = res.data.map(item => {
-                return item._id;
+                i++;
+                return {id: item._id, key: "ForumPost"+i, shouldPostRender: true};
             });
 
             this.setState({posts: array});
@@ -47,15 +49,14 @@ class ForumPostGroup extends React.Component {
     };
 
     removePostFromState(id) {
-        const posts = this.state.posts;
+        const posts = this.state.posts.slice();
         let index = posts.findIndex(item => {
-          return item === id;
+          return item.id === id;
         });
         if (index !== -1) {
-            posts.splice(index, 1);
-    
+            posts[index].shouldPostRender = false;
             this.setState({
-            posts: posts
+                posts: posts
             });
         }
       }
