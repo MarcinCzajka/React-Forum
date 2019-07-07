@@ -23,6 +23,7 @@ class ForumPostGroup extends React.Component {
 
     render() {
         const postsTree = this.createComponentTree();
+
         console.log(postsTree)
         return (
             <Comment.Group>
@@ -34,17 +35,20 @@ class ForumPostGroup extends React.Component {
     createComponentTree() {
         const posts = this.state.posts.slice();
         const postsTree = posts.map(post => {
-            if(post.shouldPostRender === false || post.responseTo ==="") return "";
+            if(post.shouldPostRender === false || post.responseTo !== "") return "";
             return <ForumPost 
                 postId={post.id} 
                 key={post.key} 
                 authorId={post.authorId}
                 content={post.content}
+                responseTo={post.responseTo}
                 date={post.date}
                 handleReplyToPost={this.handleReplyToPost} 
                 removePostFromState={this.removePostFromState}>
             </ForumPost>
         });
+
+        postsTree.map(map => console.log(map))
 
         return postsTree;
     }
@@ -60,7 +64,8 @@ class ForumPostGroup extends React.Component {
                     id: post._id, 
                     key: post._id, 
                     authorId: post.authorId || "",
-				    content: post.content || "",
+                    content: post.content || "",
+                    responseTo: post.responseTo || "",
 				    date: moment(post.date)
                         .format("MMMM Do YYYY, h:mm:ss")
                         .toString(),
@@ -100,6 +105,12 @@ class ForumPostGroup extends React.Component {
             posts.push({
                 id: res.data._id,
                 key: res.data._id,
+                authorId: res.data.authorId || "",
+                content: res.data.content || "",
+                responseTo: res.data.responseTo,
+                date: moment(res.data.date)
+                    .format("MMMM Do YYYY, h:mm:ss")
+                    .toString(),
                 shouldPostRender: true
             });
 
