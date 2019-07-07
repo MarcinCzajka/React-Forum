@@ -1,7 +1,9 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Comment, Form, Button } from "semantic-ui-react";
+import { Comment} from "semantic-ui-react";
 import './ForumPostsGroup.css';
+
+import moment from "moment";
 import ForumPost from './ForumPost';
 
 class ForumPostGroup extends React.Component {
@@ -20,16 +22,31 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
-        const component = this.state.posts.map(item => {
-            if(item.shouldPostRender === false) return "";
-            return <ForumPost postId={item.id} key={item.key} handleReplyToPost={this.handleReplyToPost} removePostFromState={this.removePostFromState}></ForumPost>
-        });
-
+        const postsTree = this.createComponentTree();
+        console.log(postsTree)
         return (
             <Comment.Group>
-                {component}
+                {postsTree}
             </Comment.Group>
         );
+    }
+
+    createComponentTree() {
+        const posts = this.state.posts.slice();
+        const postsTree = posts.map(post => {
+            if(post.shouldPostRender === false || post.responseTo ==="") return "";
+            return <ForumPost 
+                postId={post.id} 
+                key={post.key} 
+                authorId={post.authorId}
+                content={post.content}
+                date={post.date}
+                handleReplyToPost={this.handleReplyToPost} 
+                removePostFromState={this.removePostFromState}>
+            </ForumPost>
+        });
+
+        return postsTree;
     }
 
     fetchForumPosts = async () => {
@@ -38,10 +55,16 @@ class ForumPostGroup extends React.Component {
             url: `/api/posts/`
         })
         .then(res => {
-            let i = 0;
-            const array = res.data.map(item => {
-                i++;
-                return {id: item._id, key: item._id, shouldPostRender: true};
+            const array = res.data.map(post => {
+                return {
+                    id: post._id, 
+                    key: post._id, 
+                    authorId: post.authorId || "",
+				    content: post.content || "",
+				    date: moment(post.date)
+                        .format("MMMM Do YYYY, h:mm:ss")
+                        .toString(),
+                    shouldPostRender: true}
             });
 
             this.setState({posts: array});

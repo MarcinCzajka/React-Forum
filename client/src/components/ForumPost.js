@@ -1,7 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
-import moment from "moment";
 import './ForumPost.css';
 
 class ForumPost extends React.Component {
@@ -10,9 +9,9 @@ class ForumPost extends React.Component {
 		
 		this.state = { 
 			id: this.props.postId,
-			authorId: "",
-			content: "",
-			date: "",
+			authorId: this.props.authorId,
+			content: this.props.content,
+			date: this.props.date,
 			authorNick: "",
 			avatar: "",
 			cssVisibility: "hidden",
@@ -21,7 +20,7 @@ class ForumPost extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.getPostDetails();
+		this.getPostAuthorDetails()
 	}
 	
 	render() {
@@ -70,25 +69,6 @@ class ForumPost extends React.Component {
 		this.changeReplyFormVisibility();
 		this.setState({replyContent: ""});
 	}
-
-	getPostDetails = async () => {
-		await basePath({
-			method: "get",
-			url: `/api/posts/${this.state.id}`
-		})
-		.then(res => {
-			this.setState({
-				authorId: res.data.authorId || "",
-				content: res.data.content || "",
-				date: moment(res.data.date)
-					.format("MMMM Do YYYY, h:mm:ss")
-					.toString()
-			});
-		})
-		.then(() => {
-			this.getPostAuthorDetails()
-		});
-	};
 
 	getPostAuthorDetails = async () => {
 		await basePath({
