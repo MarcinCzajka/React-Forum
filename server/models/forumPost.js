@@ -24,7 +24,7 @@ function validateForumPost(forumPost) {
         authorId: Joi.string(),
         date: Joi.date(),
         content: Joi.string(),
-        responseTo: Joi.string()
+        responseTo: Joi.string().allow('')
     };
     return Joi.validate(forumPost, schema)
 };

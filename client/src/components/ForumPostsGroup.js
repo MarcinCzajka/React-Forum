@@ -1,6 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Comment, Form, Button } from "semantic-ui-react";
+import { Comment } from "semantic-ui-react";
 import './ForumPostsGroup.css';
 import ForumPost from './ForumPost';
 
@@ -38,9 +38,7 @@ class ForumPostGroup extends React.Component {
             url: `/api/posts/`
         })
         .then(res => {
-            let i = 0;
             const array = res.data.map(item => {
-                i++;
                 return {id: item._id, key: item._id, shouldPostRender: true};
             });
 
