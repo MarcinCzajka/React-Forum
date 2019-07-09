@@ -1,9 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Comment} from "semantic-ui-react";
+import { Comment } from "semantic-ui-react";
 import './ForumPostsGroup.css';
-
-import moment from "moment";
+import ChildrenOfPost from './ChildrenOfPost';
 import ForumPost from './ForumPost';
 
 class ForumPostGroup extends React.Component {
@@ -59,17 +58,8 @@ class ForumPostGroup extends React.Component {
             url: `/api/posts/`
         })
         .then(res => {
-            const array = res.data.map(post => {
-                return {
-                    id: post._id, 
-                    key: post._id, 
-                    authorId: post.authorId || "",
-                    content: post.content || "",
-                    responseTo: post.responseTo || "",
-				    date: moment(post.date)
-                        .format("MMMM Do YYYY, h:mm:ss")
-                        .toString(),
-                    shouldPostRender: true}
+            const array = res.data.map(item => {
+                return {id: item._id, key: item._id, shouldPostRender: true};
             });
 
             this.setState({posts: array});

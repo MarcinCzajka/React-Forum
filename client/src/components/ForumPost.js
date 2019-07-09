@@ -2,6 +2,7 @@ import React from 'react';
 import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import './ForumPost.css';
+import ChildrenOfPost from './ChildrenOfPost';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -15,7 +16,8 @@ class ForumPost extends React.Component {
 			authorNick: "",
 			avatar: "",
 			cssVisibility: "hidden",
-			replyContent: ""
+			replyContent: "",
+			childrenPosts: []
 		};
 	}
 	
@@ -51,6 +53,7 @@ class ForumPost extends React.Component {
 					</Comment.Content>
 
 				</Comment>
+				<ChildrenOfPost parentId={this.state.id} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></ChildrenOfPost>
 			</div>
 		);
 	}
@@ -94,6 +97,7 @@ class ForumPost extends React.Component {
 			}
 		});
 	};
+
 };
 
 export default ForumPost;
