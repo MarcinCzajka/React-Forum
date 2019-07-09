@@ -3,7 +3,7 @@ import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
 import './ForumPost.css';
-import PostChildren from './PostChildren';
+import ChildrenOfPost from './ChildrenOfPost';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -54,7 +54,7 @@ class ForumPost extends React.Component {
 					</Comment.Content>
 
 				</Comment>
-				<PostChildren parentId={this.state.id} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></PostChildren>
+				<ChildrenOfPost parentId={this.state.id} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></ChildrenOfPost>
 			</div>
 		);
 	}

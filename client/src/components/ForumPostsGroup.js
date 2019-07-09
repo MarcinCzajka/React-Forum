@@ -2,6 +2,7 @@ import React from 'react';
 import basePath from '../api/basePath';
 import { Comment } from "semantic-ui-react";
 import './ForumPostsGroup.css';
+import ChildrenOfPost from './ChildrenOfPost';
 import ForumPost from './ForumPost';
 
 class ForumPostGroup extends React.Component {

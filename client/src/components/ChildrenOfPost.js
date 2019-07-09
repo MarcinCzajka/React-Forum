@@ -2,7 +2,7 @@ import React from 'react';
 import basePath from '../api/basePath';
 import ForumPost from './ForumPost';
 
-class PostChildren extends React.Component {
+class ChildrenOfPost extends React.Component {
 	constructor(props) {
 		super(props);
 		
@@ -50,4 +50,4 @@ class PostChildren extends React.Component {
 
 };
 
-export default PostChildren;
+export default ChildrenOfPost;
