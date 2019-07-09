@@ -1,6 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import { Comment } from "semantic-ui-react";
 import ForumPost from './ForumPost';
+import './ChildrenOfPost.css';
 
 class ChildrenOfPost extends React.Component {
 	constructor(props) {
@@ -24,7 +26,7 @@ class ChildrenOfPost extends React.Component {
 	
 	render() {
         const component = this.state.posts.map(item => {
-			return <ForumPost 
+			return <ForumPost className="comment"
 					postId={item.id}
 					key={item.key}
 					removePostFromState={this.props.removePostFromState}
@@ -34,9 +36,9 @@ class ChildrenOfPost extends React.Component {
         });
 
 		return (
-			<div>
+			<Comment.Group className="childrenOfPost">
 				{component}
-			</div>
+			</Comment.Group>
 		);
 	}
 

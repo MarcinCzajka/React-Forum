@@ -68,7 +68,7 @@ class ForumPost extends React.Component {
 					</Comment.Content>
 
 				</Comment>
-				<ChildrenOfPost 
+				<ChildrenOfPost
 					parentId={this.state.id}
 					refreshChildren={this.state.refreshChildren}
 					handleReplyToPost={this.handleReplyToPost}
