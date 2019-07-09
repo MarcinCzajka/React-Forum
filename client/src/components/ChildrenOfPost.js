@@ -11,17 +11,22 @@ class ChildrenOfPost extends React.Component {
             posts: []
 		};
 	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.refreshChildren !== prevProps.refreshChildren) {
+			this.fetchAllChildrenPosts();
+		};
+	};
 	
 	componentDidMount() {
 		this.fetchAllChildrenPosts();
-	}
+	};
 	
 	render() {
         const component = this.state.posts.map(item => {
 			return <ForumPost 
 					postId={item.id}
 					key={item.key}
-					handleReplyToPost={this.props.handleReplyToPost}
 					removePostFromState={this.props.removePostFromState}
 					addPostToState={this.props.addPostToState}
 					postsNotToRender={this.props.postsNotToRender}>
@@ -50,6 +55,8 @@ class ChildrenOfPost extends React.Component {
 
 		});
 	};
+
+
 
 };
 

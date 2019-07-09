@@ -18,9 +18,15 @@ class ForumPost extends React.Component {
 			avatar: "",
 			cssVisibility: "hidden",
 			replyContent: "",
-			childrenPosts: []
+			refreshChildren: false
 		};
 	}
+
+	refreshChildren() {
+		this.setState({
+			refreshChildren: !this.state.refreshChildren
+		});
+	};
 	
 	componentDidMount() {
 		this.getPostDetails();
@@ -56,15 +62,16 @@ class ForumPost extends React.Component {
 						</Comment.Actions>
 
 						<Form reply className={this.state.cssVisibility}>
-							<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyContent(e.target.value)} />
-							<Button onClick={this.postReply} content='Add Reply' labelPosition='left' icon='edit' primary />
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyTextboxContent(e.target.value)} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 						</Form>
 					</Comment.Content>
 
 				</Comment>
 				<ChildrenOfPost 
 					parentId={this.state.id}
-					handleReplyToPost={this.props.handleReplyToPost}
+					refreshChildren={this.state.refreshChildren}
+					handleReplyToPost={this.handleReplyToPost}
 					removePostFromState={this.props.removePostFromState}
 					addPostToState={this.props.addPostToState}
 					postsNotToRender={this.props.postsNotToRender}>
@@ -77,16 +84,29 @@ class ForumPost extends React.Component {
 		this.setState({cssVisibility: this.state.cssVisibility === "hidden" ? "shown" : "hidden"});
 	}
 
-	updateReplyContent = content => {
+	updateReplyTextboxContent = content => {
 		this.setState({replyContent: content});
 	};
 
-	postReply = async () => {
-		this.props.handleReplyToPost(this.state.id, this.state.replyContent);
 
-		this.changeReplyFormVisibility();
-		this.setState({replyContent: ""});
-	}
+	handleReplyToPost = async (replyToId, replyMessage) => {
+		await basePath({
+		  method: "post",
+		  url: `/api/posts/`,
+		  data: {
+			  authorId: "5d1b9e227d1217155c9ba4fe",
+			  content: this.state.replyContent,
+			  responseTo: this.state.id
+		  }
+	  })
+	  .then((res) => {
+		if(res.status === 200) {
+			this.refreshChildren();
+			this.changeReplyFormVisibility();
+			this.setState({replyContent: ""});
+		};
+	  });
+	};
 
 	getPostDetails = async () => {
 		await basePath({
@@ -129,7 +149,7 @@ class ForumPost extends React.Component {
 		.then(res => {
 			if(res.status === 200){
 				this.props.removePostFromState(this.state.id);
-			}
+			};
 		});
 	};
 

@@ -26,8 +26,7 @@ class ForumPostGroup extends React.Component {
         return (
             <Comment.Group>
                 <ChildrenOfPost 
-                    parentId="" 
-                    handleReplyToPost={this.handleReplyToPost} 
+                    parentId=""
                     removePostFromState={this.removePostFromState} 
                     addPostToState={this.addPostToState}
                     postsNotToRender={this.state.postsNotToRender}>
@@ -84,31 +83,6 @@ class ForumPostGroup extends React.Component {
                 posts: posts
             });
         }
-      }
-
-      handleReplyToPost = async (replyToId, replyMessage) => {
-          await basePath({
-			method: "post",
-			url: `/api/posts/`,
-			data: {
-				authorId: "5d1b9e227d1217155c9ba4fe",
-				content: replyMessage,
-				responseTo: replyToId
-			}
-		})
-		.then((res) => {
-            const posts = this.state.posts.slice();
-            
-            posts.push({
-                id: res.data._id,
-                key: res.data._id,
-                shouldPostRender: true
-            });
-
-            this.setState({
-                posts: posts
-            });
-		});
       }
 
 }
