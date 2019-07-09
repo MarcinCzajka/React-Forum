@@ -18,7 +18,14 @@ class ChildrenOfPost extends React.Component {
 	
 	render() {
         const component = this.state.posts.map(item => {
-            return <ForumPost postId={item.id} key={item.key} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></ForumPost>
+			return <ForumPost 
+					postId={item.id}
+					key={item.key}
+					handleReplyToPost={this.props.handleReplyToPost}
+					removePostFromState={this.props.removePostFromState}
+					addPostToState={this.props.addPostToState}
+					postsNotToRender={this.props.postsNotToRender}>
+				</ForumPost>
         });
 
 		return (
@@ -34,10 +41,6 @@ class ChildrenOfPost extends React.Component {
 			url: `/api/posts/?responseTo=${this.state.parentId}`
 		})
 		.then(res => {
-            if(res.status !== 200) {
-                this.setState({});
-                return
-            }
 
             const arrayOfPosts = res.data.map(item => {
                 return {id: item._id, key: item._id};

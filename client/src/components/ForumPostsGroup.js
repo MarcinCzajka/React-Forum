@@ -3,17 +3,18 @@ import basePath from '../api/basePath';
 import { Comment } from "semantic-ui-react";
 import './ForumPostsGroup.css';
 import ChildrenOfPost from './ChildrenOfPost';
-import ForumPost from './ForumPost';
 
 class ForumPostGroup extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            posts: []
+            posts: [],
+            postsNotToRender: []
         }
 
         this.removePostFromState = this.removePostFromState.bind(this);
+        this.addPostToState = this.addPostToState.bind(this);
     }
 
     componentDidMount() {
@@ -21,14 +22,16 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
-        const component = this.state.posts.map(item => {
-            if(item.shouldPostRender === false) return "";
-            return <ForumPost postId={item.id} key={item.key} handleReplyToPost={this.handleReplyToPost} removePostFromState={this.removePostFromState}></ForumPost>
-        });
-
+        console.log(this.state)
         return (
             <Comment.Group>
-                {component}
+                <ChildrenOfPost 
+                    parentId="" 
+                    handleReplyToPost={this.handleReplyToPost} 
+                    removePostFromState={this.removePostFromState} 
+                    addPostToState={this.addPostToState}
+                    postsNotToRender={this.state.postsNotToRender}>
+                </ChildrenOfPost>
             </Comment.Group>
         );
     }
@@ -40,7 +43,7 @@ class ForumPostGroup extends React.Component {
         })
         .then(res => {
             const array = res.data.map(item => {
-                return {id: item._id, key: item._id, shouldPostRender: true};
+                return {id: item._id, key: item._id};
             });
 
             this.setState({posts: array});
@@ -49,11 +52,34 @@ class ForumPostGroup extends React.Component {
 
     removePostFromState(id) {
         const posts = this.state.posts.slice();
+        const postsNotToRender = this.state.postsNotToRender.slice();
+
         let index = posts.findIndex(item => {
           return item.id === id;
         });
         if (index !== -1) {
-            posts[index].shouldPostRender = false;
+            posts.splice(index, 1);
+            postsNotToRender.push(id);
+
+            this.setState({
+                posts: posts,
+                postsNotToRender: postsNotToRender
+            });
+        };
+      };
+
+      addPostToState(id, content) {
+        const posts = this.state.posts.slice();
+        let index = posts.findIndex(item => {
+          return item.id === id;
+        });
+        if (index === -1) {
+            posts.push({
+                id: id,
+                key: id,
+                shouldPostRender: true
+            });
+
             this.setState({
                 posts: posts
             });
