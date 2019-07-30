@@ -1,9 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import { Comment, Form, Button } from "semantic-ui-react";
-import moment from "moment";
 import './ForumRoomList.css';
-import ForumRoom from './ForumRoom';
 
 class ForumRoomList extends React.Component {
     constructor(props) {
