@@ -1,3 +1,4 @@
+const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const {User, validateUser} = require('../models/User');
@@ -19,20 +20,23 @@ router.get("/:id", async (req, res) => {
 router.post('/', async (req, res) => {
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
-
+    
     let user = await User.findOne({ email: req.body.email });
     if(user) return res.status(400).send('User already registered.');
 
-    user = new User({
-        name: req.body.name,
-        password: req.body.password,
-        email: req.body.email,
-        avatar: req.body.avatar
-    });
+    user = await User.findOne({ name: req.body.name });
+    if(user) return res.status(400).send('Username already taken.');
 
-    await user.save();
+    user = new User(_.pick(req.body, ['_id', 'name', 'password', 'email', 'avatar']));
+    console.log(user)
+    try {
+        await user.save();
+    } catch(err) {
+        console.log(err);
+        res.status(500).send('Internal server error.');
+    }
 
-    res.send(user);
+    res.send(_.pick(user, ['_id', 'name', 'email']));
 });
 
 module.exports = router;
