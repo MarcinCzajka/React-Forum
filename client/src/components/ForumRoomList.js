@@ -1,6 +1,5 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import './ForumRoomList.css';
 
 class ForumRoomList extends React.Component {
     constructor(props) {
@@ -18,7 +17,7 @@ class ForumRoomList extends React.Component {
 
     render() {
         return (
-            <div>ForumRoomList</div>
+            <div></div>
         );
     };
 

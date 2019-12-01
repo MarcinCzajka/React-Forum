@@ -2,15 +2,30 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const userSchema = new mongoose.Schema({
-    nick: {
-        type: String
+    name: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 15,
+        unique: true
+    },
+    email: {
+        type: String,
+        required: true,
+        minlength: 5,
+        maxlength: 255,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true,
+        minlength: 7,
+        maxlength: 1024
     },
     avatar: {
         type: String,
+        minlength: 10,
         default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
-    },
-    email: {
-        type: String
     }
 });
 
@@ -18,11 +33,12 @@ const User = mongoose.model('User', userSchema);
 
 function validateUser(User) {
     const schema = {
-        nick: Joi.string(),
-        avatar: Joi.string(),
-        email: Joi.string()
+        name: Joi.string().min(5).max(15).required(),
+        email: Joi.string().min(5).max(255).required().email(),
+        password: Joi.string().min(7).max(1024).required(),
+        avatar: Joi.string().min(10)
     };
-    return Joi.validate(forumPost, schema)
+    return Joi.validate(User, schema)
 };
 
 module.exports = {
