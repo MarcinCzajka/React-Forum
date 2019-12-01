@@ -1,5 +1,5 @@
 const express = require('express');
-
+const auth = require('./middleware/auth');
 const userRouter = require('./routes/userRouter');
 const forumRoomRouter = require('./routes/forumRoomRouter');
 const postsRouter = require('./routes/postsRouter');
@@ -10,7 +10,7 @@ require('./config/database')();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
+app.use('/api/auth', auth);
 app.use('/api/users', userRouter);
 app.use('/api/rooms', forumRoomRouter);
 app.use('/api/posts', postsRouter);

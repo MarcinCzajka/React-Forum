@@ -32,11 +32,21 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
+const complexityOptions = {
+    min: 8,
+    max: 26,
+    lowerCase: 1,
+    upperCase: 1,
+    numeric: 1,
+    symbol: 0,
+    requirementCount: 4,
+}
+
 function validateUser(User) {
     const schema = {
         name: Joi.string().min(5).max(15).required(),
         email: Joi.string().min(5).max(255).required().email(),
-        password: new PasswordComplexity().required(),
+        password: new PasswordComplexity(complexityOptions).required(),
         avatar: Joi.string().min(10)
     };
     return Joi.validate(User, schema)
