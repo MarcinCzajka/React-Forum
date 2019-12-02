@@ -15,7 +15,7 @@ class ForumPost extends React.Component {
 			content: "",
 			date: "",
 			authorNick: "",
-			avatar: "",
+			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
 			cssVisibility: "hidden",
 			replyContent: "",
 			refreshChildren: false
@@ -50,7 +50,7 @@ class ForumPost extends React.Component {
 					</Comment.Avatar>
 
 					<Comment.Content>
-						<Comment.Author className="author" as='string'>{this.state.authorNick}</Comment.Author>
+						<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
 						<Comment.Metadata className="metadata">
 							<span className="date">{this.state.date}</span>
 						</Comment.Metadata>
@@ -134,8 +134,13 @@ class ForumPost extends React.Component {
 		})
 		.then(res => {
 			this.setState({
-				authorNick: res.data.nick || "",
+				authorNick: res.data.name || "",
 				avatar: res.data.avatar || ""
+			});
+		})
+		.catch(err => {
+			this.setState({
+				authorNick: "Deleted user."
 			});
 		});
 		this.props.addPostToState(this.state.id);

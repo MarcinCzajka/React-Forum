@@ -21,7 +21,6 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <Comment.Group className="ParentDirectory">
                 <ChildrenOfPost 

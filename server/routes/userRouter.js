@@ -15,7 +15,6 @@ router.get("/:id", async (req, res) => {
     const user = await User.findById(req.params.id);
     if(!user) return res.status(400).send('User with given ID doesnt exist.');
 
-    console.log(user)
     res.send(_.pick(user, ['_id', 'name', 'email', 'avatar']));
 });
 
