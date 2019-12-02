@@ -22,7 +22,7 @@ class ForumPostGroup extends React.Component {
 
     render() {
         return (
-            <Comment.Group className="ParentDirectory">
+            <Comment.Group style={{display:this.props.display}} className="ParentDirectory">
                 <ChildrenOfPost 
                     parentId=""
                     removePostFromState={this.removePostFromState} 

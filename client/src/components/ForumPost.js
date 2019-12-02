@@ -54,7 +54,7 @@ class ForumPost extends React.Component {
 						<Comment.Metadata className="metadata">
 							<span className="date">{this.state.date}</span>
 						</Comment.Metadata>
-						<Comment.Text className="text">{this.state.content}</Comment.Text>
+						<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
 						<Comment.Actions>
 							<Button onClick={this.changeReplyFormVisibility}>Reply</Button>
