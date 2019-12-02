@@ -1,5 +1,4 @@
 const express = require('express');
-const auth = require('./middleware/auth');
 const loginRouter = require('./routes/loginRouter');
 const userRouter = require('./routes/userRouter');
 const forumRoomRouter = require('./routes/forumRoomRouter');

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
+const admin = require('../middleware/admin');
 const {ForumRoom, validateForumRoom} = require('../models/forumRoom');
 
 router.get("/", async (req, res) => {
@@ -30,7 +31,7 @@ router.post("/", auth, async (req, res) => {
 });
 
 
-router.delete("/:id", auth, async (req, res) => {
+router.delete("/:id", [auth, admin], async (req, res) => {
     const result = await ForumRoom.findByIdAndDelete(req.params.id)
     if (!result) return res.status(400).send('No room exist under given id.')
     

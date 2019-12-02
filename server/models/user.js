@@ -29,11 +29,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         minlength: 10,
         default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 });
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id}, jwtPrivateKey);
+    const token = jwt.sign({_id: this._id, isAdmin: this.isAdmin}, jwtPrivateKey);
     return token;
 };
 
