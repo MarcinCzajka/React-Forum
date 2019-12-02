@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const {ForumPost, validateForumPost} = require('../models/forumPost');
 
 router.get("/", async (req, res) => {
@@ -20,7 +21,7 @@ router.get("/:id", async (req, res) => {
     res.status(200).send(post);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     const { error } = validateForumPost(req.body);
 	if(error) return res.status(400).send(error.details[0].message);
     
@@ -31,7 +32,7 @@ router.post("/", async (req, res) => {
 });
 
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
     const result = await ForumPost.findByIdAndDelete(req.params.id)
     if (!result) return res.status(400).send('No post exists under given ID.')
     

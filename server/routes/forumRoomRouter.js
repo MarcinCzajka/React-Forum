@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const {ForumRoom, validateForumRoom} = require('../models/forumRoom');
 
 router.get("/", async (req, res) => {
@@ -18,7 +19,7 @@ router.get("/:id", async (req, res) => {
     res.status(200).send(room);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
     const { error } = validateForumRoom(req.body);
 	if(error) return res.status(400).send(error.details[0].message);
     
@@ -29,7 +30,7 @@ router.post("/", async (req, res) => {
 });
 
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", auth, async (req, res) => {
     const result = await ForumRoom.findByIdAndDelete(req.params.id)
     if (!result) return res.status(400).send('No room exist under given id.')
     

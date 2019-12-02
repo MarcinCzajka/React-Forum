@@ -1,10 +1,11 @@
 const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
+const auth = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const {User, validateUser} = require('../models/User');
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
     const users = await User.find();
     if(!users) return res.status(400).send('No users were created yet.');
 
@@ -37,9 +38,10 @@ router.post('/', async (req, res) => {
     } catch(err) {
         console.log(err);
         res.status(500).send('Internal server error.');
-    }
+    };
 
-    res.send(_.pick(user, ['_id', 'name', 'email']));
+    const token = user.generateAuthToken();
+    res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
 
 module.exports = router;
