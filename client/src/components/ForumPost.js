@@ -57,8 +57,8 @@ class ForumPost extends React.Component {
 						<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
 						<Comment.Actions>
-							<Button onClick={this.changeReplyFormVisibility}>Reply</Button>
-							<Button onClick={this.removeThisPost}>Delete</Button>
+							<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
+							<Button size='mini' onClick={this.removeThisPost}>Delete</Button>
 						</Comment.Actions>
 
 						<Form reply className={this.state.cssVisibility}>
@@ -97,7 +97,8 @@ class ForumPost extends React.Component {
 			  authorId: "5d1b9e227d1217155c9ba4fe",
 			  content: this.state.replyContent,
 			  responseTo: this.state.id
-		  }
+		  },
+		  withCredentials: true
 	  })
 	  .then((res) => {
 		if(res.status === 200) {
@@ -149,7 +150,8 @@ class ForumPost extends React.Component {
 	removeThisPost = async () => {
 		await basePath({
 			method: "delete",
-			url: `/api/posts/${this.state.id}`
+			url: `/api/posts/${this.state.id}`,
+            withCredentials: true
 		})
 		.then(res => {
 			if(res.status === 200){

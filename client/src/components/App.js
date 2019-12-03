@@ -10,7 +10,10 @@ class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {selectedPage: 'Feed'};
+        this.state = {
+            selectedPage: 'Feed',
+            loggenIn: false
+        };
 
         this.switchPage = this.switchPage.bind(this);
     }
@@ -18,6 +21,8 @@ class App extends React.Component {
     switchPage(e, { name }) {
         this.setState({selectedPage: name});
     }
+
+    
 
     render() {
         return (

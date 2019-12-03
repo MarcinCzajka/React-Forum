@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu } from "semantic-ui-react";
+import LoginForm from "./LoginForm";
 
 class TopPanel extends React.Component {
     constructor(props) {
@@ -16,7 +17,7 @@ class TopPanel extends React.Component {
 
     render() {
         return (
-            <Menu tabular>
+            <Menu tabular inverted>
                 <Menu.Item
                     name='Feed'
                     active={this.props.selectedPage === 'Feed'}
@@ -33,10 +34,7 @@ class TopPanel extends React.Component {
                     onClick={this.props.switchPage}
                 />
                 <Menu.Menu position='right'>
-                    <Menu.Item
-                    name={(this.state.loggedIn ? 'Logout' : 'Log in')}
-                    onClick={this.handleLogin}
-                />
+                    <LoginForm />
                 </Menu.Menu>
             </Menu>
         )

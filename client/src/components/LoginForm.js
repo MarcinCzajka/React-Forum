@@ -1,48 +1,48 @@
 import React from 'react';
-import { Message, Button, Form, Container, Header, Modal } from 'semantic-ui-react'
-import 'semantic-ui-css/semantic.min.css';
+import { Message, Button, Form, Container, Header, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
-import SignUpForm from "./SignUpForm";
-
+import { throws } from 'assert';
 
 class LoginForm extends React.Component {
-    
     constructor(props) {
-        super(props)
-    this.state = { email: '', password: '', error: '' };
+        super(props);
+        this.state = {
+            'open': false,
+            'buttonName': 'Log in',
+            'email': '',
+            'password': '',
+            'error': ''
+        };
     }
 
-
-    onSubmit = (email, password) => {
-    
+    login = () => {
         basePath({
             method: 'post',
             url: '/login',
             data: {
-                email: email,
-                password: password
+                email: this.state.email,
+                password: this.state.password
             },
             withCredentials: true
-        }).then(response => {
-            if (response.status === 200) {
-                console.log('Logged in successfully')
-                this.props.handleLogin();
-                this.props.handleClose();
-                this.props.setUser(response.data);
+        }).then(res => {
+            if (res.status === 200) {
+                document.cookie = 'x-auth-token=' + res.data;
+
+                this.setState({
+                    'open': false,
+                    'buttonName': 'Log out',
+                    'email': '',
+                    'password': '',
+                    'error': ''
+                })
             }
         }).catch(error => {
-            console.log(error)
-            this.setState({ error: error.response.data })
+                console.log(error)
+                this.setState({ error: error.response.data })
             });
     }
-    
-    onFormSubmit = (event) => {
-        event.preventDefault();
-        this.onSubmit(this.state.email, this.state.password);
-    };
 
-    error() {
-        console.log(this.state.error)
+    error = () => {
         if (this.state.error) {
             return (
                 <Message error
@@ -54,15 +54,15 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <>
-                <Header as='h2' textAlign='center'>
-                    Log in
-                    <Header.Subheader>Only logged in users can make reservations</Header.Subheader>
-                </Header>
+            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name={this.state.buttonName} />}
+                open={this.state.open}
+                onClose={this.close}
+            >
+                <Modal.Header>Log in</Modal.Header>
                 <Modal.Content>
-                <Container text>
-                    <Form size='large' onSubmit={this.onFormSubmit} error>
+                    <Form size='tiny' onSubmit={this.login} error >
                         <div>{this.error()}</div>
+                        <br></br>
                         <Form.Field required>
                             <label>Email</label>
                             <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
@@ -73,22 +73,18 @@ class LoginForm extends React.Component {
                         </Form.Field>
                         <Button type='submit' fluid size='large'>Sign in</Button>
                     </Form>
-                    <Header as='h3' textAlign='center'>Don't have an account yet?</Header>
-                    <Modal trigger={
-                        <Button type='submit' fluid size='large' style={{ marginBottom: '3%' }}>Sign up</Button>
-                    } closeIcon>
-                        <SignUpForm 
-                            handleLogin={this.props.handleLogin}
-                            handleClose={this.props.handleClose}
-                            setUser={this.props.setUser}/>
-                    </Modal>
-                </Container>
                 </Modal.Content>
-            </>
+            </Modal>
         )
     }
+
+    close = () => {
+        this.setState({open: false});
+    }
+    open = () => {
+        this.setState({open: true});
+    }
+
 }
 
 export default LoginForm;
-
-
