@@ -1,7 +1,6 @@
 import React from 'react';
-import { Message, Button, Form, Container, Header, Modal, Menu } from 'semantic-ui-react';
+import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
-import { throws } from 'assert';
 
 class LoginForm extends React.Component {
     constructor(props) {
