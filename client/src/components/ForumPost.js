@@ -1,5 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import jwt_decode from 'jwt-decode';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
 import './ForumPost.css';
@@ -89,12 +90,14 @@ class ForumPost extends React.Component {
 	};
 
 
-	handleReplyToPost = async (replyToId, replyMessage) => {
+	handleReplyToPost = async () => {
+		const authorId = jwt_decode(document.cookie)._id;
+
 		await basePath({
 		  method: "post",
 		  url: `/api/posts/`,
 		  data: {
-			  authorId: "5d1b9e227d1217155c9ba4fe",
+			  authorId: authorId,
 			  content: this.state.replyContent,
 			  responseTo: this.state.id
 		  },
@@ -115,7 +118,6 @@ class ForumPost extends React.Component {
 			url: `/api/posts/${this.state.id}`
 		})
 		.then(res => {
-			console.log(res.data)
 			this.setState({
 				authorId: res.data.authorId || "",
 				content: res.data.content || "",
