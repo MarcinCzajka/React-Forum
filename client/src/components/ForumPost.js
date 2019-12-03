@@ -115,6 +115,7 @@ class ForumPost extends React.Component {
 			url: `/api/posts/${this.state.id}`
 		})
 		.then(res => {
+			console.log(res.data)
 			this.setState({
 				authorId: res.data.authorId || "",
 				content: res.data.content || "",
@@ -134,12 +135,14 @@ class ForumPost extends React.Component {
 			url: `/api/users/${this.state.authorId}`
 		})
 		.then(res => {
+			console.log(res)
 			this.setState({
 				authorNick: res.data.name || "",
 				avatar: res.data.avatar || ""
 			});
 		})
 		.catch(err => {
+			console.log(err)
 			this.setState({
 				authorNick: "Deleted user."
 			});

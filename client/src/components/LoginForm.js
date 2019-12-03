@@ -26,7 +26,6 @@ class LoginForm extends React.Component {
             withCredentials: true
         }).then(res => {
             if (res.status === 200) {
-                document.cookie = 'x-auth-token=' + res.data;
 
                 this.setState({
                     'open': false,
