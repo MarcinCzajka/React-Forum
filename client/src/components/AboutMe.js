@@ -3,41 +3,29 @@ import basePath from '../api/basePath';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import UserContext from '../contexts/UserContext';
+import { UserConsumer } from '../contexts/UserContext';
 
 class AboutMe extends React.Component {
 
-    constructor(props) {
-        super(props);
-        
-        this.style = {
-            userName: '',
-            userId: '',
-            userAvatar: ''
-        }
-    }
-
-    static contextType = UserContext;
-
     render() {
         return (
-            <Card style={{display:this.props.display}}>
-                <Image src={this.context.avatar} wrapped ui={false} />
-                <Card.Content>
-                <Card.Header>Matthew</Card.Header>
-                <Card.Meta>
-                    <span className='date'>Joined in 2015</span>
-                </Card.Meta>
-                <Card.Description>
-                    Matthew is a musician living in Nashville.
-                </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                <a>
-                    <Icon name='user' />
-                    22 Friends
-                </a>
-                </Card.Content>
-            </Card>
+            <UserConsumer>
+                {context => (
+                    <Card style={{display:this.props.display}}>
+                        <Image src={context.userAvatar} wrapped ui={false} />
+                        <Card.Content>
+                        <Card.Header>{context.userName}</Card.Header>
+                        <Card.Meta>
+                            <span className='date'>Created at: {context.userCreatedAt}</span>
+                            <span >{context.userEmail}</span>
+                        </Card.Meta>
+                        <Card.Description>
+                            {context.userDescription}
+                        </Card.Description>
+                        </Card.Content>
+                    </Card>
+                )}
+            </UserConsumer>
         )
     }
 

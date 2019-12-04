@@ -32,8 +32,12 @@ class App extends React.Component {
             loggedIn: data.loggedIn,
             userName: data.name,
             userId: data._id,
-            userAvatar: data.avatar
+            userAvatar: data.avatar,
+            userCreatedAt: data.createdAt,
+            userEmail: data.email
+
         })
+        console.table(this.state)
     }
 
 
@@ -45,7 +49,6 @@ class App extends React.Component {
             userAvatar: this.state.userAvatar,
             setContextData: this.setContextData
         };
-        console.log(contextValue)
 
         return (
             <UserProvider value={contextValue} >

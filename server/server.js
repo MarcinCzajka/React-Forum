@@ -13,7 +13,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/me', meRouter);
 app.use('/login', loginRouter);
 app.use('/api/users', userRouter);
 app.use('/api/rooms', forumRoomRouter);

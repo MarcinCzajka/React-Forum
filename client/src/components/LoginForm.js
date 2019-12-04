@@ -10,8 +10,8 @@ class LoginForm extends React.Component {
         this.state = {
             'open': false,
             'buttonName': 'Log in',
-            'email': '',
-            'password': '',
+            'email': 'email1@email.com',
+            'password': 'Password1',
             'error': ''
         }
     }
