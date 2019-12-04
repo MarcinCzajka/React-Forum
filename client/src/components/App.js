@@ -16,7 +16,9 @@ class App extends React.Component {
             loggedIn: false,
             userName: '',
             userId: '',
-            userAvatar: ''
+            userAvatar: '',
+            userCreatedAt: '',
+            userEmail: ''
         };
 
         this.switchPage = this.switchPage.bind(this);
@@ -47,6 +49,8 @@ class App extends React.Component {
             userName: this.state.userName,
             userId: this.state.userId,
             userAvatar: this.state.userAvatar,
+            userEmail: this.state.userEmail,
+            userCreatedAt: this.state.userCreatedAt,
             setContextData: this.setContextData
         };
 

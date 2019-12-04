@@ -1,6 +1,7 @@
 import React from 'react';
 import { Menu } from "semantic-ui-react";
 import LoginForm from "./LoginForm";
+import SignUpForm from './SignUpForm';
 import { UserConsumer } from '../contexts/UserContext';
 
 class TopPanel extends React.Component {
@@ -39,6 +40,7 @@ class TopPanel extends React.Component {
                             />
                         ) : ''}
                         <Menu.Menu position='right'>
+                            <SignUpForm />
                             <LoginForm />
                         </Menu.Menu>
                     </Menu>

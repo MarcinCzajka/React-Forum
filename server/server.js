@@ -4,7 +4,6 @@ const loginRouter = require('./routes/loginRouter');
 const userRouter = require('./routes/userRouter');
 const forumRoomRouter = require('./routes/forumRoomRouter');
 const postsRouter = require('./routes/postsRouter');
-const meRouter = require('./routes/meRouter');
 
 const app = express();
 require('./config/database')();

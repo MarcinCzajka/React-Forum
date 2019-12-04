@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema({
         minlength: 10,
         default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
     },
-    date: {
+    createdAt: {
         type: Date,
         required: true,
         default: Date.now
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id, name: this.name, email: this.email, avatar: this.avatar, isAdmin: this.isAdmin}, jwtPrivateKey);
+    const token = jwt.sign({_id: this._id, name: this.name, email: this.email, avatar: this.avatar, createdAt: this.createdAt}, jwtPrivateKey);
     return token;
 };
 
@@ -59,8 +59,7 @@ function validateUser(User) {
         name: Joi.string().min(5).max(15).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: new PasswordComplexity(complexityOptions).required(),
-        avatar: Joi.string().min(10),
-        date: Joi.date().required()
+        avatar: Joi.string().min(10)
     };
     return Joi.validate(User, schema)
 };

@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
         this.state = {
             'open': false,
             'buttonName': 'Log in',
-            'email': 'email1@email.com',
+            'email': 'e@e.e',
             'password': 'Password1',
             'error': ''
         }
@@ -58,13 +58,13 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name={this.state.buttonName} />}
+            <Modal size='small' trigger={<Menu.Item onClick={this.open} name={this.state.buttonName} />}
                 open={this.state.open}
                 onClose={this.close}
             >
                 <Modal.Header>Log in</Modal.Header>
                 <Modal.Content>
-                    <Form size='tiny' onSubmit={this.login} error >
+                    <Form size='small' onSubmit={this.login} error >
                         <div>{this.error()}</div>
                         <br></br>
                         <Form.Field required>
