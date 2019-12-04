@@ -1,10 +1,10 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import jwt_decode from 'jwt-decode';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
 import './ForumPost.css';
 import ChildrenOfPost from './ChildrenOfPost';
+import UserContext from '../contexts/UserContext';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -22,6 +22,8 @@ class ForumPost extends React.Component {
 			refreshChildren: false
 		};
 	}
+
+	static contextType = UserContext;
 
 	refreshChildren() {
 		this.setState({
@@ -91,13 +93,11 @@ class ForumPost extends React.Component {
 
 
 	handleReplyToPost = async () => {
-		const authorId = jwt_decode(document.cookie)._id;
-
 		await basePath({
 		  method: "post",
 		  url: `/api/posts/`,
 		  data: {
-			  authorId: authorId,
+			  authorId: this.context.userId,
 			  content: this.state.replyContent,
 			  responseTo: this.state.id
 		  },

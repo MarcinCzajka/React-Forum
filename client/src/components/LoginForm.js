@@ -1,6 +1,8 @@
 import React from 'react';
 import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
+import UserContext from '../contexts/UserContext';
+import jwt_decode from 'jwt-decode';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -11,8 +13,10 @@ class LoginForm extends React.Component {
             'email': '',
             'password': '',
             'error': ''
-        };
+        }
     }
+
+    static contextType = UserContext;
 
     login = () => {
         basePath({
@@ -25,6 +29,8 @@ class LoginForm extends React.Component {
             withCredentials: true
         }).then(res => {
             if (res.status === 200) {
+                const data = {...jwt_decode(document.cookie), ...{loggedIn: true}};
+                this.context.setContextData(data);
 
                 this.setState({
                     'open': false,
