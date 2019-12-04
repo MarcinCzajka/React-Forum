@@ -30,9 +30,10 @@ const userSchema = new mongoose.Schema({
         minlength: 10,
         default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
+    date: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 
@@ -58,7 +59,8 @@ function validateUser(User) {
         name: Joi.string().min(5).max(15).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: new PasswordComplexity(complexityOptions).required(),
-        avatar: Joi.string().min(10)
+        avatar: Joi.string().min(10),
+        date: Joi.date().required()
     };
     return Joi.validate(User, schema)
 };

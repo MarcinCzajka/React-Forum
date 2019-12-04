@@ -6,17 +6,17 @@ import UserContext from '../contexts/UserContext';
 
 class AboutMe extends React.Component {
 
-    static contextType = UserContext;
-
     constructor(props) {
         super(props);
-
+        
         this.style = {
-            userName: this.context.userName,
-            userId: this.context.userId,
-            userAvatar: this.context.userAvatar
+            userName: '',
+            userId: '',
+            userAvatar: ''
         }
     }
+
+    static contextType = UserContext;
 
     render() {
         return (
