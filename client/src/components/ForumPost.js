@@ -5,6 +5,7 @@ import moment from "moment";
 import './ForumPost.css';
 import ChildrenOfPost from './ChildrenOfPost';
 import UserContext from '../contexts/UserContext';
+import PostPlaceholder from './placeholders/PostPlaceholder';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -19,8 +20,9 @@ class ForumPost extends React.Component {
 			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
 			cssVisibility: "hidden",
 			replyContent: "",
-			refreshChildren: false
-		};
+			refreshChildren: false,
+			loading: true
+		}
 	}
 
 	static contextType = UserContext;
@@ -28,8 +30,8 @@ class ForumPost extends React.Component {
 	refreshChildren() {
 		this.setState({
 			refreshChildren: !this.state.refreshChildren
-		});
-	};
+		})
+	}
 	
 	componentDidMount() {
 		this.getPostDetails();
@@ -46,31 +48,35 @@ class ForumPost extends React.Component {
 		
 		return (
 			<div className="ui large comments">
-				<Comment className="comment">
-					<Comment.Avatar 
-						className="avatar" 
-						src={this.state.avatar} >
-					</Comment.Avatar>
+				{this.state.loading ? (
+					<PostPlaceholder />
+				) : (
+					<Comment className="comment">
+						<Comment.Avatar 
+							className="avatar" 
+							src={this.state.avatar} >
+						</Comment.Avatar>
 
-					<Comment.Content>
-						<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
-						<Comment.Metadata className="metadata">
-							<span className="date">{this.state.date}</span>
-						</Comment.Metadata>
-						<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
+						<Comment.Content>
+							<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
+							<Comment.Metadata className="metadata">
+								<span className="date">{this.state.date}</span>
+							</Comment.Metadata>
+							<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
-						<Comment.Actions>
-							<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
-							<Button size='mini' onClick={this.removeThisPost}>Delete</Button>
-						</Comment.Actions>
+							<Comment.Actions>
+								<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
+								<Button size='mini' onClick={this.removeThisPost}>Delete</Button>
+							</Comment.Actions>
 
-						<Form reply className={this.state.cssVisibility}>
-							<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyTextboxContent(e.target.value)} />
-							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-						</Form>
-					</Comment.Content>
+							<Form reply className={this.state.cssVisibility}>
+								<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyTextboxContent(e.target.value)} />
+								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+							</Form>
+						</Comment.Content>
 
-				</Comment>
+					</Comment>
+				)}
 				<ChildrenOfPost
 					parentId={this.state.id}
 					refreshChildren={this.state.refreshChildren}
@@ -139,12 +145,14 @@ class ForumPost extends React.Component {
 		.then(res => {
 			this.setState({
 				authorNick: res.data.name || "",
-				avatar: res.data.avatar || ""
+				avatar: res.data.avatar || "",
+				loading: false
 			});
 		})
 		.catch(err => {
 			this.setState({
-				authorNick: "Deleted user."
+				authorNick: "Deleted user.",
+				loading: false
 			});
 		});
 		this.props.addPostToState(this.state.id);
