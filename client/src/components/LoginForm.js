@@ -9,7 +9,8 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             'open': false,
-            'buttonName': 'Log in',
+            'keepMeLoggedIn': false,
+            'buttonName': '',
             'email': '',
             'password': '',
             'error': ''
@@ -32,6 +33,8 @@ class LoginForm extends React.Component {
                 const data = {...jwt_decode(document.cookie), ...{loggedIn: true}};
                 this.context.setContextData(data);
 
+                if(this.state.keepMeLoggedIn) localStorage.setItem('token', document.cookie);
+
                 this.setState({
                     'open': false,
                     'buttonName': 'Log out',
@@ -46,6 +49,18 @@ class LoginForm extends React.Component {
             });
     }
 
+    logout = () => {
+        localStorage.removeItem('token');
+        document.cookie = '';
+        
+        this.context.setContextData({
+            loggedIn: false,
+            userName: '',
+            userId: '',
+            userAvatar: ''
+        })
+    }
+
     error = () => {
         if (this.state.error) {
             return (
@@ -58,7 +73,8 @@ class LoginForm extends React.Component {
 
     render() {
         return (
-            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name={this.state.buttonName} />}
+            !this.context.loggedIn ? (
+            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name="Log in" />}
                 open={this.state.open}
                 onClose={this.close}
             >
@@ -79,6 +95,9 @@ class LoginForm extends React.Component {
                     </Form>
                 </Modal.Content>
             </Modal>
+            ) : (
+                <Menu.Item onClick={this.logout} name="Log out" />
+            )
         )
     }
 

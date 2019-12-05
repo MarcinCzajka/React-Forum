@@ -44,7 +44,6 @@ class App extends React.Component {
             userAvatar: this.state.userAvatar,
             setContextData: this.setContextData
         };
-        console.log(contextValue)
 
         return (
             <UserProvider value={contextValue} >
