@@ -5,6 +5,7 @@ import ForumPostsGroup from './ForumPostsGroup';
 import AboutMe from './AboutMe';
 import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
+import isToken from '../middleware/isToken';
 
 
 class App extends React.Component {
@@ -24,6 +25,11 @@ class App extends React.Component {
         this.switchPage = this.switchPage.bind(this);
         this.setContextData = this.setContextData.bind(this);
     }
+
+    componentDidMount() {
+        const data = isToken();
+        if(data) this.setContextData(data);
+    }
     
     switchPage(e, { name }) {
         this.setState({selectedPage: name});
@@ -36,10 +42,10 @@ class App extends React.Component {
             userId: data._id,
             userAvatar: data.avatar,
             userCreatedAt: data.createdAt,
-            userEmail: data.email
+            userEmail: data.email,
 
-        })
-        console.table(this.state)
+            selectedPage: (!data.loggedIn && this.state.selectedPage === 'Me' ? 'Feed' : this.state.selectedPage )
+        });
     }
 
 

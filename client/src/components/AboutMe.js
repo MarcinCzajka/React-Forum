@@ -1,23 +1,5 @@
 import React from 'react';
 import basePath from '../api/basePath';
-<<<<<<< HEAD
-import { Comment, Form, Button } from "semantic-ui-react";
-import moment from "moment";
-import UserContext from '../contexts/UserContext';
-
-class AboutMe extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {};
-    }
-
-    render() {
-        return (
-            <div style={{display:this.props.display}}>
-                me
-            </div>
-=======
 import { Card, Icon, Image } from 'semantic-ui-react';
 import moment from 'moment';
 import { UserConsumer } from '../contexts/UserContext';
@@ -43,7 +25,6 @@ class AboutMe extends React.Component {
                     </Card>
                 )}
             </UserConsumer>
->>>>>>> 6f37e51039f0081358bb8158f0880b973784fe1c
         )
     }
 
