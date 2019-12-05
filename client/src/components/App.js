@@ -2,6 +2,7 @@ import React from 'react';
 import TopPanel from './TopPanel';
 import ForumRoomList from './ForumRoomList';
 import ForumPostsGroup from './ForumPostsGroup';
+import AboutMe from './AboutMe';
 import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
 
@@ -15,7 +16,9 @@ class App extends React.Component {
             loggedIn: false,
             userName: '',
             userId: '',
-            userAvatar: ''
+            userAvatar: '',
+            userCreatedAt: '',
+            userEmail: ''
         };
 
         this.switchPage = this.switchPage.bind(this);
@@ -31,8 +34,12 @@ class App extends React.Component {
             loggedIn: data.loggedIn,
             userName: data.name,
             userId: data._id,
-            userAvatar: data.avatar
+            userAvatar: data.avatar,
+            userCreatedAt: data.createdAt,
+            userEmail: data.email
+
         })
+        console.table(this.state)
     }
 
 
@@ -42,6 +49,8 @@ class App extends React.Component {
             userName: this.state.userName,
             userId: this.state.userId,
             userAvatar: this.state.userAvatar,
+            userEmail: this.state.userEmail,
+            userCreatedAt: this.state.userCreatedAt,
             setContextData: this.setContextData
         };
 
@@ -53,6 +62,7 @@ class App extends React.Component {
                 />
                 <ForumPostsGroup display={this.state.selectedPage === 'Selected post' ? 'block' : 'none'} />
                 <ForumRoomList display={this.state.selectedPage === 'Feed' ? 'block' : 'none'} />
+                <AboutMe display={this.state.selectedPage === 'Me' ? 'block' : 'none'} />
             </UserProvider>
         )
     }

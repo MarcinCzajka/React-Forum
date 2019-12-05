@@ -33,6 +33,11 @@ router.post("/", auth, async (req, res) => {
 
 
 router.delete("/:id", auth, async (req, res) => {
+    const post = await ForumPost.findById(req.params.id);
+    if(req.user._id !== post.authorId) {
+        return res.status(403).send('You are not owner of this post.')
+    };
+
     const result = await ForumPost.findByIdAndDelete(req.params.id)
     if (!result) return res.status(400).send('No post exists under given ID.')
     

@@ -30,14 +30,15 @@ const userSchema = new mongoose.Schema({
         minlength: 10,
         default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
     },
-    isAdmin: {
-        type: Boolean,
-        default: false
+    createdAt: {
+        type: Date,
+        required: true,
+        default: Date.now
     }
 });
 
 userSchema.methods.generateAuthToken = function() {
-    const token = jwt.sign({_id: this._id, name: this.name, avatar: this.avatar, isAdmin: this.isAdmin}, jwtPrivateKey);
+    const token = jwt.sign({_id: this._id, name: this.name, email: this.email, avatar: this.avatar, createdAt: this.createdAt}, jwtPrivateKey);
     return token;
 };
 

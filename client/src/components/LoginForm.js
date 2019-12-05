@@ -9,10 +9,16 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             'open': false,
+<<<<<<< HEAD
             'keepMeLoggedIn': false,
             'buttonName': '',
             'email': '',
             'password': '',
+=======
+            'buttonName': 'Log in',
+            'email': 'e@e.e',
+            'password': 'Password1',
+>>>>>>> 6f37e51039f0081358bb8158f0880b973784fe1c
             'error': ''
         }
     }
@@ -73,14 +79,18 @@ class LoginForm extends React.Component {
 
     render() {
         return (
+<<<<<<< HEAD
             !this.context.loggedIn ? (
             <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name="Log in" />}
+=======
+            <Modal size='small' trigger={<Menu.Item onClick={this.open} name={this.state.buttonName} />}
+>>>>>>> 6f37e51039f0081358bb8158f0880b973784fe1c
                 open={this.state.open}
                 onClose={this.close}
             >
                 <Modal.Header>Log in</Modal.Header>
                 <Modal.Content>
-                    <Form size='tiny' onSubmit={this.login} error >
+                    <Form size='small' onSubmit={this.login} error >
                         <div>{this.error()}</div>
                         <br></br>
                         <Form.Field required>
