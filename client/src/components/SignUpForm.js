@@ -85,8 +85,7 @@ class SignUpForm extends React.Component {
                                             <label>Password</label>
                                             <input 
                                                 type='password'
-                                                placeholder='Password' 
-                                                autocomplete = "new-password"
+                                                placeholder='Password'
                                                 spellcheck = "false"
                                                 autocapitalize = "off"
                                                 autocorrect = "off"
@@ -95,8 +94,7 @@ class SignUpForm extends React.Component {
                                             />
                                             <input 
                                                 type='password'
-                                                placeholder='Repeat' 
-                                                autocomplete = "new-password"
+                                                placeholder='Repeat'
                                                 spellcheck = "false"
                                                 autocapitalize = "off"
                                                 autocorrect = "off"

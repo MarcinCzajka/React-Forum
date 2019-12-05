@@ -64,15 +64,18 @@ class ForumPost extends React.Component {
 							</Comment.Metadata>
 							<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
+						{this.context.loggedIn ? (
 							<Comment.Actions>
 								<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
-								<Button size='mini' onClick={this.removeThisPost}>Delete</Button>
+								{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
 							</Comment.Actions>
-
+						) : ''}
+						
 							<Form reply className={this.state.cssVisibility}>
 								<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyTextboxContent(e.target.value)} />
 								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 							</Form>
+							
 						</Comment.Content>
 
 					</Comment>
