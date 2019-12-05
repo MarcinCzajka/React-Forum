@@ -20,6 +20,11 @@ class SignUpForm extends React.Component {
     static contextType = UserContext;
 
     login = () => {
+        if(this.state.password !== this.state.passwordRepeat) {
+            this.setState({error: 'Passwords are not identical.'})
+            return;
+        }
+
         basePath({
             method: 'post',
             url: '/api/users',
@@ -59,7 +64,7 @@ class SignUpForm extends React.Component {
                 {context => (
                     <div>
                         {!context.loggedIn ? (
-                            <Modal size='small' trigger={<Menu.Item onClick={this.open} name='Sign up!' />}
+                            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name='Sign up!' />}
                                 open={this.state.open}
                                 onClose={this.close}
                             >
@@ -78,7 +83,26 @@ class SignUpForm extends React.Component {
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Password</label>
-                                            <input placeholder='Password' value={this.state.password} onChange={ (e) => this.setState({ password: e.target.value })} />
+                                            <input 
+                                                type='password'
+                                                placeholder='Password' 
+                                                autocomplete = "new-password"
+                                                spellcheck = "false"
+                                                autocapitalize = "off"
+                                                autocorrect = "off"
+                                                value={this.state.password} 
+                                                onChange={(e) => this.setState({ password: e.target.value })} 
+                                            />
+                                            <input 
+                                                type='password'
+                                                placeholder='Repeat' 
+                                                autocomplete = "new-password"
+                                                spellcheck = "false"
+                                                autocapitalize = "off"
+                                                autocorrect = "off"
+                                                value={this.state.passwordRepeat} 
+                                                onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
+                                            />
                                         </Form.Field>
                                         <Button type='submit' fluid size='large'>Sign up</Button>
                                     </Form>

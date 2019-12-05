@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
+import { Message, Button, Form, Modal, Menu, Checkbox } from 'semantic-ui-react';
 import basePath from '../api/basePath';
 import UserContext from '../contexts/UserContext';
 import jwt_decode from 'jwt-decode';
@@ -9,7 +9,7 @@ class LoginForm extends React.Component {
         super(props);
         this.state = {
             'open': false,
-            'keepMeLoggedIn': true,
+            'stayLogged': false,
             'buttonName': '',
             'email': '',
             'password': '',
@@ -33,13 +33,14 @@ class LoginForm extends React.Component {
                 const data = {...jwt_decode(document.cookie), ...{loggedIn: true}};
                 this.context.setContextData(data);
 
-                if(this.state.keepMeLoggedIn) localStorage.setItem('token', document.cookie);
+                if(this.state.stayLogged) localStorage.setItem('token', document.cookie);
 
                 this.setState({
                     'open': false,
                     'buttonName': 'Log out',
                     'email': '',
                     'password': '',
+                    'passwordRepeat': '',
                     'error': ''
                 })
             }
@@ -91,9 +92,24 @@ class LoginForm extends React.Component {
                         </Form.Field>
                         <Form.Field required>
                             <label>Password</label>
-                            <input placeholder='Password' value={this.state.password} onChange={ (e) => this.setState({ password: e.target.value })} />
+                            <input 
+                                type='password'
+                                placeholder='Password' 
+                                autocomplete = "new-password"
+                                spellcheck = "false"
+                                autocapitalize = "off"
+                                autocorrect = "off"
+                                value={this.state.password} 
+                                onChange={(e) => this.setState({ password: e.target.value })} 
+                            />
                         </Form.Field>
-                        <Button type='submit' fluid size='large'>Sign in</Button>
+                        <Checkbox
+                            checked={this.state.stayLogged}
+                            label='Stay logged in' 
+                            onChange={() => this.setState({ stayLogged: !this.state.stayLogged })} 
+                        />
+
+                        <Button style={{'margin-top':'15px'}} type='submit' fluid size='large'>Sign in</Button>
                     </Form>
                 </Modal.Content>
             </Modal>
