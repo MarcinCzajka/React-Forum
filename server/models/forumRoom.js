@@ -16,6 +16,12 @@ const ForumRoomSchema = new mongoose.Schema({
         default: Date.now,
         required: true
     },
+    title: {
+        type: String,
+        minlength: 5,
+        maxlength: 50,
+        required: true
+    },
     description: {
         type: String,
         minlength: 15,
@@ -50,6 +56,7 @@ function validateForumRoom(forumRoom) {
         authorId: Joi.string().required(),
         date: Joi.date().required(),
         lastActivityDate: Joi.date().required(),
+        title: Joi.string().min(5).max(50).required(),
         description: Joi.string().min(15).max(500).required(),
         shortDescription: Joi.string().min(15).max(150).required(),
         category: Joi.string().required(),

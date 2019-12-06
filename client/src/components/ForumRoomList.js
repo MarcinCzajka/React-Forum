@@ -1,5 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
+import NewRoomForm from './NewRoomForm';
 
 class ForumRoomList extends React.Component {
     constructor(props) {
@@ -9,17 +10,19 @@ class ForumRoomList extends React.Component {
             rooms: [],
             category: "All"
         };
-    };
+    }
 
     componentDidMount() {
         this.fetchForumRooms();
-    };
+    }
 
     render() {
         return (
-            <div></div>
+            <div>
+                <NewRoomForm />
+            </div>
         );
-    };
+    }
 
     fetchForumRooms = async () => {
         const params = (this.state.category === "All" ? `category=${this.state.category}` : "")
@@ -41,10 +44,12 @@ class ForumRoomList extends React.Component {
                     colorScheme: item.colorScheme
                 };
             });
-
+            console.log(arrayOfRooms)
             this.setState({rooms: arrayOfRooms});
-		});
-    };
+		}).catch(err => {
+            console.log(err)
+        })
+    }
 };
 
 export default ForumRoomList;

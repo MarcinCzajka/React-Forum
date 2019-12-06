@@ -1,51 +1,54 @@
 import React from 'react';
 import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
-import UserContext from '../contexts/UserContext';
-import { UserConsumer } from '../contexts/UserContext';
 
-class SignUpForm extends React.Component {
+class NewRoomForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'open': false,
-            'userName': '',
-            'email': '',
-            'password': '',
-            'avatar': '',
-            'error': ''
+            open: false,
+            title: '',
+            description: '',
+            shortDescription: '',
+            category: 'General',
+            image: '',
+            colorScheme: '',
+            error: ''
         }
     }
 
-    static contextType = UserContext;
-
-    login = () => {
-        if(this.state.password !== this.state.passwordRepeat) {
-            this.setState({error: 'Passwords are not identical.'})
-            return;
-        }
-
-        basePath({
-            method: 'post',
-            url: '/api/users',
-            data: {
-                name: this.state.userName,
-                email: this.state.email,
-                password: this.state.password
-            }
-        }).then(res => {
-            if (res.status === 200) {
-
-                this.setState({
-                    'open': false
+    createNewRoom() {
+        handleReplyToPost = async () => {
+            await basePath({
+                    method: "post",
+                    url: `/api/rooms/`,
+                    data: {
+                        authorId: '',
+                        description: this.state.description,
+                        shortDescription: this.state.shortDescription,
+                        category: this.state.category,
+                        image: this.state.image,
+                        colorScheme: this.state.colorScheme
+                    },
+                    withCredentials: true
                 })
-
-                alert('Account created.')
-            }
-        }).catch(error => {
-                console.log(error);
-                this.setState({ error: error.response.data });
-            });
+                .then((res) => {
+                    if (res.status === 200) {
+                        this.setState({
+                            'open': false,
+                            description: '',
+                            shortDescription: '',
+                            category: 'General',
+                            image: '',
+                            colorScheme: ''
+                        });
+                    };
+                })
+                .catch(err => {
+                    console.log(error);
+                    this.setState({ error: error.response.data });
+                })
+        }
     }
 
     error = () => {
@@ -64,22 +67,22 @@ class SignUpForm extends React.Component {
                 {context => (
                     <div>
                         {!context.loggedIn ? (
-                            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name='Sign up!' />}
+                            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name='New thread' />}
                                 open={this.state.open}
                                 onClose={this.close}
                             >
-                                <Modal.Header>Sign up</Modal.Header>
+                                <Modal.Header>{this.state.title || 'New thread'}</Modal.Header>
                                 <Modal.Content>
-                                    <Form size='small' onSubmit={this.login} error >
+                                    <Form size='large' onSubmit={this.createNewRoom} error >
                                         <div>{this.error()}</div>
                                         <br></br>
                                         <Form.Field required>
-                                            <label>Username</label>
-                                            <input placeholder='Name' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
+                                            <label>Title</label>
+                                            <input placeholder='Title' value={this.state.title} onChange={ (e) => this.setState({ title: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
-                                            <label>Email</label>
-                                            <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
+                                            <label>Short description</label>
+                                            <input placeholder='This will be seen by users on main page' value={this.state.shortDescription} onChange={ (e) => this.setState({ shortDescription: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Password</label>
@@ -122,4 +125,4 @@ class SignUpForm extends React.Component {
 
 }
 
-export default SignUpForm;
+export default NewRoomForm;

@@ -66,8 +66,8 @@ class App extends React.Component {
                     selectedPage={this.state.selectedPage} 
                     switchPage={this.switchPage}
                 />
-                <ForumPostsGroup display={this.state.selectedPage === 'Selected post' ? 'block' : 'none'} />
                 <ForumRoomList display={this.state.selectedPage === 'Feed' ? 'block' : 'none'} />
+                <ForumPostsGroup display={this.state.selectedPage === 'Selected post' ? 'block' : 'none'} />
                 <AboutMe display={this.state.selectedPage === 'Me' ? 'block' : 'none'} />
             </UserProvider>
         )
