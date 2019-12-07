@@ -10,7 +10,7 @@ class ForumRoom extends React.Component {
 		super(props);
 		
 		this.state = { 
-			id: this.props.postId,
+			id: this.props.roomId,
 			authorId: "",
 			content: "",
 			date: "",
@@ -36,13 +36,6 @@ class ForumRoom extends React.Component {
 	}
 	
 	render() {
-		const postsNotToRender = this.props.postsNotToRender.slice();
-		let shouldPostRender = postsNotToRender.findIndex(id => {
-          return id === this.state.id;
-		});
-        if (shouldPostRender !== -1) {
-            return "";
-		}
 		
 		return (
 			<div className="ui large comments">
@@ -78,14 +71,6 @@ class ForumRoom extends React.Component {
 
 					</Comment>
 				)}
-				<ChildrenOfPost
-					parentId={this.state.id}
-					refreshChildren={this.state.refreshChildren}
-					handleReplyToPost={this.handleReplyToPost}
-					removePostFromState={this.props.removePostFromState}
-					addPostToState={this.props.addPostToState}
-					postsNotToRender={this.props.postsNotToRender}>
-				</ChildrenOfPost>
 			</div>
 		);
 	}

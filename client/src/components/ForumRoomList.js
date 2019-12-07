@@ -1,5 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
+import ForumRoom from './ForumRoom';
 import NewRoomForm from './NewRoomForm';
 
 class ForumRoomList extends React.Component {
@@ -8,7 +9,7 @@ class ForumRoomList extends React.Component {
 
         this.state = {
             rooms: [],
-            category: "All"
+            category: "General"
         };
     }
 
@@ -17,25 +18,31 @@ class ForumRoomList extends React.Component {
     }
 
     render() {
+        const forumRooms = this.state.rooms.map(room => {
+            return <ForumRoom roomId={room.id} />;
+        })
         return (
             <div>
-                <NewRoomForm />
+                <div style={{display:this.props.display}}>
+                    <NewRoomForm />
+                </div>
+                {forumRooms}
             </div>
         );
     }
 
-    fetchForumRooms = async () => {
-        const params = (this.state.category === "All" ? `category=${this.state.category}` : "")
-        await basePath({
+    fetchForumRooms = () => {
+        const params = (this.state.category ? `category=${this.state.category}` : "")
+        basePath({
 			method: "get",
-			url: `/api/rooms/${params}`
+			url: `/api/rooms/`
 		})
 		.then(res => {
             const arrayOfRooms = res.data.map(item => {
                 return {
                     id: item._id,
                     key: item._id,
-                    creatorId: item.creatorId,
+                    authorId: item.authorId,
                     creationDate: item.creationDate,
                     lastActivityDate: item.lastActivityDate,
                     description: item.description,

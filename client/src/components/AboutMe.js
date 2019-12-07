@@ -1,7 +1,5 @@
 import React from 'react';
-import basePath from '../api/basePath';
-import { Card, Icon, Image } from 'semantic-ui-react';
-import moment from 'moment';
+import { Card, Image } from 'semantic-ui-react';
 import { UserConsumer } from '../contexts/UserContext';
 import { Helmet } from "react-helmet";
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Joi = require('joi');
 
 const ForumRoomSchema = new mongoose.Schema({
-    creatorId: {
+    authorId: {
         type: String,
         required: true
     },
@@ -54,14 +54,14 @@ const ForumRoom = mongoose.model('ForumRoom', ForumRoomSchema);
 function validateForumRoom(forumRoom) {
     const schema = {
         authorId: Joi.string().required(),
-        date: Joi.date().required(),
-        lastActivityDate: Joi.date().required(),
+        date: Joi.date().allow(''),
+        lastActivityDate: Joi.date().allow(''),
         title: Joi.string().min(5).max(50).required(),
         description: Joi.string().min(15).max(500).required(),
         shortDescription: Joi.string().min(15).max(150).required(),
         category: Joi.string().required(),
         image: Joi.string().allow(''),
-        colorScheme: Joi.string().required()
+        colorScheme: Joi.string().allow('')
     };
     return Joi.validate(forumRoom, schema)
 };
