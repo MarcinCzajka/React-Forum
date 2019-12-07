@@ -19,13 +19,11 @@ class ForumRoomList extends React.Component {
 
     render() {
         const forumRooms = this.state.rooms.map(room => {
-            return <ForumRoom roomId={room.id} />;
+            return <ForumRoom {...room} />;
         })
         return (
-            <div>
-                <div style={{display:this.props.display}}>
-                    <NewRoomForm />
-                </div>
+            <div style={{display:this.props.display}}>
+                <NewRoomForm />
                 {forumRooms}
             </div>
         );
@@ -45,13 +43,13 @@ class ForumRoomList extends React.Component {
                     authorId: item.authorId,
                     creationDate: item.creationDate,
                     lastActivityDate: item.lastActivityDate,
+                    shortDescription: item.shortDescription,
                     description: item.description,
                     category: item.category,
                     image: item.image,
                     colorScheme: item.colorScheme
                 };
             });
-            console.log(arrayOfRooms)
             this.setState({rooms: arrayOfRooms});
 		}).catch(err => {
             console.log(err)

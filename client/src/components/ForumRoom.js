@@ -3,125 +3,53 @@ import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
 import UserContext from '../contexts/UserContext';
-import PostPlaceholder from './placeholders/PostPlaceholder';
 
 class ForumRoom extends React.Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = { 
-			id: this.props.roomId,
-			authorId: "",
-			content: "",
-			date: "",
-			authorNick: "",
-			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
-			cssVisibility: "hidden",
-			replyContent: "",
-			refreshChildren: false,
-			loading: true
+			id: this.props.id,
+			authorId: this.props.authorId,
+			creationDate: this.props.creationDate,
+			lastActivityDate: this.props.lastActivityDate,
+			shortDescription: this.props.shortDescription,
+			description: this.props.description,
+			category: this.props.category,
+			image: this.props.image,
+			colorScheme: this.props.colorScheme
 		}
 	}
 
 	static contextType = UserContext;
-
-	refreshChildren() {
-		this.setState({
-			refreshChildren: !this.state.refreshChildren
-		})
-	}
-	
-	componentDidMount() {
-		this.getPostDetails();
-	}
 	
 	render() {
-		
 		return (
 			<div className="ui large comments">
-				{this.state.loading ? (
-					<PostPlaceholder />
-				) : (
-					<Comment className="comment">
-						<Comment.Avatar 
-							className="avatar" 
-							src={this.state.avatar} >
-						</Comment.Avatar>
+				<Comment className="comment">
+					<Comment.Avatar 
+						className="avatar" 
+						src={this.state.image} >
+					</Comment.Avatar>
 
-						<Comment.Content>
-							<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
-							<Comment.Metadata className="metadata">
-								<span className="date">{this.state.date}</span>
-							</Comment.Metadata>
-							<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
-
-						{this.context.loggedIn ? (
-							<Comment.Actions>
-								<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
-								{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
-							</Comment.Actions>
-						) : ''}
+					<Comment.Content>
+						<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
+						<Comment.Metadata className="metadata">
+							<span className="date">{this.state.date}</span>
+						</Comment.Metadata>
+						<Comment.Text as='p' className="text">{this.state.shortDescription}</Comment.Text>
+					
+						<Form reply style={{display:(this.context.selectedPage === 'Feed' ? 'block' : 'none')}}>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
 						
-							<Form reply className={this.state.cssVisibility}>
-								<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyTextboxContent(e.target.value)} />
-								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-							</Form>
-							
-						</Comment.Content>
+					</Comment.Content>
 
-					</Comment>
-				)}
+				</Comment>
 			</div>
-		);
+		)
 	}
-
-	changeReplyFormVisibility = () => {
-		this.setState({cssVisibility: this.state.cssVisibility === "hidden" ? "shown" : "hidden"});
-	}
-
-	updateReplyTextboxContent = content => {
-		this.setState({replyContent: content});
-	};
-
-
-	handleReplyToPost = async () => {
-		await basePath({
-		  method: "post",
-		  url: `/api/posts/`,
-		  data: {
-			  authorId: this.context.userId,
-			  content: this.state.replyContent,
-			  responseTo: this.state.id
-		  },
-		  withCredentials: true
-	  })
-	  .then((res) => {
-		if(res.status === 200) {
-			this.refreshChildren();
-			this.changeReplyFormVisibility();
-			this.setState({replyContent: ""});
-		};
-	  });
-	};
-
-	getPostDetails = async () => {
-		await basePath({
-			method: "get",
-			url: `/api/posts/${this.state.id}`
-		})
-		.then(res => {
-			this.setState({
-				authorId: res.data.authorId || "",
-				content: res.data.content || "",
-				date: moment(res.data.date)
-					.format("MMMM Do YYYY, h:mm:ss")
-					.toString()
-			});
-		})
-		.then(() => {
-			this.getPostAuthorDetails()
-		});
-	};
 
 	getPostAuthorDetails = async () => {
 		await basePath({
@@ -139,24 +67,10 @@ class ForumRoom extends React.Component {
 			this.setState({
 				authorNick: "Deleted user.",
 				loading: false
-			});
-		});
-		this.props.addPostToState(this.state.id);
-	};
-
-	removeThisPost = async () => {
-		await basePath({
-			method: "delete",
-			url: `/api/posts/${this.state.id}`,
-            withCredentials: true
+			})
 		})
-		.then(res => {
-			if(res.status === 200){
-				this.props.removePostFromState(this.state.id);
-			};
-		});
-	};
+	}
 
-};
+}
 
 export default ForumRoom;
