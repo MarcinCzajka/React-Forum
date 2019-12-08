@@ -1,8 +1,9 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Segment, Comment, Form, Button, Image } from "semantic-ui-react";
+import { Segment, Comment, Form, Button, Image} from "semantic-ui-react";
 import moment from "moment";
 import UserContext from '../contexts/UserContext';
+import './forumRoom.css';
 
 class ForumRoom extends React.Component {
 	constructor(props) {
@@ -13,6 +14,7 @@ class ForumRoom extends React.Component {
 			authorId: this.props.authorId,
 			creationDate: this.props.creationDate,
 			lastActivityDate: this.props.lastActivityDate,
+			title: this.props.title,
 			shortDescription: this.props.shortDescription,
 			description: this.props.description,
 			category: this.props.category,
@@ -26,26 +28,26 @@ class ForumRoom extends React.Component {
 	render() {
 		return (
 			<div className="ui large comments">
-				<Segment>
-					<Comment className="comment">
-
-						<Comment.Content>
-							<Segment.Inline>
-								<Image src={this.state.image} size='small' rounded />
-								<Comment.Metadata className="metadata">
-									<span className="date">{this.state.date}</span>
-								</Comment.Metadata>
+				<Segment.Group>
+					
+					<Segment.Group horizontal>
+						<Segment className="noPadding">
+							<Image className="segmentImg" src={this.state.image} size='large' rounded />
+						</Segment>
+						<Segment.Group>
+								<Segment>
+								{this.state.title}
+								</Segment>
+							<Segment>
 								<Comment.Text as='p' className="text">{this.state.shortDescription}</Comment.Text>
-							</Segment.Inline>
-							<Form reply style={{display:(this.context.selectedPage === 'Feed' ? 'block' : 'none')}}>
-								<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
-								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-							</Form>
-							
-						</Comment.Content>
-
-					</Comment>
-				</Segment>
+							</Segment>	
+						</Segment.Group>
+					</Segment.Group>
+				</Segment.Group>
+				<Form reply style={{display:(this.context.selectedPage === 'Feed' ? 'block' : 'none')}}>
+					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
+					<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+				</Form>
 			</div>
 		)
 	}

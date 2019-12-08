@@ -1,5 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
+import { Grid } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import NewRoomForm from './NewRoomForm';
 
@@ -19,13 +20,17 @@ class ForumRoomList extends React.Component {
 
     render() {
         const forumRooms = this.state.rooms.map(room => {
-            return <ForumRoom {...room} />;
+            return (
+                <Grid.Row centered>
+                    <ForumRoom {...room} />
+                </Grid.Row>
+            );
         })
         return (
-            <div style={{display:this.props.display}}>
+            <Grid style={{display:this.props.display}}>
                 <NewRoomForm />
                 {forumRooms}
-            </div>
+            </Grid>
         );
     }
 
@@ -43,6 +48,7 @@ class ForumRoomList extends React.Component {
                     authorId: item.authorId,
                     creationDate: item.creationDate,
                     lastActivityDate: item.lastActivityDate,
+                    title: item.title,
                     shortDescription: item.shortDescription,
                     description: item.description,
                     category: item.category,

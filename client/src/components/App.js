@@ -6,6 +6,7 @@ import AboutMe from './AboutMe';
 import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
+import './global.css';
 
 
 class App extends React.Component {
