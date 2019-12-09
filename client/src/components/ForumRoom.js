@@ -27,24 +27,24 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<div className="ui large comments">
+			<div className="ui large comments maxWidth">
 				<Segment.Group>
 					
 					<Segment.Group horizontal>
-						<Segment className="noPadding">
-							<Image className="segmentImg" src={this.state.image} size='large' rounded />
+						<Segment className="noPadding imageSegment">
+							<img className="segmentImg" src={this.state.image}/>
 						</Segment>
-						<Segment.Group>
+						<Segment.Group className="noMargin maxWidth">
 								<Segment>
 								{this.state.title}
 								</Segment>
-							<Segment className="noMargin">
+							<Segment >
 								<Comment.Text as='p' className="text">{this.state.shortDescription}</Comment.Text>
 							</Segment>	
 						</Segment.Group>
 					</Segment.Group>
 				</Segment.Group>
-				<Form reply style={{display:(this.context.selectedPage === 'Feed' ? 'block' : 'none')}}>
+				<Form reply className={(this.context.selectedPage === 'Feed' ? 'shown' : 'hidden')}>
 					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
 					<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 				</Form>
