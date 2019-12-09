@@ -20,7 +20,8 @@ class App extends React.Component {
             userId: '',
             userAvatar: '',
             userCreatedAt: '',
-            userEmail: ''
+            userEmail: '',
+            selectedRoomId: ''
         };
 
         this.switchPage = this.switchPage.bind(this);
@@ -44,6 +45,7 @@ class App extends React.Component {
             userAvatar: data.avatar,
             userCreatedAt: data.createdAt,
             userEmail: data.email,
+            selectedRoomId: data.selectedRoomId,
 
             selectedPage: (!data.loggedIn && this.state.selectedPage === 'Me' ? 'Feed' : this.state.selectedPage )
         });

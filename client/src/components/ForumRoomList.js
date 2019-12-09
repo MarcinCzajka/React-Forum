@@ -22,7 +22,7 @@ class ForumRoomList extends React.Component {
     render() {
         const forumRooms = this.state.rooms.map(room => {
             return (
-                <Grid.Row centered>
+                <Grid.Row key={room.key} centered>
                     <ForumRoom {...room} />
                 </Grid.Row>
             );

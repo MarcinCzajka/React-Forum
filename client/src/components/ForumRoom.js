@@ -1,7 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Segment, Comment, Form, Button, Image} from "semantic-ui-react";
-import moment from "moment";
+import { Segment, Comment, Form, Button} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import './global.css';
 
@@ -21,13 +20,22 @@ class ForumRoom extends React.Component {
 			image: this.props.image,
 			colorScheme: this.props.colorScheme
 		}
+
+		this.openRoom = this.openRoom.bind(this);
 	}
 
 	static contextType = UserContext;
+
+	openRoom() {
+		this.context.setContextData({
+			selectedRoomId: this.state.id,
+			selectedPage: 'Selected post'
+		});
+	}
 	
 	render() {
 		return (
-			<div className="ui large comments maxWidth">
+			<div className="ui large comments maxWidth" onClick={this.openRoom}>
 				<Segment.Group>
 					
 					<Segment.Group horizontal>
@@ -39,7 +47,7 @@ class ForumRoom extends React.Component {
 								{this.state.title}
 								</Segment>
 							<Segment >
-								<Comment.Text as='p' className="text">{this.state.shortDescription}</Comment.Text>
+								<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
 							</Segment>	
 						</Segment.Group>
 					</Segment.Group>
