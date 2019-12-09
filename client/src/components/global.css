@@ -1,4 +1,22 @@
-* {
-    margin: 0;
-    padding: 0;
+.hidden {
+    display: none !important;
+}
+.shown {
+    display: block !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+    width: 300px !important;
+    height: 150px !important;
+}
+
+.segmentImg {
+    height: 100% !important;
+    width: 100% !important;
+    object-fit: cover !important;
 }

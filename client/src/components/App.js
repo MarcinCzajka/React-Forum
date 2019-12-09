@@ -67,9 +67,9 @@ class App extends React.Component {
                     selectedPage={this.state.selectedPage} 
                     switchPage={this.switchPage}
                 />
-                <ForumRoomList display={this.state.selectedPage === 'Feed' ? 'block' : 'none'} />
-                <ForumPostsGroup display={this.state.selectedPage === 'Selected post' ? 'block' : 'none'} />
-                <AboutMe display={this.state.selectedPage === 'Me' ? 'block' : 'none'} />
+                <ForumRoomList cssVisibility={this.state.selectedPage === 'Feed' ? 'shown' : 'hidden'} />
+                <ForumPostsGroup cssVisibility={this.state.selectedPage === 'Selected post' ? 'shown' : 'hidden'} />
+                <AboutMe cssVisibility={this.state.selectedPage === 'Me' ? 'shown' : 'hidden'} />
             </UserProvider>
         )
     }

@@ -3,6 +3,7 @@ import basePath from '../api/basePath';
 import { Grid } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import NewRoomForm from './NewRoomForm';
+import './global.css';
 
 class ForumRoomList extends React.Component {
     constructor(props) {
@@ -27,7 +28,7 @@ class ForumRoomList extends React.Component {
             );
         })
         return (
-            <Grid style={{display:this.props.display}}>
+            <Grid className={this.props.cssVisibility}>
                 <NewRoomForm />
                 {forumRooms}
             </Grid>

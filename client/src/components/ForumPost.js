@@ -2,7 +2,7 @@ import React from 'react';
 import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
-import './ForumPost.css';
+import './global.css';
 import ChildrenOfPost from './ChildrenOfPost';
 import UserContext from '../contexts/UserContext';
 import PostPlaceholder from './placeholders/PostPlaceholder';

@@ -3,7 +3,7 @@ import basePath from '../api/basePath';
 import { Segment, Comment, Form, Button, Image} from "semantic-ui-react";
 import moment from "moment";
 import UserContext from '../contexts/UserContext';
-import './forumRoom.css';
+import './global.css';
 
 class ForumRoom extends React.Component {
 	constructor(props) {
@@ -38,7 +38,7 @@ class ForumRoom extends React.Component {
 								<Segment>
 								{this.state.title}
 								</Segment>
-							<Segment>
+							<Segment className="noMargin">
 								<Comment.Text as='p' className="text">{this.state.shortDescription}</Comment.Text>
 							</Segment>	
 						</Segment.Group>

@@ -20,7 +20,7 @@ class AboutMe extends React.Component {
         return (
             <UserConsumer>
                 {context => (
-                    <Card style={{display:this.props.display}}>
+                    <Card className={this.props.cssVisibility}>
                         <Helmet>
                             <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
                         </Helmet>
