@@ -13,6 +13,8 @@ class ForumRoomList extends React.Component {
             rooms: [],
             category: "General"
         };
+
+        this.getTopVotedPosts = this.getTopVotedPosts.bind(this);
     }
 
     componentDidMount() {
@@ -27,6 +29,7 @@ class ForumRoomList extends React.Component {
                 </Grid.Row>
             );
         })
+
         return (
             <Grid className={this.props.cssVisibility}>
                 <NewRoomForm />
@@ -36,13 +39,14 @@ class ForumRoomList extends React.Component {
     }
 
     fetchForumRooms = () => {
-        const params = (this.state.category ? `category=${this.state.category}` : "")
         basePath({
 			method: "get",
 			url: `/api/rooms/`
 		})
 		.then(res => {
             const arrayOfRooms = res.data.map(item => {
+                this.getTopVotedPosts(item._id)
+                
                 return {
                     id: item._id,
                     key: item._id,
@@ -55,13 +59,28 @@ class ForumRoomList extends React.Component {
                     category: item.category,
                     image: item.image,
                     colorScheme: item.colorScheme
-                };
-            });
+                }
+            })
+
             this.setState({rooms: arrayOfRooms});
 		}).catch(err => {
             console.log(err)
         })
     }
-};
+
+    getTopVotedPosts(id) {
+        const limit = 'limit=5';
+        const responseTo = 'responseTo=' + id;
+		basePath({
+		  method: "get",
+		  url: `/api/posts/top?${limit}&${responseTo}`,
+		  withCredentials: true
+      })
+      .then(res => {
+          console.log(res)
+      })
+    }
+
+}
 
 export default ForumRoomList;

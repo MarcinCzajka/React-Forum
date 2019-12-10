@@ -4,12 +4,19 @@ const auth = require('../middleware/auth');
 const {ForumPost, validateForumPost} = require('../models/forumPost');
 
 router.get("/", async (req, res) => {
-    //const responseTo = new RegExp(req.query.responseTo || /./, "gi");
-
     const responseTo = req.query.responseTo || "";
 
     const posts = await ForumPost.find({responseTo: responseTo});
     if(!posts) return res.status(400).send('There are no posts in this room.');
+
+    res.status(200).send(posts);
+});
+
+router.get("/top", async (req, res) => {
+    const posts = await ForumPost.find({responseTo: req.query.responseTo})
+        .sort({upvotes: -1})
+        .limit(Number(req.query.limit));
+    if(!posts) return res.status(400).send('No posts found.');
 
     res.status(200).send(posts);
 });

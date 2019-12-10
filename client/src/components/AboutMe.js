@@ -4,9 +4,6 @@ import { UserConsumer } from '../contexts/UserContext';
 import { Helmet } from "react-helmet";
 
 class AboutMe extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     componentDidMount() {
         const script = document.createElement("script");

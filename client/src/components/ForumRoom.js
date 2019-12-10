@@ -44,7 +44,7 @@ class ForumRoom extends React.Component {
 					
 					<Segment.Group horizontal>
 						<Segment className="noPadding imageSegment">
-							<img className="segmentImg" src={this.state.image}/>
+							<img alt={`${this.state.title}`} className="segmentImg" src={this.state.image}/>
 						</Segment>
 						<Segment.Group className="noMargin maxWidth">
 								<Segment>

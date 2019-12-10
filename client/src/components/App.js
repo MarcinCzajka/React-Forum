@@ -69,7 +69,7 @@ class App extends React.Component {
             switchPage: this.switchPage,
             pages: this.state.pages
         };
-        console.log(this.state.selectedPage)
+        
         return (
             <UserProvider value={contextValue} >
                 <TopPanel 

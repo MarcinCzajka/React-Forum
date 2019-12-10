@@ -7,6 +7,7 @@ const postsRouter = require('./routes/postsRouter');
 
 const app = express();
 require('./config/database')();
+app.enable('strict routing')
 
 app.use(cookieParser());
 app.use(express.json());

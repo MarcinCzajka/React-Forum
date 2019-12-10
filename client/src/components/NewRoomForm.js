@@ -1,5 +1,5 @@
 import React from 'react';
-import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
+import { Message, Button, Form, Modal } from 'semantic-ui-react';
 import basePath from '../api/basePath';
 import UserContext from '../contexts/UserContext';
 

@@ -2,9 +2,6 @@ import React from 'react';
 import { Placeholder } from "semantic-ui-react";
 
 class PostPlaceholder extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     render() {
         return (
