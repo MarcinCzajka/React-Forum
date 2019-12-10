@@ -18,10 +18,13 @@ class ForumRoom extends React.Component {
 			description: this.props.description,
 			category: this.props.category,
 			image: this.props.image,
-			colorScheme: this.props.colorScheme
+			colorScheme: this.props.colorScheme,
+			showReplyForm: false,
+			replyContent: ''
 		}
 
 		this.openRoom = this.openRoom.bind(this);
+		this.handleReplyToPost = this.handleReplyToPost.bind(this);
 	}
 
 	static contextType = UserContext;
@@ -52,15 +55,37 @@ class ForumRoom extends React.Component {
 							</Segment>	
 						</Segment.Group>
 					</Segment.Group>
+					{this.context.loggedIn && this.context.selectedPage !== this.context.pages[0] ? (
+						<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+					) : ''}
 				</Segment.Group>
-				{this.props.showReplyButton ? (
+				{this.state.showReplyForm ? (
 				<Form reply>
-					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
+					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
 					<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 				</Form>
 				) : ''}
 			</div>
 		)
+	}
+
+		handleReplyToPost = async () => {
+		await basePath({
+		  method: "post",
+		  url: `/api/posts/`,
+		  data: {
+			  authorId: this.context.userId,
+			  content: this.state.replyContent,
+			  responseTo: this.state.id
+		  },
+		  withCredentials: true
+	  })
+	  .then((res) => {
+		if(res.status === 200) {
+			this.props.refreshPosts();
+			this.setState({replyContent: '', showReplyForm: false});
+		}
+	  })
 	}
 
 	getPostAuthorDetails = async () => {

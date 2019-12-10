@@ -63,6 +63,7 @@ class App extends React.Component {
             userAvatar: this.state.userAvatar,
             userEmail: this.state.userEmail,
             userCreatedAt: this.state.userCreatedAt,
+            selectedPage: this.state.selectedPage,
             selectedRoomData: this.state.selectedRoomData,
             setContextData: this.setContextData,
             switchPage: this.switchPage,

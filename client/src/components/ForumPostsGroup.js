@@ -1,7 +1,9 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Comment } from "semantic-ui-react";
+import ForumRoom from './ForumRoom';
 import ChildrenOfPost from './ChildrenOfPost';
+import { UserConsumer } from '../contexts/UserContext';
 
 class ForumPostGroup extends React.Component {
     constructor(props) {
@@ -9,27 +11,37 @@ class ForumPostGroup extends React.Component {
 
         this.state = {
             posts: [],
-            postsNotToRender: []
+            postsNotToRender: [],
+            refreshChildren: false
         }
 
         this.removePostFromState = this.removePostFromState.bind(this);
         this.addPostToState = this.addPostToState.bind(this);
+        this.refreshChildren = this.refreshChildren.bind(this);
     }
 
-    componentDidMount() {
-        
+    refreshChildren() {
+        this.setState({refreshChildren: !this.state.refreshChildren});
     }
 
     render() {
         return (
-            <Comment.Group className={`ParentDirectory ${this.props.cssVisibility}`}>
-                <ChildrenOfPost 
-                    parentId=""
-                    removePostFromState={this.removePostFromState} 
-                    addPostToState={this.addPostToState}
-                    postsNotToRender={this.state.postsNotToRender}>
-                </ChildrenOfPost>
-            </Comment.Group>
+            <UserConsumer>
+                {context => (
+                    context.selectedPage === context.pages[1] ? (
+                        <Comment.Group className={`ParentDirectory ${this.props.cssVisibility}`}>
+                            <ForumRoom refreshPosts={this.refreshChildren} {...context.selectedRoomData} />
+                            <ChildrenOfPost 
+                                parentId={context.selectedRoomData.id}
+                                refreshChildren={this.state.refreshChildren}
+                                removePostFromState={this.removePostFromState} 
+                                addPostToState={this.addPostToState}
+                                postsNotToRender={this.state.postsNotToRender}>
+                            </ChildrenOfPost>
+                        </Comment.Group>
+                    ) : ''
+                )}
+            </UserConsumer>
         );
     }
 

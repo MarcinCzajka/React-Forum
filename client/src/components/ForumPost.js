@@ -72,7 +72,7 @@ class ForumPost extends React.Component {
 						) : ''}
 						
 							<Form reply className={this.state.cssVisibility}>
-								<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
+								<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
 								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 							</Form>
 							
@@ -113,9 +113,9 @@ class ForumPost extends React.Component {
 			this.refreshChildren();
 			this.changeReplyFormVisibility();
 			this.setState({replyContent: ""});
-		};
-	  });
-	};
+		}
+	  })
+	}
 
 	getPostDetails = async () => {
 		await basePath({
