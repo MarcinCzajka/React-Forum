@@ -17,7 +17,7 @@ class ForumPostGroup extends React.Component {
     }
 
     componentDidMount() {
-        this.fetchForumPosts();
+        
     }
 
     render() {

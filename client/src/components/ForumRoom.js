@@ -28,9 +28,10 @@ class ForumRoom extends React.Component {
 
 	openRoom() {
 		this.context.setContextData({
-			selectedRoomId: this.state.id,
-			selectedPage: 'Selected post'
+			selectedRoomData: {...this.props, ...{showReplyButton: true}}
 		});
+
+		this.context.switchPage(this.context.pages[1]);
 	}
 	
 	render() {
@@ -52,10 +53,12 @@ class ForumRoom extends React.Component {
 						</Segment.Group>
 					</Segment.Group>
 				</Segment.Group>
-				<Form reply className={(this.context.selectedPage === 'Feed' ? 'shown' : 'hidden')}>
+				{this.props.showReplyButton ? (
+				<Form reply>
 					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState(e.target.value)} />
 					<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 				</Form>
+				) : ''}
 			</div>
 		)
 	}

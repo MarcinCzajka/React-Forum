@@ -21,7 +21,9 @@ class App extends React.Component {
             userAvatar: '',
             userCreatedAt: '',
             userEmail: '',
-            selectedRoomId: ''
+            selectedRoomData: {},
+
+            pages: ['Feed', 'Selected Post', 'Me']
         };
 
         this.switchPage = this.switchPage.bind(this);
@@ -33,23 +35,24 @@ class App extends React.Component {
         if(data) this.setContextData(data);
     }
     
-    switchPage(e, { name }) {
+    switchPage( name ) {
         this.setState({selectedPage: name});
     }
 
     setContextData(data) {
         this.setState({
-            loggedIn: data.loggedIn,
-            userName: data.name,
-            userId: data._id,
-            userAvatar: data.avatar,
-            userCreatedAt: data.createdAt,
-            userEmail: data.email,
-            selectedRoomId: data.selectedRoomId,
+            loggedIn: data.loggedIn || this.state.loggedIn,
+            userName: data.name || this.state.userName,
+            userId: data._id || this.state.userId,
+            userAvatar: data.avatar || this.state.userAvatar,
+            userCreatedAt: data.createdAt || this.state.userCreatedAt,
+            userEmail: data.email || this.state.userEmail,
+            selectedRoomData: data.selectedRoomData || this.state.selectedRoomData,
 
-            selectedPage: (!data.loggedIn && this.state.selectedPage === 'Me' ? 'Feed' : this.state.selectedPage )
+            selectedPage: (!data.loggedIn && this.state.selectedPage === this.state.pages[2] ? 'Feed' : this.state.selectedPage ),
         });
-    }
+    };
+
 
 
     render() {
@@ -60,18 +63,21 @@ class App extends React.Component {
             userAvatar: this.state.userAvatar,
             userEmail: this.state.userEmail,
             userCreatedAt: this.state.userCreatedAt,
-            setContextData: this.setContextData
+            selectedRoomData: this.state.selectedRoomData,
+            setContextData: this.setContextData,
+            switchPage: this.switchPage,
+            pages: this.state.pages
         };
-
+        console.log(this.state.selectedPage)
         return (
             <UserProvider value={contextValue} >
                 <TopPanel 
                     selectedPage={this.state.selectedPage} 
                     switchPage={this.switchPage}
                 />
-                <ForumRoomList cssVisibility={this.state.selectedPage === 'Feed' ? 'shown' : 'hidden'} />
-                <ForumPostsGroup cssVisibility={this.state.selectedPage === 'Selected post' ? 'shown' : 'hidden'} />
-                <AboutMe cssVisibility={this.state.selectedPage === 'Me' ? 'shown' : 'hidden'} />
+                <ForumRoomList cssVisibility={this.state.selectedPage === this.state.pages[0] ? 'shown' : 'hidden'} />
+                <ForumPostsGroup cssVisibility={this.state.selectedPage === this.state.pages[1] ? 'shown' : 'hidden'} />
+                <AboutMe cssVisibility={this.state.selectedPage === this.state.pages[2] ? 'shown' : 'hidden'} />
             </UserProvider>
         )
     }
