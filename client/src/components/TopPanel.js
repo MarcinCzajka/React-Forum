@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Menu } from "semantic-ui-react";
 import LoginForm from "./LoginForm";
 import SignUpForm from './SignUpForm';
@@ -27,22 +28,13 @@ class TopPanel extends React.Component {
             <UserConsumer>
                 {context => (
                     <Menu tabular inverted>
-                        <Menu.Item
-                            name={context.pages[0]}
-                            active={this.props.selectedPage === context.pages[0]}
-                            onClick={this.switchPage}
-                        />
-                        <Menu.Item
-                            name={context.pages[1]}
-                            active={this.props.selectedPage === context.pages[1]}
-                            onClick={this.switchPage}
-                        />
+                        <Link to=''>
+                            <Menu.Item name={context.pages[0]} />
+                        </Link>
                         {context.loggedIn ? (
-                            <Menu.Item
-                                name={context.pages[2]}
-                                active={this.props.selectedPage === context.pages[2]}
-                                onClick={this.switchPage}
-                            />
+                            <Link to='/me'>
+                                <Menu.Item name={context.pages[2]} />
+                            </Link>
                         ) : ''}
                         <Menu.Menu position='right'>
                             <SignUpForm />
