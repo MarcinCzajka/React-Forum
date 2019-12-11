@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom'
 import TopPanel from './TopPanel';
 import ForumRoomList from './ForumRoomList';
 import ForumPostsGroup from './ForumPostsGroup';
@@ -71,17 +72,23 @@ class App extends React.Component {
         };
         
         return (
-            <UserProvider value={contextValue} >
-                <TopPanel 
-                    selectedPage={this.state.selectedPage} 
-                    switchPage={this.switchPage}
-                />
-                <ForumRoomList cssVisibility={this.state.selectedPage === this.state.pages[0] ? 'shown' : 'hidden'} />
-                <ForumPostsGroup cssVisibility={this.state.selectedPage === this.state.pages[1] ? 'shown' : 'hidden'} />
-                <AboutMe cssVisibility={this.state.selectedPage === this.state.pages[2] ? 'shown' : 'hidden'} />
-            </UserProvider>
+            <BrowserRouter>
+                <UserProvider value={contextValue} >
+                    <TopPanel 
+                        selectedPage={this.state.selectedPage} 
+                        switchPage={this.switchPage}
+                    />
+                    <Route path='/' exact component={ForumRoomList} cssVisibility='shown' />
+                    <Route path='/selected' component={ForumPostsGroup} cssVisibility='shown' />
+                    <Route path='/me' component={AboutMe} cssVisibility='shown' />
+                </UserProvider>
+            </BrowserRouter>
         )
     }
 };
+
+/*                    <ForumRoomList cssVisibility={this.state.selectedPage === this.state.pages[0] ? 'shown' : 'shown'} />
+                    <ForumPostsGroup cssVisibility={this.state.selectedPage === this.state.pages[1] ? 'shown' : 'shown'} />
+                    <AboutMe cssVisibility={this.state.selectedPage === this.state.pages[2] ? 'shown' : 'shown'} />*/
 
 export default App;
