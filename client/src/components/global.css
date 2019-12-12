@@ -40,3 +40,7 @@
 .postText {
     text-align: left;
 }
+
+.forumRoomLink {
+    color: initial !important;
+}

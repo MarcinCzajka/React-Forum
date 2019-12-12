@@ -24,7 +24,7 @@ class ForumRoom extends React.Component {
 			replyContent: '',
 			isMounted: false,
 			arePropsUpdated: false,
-			loading: true,
+			loading: true
 		}
 	}
 

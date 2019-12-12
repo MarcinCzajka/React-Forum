@@ -15,7 +15,7 @@ class TopPanel extends React.Component {
     handleLogin = (e) => {
         this.setState({
             loggedIn: !this.state.loggedIn
-        });
+        })
     }
 
     render() {
