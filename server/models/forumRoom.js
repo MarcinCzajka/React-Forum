@@ -46,6 +46,14 @@ const ForumRoomSchema = new mongoose.Schema({
         type: String,
         default: "standard",
         required: true
+    },
+    upvotes: {
+        type: Number,
+        default: 0
+    },
+    views: {
+        type: Number,
+        default: 0
     }
 });
 

@@ -52,20 +52,7 @@ class ForumRoomList extends React.Component {
             const arrayOfRooms = res.data.map(item => {
                 this.getTopVotedPosts(item._id)
                 
-                return {
-                    _id: item._id,
-                    key: item._id,
-                    authorId: item.authorId,
-                    creationDate: item.creationDate,
-                    lastActivityDate: item.lastActivityDate,
-                    title: item.title,
-                    shortDescription: item.shortDescription,
-                    description: item.description,
-                    category: item.category,
-                    image: item.image,
-                    colorScheme: item.colorScheme,
-                    loading: false
-                }
+                return {...item, ...{loading: false, key: item._id}}
             })
 
             this.setState({rooms: arrayOfRooms});

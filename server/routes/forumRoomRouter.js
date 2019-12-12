@@ -14,7 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 router.get("/:id", async (req, res) => {
-    const room = await ForumRoom.findById(req.params.id);
+    const room = await ForumRoom.findByIdAndUpdate(req.params.id, { $inc: { views: 1 }},  {new: true });
     if(!room) return res.status(400).send('That room doesnt exist anymore.');
 
     res.status(200).send(room);
