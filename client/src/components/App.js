@@ -22,22 +22,18 @@ class App extends React.Component {
             userAvatar: '',
             userCreatedAt: '',
             userEmail: '',
-            selectedRoomData: {},
-
-            pages: ['Feed', 'Selected Post', 'Me']
+            pages: [
+                {name: 'Feed'},
+                {name: 'Me'}
+            ]
         };
 
-        this.switchPage = this.switchPage.bind(this);
         this.setContextData = this.setContextData.bind(this);
     }
 
     componentDidMount() {
         const data = isToken();
         if(data) this.setContextData(data);
-    }
-    
-    switchPage( name ) {
-        this.setState({selectedPage: name});
     }
 
     setContextData(data) {
@@ -47,10 +43,7 @@ class App extends React.Component {
             userId: data._id || this.state.userId,
             userAvatar: data.avatar || this.state.userAvatar,
             userCreatedAt: data.createdAt || this.state.userCreatedAt,
-            userEmail: data.email || this.state.userEmail,
-            selectedRoomData: data.selectedRoomData || this.state.selectedRoomData,
-
-            selectedPage: (!data.loggedIn && this.state.selectedPage === this.state.pages[2] ? 'Feed' : this.state.selectedPage ),
+            userEmail: data.email || this.state.userEmail
         });
     };
 
@@ -64,33 +57,23 @@ class App extends React.Component {
             userAvatar: this.state.userAvatar,
             userEmail: this.state.userEmail,
             userCreatedAt: this.state.userCreatedAt,
-            selectedPage: this.state.selectedPage,
-            selectedRoomData: this.state.selectedRoomData,
-            setContextData: this.setContextData,
-            switchPage: this.switchPage,
-            pages: this.state.pages
+            pages: this.state.pages,
+            setContextData: this.setContextData
         };
         
         return (
             <Router>
                 <UserProvider value={contextValue} >
-                    <TopPanel 
-                        selectedPage={this.state.selectedPage} 
-                        switchPage={this.switchPage}
-                    />
+                    <TopPanel />
                     <Switch>
-                        <Route path='/' exact component={ForumRoomList} cssVisibility='shown' />
-                        <Route path='/post/:id' component={ForumPostsGroup} cssVisibility='shown' />
-                        <Route path='/me' component={AboutMe} cssVisibility='shown' />
+                        <Route path='/' exact component={ForumRoomList} />
+                        <Route path='/post/:id' exact component={ForumPostsGroup} />
+                        <Route path='/me' component={AboutMe} />
                     </Switch>
                 </UserProvider>
             </Router>
         )
     }
 };
-
-/*                    <ForumRoomList cssVisibility={this.state.selectedPage === this.state.pages[0] ? 'shown' : 'shown'} />
-                    <ForumPostsGroup cssVisibility={this.state.selectedPage === this.state.pages[1] ? 'shown' : 'shown'} />
-                    <AboutMe cssVisibility={this.state.selectedPage === this.state.pages[2] ? 'shown' : 'shown'} />*/
 
 export default App;

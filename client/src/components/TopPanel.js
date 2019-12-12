@@ -18,22 +18,17 @@ class TopPanel extends React.Component {
         });
     }
 
-    switchPage = (e) => {
-        console.log(e.target.innerText)
-        this.props.switchPage(e.target.innerText);
-    }
-
     render() {
         return (
             <UserConsumer>
                 {context => (
                     <Menu tabular inverted>
                         <Link to=''>
-                            <Menu.Item name={context.pages[0]} />
+                            <Menu.Item name={context.pages[0].name} />
                         </Link>
                         {context.loggedIn ? (
                             <Link to='/me'>
-                                <Menu.Item name={context.pages[2]} />
+                                <Menu.Item name={context.pages[1].name} />
                             </Link>
                         ) : ''}
                         <Menu.Menu position='right'>

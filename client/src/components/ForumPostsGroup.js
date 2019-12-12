@@ -3,50 +3,57 @@ import basePath from '../api/basePath';
 import { Comment } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import ChildrenOfPost from './ChildrenOfPost';
-import { UserConsumer } from '../contexts/UserContext';
 
 class ForumPostGroup extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
+            roomDetails: {},
             posts: [],
             postsNotToRender: [],
             refreshChildren: false
         }
-
-        this.removePostFromState = this.removePostFromState.bind(this);
-        this.addPostToState = this.addPostToState.bind(this);
-        this.refreshChildren = this.refreshChildren.bind(this);
     }
 
-    refreshChildren() {
+    componentDidMount() {
+        this.getForumRoom();
+    }
+
+    refreshChildren = () => {
         this.setState({refreshChildren: !this.state.refreshChildren});
     }
 
     render() {
         return (
-            <UserConsumer>
-                {context => (
-                    context.selectedPage === context.pages[1] ? (
-                        <Comment.Group className={`ParentDirectory ${this.props.cssVisibility}`}>
-                            <ForumRoom refreshPosts={this.refreshChildren} {...context.selectedRoomData} />
-                            <ChildrenOfPost 
-                                parentId={context.selectedRoomData.id}
-                                refreshChildren={this.state.refreshChildren}
-                                removePostFromState={this.removePostFromState} 
-                                addPostToState={this.addPostToState}
-                                postsNotToRender={this.state.postsNotToRender}>
-                            </ChildrenOfPost>
-                        </Comment.Group>
-                    ) : ''
-                )}
-            </UserConsumer>
-        );
+            <Comment.Group >
+                <ForumRoom refreshPosts={this.refreshChildren} {...this.state.roomDetails} />
+                <ChildrenOfPost 
+                    parentId={this.props.match.params.id}
+                    refreshChildren={this.state.refreshChildren}
+                    removePostFromState={this.removePostFromState} 
+                    addPostToState={this.addPostToState}
+                    postsNotToRender={this.state.postsNotToRender}>
+                </ChildrenOfPost>
+            </Comment.Group>
+        )
     }
 
-    fetchForumPosts = async () => {
-        await basePath({
+    getForumRoom = () => {
+        basePath({
+            method: "get",
+            url: `/api/rooms/${this.props.match.params.id}`
+        })
+        .then(res => {
+            this.setState({roomDetails: {...res.data, ...{arePropsUpdated: true}}})
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+
+    fetchForumPosts = () => {
+        basePath({
             method: "get",
             url: `/api/posts/`
         })
@@ -56,16 +63,17 @@ class ForumPostGroup extends React.Component {
             });
 
             this.setState({posts: array});
-        });
-    };
+        })
+    }
 
-    removePostFromState(id) {
+    removePostFromState = (id) => {
         const posts = this.state.posts.slice();
         const postsNotToRender = this.state.postsNotToRender.slice();
 
         let index = posts.findIndex(item => {
           return item.id === id;
-        });
+        })
+
         if (index !== -1) {
             posts.splice(index, 1);
             postsNotToRender.push(id);
@@ -73,11 +81,11 @@ class ForumPostGroup extends React.Component {
             this.setState({
                 posts: posts,
                 postsNotToRender: postsNotToRender
-            });
-        };
-      };
+            })
+        }
+      }
 
-      addPostToState(id, content) {
+      addPostToState = (id) => {
         const posts = this.state.posts.slice();
         let index = posts.findIndex(item => {
           return item.id === id;

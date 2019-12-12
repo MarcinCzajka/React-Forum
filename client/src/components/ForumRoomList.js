@@ -26,7 +26,7 @@ class ForumRoomList extends React.Component {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <Link to={`post/${room.id}`}>
+                    <Link to={`post/${room._id}`}>
                         <ForumRoom {...room} />
                     </Link>
                 </Grid.Row>
@@ -34,7 +34,7 @@ class ForumRoomList extends React.Component {
         })
 
         return (
-            <Grid className={this.props.cssVisibility}>
+            <Grid>
                 <NewRoomForm />
                 {forumRooms}
             </Grid>
@@ -51,7 +51,7 @@ class ForumRoomList extends React.Component {
                 this.getTopVotedPosts(item._id)
                 
                 return {
-                    id: item._id,
+                    _id: item._id,
                     key: item._id,
                     authorId: item.authorId,
                     creationDate: item.creationDate,
@@ -61,7 +61,8 @@ class ForumRoomList extends React.Component {
                     description: item.description,
                     category: item.category,
                     image: item.image,
-                    colorScheme: item.colorScheme
+                    colorScheme: item.colorScheme,
+                    loading: false
                 }
             })
 

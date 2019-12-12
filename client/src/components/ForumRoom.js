@@ -2,6 +2,7 @@ import React from 'react';
 import basePath from '../api/basePath';
 import { Segment, Comment, Form, Button} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
+import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import './global.css';
 
 class ForumRoom extends React.Component {
@@ -9,7 +10,7 @@ class ForumRoom extends React.Component {
 		super(props);
 		
 		this.state = { 
-			id: this.props.id,
+			_id: this.props._id,
 			authorId: this.props.authorId,
 			creationDate: this.props.creationDate,
 			lastActivityDate: this.props.lastActivityDate,
@@ -20,63 +21,69 @@ class ForumRoom extends React.Component {
 			image: this.props.image,
 			colorScheme: this.props.colorScheme,
 			showReplyForm: false,
-			replyContent: ''
+			replyContent: '',
+			isMounted: false,
+			arePropsUpdated: false,
+			loading: true,
 		}
-
-		this.openRoom = this.openRoom.bind(this);
-		this.handleReplyToPost = this.handleReplyToPost.bind(this);
 	}
 
 	static contextType = UserContext;
 
-	openRoom() {
-		this.context.setContextData({
-			selectedRoomData: {...this.props, ...{showReplyButton: true}}
-		});
+	static getDerivedStateFromProps(props, state) {
+		if(!state.arePropsUpdated && state.isMounted) return props;
+		return null;
+	}
 
-		this.context.switchPage(this.context.pages[1]);
+	componentDidMount() {
+		this.setState({ isMounted: true });
+	}
+
+	handleImageLoaded = () => {
+		this.setState({ loading: false });
 	}
 	
 	render() {
 		return (
-			<div className="ui large comments maxWidth" onClick={this.openRoom}>
-				<Segment.Group>
-					
-					<Segment.Group horizontal>
-						<Segment className="noPadding imageSegment">
-							<img alt={`${this.state.title}`} className="segmentImg" src={this.state.image}/>
-						</Segment>
-						<Segment.Group className="noMargin maxWidth">
-								<Segment>
-								{this.state.title}
-								</Segment>
-							<Segment >
-								<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
-							</Segment>	
+				<div className="ui large comments maxWidth" >
+					{this.state.loading ? <RoomPlaceholder /> : ''}
+					<Segment.Group style={{display: (this.state.loading ? 'none' : 'block')}}>
+						<Segment.Group horizontal>
+							<Segment className="noPadding imageSegment">
+								<img onLoad={this.handleImageLoaded} alt={`${this.state.title}`} className="segmentImg" src={this.state.image}/>
+							</Segment>
+							<Segment.Group className="noMargin maxWidth">
+									<Segment>
+									{this.state.title}
+									</Segment>
+								<Segment >
+									<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
+								</Segment>	
+							</Segment.Group>
 						</Segment.Group>
+						{this.context.loggedIn ? (
+							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+						) : ''}
 					</Segment.Group>
-					{this.context.loggedIn && this.context.selectedPage !== this.context.pages[0] ? (
-						<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+					{this.state.showReplyForm ? (
+						<Form reply>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
 					) : ''}
-				</Segment.Group>
-				{this.state.showReplyForm ? (
-				<Form reply>
-					<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-					<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-				</Form>
-				) : ''}
-			</div>
-		)
-	}
+				</div>
+			)
+		}
+	
 
-		handleReplyToPost = async () => {
-		await basePath({
+	handleReplyToPost = () => {
+		basePath({
 		  method: "post",
 		  url: `/api/posts/`,
 		  data: {
 			  authorId: this.context.userId,
 			  content: this.state.replyContent,
-			  responseTo: this.state.id
+			  responseTo: this.state._id
 		  },
 		  withCredentials: true
 	  })
@@ -88,8 +95,8 @@ class ForumRoom extends React.Component {
 	  })
 	}
 
-	getPostAuthorDetails = async () => {
-		await basePath({
+	getPostAuthorDetails = () => {
+		basePath({
 			method: "get",
 			url: `/api/users/${this.state.authorId}`
 		})
