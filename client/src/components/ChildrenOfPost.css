@@ -1,0 +1,4 @@
+:not(.ParentDirectory) > .childrenOfPost {
+    position:relative;
+    left: 50px;
+}

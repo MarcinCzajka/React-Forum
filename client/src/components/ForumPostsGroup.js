@@ -1,113 +1,106 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Comment } from "semantic-ui-react";
-import './ForumPostsGroup.css';
+import ForumRoom from './ForumRoom';
 import ChildrenOfPost from './ChildrenOfPost';
-import ForumPost from './ForumPost';
 
 class ForumPostGroup extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            posts: []
+            roomDetails: {},
+            posts: [],
+            postsNotToRender: [],
+            refreshChildren: false
         }
-
-        this.removePostFromState = this.removePostFromState.bind(this);
     }
 
     componentDidMount() {
-        this.fetchForumPosts();
+        this.getForumRoom();
+    }
+
+    refreshChildren = () => {
+        this.setState({refreshChildren: !this.state.refreshChildren});
     }
 
     render() {
-        const postsTree = this.createComponentTree();
-
-        console.log(postsTree)
         return (
-            <Comment.Group>
-                {postsTree}
+            <Comment.Group >
+                <ForumRoom refreshPosts={this.refreshChildren} {...this.state.roomDetails} />
+                <ChildrenOfPost 
+                    parentId={this.props.match.params.id}
+                    refreshChildren={this.state.refreshChildren}
+                    removePostFromState={this.removePostFromState} 
+                    addPostToState={this.addPostToState}
+                    postsNotToRender={this.state.postsNotToRender}>
+                </ChildrenOfPost>
             </Comment.Group>
-        );
+        )
     }
 
-    createComponentTree() {
-        const posts = this.state.posts.slice();
-        const postsTree = posts.map(post => {
-            if(post.shouldPostRender === false || post.responseTo !== "") return "";
-            return <ForumPost 
-                postId={post.id} 
-                key={post.key} 
-                authorId={post.authorId}
-                content={post.content}
-                responseTo={post.responseTo}
-                date={post.date}
-                handleReplyToPost={this.handleReplyToPost} 
-                removePostFromState={this.removePostFromState}>
-            </ForumPost>
-        });
-
-        postsTree.map(map => console.log(map))
-
-        return postsTree;
+    getForumRoom = () => {
+        basePath({
+            method: "get",
+            url: `/api/rooms/${this.props.match.params.id}`
+        })
+        .then(res => {
+            this.setState({roomDetails: {...res.data, ...{arePropsUpdated: true}}})
+        })
+        .catch(err => {
+            console.log(err);
+        })
     }
 
-    fetchForumPosts = async () => {
-        await basePath({
+    fetchForumPosts = () => {
+        basePath({
             method: "get",
             url: `/api/posts/`
         })
         .then(res => {
             const array = res.data.map(item => {
-                return {id: item._id, key: item._id, shouldPostRender: true};
+                return {id: item._id, key: item._id};
             });
 
             this.setState({posts: array});
-        });
-    };
+        })
+    }
 
-    removePostFromState(id) {
+    removePostFromState = (id) => {
+        const posts = this.state.posts.slice();
+        const postsNotToRender = this.state.postsNotToRender.slice();
+
+        let index = posts.findIndex(item => {
+          return item.id === id;
+        })
+
+        if (index !== -1) {
+            posts.splice(index, 1);
+            postsNotToRender.push(id);
+
+            this.setState({
+                posts: posts,
+                postsNotToRender: postsNotToRender
+            })
+        }
+      }
+
+      addPostToState = (id) => {
         const posts = this.state.posts.slice();
         let index = posts.findIndex(item => {
           return item.id === id;
         });
-        if (index !== -1) {
-            posts[index].shouldPostRender = false;
-            this.setState({
-                posts: posts
-            });
-        }
-      }
-
-      handleReplyToPost = async (replyToId, replyMessage) => {
-          await basePath({
-			method: "post",
-			url: `/api/posts/`,
-			data: {
-				authorId: "5d1b9e227d1217155c9ba4fe",
-				content: replyMessage,
-				responseTo: replyToId
-			}
-		})
-		.then((res) => {
-            const posts = this.state.posts.slice();
-            
+        if (index === -1) {
             posts.push({
-                id: res.data._id,
-                key: res.data._id,
-                authorId: res.data.authorId || "",
-                content: res.data.content || "",
-                responseTo: res.data.responseTo,
-                date: moment(res.data.date)
-                    .format("MMMM Do YYYY, h:mm:ss")
-                    .toString(),
+                id: id,
+                key: id,
                 shouldPostRender: true
             });
 
             this.setState({
                 posts: posts
             });
-		});
+        }
       }
 
 }

@@ -1,0 +1,46 @@
+.hidden {
+    display: none !important;
+}
+.shown {
+    display: block !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.imageSegment {
+    min-width:220px !important;
+    min-height: 150px !important;
+        max-width:220px !important;
+        max-height: 150px !important;
+    object-fit: cover !important;
+    overflow: hidden !important;
+}
+
+.imageSegment > img {
+    position: absolute;
+    max-width: auto;
+    max-height: 100%;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+}
+
+.maxWidth {
+    width: 100% !important;
+}
+
+.postText {
+    text-align: left;
+}
+
+.forumRoomLink {
+    color: initial !important;
+}

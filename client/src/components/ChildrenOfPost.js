@@ -1,6 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import { Comment } from "semantic-ui-react";
 import ForumPost from './ForumPost';
+import './ChildrenOfPost.css';
 
 class ChildrenOfPost extends React.Component {
 	constructor(props) {
@@ -11,20 +13,32 @@ class ChildrenOfPost extends React.Component {
             posts: []
 		};
 	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.refreshChildren !== prevProps.refreshChildren) {
+			this.fetchAllChildrenPosts();
+		};
+	};
 	
 	componentDidMount() {
 		this.fetchAllChildrenPosts();
-	}
+	};
 	
 	render() {
         const component = this.state.posts.map(item => {
-            return <ForumPost postId={item.id} key={item.key} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></ForumPost>
+			return <ForumPost className="comment"
+					postId={item.id}
+					key={item.key}
+					removePostFromState={this.props.removePostFromState}
+					addPostToState={this.props.addPostToState}
+					postsNotToRender={this.props.postsNotToRender}>
+				</ForumPost>
         });
 
 		return (
-			<div>
+			<Comment.Group className="childrenOfPost">
 				{component}
-			</div>
+			</Comment.Group>
 		);
 	}
 
@@ -34,10 +48,6 @@ class ChildrenOfPost extends React.Component {
 			url: `/api/posts/?responseTo=${this.state.parentId}`
 		})
 		.then(res => {
-            if(res.status !== 200) {
-                this.setState({});
-                return
-            }
 
             const arrayOfPosts = res.data.map(item => {
                 return {id: item._id, key: item._id};
@@ -47,6 +57,8 @@ class ChildrenOfPost extends React.Component {
 
 		});
 	};
+
+
 
 };
 

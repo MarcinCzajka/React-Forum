@@ -1,8 +1,15 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
+<<<<<<< HEAD
 import './ForumPost.css';
+=======
+import moment from "moment";
+import './global.css';
+>>>>>>> master
 import ChildrenOfPost from './ChildrenOfPost';
+import UserContext from '../contexts/UserContext';
+import PostPlaceholder from './placeholders/PostPlaceholder';
 
 class ForumPost extends React.Component {
 	constructor(props) {
@@ -14,11 +21,20 @@ class ForumPost extends React.Component {
 			content: this.props.content,
 			date: this.props.date,
 			authorNick: "",
-			avatar: "",
+			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
 			cssVisibility: "hidden",
 			replyContent: "",
-			childrenPosts: []
-		};
+			refreshChildren: false,
+			loading: true
+		}
+	}
+
+	static contextType = UserContext;
+
+	refreshChildren() {
+		this.setState({
+			refreshChildren: !this.state.refreshChildren
+		})
 	}
 	
 	componentDidMount() {
@@ -26,34 +42,56 @@ class ForumPost extends React.Component {
 	}
 	
 	render() {
+		const postsNotToRender = this.props.postsNotToRender.slice();
+		let shouldPostRender = postsNotToRender.findIndex(id => {
+          return id === this.state.id;
+		});
+        if (shouldPostRender !== -1) {
+            return "";
+		}
+		
 		return (
 			<div className="ui large comments">
-				<Comment className="comment">
-					<Comment.Avatar 
-						className="avatar" 
-						src={this.state.avatar} >
-					</Comment.Avatar>
+				{this.state.loading ? (
+					<PostPlaceholder />
+				) : (
+					<Comment className="comment">
+						<Comment.Avatar 
+							className="avatar" 
+							src={this.state.avatar} >
+						</Comment.Avatar>
 
-					<Comment.Content>
-						<Comment.Author className="author" as='string'>{this.state.authorNick}</Comment.Author>
-						<Comment.Metadata className="metadata">
-							<span className="date">{this.state.date}</span>
-						</Comment.Metadata>
-						<Comment.Text className="text">{this.state.content}</Comment.Text>
+						<Comment.Content>
+							<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
+							<Comment.Metadata className="metadata">
+								<span className="date">{this.state.date}</span>
+							</Comment.Metadata>
+							<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
-						<Comment.Actions>
-							<Button onClick={this.changeReplyFormVisibility}>Reply</Button>
-							<Button onClick={this.removeThisPost}>Delete</Button>
-						</Comment.Actions>
+						{this.context.loggedIn ? (
+							<Comment.Actions>
+								<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
+								{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
+							</Comment.Actions>
+						) : ''}
+						
+							<Form reply className={this.state.cssVisibility}>
+								<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+							</Form>
+							
+						</Comment.Content>
 
-						<Form reply className={this.state.cssVisibility}>
-							<Form.TextArea value={this.state.replyContent} onChange={e => this.updateReplyContent(e.target.value)} />
-							<Button onClick={this.postReply} content='Add Reply' labelPosition='left' icon='edit' primary />
-						</Form>
-					</Comment.Content>
-
-				</Comment>
-				<ChildrenOfPost parentId={this.state.id} handleReplyToPost={this.props.handleReplyToPost} removePostFromState={this.props.removePostFromState}></ChildrenOfPost>
+					</Comment>
+				)}
+				<ChildrenOfPost
+					parentId={this.state.id}
+					refreshChildren={this.state.refreshChildren}
+					handleReplyToPost={this.handleReplyToPost}
+					removePostFromState={this.props.removePostFromState}
+					addPostToState={this.props.addPostToState}
+					postsNotToRender={this.props.postsNotToRender}>
+				</ChildrenOfPost>
 			</div>
 		);
 	}
@@ -62,15 +100,25 @@ class ForumPost extends React.Component {
 		this.setState({cssVisibility: this.state.cssVisibility === "hidden" ? "shown" : "hidden"});
 	}
 
-	updateReplyContent = content => {
-		this.setState({replyContent: content});
-	};
 
-	postReply = async () => {
-		this.props.handleReplyToPost(this.state.id, this.state.replyContent);
-
-		this.changeReplyFormVisibility();
-		this.setState({replyContent: ""});
+	handleReplyToPost = async () => {
+		await basePath({
+		  method: "post",
+		  url: `/api/posts/`,
+		  data: {
+			  authorId: this.context.userId,
+			  content: this.state.replyContent,
+			  responseTo: this.state.id
+		  },
+		  withCredentials: true
+	  })
+	  .then((res) => {
+		if(res.status === 200) {
+			this.refreshChildren();
+			this.changeReplyFormVisibility();
+			this.setState({replyContent: ""});
+		}
+	  })
 	}
 
 	getPostAuthorDetails = async () => {
@@ -80,21 +128,30 @@ class ForumPost extends React.Component {
 		})
 		.then(res => {
 			this.setState({
-				authorNick: res.data.nick || "",
-				avatar: res.data.avatar || ""
+				authorNick: res.data.name || "",
+				avatar: res.data.avatar || "",
+				loading: false
+			});
+		})
+		.catch(err => {
+			this.setState({
+				authorNick: "Deleted user.",
+				loading: false
 			});
 		});
+		this.props.addPostToState(this.state.id);
 	};
 
 	removeThisPost = async () => {
 		await basePath({
 			method: "delete",
-			url: `/api/posts/${this.state.id}`
+			url: `/api/posts/${this.state.id}`,
+            withCredentials: true
 		})
 		.then(res => {
 			if(res.status === 200){
 				this.props.removePostFromState(this.state.id);
-			}
+			};
 		});
 	};
 

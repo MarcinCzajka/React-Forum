@@ -14,6 +14,10 @@ const ForumPostSchema = new mongoose.Schema({
     },
     responseTo: {
         type: String
+    },
+    upvotes: {
+        type: Number,
+        default: 0
     }
 });
 
