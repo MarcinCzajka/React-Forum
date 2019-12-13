@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
 import basePath from '../api/basePath';
 import { Grid } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
@@ -26,11 +25,7 @@ class ForumRoomList extends React.Component {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <div className="ui comments large maxWidth" >
-                        <Link to={`post/${room._id}`} className='forumRoomLink' >
-                            <ForumRoom {...room} />
-                        </Link>
-                    </div>
+                    <ForumRoom {...room} />
                 </Grid.Row>
             );
         })

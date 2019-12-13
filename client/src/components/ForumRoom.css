@@ -1,0 +1,29 @@
+.segmentImage {
+    object-fit: cover !important;
+    max-height: 450px !important;
+}
+
+.roomImage {
+    
+}
+
+.ui .segment {
+    background-color: #c3dde9 !important;
+}
+
+.ui .segments {
+    background-color: #c3dde9 !important;
+}
+
+.roomWidth {
+    max-width: 850px;
+}
+
+.forumRoomLink {
+    color: initial !important;
+}
+
+.roomTextContainer {
+    max-height: 200px;
+    min-height: 100%;
+}

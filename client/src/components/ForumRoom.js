@@ -1,10 +1,12 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Segment, Comment, Form, Button, Statistic} from "semantic-ui-react";
+import { Link } from 'react-router-dom';
+import { Segment, Comment, Form, Button, Image } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import RoomStatsPanel from './RoomStatsPanel'
 import './global.css';
+import './ForumRoom.css';
 
 class ForumRoom extends React.Component {
 	constructor(props) {
@@ -48,24 +50,26 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<div className="ui large comments maxWidth" >
+			<div className="ui large roomWidth maxWidth" >
 				{this.state.loading ? <RoomPlaceholder /> : ''}
 				<Segment.Group style={{display: (this.state.loading ? 'none' : 'block')}}>
 					<Segment.Group horizontal>
-						<Segment className="noPadding imageSegment">
-							<img onLoad={this.handleImageLoaded} alt={`${this.state.title}`} className="segmentImg" src={this.state.image}/>
+						<Segment className="noPadding segmentImage">
+							<Image size='large' centered className='roomImage' onLoad={this.handleImageLoaded} alt={`${this.state.title}`} src={this.state.image} />
 						</Segment>
-						<Segment.Group className="noMargin maxWidth">
-								<Segment>
-								{this.state.title}
-								</Segment>
-							<Segment >
+						<Segment className="noMargin maxWidth">
+								<Link to={`/post/${this.state._id}`} >
+									<Segment>
+										<h3>{this.state.title}</h3>
+									</Segment>
+								</Link>
+							<Segment>
 								<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
+								
+								<RoomStatsPanel {...this.state} />
 							</Segment>	
-						</Segment.Group>
+						</Segment>
 					</Segment.Group>
-					
-					<RoomStatsPanel {...this.state} />
 					
 					{this.context.loggedIn ? (
 						<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>

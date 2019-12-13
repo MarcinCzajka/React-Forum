@@ -1,5 +1,5 @@
 import React from 'react';
-import { Statistic, Segment, Icon } from "semantic-ui-react";
+import { Statistic, Icon, Grid } from "semantic-ui-react";
 import './global.css';
 
 class RoomStatsPanel extends React.Component {
@@ -24,22 +24,29 @@ class RoomStatsPanel extends React.Component {
 
     render() {
         return (
-            <Segment>
+            <Grid columns='equal'>
+                <Grid.Column>
+                </Grid.Column>
+                <Grid.Column>
+                    <Statistic size='mini'>
+                        <Statistic.Value></Statistic.Value>
+                        <Statistic.Label></Statistic.Label>
+                    </Statistic>
+                </Grid.Column>
+                <Grid.Column>
                     <Statistic.Group size='mini'>
                         <Statistic>
-                            <Statistic.Value><Icon name='thumbs up' />  {this.props.upvotes}</Statistic.Value>
+                            <Statistic.Value><Icon name='thumbs up' />  {this.state.upvotes}</Statistic.Value>
                             <Statistic.Label>Upvotes</Statistic.Label>
                         </Statistic>
                         
                         <Statistic>
-                            <Statistic.Value><Icon name='eye'/>  {this.props.views}</Statistic.Value>
+                            <Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
                             <Statistic.Label>Views</Statistic.Label>
                         </Statistic>
-                        <Statistic>
-                            
-                        </Statistic>
                     </Statistic.Group>
-            </Segment>
+                </Grid.Column>
+            </Grid>
         )
     }
 
