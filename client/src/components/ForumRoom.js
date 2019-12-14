@@ -50,7 +50,7 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<div>
+			<article>
 				<div>
 					{this.state.loading ? <RoomPlaceholder /> : ''}
 
@@ -65,6 +65,14 @@ class ForumRoom extends React.Component {
 							</Link>
 						</header>
 
+						<main className='roomDescription'>
+							{this.state.description}
+						</main>
+
+						<footer className='roomFooter'>
+
+						</footer>
+
 						{this.context.loggedIn ? (
 							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
 						) : ''}
@@ -77,7 +85,7 @@ class ForumRoom extends React.Component {
 						</Form>
 					) : ''}
 				</div>
-			</div>
+			</article>
 			)
 		}
 	
