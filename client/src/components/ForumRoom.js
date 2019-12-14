@@ -1,7 +1,7 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Segment, Comment, Form, Button, Image } from "semantic-ui-react";
+import { Form, Button} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import RoomStatsPanel from './RoomStatsPanel'
@@ -50,37 +50,33 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<div className="ui large roomWidth maxWidth" >
-				{this.state.loading ? <RoomPlaceholder /> : ''}
-				<Segment.Group style={{display: (this.state.loading ? 'none' : 'block')}}>
-					<Segment.Group horizontal>
-						<Segment className="noPadding segmentImage">
-							<Image size='large' centered className='roomImage' onLoad={this.handleImageLoaded} alt={`${this.state.title}`} src={this.state.image} />
-						</Segment>
-						<Segment className="noMargin maxWidth">
-								<Link to={`/post/${this.state._id}`} >
-									<Segment>
-										<h3>{this.state.title}</h3>
-									</Segment>
-								</Link>
-							<Segment>
-								<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
-								
-								<RoomStatsPanel {...this.state} />
-							</Segment>	
-						</Segment>
-					</Segment.Group>
-					
-					{this.context.loggedIn ? (
-						<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+			<div>
+				<div>
+					{this.state.loading ? <RoomPlaceholder /> : ''}
+
+					<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
+						<div className='roomImageContainer'>
+							<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
+						</div>
+
+						<header className='roomTitle'>
+							<Link to={`/post/${this.state._id}`}>
+								<h3>{this.state.title}</h3>
+							</Link>
+						</header>
+
+						{this.context.loggedIn ? (
+							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+						) : ''}
+					</div>
+
+					{this.state.showReplyForm ? (
+						<Form reply>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
 					) : ''}
-				</Segment.Group>
-				{this.state.showReplyForm ? (
-					<Form reply>
-						<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-						<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-					</Form>
-				) : ''}
+				</div>
 			</div>
 			)
 		}

@@ -1,18 +1,36 @@
-.segmentImage {
-    object-fit: cover !important;
-    max-height: 450px !important;
+.roomGrid {
+    display: grid;
+    grid-gap: 0;
+    grid-template-columns: repeat(10, 10vw);
+    grid-template-rows: repeat(6, auto);
+}
+
+.roomTitle {
+    grid-row: 1;
+    grid-column: 5 / 8;
+
+    border: 1px solid rgba(28,110,164,0.33);
+}
+
+.roomImageContainer {
+    position: relative;
+    overflow: hidden;
+    width: 300px;
+    height: 200px;
+
+    grid-row: 1/4;
+    grid-column: 3 / 4;
 }
 
 .roomImage {
-    
-}
-
-.ui .segment {
-    background-color: #c3dde9 !important;
-}
-
-.ui .segments {
-    background-color: #c3dde9 !important;
+    position: absolute;
+    top: -9999px;
+    bottom: -9999px;
+    left: -9999px;
+    right: -9999px;
+    margin: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .roomWidth {
