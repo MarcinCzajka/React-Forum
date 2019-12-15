@@ -2,28 +2,37 @@
     --roomBorder: 2px solid rgba(6, 12, 15, 0.33);
 }
 
+.roomContainer {
+    max-width: 850px;
+    width: 100%;
+}
+
 .roomGrid {
     display: grid;
     grid-gap: 0;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: repeat(5, 1fr) auto;
 }
 
 .roomTitle {
     grid-row: 1;
-    grid-column: 6 / 11;
+    grid-column: 5 / -1;
 
     background-color: rgba(6, 12, 15, 0.09);
     border-top: var(--roomBorder);
     border-right: var(--roomBorder);
     border-bottom: var(--roomBorder);
+
+    text-decoration: underline #1e70bf;
 }
 
 .roomDescription {
     grid-row: 2 / 6;
-    grid-column: 6 / 11;
+    grid-column: 5 / -1;
     border-right: var(--roomBorder);
     border-bottom: var(--roomBorder);
+    padding: 10px;
+    text-align: left;
 }
 
 .roomImageContainer {
@@ -33,7 +42,7 @@
     height: 100%;
 
     grid-row: 1 / 7;
-    grid-column: 3 / 6;
+    grid-column: 1 / 5;
 }
 
 .roomImage {
@@ -44,19 +53,24 @@
     right: -9999px;
     margin: auto;
     height: 100%;
+    min-width: 100%;
     object-fit: cover;
 }
 
 .roomFooter {
     grid-row: 6;
-    grid-column: 6 / 11;
+    grid-column: 5 / -1;
 
     border-bottom: var(--roomBorder);
     border-right: var(--roomBorder);
 }
 
-.roomWidth {
-    max-width: 850px;
+.roomStats {
+    justify-content: end;
+}
+
+.roomStat {
+    margin: 3px 10px 3px 10px !important;
 }
 
 .forumRoomLink {

@@ -1,10 +1,9 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Form, Button} from "semantic-ui-react";
+import { Form, Button, Statistic, Icon} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
-import RoomStatsPanel from './RoomStatsPanel'
 import './global.css';
 import './ForumRoom.css';
 
@@ -50,7 +49,7 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<article>
+			<article className='roomContainer'>
 				<div>
 					{this.state.loading ? <RoomPlaceholder /> : ''}
 
@@ -66,11 +65,19 @@ class ForumRoom extends React.Component {
 						</header>
 
 						<main className='roomDescription'>
-							{this.state.description}
+							<p>{this.state.shortDescription}</p>
 						</main>
 
 						<footer className='roomFooter'>
-
+							<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+								<Statistic className='roomStat'>
+									<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
+								</Statistic>
+								
+								<Statistic className='roomStat' style={{cursor:'pointer'}}>
+									<Statistic.Value><Icon name='thumbs up' style={{color:'green'}} />  {this.state.upvotes}</Statistic.Value>
+								</Statistic>
+							</Statistic.Group>
 						</footer>
 
 						{this.context.loggedIn ? (
