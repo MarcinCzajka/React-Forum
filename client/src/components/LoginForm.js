@@ -95,10 +95,10 @@ class LoginForm extends React.Component {
                             <input 
                                 type='password'
                                 placeholder='Password' 
-                                autocomplete = "new-password"
-                                spellcheck = "false"
-                                autocapitalize = "off"
-                                autocorrect = "off"
+                                autoComplete = "new-password"
+                                spellCheck = "false"
+                                autoCapitalize = "off"
+                                autoCorrect = "off"
                                 value={this.state.password} 
                                 onChange={(e) => this.setState({ password: e.target.value })} 
                             />
@@ -109,7 +109,7 @@ class LoginForm extends React.Component {
                             onChange={() => this.setState({ stayLogged: !this.state.stayLogged })} 
                         />
 
-                        <Button style={{'margin-top':'15px'}} type='submit' fluid size='large'>Sign in</Button>
+                        <Button style={{'marginTop':'15px'}} type='submit' fluid size='large'>Sign in</Button>
                     </Form>
                 </Modal.Content>
             </Modal>

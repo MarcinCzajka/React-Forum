@@ -22,6 +22,7 @@ class ForumRoom extends React.Component {
 			category: this.props.category,
 			image: this.props.image,
 			colorScheme: this.props.colorScheme,
+			liked: false,
 			upvotes: this.props.upvotes,
 			views: this.props.views,
 			showReplyForm: false,
@@ -45,6 +46,23 @@ class ForumRoom extends React.Component {
 
 	handleImageLoaded = () => {
 		this.setState({ loading: false });
+	}
+
+	updateUpvote = () => {
+		basePath({
+			method: "put",
+			url: `/api/rooms/${this.state._id}`,
+			body: {
+				incrementLike: (!this.state.liked)
+			},
+			withCredentials: true
+		})
+		.then(res => {
+			this.setState({upvotes: res.data.upvotes, liked: res.data.liked});
+		})
+		.catch(err => {
+			console.log(err)
+		})
 	}
 	
 	render() {
@@ -75,7 +93,7 @@ class ForumRoom extends React.Component {
 								</Statistic>
 								
 								<Statistic className='roomStat' style={{cursor:'pointer'}}>
-									<Statistic.Value><Icon name='thumbs up' style={{color:'green'}} />  {this.state.upvotes}</Statistic.Value>
+									<Statistic.Value><Icon onClick={this.updateUpvote} style={{color:(this.state.liked ? 'green' : '')}} name='thumbs up' />  {this.state.upvotes}</Statistic.Value>
 								</Statistic>
 							</Statistic.Group>
 						</footer>

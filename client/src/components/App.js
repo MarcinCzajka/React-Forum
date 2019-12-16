@@ -38,7 +38,7 @@ class App extends React.Component {
 
     setContextData(data) {
         this.setState({
-            loggedIn: data.loggedIn || this.state.loggedIn,
+            loggedIn: (typeof data.loggedIn !== undefined ? data.loggedIn : this.state.loggedIn),
             userName: data.name || this.state.userName,
             userId: data._id || this.state.userId,
             userAvatar: data.avatar || this.state.userAvatar,
@@ -60,6 +60,8 @@ class App extends React.Component {
             pages: this.state.pages,
             setContextData: this.setContextData
         };
+
+        console.log('app',contextValue)
         
         return (
             <Router>
@@ -74,6 +76,6 @@ class App extends React.Component {
             </Router>
         )
     }
-};
+}
 
 export default App;

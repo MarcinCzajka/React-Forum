@@ -51,6 +51,10 @@ const ForumRoomSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    upvotesByUserId: {
+        type: Array,
+        default: []
+    },
     views: {
         type: Number,
         default: 0

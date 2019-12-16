@@ -1,19 +1,30 @@
+const _ = require('lodash');
 const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
+const softAuth = require('../middleware/softAuth');
 const admin = require('../middleware/admin');
 const {ForumRoom, validateForumRoom} = require('../models/forumRoom');
 
-router.get("/", async (req, res) => {
+router.get("/", softAuth, async (req, res) => {
     const category = new RegExp(req.query.category || /./, "gi");
 
     const rooms = await ForumRoom.find({category: category});
     if(!rooms) return res.status(400).send('No rooms exist yet.');
 
+    if(req.user) {
+        const result = rooms.map(room => {
+            const liked = (room.upvotesByUserId.indexOf(req.user._id) === -1 ? false : true);
+            
+            return {...room.toObject(), liked: liked};
+        });
+        return res.status(200).send(result);
+    }
+
     res.status(200).send(rooms);
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", softAuth, async (req, res) => {
     const room = await ForumRoom.findByIdAndUpdate(req.params.id, { $inc: { views: 1 }},  {new: true });
     if(!room) return res.status(400).send('That room doesnt exist anymore.');
 
@@ -30,6 +41,21 @@ router.post("/", auth, async (req, res) => {
 	res.status(200).send(room);
 });
 
+router.put("/:id", auth, async (req, res) => {
+    const usersThatLikeThis = await ForumRoom.findById(req.params.id).select('upvotesByUserId')
+    const isLiked = usersThatLikeThis.upvotesByUserId.indexOf(req.user._id);
+
+    const newArr = usersThatLikeThis.upvotesByUserId;
+    if(isLiked === -1) {
+        newArr.push(req.user._id)
+    } else {   
+        newArr.splice(isLiked, 1)
+    }
+
+    const result = await ForumRoom.findByIdAndUpdate(req.params.id, {upvotesByUserId: newArr, upvotes: newArr.length});
+	
+	res.status(200).send({upvotes: result.upvotes, liked:(isLiked === -1 ? false : true)});
+});
 
 router.delete("/:id", [auth, admin], async (req, res) => {
     const result = await ForumRoom.findByIdAndDelete(req.params.id)
