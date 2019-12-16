@@ -8,7 +8,6 @@ import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
 import './global.css';
-import TsComp from './TsComp';
 
 
 class App extends React.Component {
@@ -75,6 +74,6 @@ class App extends React.Component {
             </Router>
         )
     }
-};
+}
 
-export default App;
+export default App

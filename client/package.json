@@ -39,14 +39,7 @@
     ]
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "dotenv": "^8.0.0",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^6.2.1",
-    "typescript": "^3.7.3"
-=======
     "dotenv": "^8.2.0",
     "typescript": "^3.7.2"
->>>>>>> master
   }
 }
