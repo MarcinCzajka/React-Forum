@@ -60,8 +60,6 @@ class App extends React.Component {
             pages: this.state.pages,
             setContextData: this.setContextData
         };
-
-        console.log('app',contextValue)
         
         return (
             <Router>

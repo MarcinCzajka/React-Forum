@@ -93,7 +93,7 @@ class ForumRoom extends React.Component {
 								</Statistic>
 								
 								<Statistic className='roomStat' style={{cursor:'pointer'}}>
-									<Statistic.Value><Icon onClick={this.updateUpvote} style={{color:(this.state.liked ? 'green' : '')}} name='thumbs up' />  {this.state.upvotes}</Statistic.Value>
+									<Statistic.Value><Icon onClick={this.updateUpvote} style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} name='thumbs up' />  {this.state.upvotes}</Statistic.Value>
 								</Statistic>
 							</Statistic.Group>
 						</footer>

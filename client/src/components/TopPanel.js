@@ -31,6 +31,11 @@ class TopPanel extends React.Component {
                                 <Menu.Item name={context.pages[1].name} />
                             </Link>
                         ) : ''}
+                        {context.loggedIn ? (
+                            <Menu.Item position='right'>
+                                {context.userName.toUpperCase()}
+                            </Menu.Item>
+                        ) : ''}
                         <Menu.Menu position='right'>
                             <SignUpForm />
                             <LoginForm />
