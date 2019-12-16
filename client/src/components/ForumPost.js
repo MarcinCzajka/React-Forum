@@ -1,12 +1,8 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
-<<<<<<< HEAD
-import './ForumPost.css';
-=======
 import moment from "moment";
 import './global.css';
->>>>>>> master
 import ChildrenOfPost from './ChildrenOfPost';
 import UserContext from '../contexts/UserContext';
 import PostPlaceholder from './placeholders/PostPlaceholder';
@@ -17,9 +13,9 @@ class ForumPost extends React.Component {
 		
 		this.state = { 
 			id: this.props.postId,
-			authorId: this.props.authorId,
-			content: this.props.content,
-			date: this.props.date,
+			authorId: "",
+			content: "",
+			date: "",
 			authorNick: "",
 			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
 			cssVisibility: "hidden",
@@ -38,7 +34,7 @@ class ForumPost extends React.Component {
 	}
 	
 	componentDidMount() {
-		this.getPostAuthorDetails()
+		this.getPostDetails();
 	}
 	
 	render() {
@@ -120,6 +116,25 @@ class ForumPost extends React.Component {
 		}
 	  })
 	}
+
+	getPostDetails = async () => {
+		await basePath({
+			method: "get",
+			url: `/api/posts/${this.state.id}`
+		})
+		.then(res => {
+			this.setState({
+				authorId: res.data.authorId || "",
+				content: res.data.content || "",
+				date: moment(res.data.date)
+					.format("MMMM Do YYYY, h:mm:ss")
+					.toString()
+			});
+		})
+		.then(() => {
+			this.getPostAuthorDetails()
+		});
+	};
 
 	getPostAuthorDetails = async () => {
 		await basePath({
