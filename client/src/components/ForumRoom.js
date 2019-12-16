@@ -1,10 +1,11 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Segment, Comment, Form, Button, Statistic} from "semantic-ui-react";
+import { Link } from 'react-router-dom';
+import { Form, Button, Statistic, Icon} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
-import RoomStatsPanel from './RoomStatsPanel'
 import './global.css';
+import './ForumRoom.css';
 
 class ForumRoom extends React.Component {
 	constructor(props) {
@@ -48,36 +49,50 @@ class ForumRoom extends React.Component {
 	
 	render() {
 		return (
-			<div className="ui large comments maxWidth" >
-				{this.state.loading ? <RoomPlaceholder /> : ''}
-				<Segment.Group style={{display: (this.state.loading ? 'none' : 'block')}}>
-					<Segment.Group horizontal>
-						<Segment className="noPadding imageSegment">
-							<img onLoad={this.handleImageLoaded} alt={`${this.state.title}`} className="segmentImg" src={this.state.image}/>
-						</Segment>
-						<Segment.Group className="noMargin maxWidth">
-								<Segment>
-								{this.state.title}
-								</Segment>
-							<Segment >
-								<Comment.Text as='p' className="text postText">{this.state.shortDescription}</Comment.Text>
-							</Segment>	
-						</Segment.Group>
-					</Segment.Group>
-					
-					<RoomStatsPanel {...this.state} />
-					
-					{this.context.loggedIn ? (
-						<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+			<article className='roomContainer'>
+				<div>
+					{this.state.loading ? <RoomPlaceholder /> : ''}
+
+					<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
+						<div className='roomImageContainer'>
+							<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
+						</div>
+
+						<header className='roomTitle'>
+							<Link to={`/post/${this.state._id}`}>
+								<h3>{this.state.title}</h3>
+							</Link>
+						</header>
+
+						<main className='roomDescription'>
+							<p>{this.state.shortDescription}</p>
+						</main>
+
+						<footer className='roomFooter'>
+							<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+								<Statistic className='roomStat'>
+									<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
+								</Statistic>
+								
+								<Statistic className='roomStat' style={{cursor:'pointer'}}>
+									<Statistic.Value><Icon name='thumbs up' style={{color:'green'}} />  {this.state.upvotes}</Statistic.Value>
+								</Statistic>
+							</Statistic.Group>
+						</footer>
+
+						{this.context.loggedIn ? (
+							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
+						) : ''}
+					</div>
+
+					{this.state.showReplyForm ? (
+						<Form reply>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
 					) : ''}
-				</Segment.Group>
-				{this.state.showReplyForm ? (
-					<Form reply>
-						<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-						<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-					</Form>
-				) : ''}
-			</div>
+				</div>
+			</article>
 			)
 		}
 	
