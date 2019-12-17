@@ -60,7 +60,7 @@ class ForumRoomList extends React.Component {
         const responseTo = 'responseTo=' + id;
 		basePath({
 		  method: "get",
-		  url: `/api/posts/top?${limit}&${responseTo}`,
+		  url: `/api/posts/top?${responseTo}`,
 		  withCredentials: true
       })
       .then(res => {
