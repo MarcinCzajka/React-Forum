@@ -13,6 +13,7 @@ class ForumPost extends React.Component {
 		
 		this.state = { 
 			id: this.props.postId,
+			roomId: this.props.roomId,
 			authorId: "",
 			content: "",
 			date: "",
@@ -103,6 +104,7 @@ class ForumPost extends React.Component {
 		  url: `/api/posts/`,
 		  data: {
 			  authorId: this.context.userId,
+			  roomId: this.state.roomId,
 			  content: this.state.replyContent,
 			  responseTo: this.state.id
 		  },

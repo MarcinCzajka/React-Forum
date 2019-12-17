@@ -28,6 +28,7 @@ class ChildrenOfPost extends React.Component {
         const component = this.state.posts.map(item => {
 			return <ForumPost className="comment"
 					postId={item.id}
+					roomId={this.props.roomId}
 					key={item.key}
 					removePostFromState={this.props.removePostFromState}
 					addPostToState={this.props.addPostToState}

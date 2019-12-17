@@ -5,6 +5,9 @@ const ForumPostSchema = new mongoose.Schema({
     authorId: {
         type: String
     },
+    roomId: {
+        type: Number
+    },
     date: {
         type: Date,
         default: Date.now

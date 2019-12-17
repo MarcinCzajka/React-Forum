@@ -21,6 +21,15 @@ router.get("/top", async (req, res) => {
     res.status(200).send(posts);
 });
 
+router.get("/responseTo", async (req, res) => {
+    const posts = await ForumPost.find({roomId: req.query.room})
+    if(!posts) return res.status(200).send({nrOfComments: 0});
+
+    console.log(posts.data)
+
+    res.status(200).send(posts);
+});
+
 router.get("/:id", async (req, res) => {
     const post = await ForumPost.findById(req.params.id);
     if(!post) return res.status(400).send('This post doesnt exist anymore.');

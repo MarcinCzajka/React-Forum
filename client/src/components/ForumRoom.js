@@ -38,7 +38,10 @@ class ForumRoom extends React.Component {
 	static contextType = UserContext;
 
 	static getDerivedStateFromProps(props, state) {
-		if(!state.arePropsUpdated && state.isMounted || props.comments !== state.comments) return props;
+		if(state.isMounted) {
+			if(props.comments !== state.comments) return props;
+			if(!state.arePropsUpdated) return props;
+		}
 		return null;
 	}
 
@@ -55,13 +58,10 @@ class ForumRoom extends React.Component {
 		
 		if(!this.context.loggedIn) return this.setState({errorMsg: 'You must login before you can vote!'})
 
-		console.log('req')
 		basePath({
 			method: "put",
 			url: `/api/rooms/${this.state._id}`,
-			body: {
-				incrementLike: (!this.state.liked)
-			},
+			body: {},
 			withCredentials: true
 		})
 		.then(res => {
@@ -81,6 +81,55 @@ class ForumRoom extends React.Component {
 			)
 		}
 	}
+	
+	handleReplyToPost = () => {
+		basePath({
+		  method: "post",
+		  url: `/api/posts/`,
+		  data: {
+			  authorId: this.context.userId,
+			  content: this.state.replyContent,
+			  responseTo: this.state._id
+		  },
+		  withCredentials: true
+	  })
+	  .then((res) => {
+		if(res.status === 200) {
+			this.props.refreshPosts();
+			this.setState({replyContent: '', showReplyForm: false});
+		}
+	  })
+	}
+
+	getPostAuthorDetails = () => {
+		basePath({
+			method: "get",
+			url: `/api/users/${this.state.authorId}`
+		})
+		.then(res => {
+			this.setState({
+				authorNick: res.data.name || "",
+				avatar: res.data.avatar || ""
+			});
+		})
+		.catch(err => {
+			this.setState({
+				authorNick: "Deleted user."
+			});
+		})
+	}
+
+	getNrOfPosts = () => {
+        const query = 'room=' + this.state._id;
+		basePath({
+		  method: "get",
+		  url: `/api/posts/responseTo?${query}`,
+		  withCredentials: true
+      })
+      .then(res => {
+          this.setState({comments: res.data.comments})
+      })
+    }
 	
 	render() {
 		return (
@@ -142,46 +191,6 @@ class ForumRoom extends React.Component {
 			</article>
 			)
 		}
-	
-
-	handleReplyToPost = () => {
-		basePath({
-		  method: "post",
-		  url: `/api/posts/`,
-		  data: {
-			  authorId: this.context.userId,
-			  content: this.state.replyContent,
-			  responseTo: this.state._id
-		  },
-		  withCredentials: true
-	  })
-	  .then((res) => {
-		if(res.status === 200) {
-			this.props.refreshPosts();
-			this.setState({replyContent: '', showReplyForm: false});
-		}
-	  })
-	}
-
-	getPostAuthorDetails = () => {
-		basePath({
-			method: "get",
-			url: `/api/users/${this.state.authorId}`
-		})
-		.then(res => {
-			this.setState({
-				authorNick: res.data.name || "",
-				avatar: res.data.avatar || "",
-				loading: false
-			});
-		})
-		.catch(err => {
-			this.setState({
-				authorNick: "Deleted user.",
-				loading: false
-			})
-		})
-	}
 
 }
 

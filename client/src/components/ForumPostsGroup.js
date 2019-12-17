@@ -36,6 +36,7 @@ class ForumPostGroup extends React.Component {
                     />
                     <Segment className='initialPost'>
                         <ChildrenOfPost
+                            roomId={this.props.match.params.id}
                             parentId={this.props.match.params.id}
                             refreshChildren={this.state.refreshChildren}
                             removePostFromState={this.removePostFromState} 
