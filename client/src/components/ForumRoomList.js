@@ -57,7 +57,6 @@ class ForumRoomList extends React.Component {
     }
 
     getTopVotedPosts(id) {
-        const limit = 'limit=5';
         const responseTo = 'responseTo=' + id;
 		basePath({
 		  method: "get",
@@ -65,7 +64,14 @@ class ForumRoomList extends React.Component {
 		  withCredentials: true
       })
       .then(res => {
-          console.log(res)
+          const roomsWithComments = this.state.rooms.map(room => {
+              if(room._id === id) {
+                  room.comments = res.data.length;
+                  return room;
+              }
+              return room;
+          })
+          this.setState({rooms: roomsWithComments})
       })
     }
 

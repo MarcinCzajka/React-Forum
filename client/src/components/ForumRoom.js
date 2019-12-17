@@ -30,14 +30,15 @@ class ForumRoom extends React.Component {
 			isMounted: false,
 			arePropsUpdated: false,
 			loading: true,
-			errorMsg: ''
+			errorMsg: '',
+			comments: 0
 		}
 	}
 
 	static contextType = UserContext;
 
 	static getDerivedStateFromProps(props, state) {
-		if(!state.arePropsUpdated && state.isMounted) return props;
+		if(!state.arePropsUpdated && state.isMounted || props.comments !== state.comments) return props;
 		return null;
 	}
 
@@ -103,6 +104,12 @@ class ForumRoom extends React.Component {
 
 					<footer className='roomFooter'>
 						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+							<Statistic className='roomStat'>
+								<Statistic.Value>
+									<Icon name='comments outline'> {this.state.comments}</Icon>
+								</Statistic.Value>
+							</Statistic>
+
 							<Statistic className='roomStat'>
 								<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
 							</Statistic>
