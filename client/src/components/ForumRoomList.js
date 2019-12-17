@@ -45,8 +45,6 @@ class ForumRoomList extends React.Component {
 		})
 		.then(res => {
             const arrayOfRooms = res.data.map(item => {
-                this.getTopVotedPosts(item._id)
-                
                 return {...item, ...{arePropsUpdated: true, key: item._id}}
             })
 
@@ -64,14 +62,7 @@ class ForumRoomList extends React.Component {
 		  withCredentials: true
       })
       .then(res => {
-          const roomsWithComments = this.state.rooms.map(room => {
-              if(room._id === id) {
-                  room.comments = res.data.length;
-                  return room;
-              }
-              return room;
-          })
-          this.setState({rooms: roomsWithComments})
+
       })
     }
 

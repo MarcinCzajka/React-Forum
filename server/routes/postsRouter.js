@@ -25,9 +25,7 @@ router.get("/responseTo", async (req, res) => {
     const posts = await ForumPost.find({roomId: req.query.room})
     if(!posts) return res.status(200).send({nrOfComments: 0});
 
-    console.log(posts.data)
-
-    res.status(200).send(posts);
+    res.status(200).send({comments: posts.length});
 });
 
 router.get("/:id", async (req, res) => {

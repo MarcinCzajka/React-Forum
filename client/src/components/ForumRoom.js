@@ -50,6 +50,7 @@ class ForumRoom extends React.Component {
 	}
 
 	handleImageLoaded = () => {
+		this.getNrOfPosts();
 		this.setState({ loading: false });
 	}
 
@@ -88,6 +89,7 @@ class ForumRoom extends React.Component {
 		  url: `/api/posts/`,
 		  data: {
 			  authorId: this.context.userId,
+			  roomId: this.state._id,
 			  content: this.state.replyContent,
 			  responseTo: this.state._id
 		  },
@@ -127,8 +129,11 @@ class ForumRoom extends React.Component {
 		  withCredentials: true
       })
       .then(res => {
-          this.setState({comments: res.data.comments})
-      })
+		  if(res.data.comments > 0) this.setState({comments: res.data.comments})
+	  })
+	  .catch(err => {
+		  console.log(err)
+	  })
     }
 	
 	render() {

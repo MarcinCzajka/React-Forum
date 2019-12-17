@@ -6,7 +6,7 @@ const ForumPostSchema = new mongoose.Schema({
         type: String
     },
     roomId: {
-        type: Number
+        type: String
     },
     date: {
         type: Date,
@@ -29,6 +29,7 @@ const ForumPost = mongoose.model('ForumPost', ForumPostSchema);
 function validateForumPost(forumPost) {
     const schema = {
         authorId: Joi.string(),
+        roomId: Joi.string(),
         date: Joi.date(),
         content: Joi.string(),
         responseTo: Joi.string().allow('')
