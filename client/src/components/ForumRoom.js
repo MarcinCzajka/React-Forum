@@ -1,7 +1,7 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Form, Button, Statistic, Icon} from "semantic-ui-react";
+import { Form, Button, Statistic, Icon, Message} from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import './global.css';
@@ -29,7 +29,8 @@ class ForumRoom extends React.Component {
 			replyContent: '',
 			isMounted: false,
 			arePropsUpdated: false,
-			loading: true
+			loading: true,
+			errorMsg: ''
 		}
 	}
 
@@ -49,6 +50,8 @@ class ForumRoom extends React.Component {
 	}
 
 	updateUpvote = () => {
+		if(!this.context.loggedIn) return this.setState({errorMsg: 'You must login before you can vote!'})
+
 		basePath({
 			method: "put",
 			url: `/api/rooms/${this.state._id}`,
@@ -63,6 +66,16 @@ class ForumRoom extends React.Component {
 		.catch(err => {
 			console.log(err)
 		})
+	}
+
+	showLoginPrompt = () => {
+		if(this.state.errorMsg && !this.context.loggedIn) {
+			return (
+				<Message warning attached='bottom' hidden={(this.state.showLoginPrompt && !this.context.loggedIn)}>
+					<Message.Header>{this.state.errorMsg}</Message.Header>
+				</Message>
+			)
+		}
 	}
 	
 	render() {
@@ -102,6 +115,7 @@ class ForumRoom extends React.Component {
 							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
 						) : ''}
 					</div>
+					{this.showLoginPrompt()}
 
 					{this.state.showReplyForm ? (
 						<Form reply>
