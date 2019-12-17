@@ -1,8 +1,9 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Comment } from "semantic-ui-react";
+import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import ChildrenOfPost from './ChildrenOfPost';
+import './ForumPostsGroup.css';
 
 class ForumPostGroup extends React.Component {
     constructor(props) {
@@ -26,16 +27,24 @@ class ForumPostGroup extends React.Component {
 
     render() {
         return (
-            <Comment.Group >
-                <ForumRoom refreshPosts={this.refreshChildren} {...this.state.roomDetails} />
-                <ChildrenOfPost 
-                    parentId={this.props.match.params.id}
-                    refreshChildren={this.state.refreshChildren}
-                    removePostFromState={this.removePostFromState} 
-                    addPostToState={this.addPostToState}
-                    postsNotToRender={this.state.postsNotToRender}>
-                </ChildrenOfPost>
-            </Comment.Group>
+            <Grid centered className='roomGrid'>
+                <Comment.Group className='postGroupContainer'>
+                    <ForumRoom 
+                        className='roomInPostsGroup'
+                        refreshPosts={this.refreshChildren}
+                        {...this.state.roomDetails} 
+                    />
+                    <Segment className='initialPost'>
+                        <ChildrenOfPost
+                            parentId={this.props.match.params.id}
+                            refreshChildren={this.state.refreshChildren}
+                            removePostFromState={this.removePostFromState} 
+                            addPostToState={this.addPostToState}
+                            postsNotToRender={this.state.postsNotToRender}>
+                        </ChildrenOfPost>
+                    </Segment>
+                </Comment.Group>
+            </Grid>
         )
     }
 

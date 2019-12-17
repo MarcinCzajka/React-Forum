@@ -49,9 +49,12 @@ class ForumRoom extends React.Component {
 		this.setState({ loading: false });
 	}
 
-	updateUpvote = () => {
+	updateUpvote = (e) => {
+		e.stopPropagation();
+		
 		if(!this.context.loggedIn) return this.setState({errorMsg: 'You must login before you can vote!'})
 
+		console.log('req')
 		basePath({
 			method: "put",
 			url: `/api/rooms/${this.state._id}`,
@@ -71,7 +74,7 @@ class ForumRoom extends React.Component {
 	showLoginPrompt = () => {
 		if(this.state.errorMsg && !this.context.loggedIn) {
 			return (
-				<Message warning attached='bottom' hidden={(this.state.showLoginPrompt && !this.context.loggedIn)}>
+				<Message warning attached='bottom'>
 					<Message.Header>{this.state.errorMsg}</Message.Header>
 				</Message>
 			)
@@ -81,49 +84,54 @@ class ForumRoom extends React.Component {
 	render() {
 		return (
 			<article className='roomContainer'>
-				<div>
-					{this.state.loading ? <RoomPlaceholder /> : ''}
+				{this.state.loading ? <RoomPlaceholder /> : ''}
 
-					<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
-						<div className='roomImageContainer'>
-							<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
-						</div>
-
-						<header className='roomTitle'>
-							<Link to={`/post/${this.state._id}`}>
-								<h3>{this.state.title}</h3>
-							</Link>
-						</header>
-
-						<main className='roomDescription'>
-							<p>{this.state.shortDescription}</p>
-						</main>
-
-						<footer className='roomFooter'>
-							<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
-								<Statistic className='roomStat'>
-									<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
-								</Statistic>
-								
-								<Statistic className='roomStat' style={{cursor:'pointer'}}>
-									<Statistic.Value><Icon onClick={this.updateUpvote} style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} name='thumbs up' />  {this.state.upvotes}</Statistic.Value>
-								</Statistic>
-							</Statistic.Group>
-						</footer>
-
-						{this.context.loggedIn ? (
-							<Button size='mini' onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>Add response</Button>
-						) : ''}
+				<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
+					<div className='roomImageContainer'>
+						<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
 					</div>
-					{this.showLoginPrompt()}
 
-					{this.state.showReplyForm ? (
-						<Form reply>
-							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-						</Form>
+					<header className='roomTitle'>
+						<Link to={`/post/${this.state._id}`}>
+							<h3>{this.state.title}</h3>
+						</Link>
+					</header>
+
+					<main className='roomDescription'>
+						<p>{this.state.shortDescription}</p>
+					</main>
+
+					<footer className='roomFooter'>
+						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+							<Statistic className='roomStat'>
+								<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
+							</Statistic>
+							
+							<Statistic className='roomStat' style={{cursor:'pointer'}}>
+								<Statistic.Value>
+									<Icon onClick={this.updateUpvote} 
+										style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} 
+										name='thumbs up' />  {this.state.upvotes}
+								</Statistic.Value>
+							</Statistic>
+						</Statistic.Group>
+					</footer>
+
+					{this.context.loggedIn ? (
+						<Button size='mini' 
+							onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>
+							Add response
+						</Button>
 					) : ''}
 				</div>
+				{this.showLoginPrompt()}
+
+				{this.state.showReplyForm ? (
+					<Form reply>
+						<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+						<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+					</Form>
+				) : ''}
 			</article>
 			)
 		}

@@ -1,0 +1,20 @@
+.roomGrid {
+    margin-top: 2vh !important;
+}
+
+.postGroupContainer {
+    max-width: 100% !important;
+}
+
+.initialPost {
+    text-align: left;
+
+}
+
+.initialPost > div {
+    left: 0 !important;
+}
+
+.roomInPostsGroup {
+    
+}

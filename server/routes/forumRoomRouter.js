@@ -52,9 +52,9 @@ router.put("/:id", auth, async (req, res) => {
         newArr.splice(isLiked, 1)
     }
 
-    const result = await ForumRoom.findByIdAndUpdate(req.params.id, {upvotesByUserId: newArr, upvotes: newArr.length});
-	
-	res.status(200).send({upvotes: result.upvotes, liked:(isLiked === -1 ? false : true)});
+    const result = await ForumRoom.findByIdAndUpdate(req.params.id, {upvotesByUserId: newArr, upvotes: newArr.length}, {new: true});
+
+    res.status(200).send({upvotes: result.upvotes, liked:(isLiked === -1 ? true : false)});
 });
 
 router.delete("/:id", [auth, admin], async (req, res) => {
