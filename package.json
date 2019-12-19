@@ -1,30 +1,14 @@
 {
-  "name": "react-forum-server",
-  "version": "0.0.1",
+  "name": "react-forum",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "start": "node server",
-    "build": "cd client/ && npm install && npm run build"
+    "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-client\"",
+    "start-server": "nodemon server/server.js",
+    "start-client": "cd client && npm start",
+    "i-all": "echo Installing npm packages for both server and client. It might take few minutes... && npm i && concurrently \"cd client && npm install\" \"cd server && npm install\""
   },
-  "cacheDirectories": [
-    "node_modules",
-    "client/node_modules"
-  ],
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.4",
-    "express": "^4.17.0",
-    "helmet": "^3.21.2",
-    "joi": "^14.3.1",
-    "joi-password-complexity": "^3.1.0",
-    "jsonwebtoken": "^8.5.1",
-    "lodash": "^4.17.15",
-    "mongoose": "^5.7.5",
-    "path": "^0.12.7"
-  },
-  "keywords": [
-    "node",
-    "heroku",
-    "create-react-app",
-    "react"
-  ]
+  "devDependencies": {
+    "concurrently": "^4.1.2"
+  }
 }
