@@ -24,7 +24,7 @@ app.use('/api/rooms', forumRoomRouter);
 app.use('/api/posts', postsRouter);
 
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../react-ui/build')));
+    app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
 app.get('*', function(req, res) {

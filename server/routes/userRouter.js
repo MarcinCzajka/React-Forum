@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const auth = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
-const {User, validateUser} = require('../models/User');
+const {User, validateUser} = require('../models/user');
 
 router.get("/", auth, async (req, res) => {
     const users = await User.find();
