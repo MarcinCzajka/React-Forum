@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dimmer } from "semantic-ui-react";
+import { Dimmer, Icon } from "semantic-ui-react";
 import './ImageModal.css'
 
 class ImageModal extends React.Component {
@@ -24,6 +24,7 @@ class ImageModal extends React.Component {
             <Dimmer page onClickOutside={this.close} active={open} >
                 <div className='modalImageContainer' >
                     <img className='modalImage' src={this.state.image} />
+                    <Icon name='times' onClick={this.close} className='modalCloseIcon' />
                 </div>
             </Dimmer>
         )

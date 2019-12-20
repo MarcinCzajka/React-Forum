@@ -1,13 +1,22 @@
 .modalImageContainer {
+    position: relative;
     width: auto;
     height: auto;
     background-color: #fff;
     border-radius: 15px;
-    padding:15px;
+    border-top-right-radius: 0;
+    padding:13px;
 }
 
-.modalImage {
-    
+.modalImage { 
     max-width: 90vw;
     max-height: 80vh;
+}
+
+.modalCloseIcon {
+    position: absolute;
+    display: block;
+    right: -25px;
+    top: -20px;
+    cursor: pointer;
 }

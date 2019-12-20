@@ -150,9 +150,17 @@ class ForumRoom extends React.Component {
 
 				<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
 
-					<div className='roomImageContainer' onClick={this.showImageModal}>
-						<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
-					</div>
+						<div className='roomImageContainer' onClick={this.showImageModal}>
+							<img 
+								className='roomImage'
+								onLoad={this.handleImageLoaded}
+								src={this.state.image}
+								alt={this.state.title}
+							/>
+							<div className='imageOverlay'>
+								<Icon name='expand' inverted size='huge' />
+							</div>
+						</div>
 
 					<header className='roomTitle'>
 						<Link to={`/post/${this.state._id}`}>
