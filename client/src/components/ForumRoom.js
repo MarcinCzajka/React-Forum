@@ -1,9 +1,10 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Form, Button, Statistic, Icon, Message} from "semantic-ui-react";
+import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
+import ImageModal from './ImageModal';
 import './global.css';
 import './ForumRoom.css';
 
@@ -33,6 +34,8 @@ class ForumRoom extends React.Component {
 			errorMsg: '',
 			comments: 0
 		}
+
+		this.imageModal = React.createRef();
 	}
 
 	static contextType = UserContext;
@@ -134,7 +137,11 @@ class ForumRoom extends React.Component {
 	  .catch(err => {
 		  console.log(err)
 	  })
-    }
+	}
+	
+	showImageModal = () => {
+		this.imageModal.current.open();
+	}
 	
 	render() {
 		return (
@@ -142,7 +149,8 @@ class ForumRoom extends React.Component {
 				{this.state.loading ? <RoomPlaceholder /> : ''}
 
 				<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
-					<div className='roomImageContainer'>
+
+					<div className='roomImageContainer' onClick={this.showImageModal}>
 						<img className='roomImage' onLoad={this.handleImageLoaded} src={this.state.image} alt={this.state.title} />
 					</div>
 
@@ -160,7 +168,9 @@ class ForumRoom extends React.Component {
 						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
 							<Statistic className='roomStat'>
 								<Statistic.Value>
-									<Icon name='comments outline'> {this.state.comments}</Icon>
+									<Link to={`/post/${this.state._id}`}>
+										<Icon name='comments outline'> {this.state.comments}</Icon>
+									</Link>
 								</Statistic.Value>
 							</Statistic>
 
@@ -177,6 +187,8 @@ class ForumRoom extends React.Component {
 							</Statistic>
 						</Statistic.Group>
 					</footer>
+
+					<ImageModal image={this.state.image} ref={this.imageModal} />
 
 					{this.context.loggedIn ? (
 						<Button size='mini' 

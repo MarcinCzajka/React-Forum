@@ -49,7 +49,8 @@ class ForumRoomList extends React.Component {
             })
 
             this.setState({rooms: arrayOfRooms});
-		}).catch(err => {
+        })
+        .catch(err => {
             console.log(err)
         })
     }

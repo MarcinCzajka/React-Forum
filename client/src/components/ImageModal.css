@@ -1,0 +1,13 @@
+.modalImageContainer {
+    width: auto;
+    height: auto;
+    background-color: #fff;
+    border-radius: 15px;
+    padding:15px;
+}
+
+.modalImage {
+    
+    max-width: 90vw;
+    max-height: 80vh;
+}
