@@ -3,6 +3,7 @@ import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
 import UserContext from '../contexts/UserContext';
 import { UserConsumer } from '../contexts/UserContext';
+import Captcha from './Captcha';
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -102,6 +103,9 @@ class SignUpForm extends React.Component {
                                                 onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
                                             />
                                         </Form.Field>
+
+                                        <Captcha />
+
                                         <Button type='submit' fluid size='large'>Sign up</Button>
                                     </Form>
                                 </Modal.Content>
