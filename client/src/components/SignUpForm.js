@@ -2,7 +2,7 @@ import React from 'react';
 import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../api/basePath';
 import UserContext from '../contexts/UserContext';
-import { UserConsumer } from '../contexts/UserContext';
+import {UserConsumer} from '../contexts/UserContext';
 import Captcha from './Captcha';
 
 class SignUpForm extends React.Component {
@@ -26,9 +26,17 @@ class SignUpForm extends React.Component {
             return;
         }
 
+        if (!this.state.captchaToken) {
+            this.setState({error: 'Please confirm, you are not a robot.'})
+            return;
+        }
+
         basePath({
             method: 'post',
             url: '/api/users',
+            headers: {
+                captchaToken: this.state.captchaToken
+            },
             data: {
                 name: this.state.userName,
                 email: this.state.email,
@@ -44,9 +52,9 @@ class SignUpForm extends React.Component {
                 alert('Account created.')
             }
         }).catch(error => {
-                console.log(error);
-                this.setState({ error: error.response.data });
-            });
+            console.log(error);
+            this.setState({ error: error.response.data });
+        });
     }
 
     error = () => {
@@ -57,6 +65,10 @@ class SignUpForm extends React.Component {
                 content = {this.state.error} />
             )
         }
+    }
+
+    verifyCaptcha = (captchaToken) => {
+        this.setState({captchaToken: captchaToken})
     }
 
     render() {
@@ -87,24 +99,26 @@ class SignUpForm extends React.Component {
                                             <input 
                                                 type='password'
                                                 placeholder='Password'
-                                                spellcheck = "false"
-                                                autocapitalize = "off"
-                                                autocorrect = "off"
+                                                spellCheck = "false"
+                                                autoCapitalize = "off"
+                                                autoCorrect = "off"
                                                 value={this.state.password} 
                                                 onChange={(e) => this.setState({ password: e.target.value })} 
                                             />
                                             <input 
                                                 type='password'
                                                 placeholder='Repeat'
-                                                spellcheck = "false"
-                                                autocapitalize = "off"
-                                                autocorrect = "off"
+                                                spellCheck = "false"
+                                                autoCapitalize = "off"
+                                                autoCorrect = "off"
                                                 value={this.state.passwordRepeat} 
                                                 onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
                                             />
                                         </Form.Field>
 
-                                        <Captcha />
+                                        <Form.Field>
+                                            <Captcha verifyCallback={this.verifyCaptcha} />
+                                        </Form.Field>
 
                                         <Button type='submit' fluid size='large'>Sign up</Button>
                                     </Form>

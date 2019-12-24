@@ -8,6 +8,7 @@ import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
 import './global.css';
+import { loadReCaptcha } from 'react-recaptcha-google'
 
 
 class App extends React.Component {
@@ -34,6 +35,8 @@ class App extends React.Component {
     componentDidMount() {
         const data = isToken();
         if(data) this.setContextData(data);
+        
+        loadReCaptcha();
     }
 
     setContextData(data) {
