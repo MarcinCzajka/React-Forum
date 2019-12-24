@@ -60,7 +60,9 @@ class ForumRoom extends React.Component {
 	updateUpvote = (e) => {
 		e.stopPropagation();
 		
-		if(!this.context.loggedIn) return this.setState({errorMsg: 'You must login before you can vote!'})
+		if(!this.context.loggedIn) return this.setState({
+			errorMsg: <p>You must <span className='errorLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
+		});
 
 		basePath({
 			method: "put",

@@ -18,6 +18,10 @@ class LoginForm extends React.Component {
     }
 
     static contextType = UserContext;
+    
+    componentDidMount() {
+        this.context.addShowLoginToContext(this.open);
+    }
 
     login = () => {
         basePath({
@@ -45,9 +49,9 @@ class LoginForm extends React.Component {
                 })
             }
         }).catch(error => {
-                console.log(error)
-                this.setState({ error: error.response.data })
-            });
+            console.log(error)
+            this.setState({ error: error.response.data })
+        });
     }
 
     logout = () => {
@@ -72,6 +76,14 @@ class LoginForm extends React.Component {
                 content = {this.state.error} />
             )
         }
+    }
+
+    close = () => {
+        this.setState({open: false});
+    }
+
+    open = () => {
+        this.setState({open: true});
     }
 
     render() {
@@ -117,13 +129,6 @@ class LoginForm extends React.Component {
                 <Menu.Item onClick={this.logout} name="Log out" />
             )
         )
-    }
-
-    close = () => {
-        this.setState({open: false});
-    }
-    open = () => {
-        this.setState({open: true});
     }
 
 }
