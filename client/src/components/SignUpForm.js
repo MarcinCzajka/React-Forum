@@ -68,17 +68,18 @@ class SignUpForm extends React.Component {
         if(!this.state.userName) {
             this.setState({error: 'Username is not allowed to be empty.'})
             return false;
-        }else if(!this.state.email) {
+        } else if(!this.state.email) {
             this.setState({error: 'Email is not allowed to be empty.'})
             return false;
-        }else if(this.state.password !== this.state.passwordRepeat) {
+        } else if(this.state.password !== this.state.passwordRepeat) {
             this.setState({error: 'Passwords are not identical.'})
             return false;
-        }else if (!this.state.captchaToken) {
+        } else if (!this.state.captchaToken) {
             this.setState({error: 'Please confirm, you are not a robot.'})
             return false;
         }
 
+        this.setState({error: ''})
         return true;
     }
 
@@ -103,11 +104,11 @@ class SignUpForm extends React.Component {
                                         <br></br>
                                         <Form.Field required>
                                             <label>Username</label>
-                                            <input placeholder='Name' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
+                                            <input placeholder='Name' autoComplete='off' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Email</label>
-                                            <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
+                                            <input placeholder='Email' autoComplete="new-password" value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Password</label>
@@ -116,6 +117,7 @@ class SignUpForm extends React.Component {
                                                 placeholder='Password'
                                                 spellCheck = "false"
                                                 autoCapitalize = "off"
+                                                autoComplete="new-password"
                                                 autoCorrect = "off"
                                                 value={this.state.password} 
                                                 onChange={(e) => this.setState({ password: e.target.value })} 
@@ -125,6 +127,7 @@ class SignUpForm extends React.Component {
                                                 placeholder='Repeat'
                                                 spellCheck = "false"
                                                 autoCapitalize = "off"
+                                                autoComplete="new-password"
                                                 autoCorrect = "off"
                                                 value={this.state.passwordRepeat} 
                                                 onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
