@@ -117,3 +117,7 @@
     color: #1e70bf;
     cursor: pointer;
 }
+
+@media (max-width: 960px) {
+    
+}
