@@ -144,6 +144,7 @@ class ForumRoom extends React.Component {
 	}
 	
 	render() {
+		console.log(this.state.image)
 		return (
 			<article className='roomContainer'>
 				{this.state.loading ? <RoomPlaceholder /> : ''}
@@ -196,7 +197,7 @@ class ForumRoom extends React.Component {
 						</Statistic.Group>
 					</footer>
 
-					<ImageModal image={this.state.image} ref={this.imageModal} />
+					<ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 
 					{this.context.loggedIn ? (
 						<Button size='mini' 
