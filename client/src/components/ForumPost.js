@@ -6,6 +6,7 @@ import './global.css';
 import ChildrenOfPost from './ChildrenOfPost';
 import UserContext from '../contexts/UserContext';
 import PostPlaceholder from './placeholders/PostPlaceholder';
+import './ForumPost.css';
 
 class ForumPost extends React.Component {
 	constructor(props) {

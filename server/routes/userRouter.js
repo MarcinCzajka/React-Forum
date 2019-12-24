@@ -22,18 +22,6 @@ router.get("/:id", async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    const captchaValidation = await axios({
-        method: 'POST',
-        url: 'https://www.google.com/recaptcha/api/siteverify', 
-        params: {
-            response: req.header('captchaToken'),
-            secret: '6LdPf8kUAAAAAPxSQ2lnpqEe19CaB55y4V8SjqlJ'
-        }
-    })
-    
-    if(!captchaValidation.data.success) return res.status(400).send('Captcha verification failed.');
-
-
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
     
@@ -42,6 +30,18 @@ router.post('/', async (req, res) => {
 
     user = await User.findOne({ name: req.body.name });
     if(user) return res.status(400).send('Username already taken.');
+
+
+    const captchaValidation = await axios({
+        method: 'POST',
+        url: 'https://www.google.com/recaptcha/api/siteverify', 
+        params: {
+            response: req.header('captchaToken'),
+            secret: '6LdPf8kUAAAAAPxSQ2lnpqEe19CaB55y4V8SjqlJ'
+        }
+    });
+    
+    if(!captchaValidation.data.success) return res.status(400).send('Captcha verification failed.');
 
     user = new User(_.pick(req.body, ['_id', 'name', 'password', 'email', 'avatar']));
     const salt = await bcrypt.genSalt(10);

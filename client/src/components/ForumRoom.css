@@ -24,7 +24,7 @@
     border-right: var(--roomBorder);
     border-bottom: var(--roomBorder);
 
-    text-decoration: underline #1e70bf;
+    text-decoration: #1e70bf;
 }
 
 .roomDescription {
