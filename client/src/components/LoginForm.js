@@ -94,7 +94,7 @@ class LoginForm extends React.Component {
                 onClose={this.close}
             >
                 <Modal.Header>Log in</Modal.Header>
-                <Modal.Content>
+                <Modal.Content style={{paddingTop: 0}}>
                     <Form size='small' onSubmit={this.login} error >
                         <div>{this.error()}</div>
                         <br></br>

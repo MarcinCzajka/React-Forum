@@ -21,16 +21,8 @@ class SignUpForm extends React.Component {
     static contextType = UserContext;
 
     submit = () => {
-        if(this.state.password !== this.state.passwordRepeat) {
-            this.setState({error: 'Passwords are not identical.'})
-            return;
-        }
-
-        if (!this.state.captchaToken) {
-            this.setState({error: 'Please confirm, you are not a robot.'})
-            return;
-        }
-
+        if(!this.initialVerification()) return;
+        console.log(this.initialVerification())
         basePath({
             method: 'post',
             url: '/api/users',
@@ -72,6 +64,24 @@ class SignUpForm extends React.Component {
         }
     }
 
+    initialVerification = () => {
+        if(!this.state.userName) {
+            this.setState({error: 'Username is not allowed to be empty.'})
+            return false;
+        }else if(!this.state.email) {
+            this.setState({error: 'Email is not allowed to be empty.'})
+            return false;
+        }else if(this.state.password !== this.state.passwordRepeat) {
+            this.setState({error: 'Passwords are not identical.'})
+            return false;
+        }else if (!this.state.captchaToken) {
+            this.setState({error: 'Please confirm, you are not a robot.'})
+            return false;
+        }
+
+        return true;
+    }
+
     verifyCaptcha = (captchaToken) => {
         this.setState({captchaToken: captchaToken})
     }
@@ -87,7 +97,7 @@ class SignUpForm extends React.Component {
                                 onClose={this.close}
                             >
                                 <Modal.Header>Sign up</Modal.Header>
-                                <Modal.Content>
+                                <Modal.Content style={{paddingTop: 0}}>
                                     <Form size='small' onSubmit={this.submit} error >
                                         <div>{this.error()}</div>
                                         <br></br>
