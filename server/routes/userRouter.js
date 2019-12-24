@@ -4,7 +4,7 @@ const router = express.Router();
 const auth = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
 const {User, validateUser} = require('../models/user');
-const request = require('async-request');
+const axios = require('axios');
 
 router.get("/", auth, async (req, res) => {
     const users = await User.find();
@@ -22,16 +22,17 @@ router.get("/:id", async (req, res) => {
 
 router.post('/', async (req, res) => {
 
-    const captchaValidation = await request('https://www.google.com/recaptcha/api/siteverify', 
-    {
-        method: "POST",
-        data: {
+    const captchaValidation = await axios({
+        method: 'POST',
+        url: 'https://www.google.com/recaptcha/api/siteverify', 
+        params: {
             response: req.header('captchaToken'),
             secret: '6LdPf8kUAAAAAPxSQ2lnpqEe19CaB55y4V8SjqlJ'
         }
-    });
+    })
+    
+    if(!captchaValidation.data.success) return res.status(400).send('Captcha verification failed.');
 
-    if(!JSON.parse(captchaValidation.body).success) return res.status(400).send('Captcha verification failed.');
 
     const { error } = validateUser(req.body);
     if (error) return res.status(400).send(error.details[0].message);
