@@ -21,16 +21,8 @@ class SignUpForm extends React.Component {
     static contextType = UserContext;
 
     submit = () => {
-        if(this.state.password !== this.state.passwordRepeat) {
-            this.setState({error: 'Passwords are not identical.'})
-            return;
-        }
-
-        if (!this.state.captchaToken) {
-            this.setState({error: 'Please confirm, you are not a robot.'})
-            return;
-        }
-
+        if(!this.initialVerification()) return;
+        console.log(this.initialVerification())
         basePath({
             method: 'post',
             url: '/api/users',
@@ -72,6 +64,25 @@ class SignUpForm extends React.Component {
         }
     }
 
+    initialVerification = () => {
+        if(!this.state.userName) {
+            this.setState({error: 'Username is not allowed to be empty.'})
+            return false;
+        } else if(!this.state.email) {
+            this.setState({error: 'Email is not allowed to be empty.'})
+            return false;
+        } else if(this.state.password !== this.state.passwordRepeat) {
+            this.setState({error: 'Passwords are not identical.'})
+            return false;
+        } else if (!this.state.captchaToken) {
+            this.setState({error: 'Please confirm, you are not a robot.'})
+            return false;
+        }
+
+        this.setState({error: ''})
+        return true;
+    }
+
     verifyCaptcha = (captchaToken) => {
         this.setState({captchaToken: captchaToken})
     }
@@ -87,17 +98,17 @@ class SignUpForm extends React.Component {
                                 onClose={this.close}
                             >
                                 <Modal.Header>Sign up</Modal.Header>
-                                <Modal.Content>
+                                <Modal.Content style={{paddingTop: 0}}>
                                     <Form size='small' onSubmit={this.submit} error >
                                         <div>{this.error()}</div>
                                         <br></br>
                                         <Form.Field required>
                                             <label>Username</label>
-                                            <input placeholder='Name' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
+                                            <input placeholder='Name' autoComplete='off' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Email</label>
-                                            <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
+                                            <input placeholder='Email' autoComplete="new-password" value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
                                         </Form.Field>
                                         <Form.Field required>
                                             <label>Password</label>
@@ -106,6 +117,7 @@ class SignUpForm extends React.Component {
                                                 placeholder='Password'
                                                 spellCheck = "false"
                                                 autoCapitalize = "off"
+                                                autoComplete="new-password"
                                                 autoCorrect = "off"
                                                 value={this.state.password} 
                                                 onChange={(e) => this.setState({ password: e.target.value })} 
@@ -115,6 +127,7 @@ class SignUpForm extends React.Component {
                                                 placeholder='Repeat'
                                                 spellCheck = "false"
                                                 autoCapitalize = "off"
+                                                autoComplete="new-password"
                                                 autoCorrect = "off"
                                                 value={this.state.passwordRepeat} 
                                                 onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
