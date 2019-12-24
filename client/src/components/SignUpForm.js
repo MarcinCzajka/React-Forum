@@ -20,7 +20,7 @@ class SignUpForm extends React.Component {
 
     static contextType = UserContext;
 
-    login = () => {
+    submit = () => {
         if(this.state.password !== this.state.passwordRepeat) {
             this.setState({error: 'Passwords are not identical.'})
             return;
@@ -46,7 +46,12 @@ class SignUpForm extends React.Component {
             if (res.status === 200) {
 
                 this.setState({
-                    'open': false
+                    'open': false,
+                    'userName': '',
+                    'email': '',
+                    'password': '',
+                    'avatar': '',
+                    'error': ''
                 })
 
                 alert('Account created.')
@@ -83,7 +88,7 @@ class SignUpForm extends React.Component {
                             >
                                 <Modal.Header>Sign up</Modal.Header>
                                 <Modal.Content>
-                                    <Form size='small' onSubmit={this.login} error >
+                                    <Form size='small' onSubmit={this.submit} error >
                                         <div>{this.error()}</div>
                                         <br></br>
                                         <Form.Field required>

@@ -144,7 +144,6 @@ class ForumRoom extends React.Component {
 	}
 	
 	render() {
-		console.log(this.state.image)
 		return (
 			<article className='roomContainer'>
 				{this.state.loading ? <RoomPlaceholder /> : ''}
