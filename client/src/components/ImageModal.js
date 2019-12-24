@@ -1,12 +1,12 @@
 import React from 'react';
-import { Dimmer, Icon } from "semantic-ui-react";
+import { Dimmer, Icon, Loader } from "semantic-ui-react";
 import './ImageModal.css'
 
 class ImageModal extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {image: this.props.image, open: false};
+        this.state = {open: false, loading: true};
     }
 
     open = () => {
@@ -14,7 +14,11 @@ class ImageModal extends React.Component {
     }
 
     close = () => {
-        this.setState({open: false});
+        this.setState({open: false, loading: true});
+    }
+
+    hideLoader = () => {
+        this.setState({loading: false})
     }
 
     render() {
@@ -23,7 +27,10 @@ class ImageModal extends React.Component {
         return (
             <Dimmer page onClickOutside={this.close} active={open} >
                 <div className='modalImageContainer' >
-                    <img className='modalImage' src={this.state.image} />
+                    <Dimmer inverted active={this.state.loading}>
+                        <Loader size='big' />
+                    </Dimmer>
+                    <img className='modalImage' onLoad={this.hideLoader} alt={this.props.alt} src={this.props.image} />
                     <Icon name='times' onClick={this.close} className='modalCloseIcon' />
                 </div>
             </Dimmer>
