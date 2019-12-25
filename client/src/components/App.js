@@ -31,6 +31,7 @@ class App extends React.Component {
 
         this.setContextData = this.setContextData.bind(this);
         this.addShowLoginToContext = this.addShowLoginToContext.bind(this);
+        this.addShowSignupToContext = this.addShowSignupToContext.bind(this);
     }
 
     componentDidMount() {
@@ -48,12 +49,20 @@ class App extends React.Component {
             userAvatar: data.avatar || this.state.userAvatar,
             userCreatedAt: data.createdAt || this.state.userCreatedAt,
             userEmail: data.email || this.state.userEmail
-        });
-    };
+        })
+    }
 
     addShowLoginToContext(func) {
-        this.setState({showLogin: func});
-    };
+        if (typeof func === 'function') {
+            this.setState({showLogin: func});
+        }
+    }
+
+    addShowSignupToContext(func) {
+        if (typeof func === 'function') {
+            this.setState({showSignup: func});
+        }
+    }
 
     render() {
         const contextValue = {
@@ -65,8 +74,11 @@ class App extends React.Component {
             userCreatedAt: this.state.userCreatedAt,
             pages: this.state.pages,
             showLogin: this.state.showLogin,
+            showSignup: this.state.showSignup,
+            
             setContextData: this.setContextData,
-            addShowLoginToContext: this.addShowLoginToContext
+            addShowLoginToContext: this.addShowLoginToContext,
+            addShowSignupToContext: this.addShowSignupToContext
         };
         
         return (

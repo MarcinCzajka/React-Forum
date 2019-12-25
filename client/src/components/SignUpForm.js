@@ -20,9 +20,13 @@ class SignUpForm extends React.Component {
 
     static contextType = UserContext;
 
+    componentDidMount() {
+        this.context.addShowSignupToContext(this.open);
+    }
+
     submit = () => {
         if(!this.initialVerification()) return;
-        console.log(this.initialVerification())
+        
         basePath({
             method: 'post',
             url: '/api/users',
@@ -87,6 +91,13 @@ class SignUpForm extends React.Component {
         this.setState({captchaToken: captchaToken})
     }
 
+    close = () => {
+        this.setState({open: false});
+    }
+    open = () => {
+        this.setState({open: true});
+    }
+
     render() {
         return (
             <UserConsumer>
@@ -147,13 +158,6 @@ class SignUpForm extends React.Component {
                 )}
             </UserConsumer>
         )
-    }
-
-    close = () => {
-        this.setState({open: false});
-    }
-    open = () => {
-        this.setState({open: true});
     }
 
 }

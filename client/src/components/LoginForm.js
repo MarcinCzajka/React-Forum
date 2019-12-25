@@ -35,7 +35,7 @@ class LoginForm extends React.Component {
             withCredentials: true
         }).then(res => {
             if (res.status === 200) {
-                const data = {...jwt_decode(document.cookie), ...{loggedIn: true}};
+                const data = {...jwt_decode(document.cookie), loggedIn: true};
                 this.context.setContextData(data);
 
                 if(this.state.stayLogged) localStorage.setItem('token', document.cookie);
@@ -77,6 +77,11 @@ class LoginForm extends React.Component {
                 content = {this.state.error} />
             )
         }
+    }
+
+    showSignup = () => {
+        this.close();
+        this.context.showSignup();
     }
 
     close = () => {
@@ -123,6 +128,7 @@ class LoginForm extends React.Component {
                         />
 
                         <Button style={{'marginTop':'15px'}} type='submit' fluid size='large'>Sign in</Button>
+                        <p>Don't have account yet? <span className='asLink' onClick={this.showSignup}>Sign up</span>!</p>
                     </Form>
                 </Modal.Content>
             </Modal>

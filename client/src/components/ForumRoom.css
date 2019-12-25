@@ -108,16 +108,6 @@
     min-height: 100%;
 }
 
-.errorLink {
-    color: #1e70bf;
-
-}
-
-.errorLink:hover {
-    color: #1e70bf;
-    cursor: pointer;
-}
-
 @media (max-width: 960px) {
 
     .roomGrid {

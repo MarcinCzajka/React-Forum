@@ -26,3 +26,12 @@ html {
 .postText {
     text-align: left;
 }
+
+.asLink {
+    color: #1e70bf;
+}
+
+.asLink:hover {
+    color: #1e70bf;
+    cursor: pointer;
+}
