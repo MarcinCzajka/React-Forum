@@ -3,6 +3,7 @@ import { Message, Button, Form, Modal, Menu, Checkbox } from 'semantic-ui-react'
 import basePath from '../api/basePath';
 import UserContext from '../contexts/UserContext';
 import jwt_decode from 'jwt-decode';
+import './global.css';
 
 class LoginForm extends React.Component {
     constructor(props) {
@@ -89,7 +90,7 @@ class LoginForm extends React.Component {
     render() {
         return (
             !this.context.loggedIn ? (
-            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name="Log in" />}
+            <Modal size='tiny' className='noMargin' trigger={<Menu.Item onClick={this.open} name="Log in" />}
                 open={this.state.open}
                 onClose={this.close}
             >

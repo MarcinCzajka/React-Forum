@@ -31,7 +31,7 @@ class ForumRoomList extends React.Component {
         })
 
         return (
-            <Grid>
+            <Grid className='noMargin'>
                 <NewRoomForm />
                 {forumRooms}
             </Grid>

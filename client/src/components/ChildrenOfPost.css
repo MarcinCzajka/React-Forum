@@ -1,3 +1,7 @@
+.childrenOfPost {
+    width: auto;
+}
+
 :not(.ParentDirectory) > .childrenOfPost {
     position:relative;
     left: 4vw;
