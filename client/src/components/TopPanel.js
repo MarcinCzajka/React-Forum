@@ -22,7 +22,7 @@ class TopPanel extends React.Component {
         return (
             <UserConsumer>
                 {context => (
-                    <Menu tabular inverted>
+                    <Menu tabular inverted style={{marginBottom: 0}}>
                         <Link to=''>
                             <Menu.Item name={context.pages[0].name} />
                         </Link>
