@@ -61,7 +61,7 @@ class ForumRoom extends React.Component {
 		e.stopPropagation();
 		
 		if(!this.context.loggedIn) return this.setState({
-			errorMsg: <p>You must <span className='errorLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
+			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
 		});
 
 		basePath({
