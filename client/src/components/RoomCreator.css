@@ -1,0 +1,28 @@
+.roomDescription {
+    position: relative;
+}
+
+.descriptionOverlay {
+    position: absolute;
+    top: 0;
+    grid-row: 2 / 6;
+    grid-column: 5 / -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    cursor: text;
+}
+
+.descriptionOverlay > i {
+    display: block !important;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5em !important;
+    left: 50%;
+    margin-left: -0.5em !important;
+}
+
+.descriptionOverlay:hover {
+    opacity: 1;
+    transition: all 0.3s ease;
+}

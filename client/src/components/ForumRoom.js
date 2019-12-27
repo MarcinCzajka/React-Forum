@@ -1,7 +1,7 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
+import { Form, Button, Statistic, Icon, Message, Transition } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import ImageModal from './ImageModal';
@@ -58,7 +58,6 @@ class ForumRoom extends React.Component {
 	}
 
 	updateUpvote = (e) => {
-		e.stopPropagation();
 		
 		if(!this.context.loggedIn) return this.setState({
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
@@ -188,9 +187,10 @@ class ForumRoom extends React.Component {
 								<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
 							</Statistic>
 							
-							<Statistic className='roomStat' style={{cursor:'pointer'}}>
+
+							<Statistic className='roomStat' style={{cursor:'pointer'}} onClick={this.updateUpvote} >
 								<Statistic.Value>
-									<Icon onClick={this.updateUpvote} 
+									<Icon 
 										style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} 
 										name='thumbs up' />  {this.state.upvotes}
 								</Statistic.Value>
@@ -207,6 +207,7 @@ class ForumRoom extends React.Component {
 						</Button>
 					) : ''}
 				</div>
+
 				{this.showLoginPrompt()}
 
 				{this.state.showReplyForm ? (
