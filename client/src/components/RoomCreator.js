@@ -1,6 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
-import { Form, Button, Statistic, Icon } from "semantic-ui-react";
+import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import ImageModal from './ImageModal';
 import './global.css';
@@ -12,27 +12,22 @@ class RoomCreator extends React.Component {
         super(props);
 
         this.state = {
-			authorId: '',
 			title: 'Change title',
 			shortDescription: '',
 			description: '',
-			category: 'general',
-			image: 'https://kromex.com.au/wp-content/themes/Avada-Child/img/placeholder.png',
-            colorScheme: 'standard',
+			category: 'General',
+			image: '',
             titleEditMode: false,
             titleBeforeEdit: '',
             descriptionEditMode: false,
-            descriptionBeforeEdit: ''
+            descriptionBeforeEdit: '',
+            error: ''
         }
 
         this.imageModal = React.createRef();
     }
 
     static contextType = UserContext;
-
-    componentDidMount() {
-        this.setState({authorId: this.context.userName});
-    }
 
     editTitle = () => {
         if(!this.state.titleEditMode) {
@@ -51,13 +46,68 @@ class RoomCreator extends React.Component {
     }
 
     editDescription = () => {
-        this.setState({descriptionEditMode: this.state.description, descriptionBeforeEdit: true})
+        if(!this.state.descriptionEditMode) {
+            this.setState({descriptionBeforeEdit: this.state.description, descriptionEditMode: true})
+        }
+    }
+
+    showImageModal = () => {
+		this.imageModal.current.open();
+    }
+    
+    spaceLeftCounter = (str, limit) => {
+        if(str) {
+            const result = limit - str.length;
+            const color = (result < 15 ? 'red' : '');
+            
+            return <span style={{color: color}}>{result} letters left.</span>
+        }
+    }
+
+    createNewRoom = () => {
+        basePath({
+            method: "post",
+            url: `/api/rooms/`,
+            data: {
+                authorId: this.context.userId,
+                title: this.state.title,
+                description: this.state.description,
+                category: this.state.category,
+                image: this.state.image
+            },
+            withCredentials: true
+        })
+        .then((res) => {
+            if (res.status === 200) {
+                this.setState({
+                    'open': false,
+                    description: '',
+                    category: 'General',
+                    image: ''
+                });
+            };
+        })
+        .catch(err => {
+            console.log(err);
+            this.setState({ error: err.response.data });
+        })
+    }
+
+    error = () => {
+        if (this.state.error) {
+            return (
+                <Message error
+                header = 'Error'
+                content = {this.state.error} />
+            )
+        }
     }
 
     render() {
+        console.log(this.context)
         return (
             <article className='roomContainer'>
-
+                <div>{this.error()}</div>
 				<div className='roomGrid noMargin noPadding' >
 
 						<div className='roomImageContainer' onClick={this.showImageModal}>
@@ -87,10 +137,19 @@ class RoomCreator extends React.Component {
 					</header>
 
 					<main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
-						<p>{this.state.description}</p>
-                        <div className='descriptionOverlay'>
-                            <Icon name='edit outline' size='big'></Icon>
-                        </div>
+                        {this.state.descriptionEditMode ? (
+                            <>
+                                <textarea className='descriptionInput' value={this.state.description} onChange={e => {this.setState({description: e.target.value})}}></textarea>
+                                <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
+                            </>
+                        ) : (
+                            <>
+                                <p>{this.state.description}</p>
+                                <div className='descriptionOverlay'>
+                                    <Icon name='edit outline' size='big'></Icon>
+                                </div>
+                            </>
+                        )}
 					</main>
 
 					<footer className='roomFooter'>
@@ -113,6 +172,8 @@ class RoomCreator extends React.Component {
 							</Statistic>
 						</Statistic.Group>
 					</footer>
+
+                    <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
 
 					<ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 

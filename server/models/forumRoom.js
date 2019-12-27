@@ -25,7 +25,7 @@ const ForumRoomSchema = new mongoose.Schema({
     description: {
         type: String,
         minlength: 15,
-        maxlength: 150,
+        maxlength: 500,
         required: true
     },
     category: {
@@ -35,11 +35,6 @@ const ForumRoomSchema = new mongoose.Schema({
     },
     image: {
         type: String
-    },
-    colorScheme: {
-        type: String,
-        default: "standard",
-        required: true
     },
     upvotes: {
         type: Number,
@@ -63,10 +58,9 @@ function validateForumRoom(forumRoom) {
         date: Joi.date().allow(''),
         lastActivityDate: Joi.date().allow(''),
         title: Joi.string().min(5).max(50).required(),
-        description: Joi.string().min(15).max(150).required(),
+        description: Joi.string().min(15).max(500).required(),
         category: Joi.string().required(),
-        image: Joi.string().allow(''),
-        colorScheme: Joi.string().allow('')
+        image: Joi.string().allow('')
     };
     return Joi.validate(forumRoom, schema)
 };

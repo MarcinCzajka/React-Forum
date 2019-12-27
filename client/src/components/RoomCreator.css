@@ -38,6 +38,12 @@
     transition: all 0.3s ease;
 }
 
+.descriptionInput {
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
 .descriptionOverlay {
     position: absolute;
     top: 0;

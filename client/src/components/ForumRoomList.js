@@ -2,7 +2,6 @@ import React from 'react'
 import basePath from '../api/basePath';
 import { Grid } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
-import NewRoomForm from './NewRoomForm';
 import './global.css';
 
 class ForumRoomList extends React.Component {
