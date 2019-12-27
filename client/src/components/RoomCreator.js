@@ -20,7 +20,9 @@ class RoomCreator extends React.Component {
 			image: 'https://kromex.com.au/wp-content/themes/Avada-Child/img/placeholder.png',
             colorScheme: 'standard',
             titleEditMode: false,
-            descriptionEditMode: false
+            titleBeforeEdit: '',
+            descriptionEditMode: false,
+            descriptionBeforeEdit: ''
         }
 
         this.imageModal = React.createRef();
@@ -30,6 +32,26 @@ class RoomCreator extends React.Component {
 
     componentDidMount() {
         this.setState({authorId: this.context.userName});
+    }
+
+    editTitle = () => {
+        if(!this.state.titleEditMode) {
+            this.setState({titleBeforeEdit: this.state.title, titleEditMode: true})
+        }
+    }
+
+    titleSave = (e) => {
+        e.stopPropagation();
+        this.setState({titleBeforeEdit: this.state.title, titleEditMode: false})
+    }
+
+    titleCancel = (e) => {
+        e.stopPropagation();
+        this.setState({title: this.state.titleBeforeEdit, titleEditMode: false})
+    }
+
+    editDescription = () => {
+        this.setState({descriptionEditMode: this.state.description, descriptionBeforeEdit: true})
     }
 
     render() {
@@ -49,16 +71,23 @@ class RoomCreator extends React.Component {
 							</div>
 						</div>
 
-					<header className='roomTitle'>
+					<header className='roomTitle' onClick={this.editTitle}>
                         {this.state.titleEditMode ? (
-                            <input value={this.state.title} onChange={e => {this.setState({title: e.target.value})}}></input>
+                            <>
+                                <input className='titleInput' value={this.state.title} onChange={e => {this.setState({title: e.target.value})}}></input>
+                                <Icon size='large' onClick={this.titleCancel} className='titleCancelIcon' color='red' name='cancel'></Icon>
+                                <Icon size='large' onClick={this.titleSave} className='titleSaveIcon' color='green' name='check square'></Icon>
+                            </>
                         ) : (
-                            <h3>{this.state.title}</h3>
+                            <>
+                                <h3 className='noMargin noPadding' style={{display: 'inline-block'}}>{this.state.title}</h3> 
+                                <Icon style={{marginLeft: '5px'}} name='edit outline'></Icon>
+                            </>
                         )}
 					</header>
 
-					<main className='roomDescription noMargin noPadding'>
-						<p>{this.state.shortDescription}</p>
+					<main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
+						<p>{this.state.description}</p>
                         <div className='descriptionOverlay'>
                             <Icon name='edit outline' size='big'></Icon>
                         </div>
