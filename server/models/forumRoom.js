@@ -25,12 +25,6 @@ const ForumRoomSchema = new mongoose.Schema({
     description: {
         type: String,
         minlength: 15,
-        maxlength: 500,
-        required: true
-    }, 
-    shortDescription: {
-        type: String,
-        minlength: 15,
         maxlength: 150,
         required: true
     },
@@ -69,8 +63,7 @@ function validateForumRoom(forumRoom) {
         date: Joi.date().allow(''),
         lastActivityDate: Joi.date().allow(''),
         title: Joi.string().min(5).max(50).required(),
-        description: Joi.string().min(15).max(500).required(),
-        shortDescription: Joi.string().min(15).max(150).required(),
+        description: Joi.string().min(15).max(150).required(),
         category: Joi.string().required(),
         image: Joi.string().allow(''),
         colorScheme: Joi.string().allow('')

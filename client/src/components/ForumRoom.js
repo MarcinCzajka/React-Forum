@@ -18,7 +18,6 @@ class ForumRoom extends React.Component {
 			creationDate: this.props.creationDate,
 			lastActivityDate: this.props.lastActivityDate,
 			title: this.props.title,
-			shortDescription: this.props.shortDescription,
 			description: this.props.description,
 			category: this.props.category,
 			image: this.props.image,
@@ -170,7 +169,7 @@ class ForumRoom extends React.Component {
 					</header>
 
 					<main className='roomDescription'>
-						<p>{this.state.shortDescription}</p>
+						<p>{this.state.description}</p>
 					</main>
 
 					<footer className='roomFooter'>
