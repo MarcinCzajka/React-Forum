@@ -34,7 +34,8 @@ const ForumRoomSchema = new mongoose.Schema({
         required: true
     },
     image: {
-        type: String
+        type: String,
+        required: true
     },
     upvotes: {
         type: Number,
@@ -60,7 +61,7 @@ function validateForumRoom(forumRoom) {
         title: Joi.string().min(5).max(50).required(),
         description: Joi.string().min(15).max(500).required(),
         category: Joi.string().required(),
-        image: Joi.string().allow('')
+        image: Joi.string().uri().required()
     };
     return Joi.validate(forumRoom, schema)
 };

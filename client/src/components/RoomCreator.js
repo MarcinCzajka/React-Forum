@@ -104,7 +104,6 @@ class RoomCreator extends React.Component {
     }
 
     render() {
-        console.log(this.context)
         return (
             <article className='roomContainer'>
                 <div>{this.error()}</div>
