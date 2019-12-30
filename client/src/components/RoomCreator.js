@@ -97,8 +97,8 @@ class RoomCreator extends React.Component {
         }
     }
 
-    focus = (id) => {
-        document.getElementById(id).focus();
+    focus = (className) => {
+        document.getElementsByClassName(className)[0].focus();
     }
 
     render() {
@@ -118,21 +118,21 @@ class RoomCreator extends React.Component {
 							</div>
 						</div>
 
-					<header className='roomTitle' onClick={this.editTitle}>
-                        {this.state.titleEditMode ? (
-                            <input className='titleInput' value={this.state.title} onChange={e => {this.setState({title: e.target.value})}}></input>
-                        ) : (
-                            <>
-                                <h3 className='noMargin noPadding' style={{display: 'inline-block'}}>{this.state.title}</h3> 
-                                <Icon style={{marginLeft: '5px'}} name='edit outline'></Icon>
-                            </>
-                        )}
+					<header className='roomTitle noMargin noPadding' onClick={this.editTitle}>
+                        <textarea 
+                            className='titleInput'
+                            value={this.state.title} 
+                            onChange={e => {this.setState({title: e.target.value})}}>
+                        </textarea>
+
+                        <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
+                            <Icon name='edit outline'></Icon>
+                        </div>
 					</header>
 
 					<main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
                         <textarea 
-                            className='descriptionInput' 
-                            id='descriptionInput'
+                            className='descriptionInput'
                             value={this.state.description} 
                             onChange={e => {this.setState({description: e.target.value})}}>
                         </textarea>
