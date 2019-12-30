@@ -58,3 +58,8 @@
     opacity: 1;
     transition: all 0.3s ease;
 }
+
+.imageOverlay > i:last-of-type {
+    bottom: 0 !important;
+    right: 0 !important;
+}

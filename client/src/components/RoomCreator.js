@@ -1,5 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import { Helmet } from "react-helmet";
 import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import ImageModal from './ImageModal';
@@ -12,7 +13,7 @@ class RoomCreator extends React.Component {
         super(props);
 
         this.state = {
-			title: 'Change title',
+			title: '',
 			shortDescription: '',
 			description: '',
 			category: 'General',
@@ -103,74 +104,83 @@ class RoomCreator extends React.Component {
 
     render() {
         return (
-            <article className='roomContainer'>
-                <div>{this.error()}</div>
-				<div className='roomGrid noMargin noPadding' >
+            <>
+                <Helmet>
+                    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+                </Helmet>
 
-						<div className='roomImageContainer' onClick={this.showImageModal}>
-							<img 
-								className='roomImage'
-								src={this.state.image}
-								alt={this.state.title}
-							/>
-							<div className='imageOverlay'>
-								<Icon name='expand' inverted size='huge' />
-							</div>
-						</div>
+                <article className='roomContainer'>
+                    <div>{this.error()}</div>
+                    <div className='roomGrid noMargin noPadding' >
 
-					<header className='roomTitle noMargin noPadding' onClick={this.editTitle}>
-                        <textarea 
-                            className='titleInput'
-                            value={this.state.title} 
-                            onChange={e => {this.setState({title: e.target.value})}}>
-                        </textarea>
+                            <div className='roomImageContainer' onClick={this.showImageModal}>
+                                <img 
+                                    className='roomImage'
+                                    src={this.state.image}
+                                    alt={this.state.title}
+                                />
+                                <div className='imageOverlay'>
+                                    <Icon name='expand' inverted size='huge' />
+                                </div>
+                            </div>
 
-                        <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
-                            <Icon name='edit outline'></Icon>
-                        </div>
-					</header>
+                        <header className='roomTitle noMargin noPadding' onClick={this.editTitle}>
+                            <textarea 
+                                className='titleInput'
+                                placeholder='Change title'
+                                value={this.state.title} 
+                                onChange={e => {this.setState({title: e.target.value})}}>
+                            </textarea>
 
-					<main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
-                        <textarea 
-                            className='descriptionInput'
-                            value={this.state.description} 
-                            onChange={e => {this.setState({description: e.target.value})}}>
-                        </textarea>
+                            <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
+                                <Icon name='edit outline'></Icon>
+                            </div>
+                        </header>
 
-                        <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
+                        <main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
+                            <textarea 
+                                className='descriptionInput'
+                                placeholder='Type description of your post here'
+                                value={this.state.description} 
+                                onChange={e => {this.setState({description: e.target.value})}}>
+                            </textarea>
 
-                        <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
-                            <Icon name='edit outline' size='big'></Icon>
-                        </div>
-					</main>
+                            <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
 
-					<footer className='roomFooter'>
-						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
-							<Statistic className='roomStat'>
-								<Statistic.Value>
-                                    <Icon name='comments outline'> 0</Icon>
-								</Statistic.Value>
-							</Statistic>
+                            <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
+                                <Icon name='edit outline' size='big'></Icon>
+                            </div>
+                        </main>
 
-							<Statistic className='roomStat'>
-								<Statistic.Value><Icon name='eye'/>  0</Statistic.Value>
-							</Statistic>
-							
+                        <footer className='roomFooter'>
+                            <Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+                                <Statistic className='roomStat'>
+                                    <Statistic.Value>
+                                        <Icon name='comments outline'> 0</Icon>
+                                    </Statistic.Value>
+                                </Statistic>
 
-							<Statistic className='roomStat' >
-								<Statistic.Value>
-									<Icon name='thumbs up' />  0
-								</Statistic.Value>
-							</Statistic>
-						</Statistic.Group>
-					</footer>
+                                <Statistic className='roomStat'>
+                                    <Statistic.Value><Icon name='eye'/>  0</Statistic.Value>
+                                </Statistic>
+                                
 
-                    <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
+                                <Statistic className='roomStat' >
+                                    <Statistic.Value>
+                                        <Icon name='thumbs up' />  0
+                                    </Statistic.Value>
+                                </Statistic>
+                            </Statistic.Group>
+                        </footer>
 
-					<ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
+                        <Button onClick={this.createNewRoom} type='button'>Upload Image</Button>
+                        <Button onClick={this.uploadImage} type='submit' color='green'>Add post</Button>
 
-				</div>
-			</article>
+                        <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
+
+                    </div>
+                </article>
+            </>
         )
     }
 
