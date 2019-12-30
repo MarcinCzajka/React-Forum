@@ -56,19 +56,18 @@
 
 .descriptionOverlay:hover {
     opacity: 1;
-    transition: all 0.3s ease;
 }
 
 .imageOverlay {
     opacity: 0.1;
 }
 
-.imageOverlay > i:first-of-type {
+#expandIcon {
     margin-left: 0 !important;
     left: 25% !important;
 }
 
-.imageOverlay > i:last-of-type {
+#uploadIcon {
     margin-left: 0 !important;
     right: 25% !important;
 }

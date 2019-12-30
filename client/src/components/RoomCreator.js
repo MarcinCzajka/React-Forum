@@ -131,8 +131,8 @@ class RoomCreator extends React.Component {
                                     alt={this.state.title}
                                 />
                                 <div className='imageOverlay' >
-                                    <Icon name='expand' inverted size='huge' onClick={this.showImageModal} />
-                                    <Icon name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
+                                    <Icon id='expandIcon' name='expand' inverted size='huge' onClick={this.showImageModal} />
+                                    <Icon id='uploadIcon' name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
                                 </div>
                             </div>
 
