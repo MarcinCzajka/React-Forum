@@ -56,6 +56,10 @@ class ForumRoom extends React.Component {
 		this.setState({ loading: false });
 	}
 
+	killMe = () => {
+		this.props.removeRoom(this.state._id);
+	}
+
 	updateUpvote = (e) => {
 		
 		if(!this.context.loggedIn) return this.setState({
@@ -154,6 +158,7 @@ class ForumRoom extends React.Component {
 							<img 
 								className='roomImage'
 								onLoad={this.handleImageLoaded}
+								onError={this.killMe}
 								src={this.state.image}
 								alt={this.state.title}
 							/>

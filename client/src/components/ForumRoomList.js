@@ -20,11 +20,18 @@ class ForumRoomList extends React.Component {
         this.fetchForumRooms();
     }
 
+    removeRoomFromState = (key) => {
+        const rooms = this.state.rooms.filter(room => {
+            return room.key !== key
+        })
+        this.setState({rooms: rooms})
+    }
+
     render() {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <ForumRoom {...room} />
+                    <ForumRoom {...room} removeRoom={this.removeRoomFromState} />
                 </Grid.Row>
             );
         })
