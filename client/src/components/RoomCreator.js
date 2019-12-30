@@ -31,7 +31,7 @@ class RoomCreator extends React.Component {
     }
 
     showImageModal = () => {
-		this.imageModal.current.open();
+        if(this.state.image) this.imageModal.current.open();
     }
     
     spaceLeftCounter = (str, limit) => {
@@ -82,10 +82,6 @@ class RoomCreator extends React.Component {
         }
     }
 
-    uploadImage = () => {
-        this.cloudinaryWidget.open();
-    }
-
     focus = (className) => {
         document.getElementsByClassName(className)[0].focus();
     }
@@ -95,8 +91,9 @@ class RoomCreator extends React.Component {
             cloudName: 'dswujhql5', 
             uploadPreset: 'ot93kwr6'}, (error, result) => { 
               if (!error && result && result.event === "success") { 
-                console.log(result.info);
-                this.setState({image: result.info.url})
+
+                this.setState({image: result.info.url});
+                this.cloudinaryWidget.close();
               }
             }
         )
@@ -127,14 +124,15 @@ class RoomCreator extends React.Component {
                     <div>{this.error()}</div>
                     <div className='roomGrid noMargin noPadding' >
 
-                            <div className='roomImageContainer' onClick={this.showImageModal}>
+                            <div className='roomImageContainer' >
                                 <img 
                                     className='roomImage'
                                     src={this.state.image}
                                     alt={this.state.title}
                                 />
-                                <div className='imageOverlay'>
-                                    <Icon name='expand' inverted size='huge' />
+                                <div className='imageOverlay' >
+                                    <Icon name='expand' inverted size='huge' onClick={this.showImageModal} />
+                                    <Icon name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
                                 </div>
                             </div>
 
@@ -186,8 +184,7 @@ class RoomCreator extends React.Component {
                                 </Statistic>
                             </Statistic.Group>
                         </footer>
-
-                        <Icon id='uploadImageIcon' name='file outline image' size='huge' style={{cursor: 'pointer'}} onClick={this.uploadImage}></Icon>
+                        
                         <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
 
                         <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />

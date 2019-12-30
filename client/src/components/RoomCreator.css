@@ -59,6 +59,16 @@
     transition: all 0.3s ease;
 }
 
-#uploadImageIcon {
-    margin-top: 0.2em !important;
+.imageOverlay {
+    opacity: 0.1;
+}
+
+.imageOverlay > i:first-of-type {
+    margin-left: 0 !important;
+    left: 25% !important;
+}
+
+.imageOverlay > i:last-of-type {
+    margin-left: 0 !important;
+    right: 25% !important;
 }
