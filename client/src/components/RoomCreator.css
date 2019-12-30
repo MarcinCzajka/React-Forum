@@ -1,0 +1,73 @@
+.roomContainer {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.roomDescription {
+    position: relative;
+}
+
+.roomTitle {
+    position: relative;
+    height: 1.8em;
+    border-bottom: 0;
+}
+
+.titleInput {
+    text-align:center !important;
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.titleOverlay {
+    position: absolute;
+    top: 0.1em;
+    right: 0;
+    cursor: text;
+}
+
+.descriptionInput {
+    width: 100%;
+    height: 100%;
+    resize: none;
+}
+
+.descriptionOverlay {
+    position: absolute;
+    opacity: 0.5;
+    bottom: 50%;
+    right: 1.5em;
+    grid-row: 2 / 6;
+    grid-column: 5 / -1;
+    width: auto;
+    height: auto;
+    cursor: text;
+}
+
+.descriptionOverlay > i {
+    display: block !important;
+    position: absolute;
+    top: 50%;
+    margin-top: -0.5em !important;
+    left: 50%;
+    margin-left: -0.5em !important;
+}
+
+.descriptionOverlay:hover {
+    opacity: 1;
+}
+
+.imageOverlay {
+    opacity: 0.1;
+}
+
+#expandIcon {
+    margin-left: 0 !important;
+    left: 25% !important;
+}
+
+#uploadIcon {
+    margin-left: 0 !important;
+    right: 25% !important;
+}

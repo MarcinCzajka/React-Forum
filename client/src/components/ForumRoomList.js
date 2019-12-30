@@ -2,7 +2,6 @@ import React from 'react'
 import basePath from '../api/basePath';
 import { Grid } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
-import NewRoomForm from './NewRoomForm';
 import './global.css';
 
 class ForumRoomList extends React.Component {
@@ -21,18 +20,24 @@ class ForumRoomList extends React.Component {
         this.fetchForumRooms();
     }
 
+    removeRoomFromState = (key) => {
+        const rooms = this.state.rooms.filter(room => {
+            return room.key !== key
+        })
+        this.setState({rooms: rooms})
+    }
+
     render() {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <ForumRoom {...room} />
+                    <ForumRoom {...room} removeRoom={this.removeRoomFromState} />
                 </Grid.Row>
             );
         })
 
         return (
             <Grid className='noMargin'>
-                <NewRoomForm />
                 {forumRooms}
             </Grid>
         );

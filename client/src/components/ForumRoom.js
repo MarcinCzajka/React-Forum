@@ -18,7 +18,6 @@ class ForumRoom extends React.Component {
 			creationDate: this.props.creationDate,
 			lastActivityDate: this.props.lastActivityDate,
 			title: this.props.title,
-			shortDescription: this.props.shortDescription,
 			description: this.props.description,
 			category: this.props.category,
 			image: this.props.image,
@@ -57,8 +56,11 @@ class ForumRoom extends React.Component {
 		this.setState({ loading: false });
 	}
 
+	killMe = () => {
+		this.props.removeRoom(this.state._id);
+	}
+
 	updateUpvote = (e) => {
-		e.stopPropagation();
 		
 		if(!this.context.loggedIn) return this.setState({
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
@@ -156,6 +158,7 @@ class ForumRoom extends React.Component {
 							<img 
 								className='roomImage'
 								onLoad={this.handleImageLoaded}
+								onError={this.killMe}
 								src={this.state.image}
 								alt={this.state.title}
 							/>
@@ -171,7 +174,7 @@ class ForumRoom extends React.Component {
 					</header>
 
 					<main className='roomDescription'>
-						<p>{this.state.shortDescription}</p>
+						<p>{this.state.description}</p>
 					</main>
 
 					<footer className='roomFooter'>
@@ -188,9 +191,10 @@ class ForumRoom extends React.Component {
 								<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
 							</Statistic>
 							
-							<Statistic className='roomStat' style={{cursor:'pointer'}}>
+
+							<Statistic className='roomStat' style={{cursor:'pointer'}} onClick={this.updateUpvote} >
 								<Statistic.Value>
-									<Icon onClick={this.updateUpvote} 
+									<Icon 
 										style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} 
 										name='thumbs up' />  {this.state.upvotes}
 								</Statistic.Value>
@@ -207,6 +211,7 @@ class ForumRoom extends React.Component {
 						</Button>
 					) : ''}
 				</div>
+
 				{this.showLoginPrompt()}
 
 				{this.state.showReplyForm ? (

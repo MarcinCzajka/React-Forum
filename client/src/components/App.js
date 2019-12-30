@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import TopPanel from './TopPanel';
 import ForumRoomList from './ForumRoomList';
 import ForumPostsGroup from './ForumPostsGroup';
+import RoomCreator from './RoomCreator';
 import AboutMe from './AboutMe';
 import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
@@ -25,7 +26,8 @@ class App extends React.Component {
             userEmail: '',
             pages: [
                 {name: 'Feed'},
-                {name: 'Me'}
+                {name: 'Me'},
+                {name: 'New'}
             ]
         };
 
@@ -89,6 +91,7 @@ class App extends React.Component {
                         <Route path='/' exact component={ForumRoomList} />
                         <Route path='/post/:id' exact component={ForumPostsGroup} />
                         <Route path='/me' component={AboutMe} />
+                        <Route path='/new' component={RoomCreator} />
                     </Switch>
                 </UserProvider>
             </Router>
