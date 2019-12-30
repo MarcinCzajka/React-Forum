@@ -30,28 +30,6 @@ class RoomCreator extends React.Component {
         this.downloadCloudinaryWidget();
     }
 
-    editTitle = () => {
-        if(!this.state.titleEditMode) {
-            this.setState({titleBeforeEdit: this.state.title, titleEditMode: true})
-        }
-    }
-
-    titleSave = (e) => {
-        e.stopPropagation();
-        this.setState({titleBeforeEdit: this.state.title, titleEditMode: false})
-    }
-
-    titleCancel = (e) => {
-        e.stopPropagation();
-        this.setState({title: this.state.titleBeforeEdit, titleEditMode: false})
-    }
-
-    editDescription = () => {
-        if(!this.state.descriptionEditMode) {
-            this.setState({descriptionBeforeEdit: this.state.description, descriptionEditMode: true})
-        }
-    }
-
     showImageModal = () => {
 		this.imageModal.current.open();
     }
@@ -85,6 +63,8 @@ class RoomCreator extends React.Component {
                     image: ''
                 });
             };
+
+            window.location = window.location.origin + '/post/' + res.data._id
         })
         .catch(err => {
             console.log(err);
@@ -208,7 +188,7 @@ class RoomCreator extends React.Component {
                         </footer>
 
                         <Icon id='uploadImageIcon' name='file outline image' size='huge' style={{cursor: 'pointer'}} onClick={this.uploadImage}></Icon>
-                        <Button onClick={this.showWidget} type='submit' color='green'>Add post</Button>
+                        <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
 
                         <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 
