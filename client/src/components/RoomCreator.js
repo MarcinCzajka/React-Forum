@@ -17,10 +17,6 @@ class RoomCreator extends React.Component {
 			description: '',
 			category: 'General',
 			image: '',
-            titleEditMode: false,
-            titleBeforeEdit: '',
-            descriptionEditMode: false,
-            descriptionBeforeEdit: '',
             error: ''
         }
 
@@ -56,12 +52,10 @@ class RoomCreator extends React.Component {
     }
     
     spaceLeftCounter = (str, limit) => {
-        if(str) {
-            const result = limit - str.length;
-            const color = (result < 15 ? 'red' : '');
-            
-            return <span style={{color: color}}>{result} letters left.</span>
-        }
+        const result = limit - str.length;
+        const color = (result < 15 ? 'red' : '');
+        
+        return <span style={{color: color}}>{result} letters left.</span>
     }
 
     createNewRoom = () => {
@@ -103,6 +97,10 @@ class RoomCreator extends React.Component {
         }
     }
 
+    focus = (id) => {
+        document.getElementById(id).focus();
+    }
+
     render() {
         return (
             <article className='roomContainer'>
@@ -122,11 +120,7 @@ class RoomCreator extends React.Component {
 
 					<header className='roomTitle' onClick={this.editTitle}>
                         {this.state.titleEditMode ? (
-                            <>
-                                <input className='titleInput' value={this.state.title} onChange={e => {this.setState({title: e.target.value})}}></input>
-                                <Icon size='large' onClick={this.titleCancel} className='titleCancelIcon' color='red' name='cancel'></Icon>
-                                <Icon size='large' onClick={this.titleSave} className='titleSaveIcon' color='green' name='check square'></Icon>
-                            </>
+                            <input className='titleInput' value={this.state.title} onChange={e => {this.setState({title: e.target.value})}}></input>
                         ) : (
                             <>
                                 <h3 className='noMargin noPadding' style={{display: 'inline-block'}}>{this.state.title}</h3> 
@@ -136,19 +130,18 @@ class RoomCreator extends React.Component {
 					</header>
 
 					<main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
-                        {this.state.descriptionEditMode ? (
-                            <>
-                                <textarea className='descriptionInput' value={this.state.description} onChange={e => {this.setState({description: e.target.value})}}></textarea>
-                                <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
-                            </>
-                        ) : (
-                            <>
-                                <p>{this.state.description}</p>
-                                <div className='descriptionOverlay'>
-                                    <Icon name='edit outline' size='big'></Icon>
-                                </div>
-                            </>
-                        )}
+                        <textarea 
+                            className='descriptionInput' 
+                            id='descriptionInput'
+                            value={this.state.description} 
+                            onChange={e => {this.setState({description: e.target.value})}}>
+                        </textarea>
+
+                        <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
+
+                        <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
+                            <Icon name='edit outline' size='big'></Icon>
+                        </div>
 					</main>
 
 					<footer className='roomFooter'>
