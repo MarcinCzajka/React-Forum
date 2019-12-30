@@ -26,6 +26,10 @@ class RoomCreator extends React.Component {
 
     static contextType = UserContext;
 
+    componentDidMount() {
+        this.downloadCloudinaryWidget();
+    }
+
     editTitle = () => {
         if(!this.state.titleEditMode) {
             this.setState({titleBeforeEdit: this.state.title, titleEditMode: true})
@@ -98,15 +102,45 @@ class RoomCreator extends React.Component {
         }
     }
 
+    uploadImage = () => {
+        this.cloudinaryWidget.open();
+    }
+
     focus = (className) => {
         document.getElementsByClassName(className)[0].focus();
+    }
+
+    createWidget = () => {
+        this.cloudinaryWidget = window.cloudinary.createUploadWidget({
+            cloudName: 'dswujhql5', 
+            uploadPreset: 'ot93kwr6'}, (error, result) => { 
+              if (!error && result && result.event === "success") { 
+                console.log(result.info);
+                this.setState({image: result.info.url})
+              }
+            }
+        )
+    }
+
+    showWidget = () => {
+        this.cloudinaryWidget.open();
+    }
+
+    downloadCloudinaryWidget = () => {
+        const script = document.createElement('script');
+        script.addEventListener('load', this.createWidget);
+        script.async = true;
+        script.defer = true;
+        script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
+
+        document.getElementsByTagName('body')[0].appendChild(script);
     }
 
     render() {
         return (
             <>
                 <Helmet>
-                    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+                    <title>Create new Post</title>
                 </Helmet>
 
                 <article className='roomContainer'>
@@ -173,8 +207,8 @@ class RoomCreator extends React.Component {
                             </Statistic.Group>
                         </footer>
 
-                        <Button onClick={this.createNewRoom} type='button'>Upload Image</Button>
-                        <Button onClick={this.uploadImage} type='submit' color='green'>Add post</Button>
+                        <Icon id='uploadImageIcon' name='file outline image' size='huge' style={{cursor: 'pointer'}} onClick={this.uploadImage}></Icon>
+                        <Button onClick={this.showWidget} type='submit' color='green'>Add post</Button>
 
                         <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 
