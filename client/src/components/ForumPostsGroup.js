@@ -30,6 +30,7 @@ class ForumPostGroup extends React.Component {
             <Grid centered className='roomGrid'>
                 <Comment.Group className='postGroupContainer'>
                     <ForumRoom 
+                        showResponseButton={true}
                         className='roomInPostsGroup'
                         refreshPosts={this.refreshChildren}
                         {...this.state.roomDetails} 

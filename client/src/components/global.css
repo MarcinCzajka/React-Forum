@@ -35,3 +35,11 @@ html {
     color: #1e70bf;
     cursor: pointer;
 }
+
+.noHover {
+    pointer-events: none !important;
+}
+
+.ui.tabular.menu .item:hover {
+    color: #aaa !important;
+}

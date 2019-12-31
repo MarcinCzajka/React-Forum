@@ -31,7 +31,8 @@ class ForumRoom extends React.Component {
 			arePropsUpdated: false,
 			loading: true,
 			errorMsg: '',
-			comments: 0
+			comments: 0,
+			showResponseButton: this.props.showResponseButton
 		}
 
 		this.imageModal = React.createRef();
@@ -146,6 +147,19 @@ class ForumRoom extends React.Component {
 	showImageModal = () => {
 		this.imageModal.current.open();
 	}
+
+	handleReplyBtnClick = () => {
+		if(!this.context.loggedIn) return this.setState({
+			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
+		});
+
+		if(this.state.replyContent) {
+			this.handleReplyToPost();
+		} else {
+			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
+		}
+		
+	}
 	
 	render() {
 		return (
@@ -204,22 +218,30 @@ class ForumRoom extends React.Component {
 
 					<ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 
-					{this.context.loggedIn ? (
-						<Button size='mini' 
-							onClick={() => {this.setState({showReplyForm: !this.state.showReplyForm})}}>
-							Add response
-						</Button>
-					) : ''}
 				</div>
 
 				{this.showLoginPrompt()}
 
+				
 				{this.state.showReplyForm ? (
-					<Form reply>
+					<Form reply style={{gridColumn:'1/-1'}}>
 						<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-						<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
 					</Form>
 				) : ''}
+
+				{this.state.showResponseButton ? (
+					<Button  
+						className='createPostBtn'
+						style={{marginLeft:'80%'}}
+						icon 
+						labelPosition='right' 
+						color='green' 
+						onClick={this.handleReplyBtnClick} >
+							{this.state.showReplyForm ? 'Submit' : 'Add response'}
+							<Icon name='comment alternate outline'></Icon>
+					</Button>
+				) : ''}
+
 			</article>
 			)
 		}
