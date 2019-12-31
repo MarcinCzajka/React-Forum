@@ -9,19 +9,37 @@ const {ForumRoom, validateForumRoom} = require('../models/forumRoom');
 router.get("/", softAuth, async (req, res) => {
     const category = new RegExp(req.query.category || /./, "gi");
 
-    const rooms = await ForumRoom.find({category: category});
-    if(!rooms) return res.status(400).send('No rooms exist yet.');
+    const roomsLimit = parseInt(req.query.roomsLimit);
+    const page = parseInt(req.query.page);
+
+    const rooms = await ForumRoom.aggregate([
+        { "$facet": {
+          "data": [
+            { "$match": {category: category}},
+            { "$skip": (page - 1) * roomsLimit },
+            { "$limit": roomsLimit }
+          ],
+          "totalCount": [
+            { "$count": "count" }
+          ]
+        }}
+      ])
+
+    const totalCount = rooms[0].totalCount[0].count;
+
+    if(!rooms[0].data) return res.status(400).send('No rooms exist yet.');
 
     if(req.user) {
-        const result = rooms.map(room => {
+        const result = rooms[0].data.map(room => {
             const liked = (room.upvotesByUserId.indexOf(req.user._id) === -1 ? false : true);
             
-            return {...room.toObject(), liked: liked};
+            return {...room, liked: liked};
         });
-        return res.status(200).send(result);
+
+        return res.status(200).send({rooms: result, totalCount: totalCount});
     }
 
-    res.status(200).send(rooms);
+    res.status(200).send({rooms: rooms[0].data, totalCount: totalCount});
 });
 
 router.get("/:id", softAuth, async (req, res) => {

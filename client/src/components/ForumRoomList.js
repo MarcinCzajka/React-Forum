@@ -1,6 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import { Grid } from "semantic-ui-react";
+import { Grid, Pagination, Dimmer, Loader } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import './global.css';
 
@@ -10,10 +10,12 @@ class ForumRoomList extends React.Component {
 
         this.state = {
             rooms: [],
-            category: "General"
-        };
-
-        this.getTopVotedPosts = this.getTopVotedPosts.bind(this);
+            category: "General",
+            activePage: 1,
+            totalPages: 1,
+            roomsLimit: 5,
+            loading: true
+        }
     }
 
     componentDidMount() {
@@ -27,6 +29,23 @@ class ForumRoomList extends React.Component {
         this.setState({rooms: rooms})
     }
 
+    changePage = (e, { activePage }) => {
+        this.setState({ activePage: activePage, loading: true });
+        this.fetchForumRooms(activePage);
+    }
+
+    pagination = () => {
+        const { activePage, totalPages } = this.state;
+
+        if(totalPages > 1) return (
+            <Grid.Row columns={3}>
+                <Grid.Column floated='right'>
+                    <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
+                </Grid.Column>
+            </Grid.Row>
+        )
+    }
+
     render() {
         const forumRooms = this.state.rooms.map(room => {
             return (
@@ -38,29 +57,46 @@ class ForumRoomList extends React.Component {
 
         return (
             <Grid className='noMargin'>
+                <Dimmer inverted active={this.state.loading} >
+                    <Loader />
+                </Dimmer>
+
+                {this.pagination()}
+
                 {forumRooms}
+
+                {this.pagination()}
             </Grid>
         );
     }
 
-    fetchForumRooms = () => {
+    fetchForumRooms = (page = 1) => {
         basePath({
 			method: "get",
-			url: `/api/rooms/`
+            url: `/api/rooms/`,
+            params: {
+                roomsLimit: this.state.roomsLimit,
+                page: page
+            }
 		})
 		.then(res => {
-            const arrayOfRooms = res.data.map(item => {
+            const arrayOfRooms = res.data.rooms.map(item => {
                 return {...item, ...{arePropsUpdated: true, key: item._id}}
             })
 
-            this.setState({rooms: arrayOfRooms});
+            const totalPages =  Math.ceil(res.data.totalCount / this.state.roomsLimit);
+
+            this.setState({rooms: arrayOfRooms, totalPages: totalPages});
         })
         .catch(err => {
             console.log(err)
         })
+        .finally(() => {
+            this.setState({loading: false})
+        })
     }
 
-    getTopVotedPosts(id) {
+    getTopVotedPosts = (id) => {
         const responseTo = 'responseTo=' + id;
 		basePath({
 		  method: "get",
