@@ -1,6 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import { Grid } from "semantic-ui-react";
+import { Grid, Pagination } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import './global.css';
 
@@ -10,10 +10,11 @@ class ForumRoomList extends React.Component {
 
         this.state = {
             rooms: [],
-            category: "General"
-        };
-
-        this.getTopVotedPosts = this.getTopVotedPosts.bind(this);
+            category: "General",
+            activePage: 1,
+            totalPages: 1,
+            roomsLimit: 2
+        }
     }
 
     componentDidMount() {
@@ -27,6 +28,11 @@ class ForumRoomList extends React.Component {
         this.setState({rooms: rooms})
     }
 
+    changePage = (e, { activePage }) => {
+        this.setState({ activePage });
+        this.fetchForumRooms(activePage);
+    }
+
     render() {
         const forumRooms = this.state.rooms.map(room => {
             return (
@@ -36,31 +42,41 @@ class ForumRoomList extends React.Component {
             );
         })
 
+        const { activePage, totalPages } = this.state;
+
         return (
             <Grid className='noMargin'>
+                <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
                 {forumRooms}
+                <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
             </Grid>
         );
     }
 
-    fetchForumRooms = () => {
+    fetchForumRooms = (page = 1) => {
         basePath({
 			method: "get",
-			url: `/api/rooms/`
+            url: `/api/rooms/`,
+            params: {
+                roomsLimit: this.state.roomsLimit,
+                page: page
+            }
 		})
 		.then(res => {
-            const arrayOfRooms = res.data.map(item => {
+            const arrayOfRooms = res.data.rooms.map(item => {
                 return {...item, ...{arePropsUpdated: true, key: item._id}}
             })
 
-            this.setState({rooms: arrayOfRooms});
+            const totalPages =  Math.ceil(res.data.totalCount / this.state.roomsLimit);
+
+            this.setState({rooms: arrayOfRooms, totalPages: totalPages});
         })
         .catch(err => {
             console.log(err)
         })
     }
 
-    getTopVotedPosts(id) {
+    getTopVotedPosts = (id) => {
         const responseTo = 'responseTo=' + id;
 		basePath({
 		  method: "get",

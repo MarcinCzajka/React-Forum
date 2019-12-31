@@ -90,7 +90,7 @@ class RoomCreator extends React.Component {
         this.cloudinaryWidget = window.cloudinary.createUploadWidget({
             cloudName: 'dswujhql5', uploadPreset: 'ot93kwr6',
             multiple: false,
-            sources: [ 'local', 'url', 'camera', 'image_search' ],
+            sources: [ 'local', 'url', 'camera' ],
             maxFileSize: 5000000 }, (error, result) => { 
               if (!error && result && result.event === "success") { 
 
