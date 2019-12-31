@@ -6,7 +6,10 @@ const {ForumPost, validateForumPost} = require('../models/forumPost');
 router.get("/", async (req, res) => {
     const responseTo = req.query.responseTo || "";
 
-    const posts = await ForumPost.find({responseTo: responseTo});
+    const sorting = (req.query.sort ? JSON.parse(req.query.sort) : '');
+
+    const posts = await ForumPost.find({responseTo: responseTo})
+        .sort(sorting);
     if(!posts) return res.status(400).send('There are no posts in this room.');
 
     res.status(200).send(posts);

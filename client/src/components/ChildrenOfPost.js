@@ -44,9 +44,11 @@ class ChildrenOfPost extends React.Component {
 	}
 
 	fetchAllChildrenPosts = async () => {
+		const sort = this.props.sorting ? `sort=${this.props.sorting}` : '';
+		
 		await basePath({
 			method: "get",
-			url: `/api/posts/?responseTo=${this.state.parentId}`
+			url: `/api/posts/?responseTo=${this.state.parentId}&${sort}`
 		})
 		.then(res => {
 

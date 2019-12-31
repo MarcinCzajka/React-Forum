@@ -1,7 +1,7 @@
 import React from 'react';
 import basePath from '../api/basePath';
 import { Link } from 'react-router-dom';
-import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
+import { Form, Button, Statistic, Icon, Message, Confirm } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import ImageModal from './ImageModal';
