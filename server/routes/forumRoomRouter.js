@@ -28,7 +28,7 @@ router.get("/", softAuth, async (req, res) => {
     const totalCount = rooms[0].totalCount[0].count;
 
     if(!rooms[0].data) return res.status(400).send('No rooms exist yet.');
-      console.log(req.user)
+
     if(req.user) {
         const result = rooms[0].data.map(room => {
             const liked = (room.upvotesByUserId.indexOf(req.user._id) === -1 ? false : true);

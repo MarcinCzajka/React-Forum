@@ -1,6 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import { Grid, Pagination } from "semantic-ui-react";
+import { Grid, Pagination, Dimmer, Loader } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import './global.css';
 
@@ -13,7 +13,8 @@ class ForumRoomList extends React.Component {
             category: "General",
             activePage: 1,
             totalPages: 1,
-            roomsLimit: 2
+            roomsLimit: 5,
+            loading: true
         }
     }
 
@@ -29,8 +30,20 @@ class ForumRoomList extends React.Component {
     }
 
     changePage = (e, { activePage }) => {
-        this.setState({ activePage });
+        this.setState({ activePage: activePage, loading: true });
         this.fetchForumRooms(activePage);
+    }
+
+    pagination = () => {
+        const { activePage, totalPages } = this.state;
+
+        if(totalPages > 1) return (
+            <Grid.Row columns={3}>
+                <Grid.Column floated='right'>
+                    <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
+                </Grid.Column>
+            </Grid.Row>
+        )
     }
 
     render() {
@@ -42,13 +55,17 @@ class ForumRoomList extends React.Component {
             );
         })
 
-        const { activePage, totalPages } = this.state;
-
         return (
             <Grid className='noMargin'>
-                <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
+                <Dimmer inverted active={this.state.loading} >
+                    <Loader />
+                </Dimmer>
+
+                {this.pagination()}
+
                 {forumRooms}
-                <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
+
+                {this.pagination()}
             </Grid>
         );
     }
@@ -73,6 +90,9 @@ class ForumRoomList extends React.Component {
         })
         .catch(err => {
             console.log(err)
+        })
+        .finally(() => {
+            this.setState({loading: false})
         })
     }
 
