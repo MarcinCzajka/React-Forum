@@ -37,6 +37,7 @@ class ForumPostGroup extends React.Component {
                     />
                     <Segment className='initialPost'>
                         <ChildrenOfPost
+                            sorting={'{"date":"-1"}'}
                             roomId={this.props.match.params.id}
                             parentId={this.props.match.params.id}
                             refreshChildren={this.state.refreshChildren}
@@ -60,20 +61,6 @@ class ForumPostGroup extends React.Component {
         })
         .catch(err => {
             console.log(err);
-        })
-    }
-
-    fetchForumPosts = () => {
-        basePath({
-            method: "get",
-            url: `/api/posts/`
-        })
-        .then(res => {
-            const array = res.data.map(item => {
-                return {id: item._id, key: item._id};
-            });
-
-            this.setState({posts: array});
         })
     }
 
