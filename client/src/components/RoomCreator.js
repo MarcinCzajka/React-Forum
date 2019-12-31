@@ -36,7 +36,7 @@ class RoomCreator extends React.Component {
     
     spaceLeftCounter = (str, limit) => {
         const result = limit - str.length;
-        const color = (result < 15 ? 'red' : '');
+        const color = (result < 25 ? 'red' : '');
         
         return <span style={{color: color}}>{result} letters left.</span>
     }
@@ -64,7 +64,7 @@ class RoomCreator extends React.Component {
                 });
             };
 
-            window.location = window.location.origin + '/post/' + res.data._id
+            window.location = window.location.origin + '/post/' + res.data._id;
         })
         .catch(err => {
             console.log(err);
@@ -138,7 +138,7 @@ class RoomCreator extends React.Component {
                                 </div>
                             </div>
 
-                        <header className='roomTitle noMargin noPadding' onClick={this.editTitle}>
+                        <header className='roomTitle roomTitleCreator noMargin noPadding' onClick={this.editTitle}>
                             <textarea 
                                 className='titleInput'
                                 placeholder='Change title'
@@ -187,7 +187,10 @@ class RoomCreator extends React.Component {
                             </Statistic.Group>
                         </footer>
                         
-                        <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
+                        <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewRoom} >
+                            Create post
+                            <Icon name='paper plane' />
+                        </Button>
 
                         <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 

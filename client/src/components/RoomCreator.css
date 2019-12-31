@@ -7,10 +7,14 @@
     position: relative;
 }
 
-.roomTitle {
+.roomTitleCreator {
     position: relative;
-    height: 1.8em;
+    background-color: rgba(6, 12, 15, 0);
     border-bottom: 0;
+}
+
+.roomTitleCreator > textarea {
+    background-color: rgba(6, 12, 15, 0.09);
 }
 
 .titleInput {
@@ -70,4 +74,17 @@
 #uploadIcon {
     margin-left: 0 !important;
     right: 25% !important;
+}
+
+textarea {
+    border: 0;
+}
+
+textarea::placeholder {
+    color: #222;
+}
+
+.createPostBtn {
+    grid-column: 12;
+    margin-top: 0.5em !important;
 }
