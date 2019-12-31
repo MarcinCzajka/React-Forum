@@ -187,7 +187,10 @@ class RoomCreator extends React.Component {
                             </Statistic.Group>
                         </footer>
                         
-                        <Button onClick={this.createNewRoom} type='submit' color='green'>Add post</Button>
+                        <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewRoom} >
+                            Create post
+                            <Icon name='paper plane' />
+                        </Button>
 
                         <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
 

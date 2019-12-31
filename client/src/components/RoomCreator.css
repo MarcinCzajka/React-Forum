@@ -83,3 +83,8 @@ textarea {
 textarea::placeholder {
     color: #222;
 }
+
+.createPostBtn {
+    grid-column: 12;
+    margin-top: 0.5em !important;
+}
