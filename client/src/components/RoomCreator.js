@@ -119,6 +119,12 @@ class RoomCreator extends React.Component {
         document.getElementsByTagName('body')[0].appendChild(script);
     }
 
+    changeTitle = (e) => {
+        if(e.target.value.length >= 50) return;
+        
+        this.setState({title: e.target.value})
+    }
+
     render() {
         return (
             <>
@@ -147,7 +153,7 @@ class RoomCreator extends React.Component {
                                 className='titleInput'
                                 placeholder='Change title'
                                 value={this.state.title} 
-                                onChange={e => {this.setState({title: e.target.value})}}>
+                                onChange={this.changeTitle}>
                             </textarea>
 
                             <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
