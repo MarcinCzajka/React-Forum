@@ -27,10 +27,6 @@ class RoomCreator extends React.Component {
     static contextType = UserContext;
 
     componentDidMount() {
-        if(!this.context.loggedIn) {
-            alert('You need to be logged in to create new content.');
-            window.location = window.location.origin;
-        }
         this.downloadCloudinaryWidget();
     }
 
@@ -119,25 +115,31 @@ class RoomCreator extends React.Component {
         document.getElementsByTagName('body')[0].appendChild(script);
     }
 
+    changeTitle = (e) => {
+        if(e.target.value.length >= 50) return;
+        
+        this.setState({title: e.target.value})
+    }
+
     render() {
         return (
             <>
                 <Helmet>
-                    <title>Create new Post</title>
+                    <title>Create new Post {this.context.appName}</title>
                 </Helmet>
 
                 <article className='roomContainer'>
                     <div>{this.error()}</div>
                     <div className='roomGrid noMargin noPadding' >
 
-                            <div className='roomImageContainer' >
+                            <div className='roomImageContainer imageContainerInCreation' >
                                 <img 
                                     className='roomImage'
                                     src={this.state.image}
                                     alt={this.state.title}
                                 />
-                                <div className='imageOverlay' >
-                                    <Icon id='expandIcon' name='expand' inverted size='huge' onClick={this.showImageModal} />
+                                <div className='imageOverlay imageOverlayInCreation' >
+                                    <Icon id='zoomIcon' name='zoom-in' inverted size='huge' onClick={this.showImageModal} />
                                     <Icon id='uploadIcon' name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
                                 </div>
                             </div>
@@ -147,7 +149,7 @@ class RoomCreator extends React.Component {
                                 className='titleInput'
                                 placeholder='Change title'
                                 value={this.state.title} 
-                                onChange={e => {this.setState({title: e.target.value})}}>
+                                onChange={this.changeTitle}>
                             </textarea>
 
                             <div className='titleOverlay' onClick={() => this.focus('titleInput')}>

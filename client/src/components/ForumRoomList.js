@@ -59,7 +59,7 @@ class ForumRoomList extends React.Component {
                 </Grid.Row>
             );
         })
-
+        
         return (
             <Grid className='noMargin'>
                 <Dimmer inverted active={this.state.loading} >
@@ -99,18 +99,6 @@ class ForumRoomList extends React.Component {
         .finally(() => {
             this.setState({loading: false})
         })
-    }
-
-    getTopVotedPosts = (id) => {
-        const responseTo = 'responseTo=' + id;
-		basePath({
-		  method: "get",
-		  url: `/api/posts/top?${responseTo}`,
-		  withCredentials: true
-      })
-      .then(res => {
-
-      })
     }
 
 }

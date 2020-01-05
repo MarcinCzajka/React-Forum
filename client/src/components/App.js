@@ -18,6 +18,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            appName: 'React-forum',
             selectedPage: 'Feed',
             loggedIn: false,
             userName: '',
@@ -69,6 +70,7 @@ class App extends React.Component {
 
     render() {
         const contextValue = {
+            appName: this.state.appName,
             loggedIn: this.state.loggedIn,
             userName: this.state.userName,
             userId: this.state.userId,
@@ -87,17 +89,17 @@ class App extends React.Component {
         return (
             <>                 
                 <Helmet>
-                    <title>React-forum</title>
+                    <title>{this.state.appName}</title>
                 </Helmet>
 
                 <Router>
                     <UserProvider value={contextValue} >
                         <TopPanel />
                         <Switch>
-                            <Route path='/' exact component={ForumRoomList} />
                             <Route path='/post/:id' exact component={ForumPostsGroup} />
                             <Route path='/me' component={AboutMe} />
                             <Route path='/new' component={RoomCreator} />
+                            <Route path='/' component={ForumRoomList} />
                         </Switch>
                     </UserProvider>
                 </Router>
