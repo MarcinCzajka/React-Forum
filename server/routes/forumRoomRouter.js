@@ -17,7 +17,8 @@ router.get("/", softAuth, async (req, res) => {
           "data": [
             { "$match": {category: category}},
             { "$skip": (page - 1) * roomsLimit },
-            { "$limit": roomsLimit }
+            { "$limit": roomsLimit },
+            { $sort: {'creationDate': -1} }
           ],
           "totalCount": [
             { "$count": "count" }
