@@ -6,11 +6,36 @@ import { Helmet } from "react-helmet";
 class AboutMe extends React.Component {
 
     componentDidMount() {
-        const script = document.createElement("script");
-            script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
-            script.async = true;
+        this.downloadCloudinaryWidget();
+    }    
+    
+    createWidget = () => {
+        this.cloudinaryWidget = window.cloudinary.createUploadWidget({
+            cloudName: 'dswujhql5', uploadPreset: 'ot93kwr6',
+            multiple: false,
+            sources: [ 'local', 'url', 'camera' ],
+            maxFileSize: 5000000 }, (error, result) => { 
+              if (!error && result && result.event === "success") { 
 
-        document.body.appendChild(script);
+                this.setState({image: result.info.secure_url});
+                this.cloudinaryWidget.close();
+              }
+            }
+        )
+    }
+
+    showWidget = () => {
+        this.cloudinaryWidget.open();
+    }
+
+    downloadCloudinaryWidget = () => {
+        const script = document.createElement('script');
+        script.addEventListener('load', this.createWidget);
+        script.async = true;
+        script.defer = true;
+        script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
+
+        document.getElementsByTagName('body')[0].appendChild(script);
     }
 
     render() {
@@ -20,6 +45,7 @@ class AboutMe extends React.Component {
                     <Card >
                         <Helmet>
                             <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+                            <title>{context.userName} - React-forum</title>
                         </Helmet>
 
                         <Image src={context.userAvatar} wrapped ui={false} />
@@ -29,9 +55,6 @@ class AboutMe extends React.Component {
                             <span className='date'>Created at: {context.userCreatedAt}</span>
                             <span>{context.userEmail}</span>
                         </Card.Meta>
-                        <Card.Description>
-                            {context.userDescription}
-                        </Card.Description>
                         </Card.Content>
                     </Card>
                 )}
