@@ -27,6 +27,10 @@ class RoomCreator extends React.Component {
     static contextType = UserContext;
 
     componentDidMount() {
+        if(!this.context.loggedIn) {
+            alert('You need to be logged in to create new content.');
+            window.location = window.location.origin;
+        }
         this.downloadCloudinaryWidget();
     }
 
