@@ -37,7 +37,7 @@ class LoginForm extends React.Component {
             if (res.status === 200) {
                 const data = {...jwt_decode(document.cookie), loggedIn: true};
                 this.context.setContextData(data);
-
+                
                 if(this.state.stayLogged) localStorage.setItem('token', document.cookie);
 
                 this.setState({

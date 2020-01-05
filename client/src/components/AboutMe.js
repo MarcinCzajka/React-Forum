@@ -1,9 +1,12 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
-import { UserConsumer } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
+import moment from 'moment';
 import { Helmet } from "react-helmet";
 
 class AboutMe extends React.Component {
+
+    static contextType = UserContext;
 
     componentDidMount() {
         this.downloadCloudinaryWidget();
@@ -39,26 +42,24 @@ class AboutMe extends React.Component {
     }
 
     render() {
+        const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
+        
         return (
-            <UserConsumer>
-                {context => (
-                    <Card >
-                        <Helmet>
-                            <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
-                            <title>{context.userName} - React-forum</title>
-                        </Helmet>
+            <Card >
+                <Helmet>
+                    <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
+                    <title>{userName} - React-forum</title>
+                </Helmet>
 
-                        <Image src={context.userAvatar} wrapped ui={false} />
-                        <Card.Content>
-                        <Card.Header>{context.userName}</Card.Header>
-                        <Card.Meta>
-                            <span className='date'>Created at: {context.userCreatedAt}</span>
-                            <span>{context.userEmail}</span>
-                        </Card.Meta>
-                        </Card.Content>
-                    </Card>
-                )}
-            </UserConsumer>
+                <Image src={userAvatar} wrapped ui={false} />
+                <Card.Content>
+                <Card.Header>{userName}</Card.Header>
+                <Card.Meta>
+                    <p style={{color: '#111'}}>Created at: {moment().format('MMMM Do YYYY, dddd')}</p>
+                    <p>Email: {userEmail}</p>
+                </Card.Meta>
+                </Card.Content>
+            </Card>
         )
     }
 
