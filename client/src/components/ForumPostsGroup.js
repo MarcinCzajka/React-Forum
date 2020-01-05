@@ -28,6 +28,7 @@ class ForumPostGroup extends React.Component {
 
     render() {
         const title = `${this.state.roomDetails.title || ''}${this.state.roomDetails.title ? ' - ' : ''}React-forum`;
+        
         return (
             <>
                 <Helmet>

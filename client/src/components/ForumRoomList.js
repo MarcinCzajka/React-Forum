@@ -14,7 +14,8 @@ class ForumRoomList extends React.Component {
             activePage: 1,
             totalPages: 1,
             roomsLimit: 5,
-            loading: true
+            loading: true,
+            removedRoomsCount: 0
         }
     }
 
@@ -26,7 +27,11 @@ class ForumRoomList extends React.Component {
         const rooms = this.state.rooms.filter(room => {
             return room.key !== key
         })
-        this.setState({rooms: rooms})
+
+        const {roomsLimit, removedRoomsCount} = this.state;
+        const totalPages =  Math.ceil((rooms.length - (removedRoomsCount + 1)) / roomsLimit);
+
+        this.setState({rooms: rooms, removedRoomsCount: removedRoomsCount +1, totalPages: totalPages})
     }
 
     changePage = (e, { activePage }) => {
