@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { Helmet } from "react-helmet";
 import TopPanel from './TopPanel';
 import ForumRoomList from './ForumRoomList';
 import ForumPostsGroup from './ForumPostsGroup';
@@ -84,17 +85,23 @@ class App extends React.Component {
         };
         
         return (
-            <Router>
-                <UserProvider value={contextValue} >
-                    <TopPanel />
-                    <Switch>
-                        <Route path='/' exact component={ForumRoomList} />
-                        <Route path='/post/:id' exact component={ForumPostsGroup} />
-                        <Route path='/me' component={AboutMe} />
-                        <Route path='/new' component={RoomCreator} />
-                    </Switch>
-                </UserProvider>
-            </Router>
+            <>                 
+                <Helmet>
+                    <title>React-forum</title>
+                </Helmet>
+
+                <Router>
+                    <UserProvider value={contextValue} >
+                        <TopPanel />
+                        <Switch>
+                            <Route path='/' exact component={ForumRoomList} />
+                            <Route path='/post/:id' exact component={ForumPostsGroup} />
+                            <Route path='/me' component={AboutMe} />
+                            <Route path='/new' component={RoomCreator} />
+                        </Switch>
+                    </UserProvider>
+                </Router>
+            </>
         )
     }
 }

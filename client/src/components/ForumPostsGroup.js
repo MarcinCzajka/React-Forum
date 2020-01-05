@@ -1,5 +1,6 @@
 import React from 'react';
 import basePath from '../api/basePath';
+import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import ChildrenOfPost from './ChildrenOfPost';
@@ -26,28 +27,35 @@ class ForumPostGroup extends React.Component {
     }
 
     render() {
+        const title = `${this.state.roomDetails.title || ''}${this.state.roomDetails.title ? ' - ' : ''}React-forum`;
         return (
-            <Grid centered className='roomGrid'>
-                <Comment.Group className='postGroupContainer'>
-                    <ForumRoom 
-                        showResponseButton={true}
-                        className='roomInPostsGroup'
-                        refreshPosts={this.refreshChildren}
-                        {...this.state.roomDetails} 
-                    />
-                    <Segment className='initialPost'>
-                        <ChildrenOfPost
-                            sorting={'{"date":"-1"}'}
-                            roomId={this.props.match.params.id}
-                            parentId={this.props.match.params.id}
-                            refreshChildren={this.state.refreshChildren}
-                            removePostFromState={this.removePostFromState} 
-                            addPostToState={this.addPostToState}
-                            postsNotToRender={this.state.postsNotToRender}>
-                        </ChildrenOfPost>
-                    </Segment>
-                </Comment.Group>
-            </Grid>
+            <>
+                <Helmet>
+                    <title>{title}</title>
+                </Helmet>
+
+                <Grid centered className='roomGrid'>
+                    <Comment.Group className='postGroupContainer'>
+                        <ForumRoom 
+                            showResponseButton={true}
+                            className='roomInPostsGroup'
+                            refreshPosts={this.refreshChildren}
+                            {...this.state.roomDetails} 
+                        />
+                        <Segment className='initialPost'>
+                            <ChildrenOfPost
+                                sorting={'{"date":"-1"}'}
+                                roomId={this.props.match.params.id}
+                                parentId={this.props.match.params.id}
+                                refreshChildren={this.state.refreshChildren}
+                                removePostFromState={this.removePostFromState} 
+                                addPostToState={this.addPostToState}
+                                postsNotToRender={this.state.postsNotToRender}>
+                            </ChildrenOfPost>
+                        </Segment>
+                    </Comment.Group>
+                </Grid>
+            </>
         )
     }
 
