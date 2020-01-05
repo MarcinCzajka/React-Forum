@@ -27,10 +27,6 @@ class RoomCreator extends React.Component {
     static contextType = UserContext;
 
     componentDidMount() {
-        if(!this.context.loggedIn) {
-            alert('You need to be logged in to create new content.');
-            window.location = window.location.origin;
-        }
         this.downloadCloudinaryWidget();
     }
 
@@ -129,21 +125,21 @@ class RoomCreator extends React.Component {
         return (
             <>
                 <Helmet>
-                    <title>Create new Post</title>
+                    <title>Create new Post {this.context.appName}</title>
                 </Helmet>
 
                 <article className='roomContainer'>
                     <div>{this.error()}</div>
                     <div className='roomGrid noMargin noPadding' >
 
-                            <div className='roomImageContainer' >
+                            <div className='roomImageContainer imageContainerInCreation' >
                                 <img 
                                     className='roomImage'
                                     src={this.state.image}
                                     alt={this.state.title}
                                 />
-                                <div className='imageOverlay' >
-                                    <Icon id='expandIcon' name='expand' inverted size='huge' onClick={this.showImageModal} />
+                                <div className='imageOverlay imageOverlayInCreation' >
+                                    <Icon id='zoomIcon' name='zoom-in' inverted size='huge' onClick={this.showImageModal} />
                                     <Icon id='uploadIcon' name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
                                 </div>
                             </div>

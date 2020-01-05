@@ -177,7 +177,7 @@ class ForumRoom extends React.Component {
 								alt={this.state.title}
 							/>
 							<div className='imageOverlay'>
-								<Icon name='expand' inverted size='huge' />
+								<Icon name='zoom-in' inverted size='huge' />
 							</div>
 						</div>
 
