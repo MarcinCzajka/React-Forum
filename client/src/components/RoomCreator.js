@@ -125,7 +125,7 @@ class RoomCreator extends React.Component {
         return (
             <>
                 <Helmet>
-                    <title>Create new Post {this.context.appName}</title>
+                    <title>Create new Post - {this.context.appName}</title>
                 </Helmet>
 
                 <article className='roomContainer'>
