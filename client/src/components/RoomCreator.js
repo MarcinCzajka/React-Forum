@@ -50,7 +50,8 @@ class RoomCreator extends React.Component {
                 title: this.state.title,
                 description: this.state.description,
                 category: this.state.category,
-                image: this.state.image
+                image: this.state.image,
+                creationDate: new Date().toISOString()
             },
             withCredentials: true
         })
