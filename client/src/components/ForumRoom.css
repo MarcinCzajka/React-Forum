@@ -109,6 +109,16 @@
     min-height: 100%;
 }
 
+.leftStatistic {
+    font-size: 11px;
+    margin: 0 auto 0 15px !important;
+    align-self: center !important;
+}
+
+.leftStatistic > p {
+    margin: 0;
+}
+
 @media (max-width: 960px) {
 
     .roomGrid {

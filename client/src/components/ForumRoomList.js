@@ -1,6 +1,6 @@
 import React from 'react'
 import basePath from '../api/basePath';
-import { Grid, Pagination, Dimmer, Loader } from "semantic-ui-react";
+import { Grid, Pagination } from "semantic-ui-react";
 import ForumRoom from './ForumRoom';
 import './global.css';
 
@@ -62,14 +62,8 @@ class ForumRoomList extends React.Component {
         
         return (
             <Grid className='noMargin'>
-                <Dimmer inverted active={this.state.loading} >
-                    <Loader />
-                </Dimmer>
-
                 {this.pagination()}
-
-                {forumRooms}
-
+                    {forumRooms}
                 {this.pagination()}
             </Grid>
         );

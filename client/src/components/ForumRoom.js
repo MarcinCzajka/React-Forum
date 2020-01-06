@@ -5,6 +5,7 @@ import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import ImageModal from './ImageModal';
+import moment from 'moment';
 import './global.css';
 import './ForumRoom.css';
 
@@ -42,6 +43,12 @@ class ForumRoom extends React.Component {
 
 	componentDidMount() {
 		this.setState({ isMounted: true });
+	}
+
+	componentDidUpdate() {
+		if(this.state.arePropsUpdated && !this.state.authorNick) {
+			this.getPostAuthorDetails();
+		}
 	}
 	
 	static getDerivedStateFromProps(props, state) {
@@ -91,7 +98,7 @@ class ForumRoom extends React.Component {
 	
 	handleReplyToPost = () => {
 		basePath({
-		  method: "post",
+		  method: 'POST',
 		  url: `/api/posts/`,
 		  data: {
 			  authorId: this.context.userId,
@@ -111,7 +118,7 @@ class ForumRoom extends React.Component {
 
 	getPostAuthorDetails = () => {
 		basePath({
-			method: "get",
+			method: 'GET',
 			url: `/api/users/${this.state.authorId}`
 		})
 		.then(res => {
@@ -160,19 +167,22 @@ class ForumRoom extends React.Component {
 	}
 	
 	render() {
+		const {_id, loading, image, title, description, authorNick = '', comments, views, liked, upvotes, showReplyForm, replyContent, showResponseButton} = this.state;
+		const creationDate = moment(this.state.creationDate).format('YYYY-MM-DD');
+
 		return (
 			<article className='roomContainer'>
-				{this.state.loading ? <RoomPlaceholder /> : ''}
+				{loading ? <RoomPlaceholder /> : ''}
 
-				<div className='roomGrid noMargin noPadding' style={{display: (this.state.loading ? 'none' : 'grid')}}>
+				<div className='roomGrid noMargin noPadding' style={{display: (loading ? 'none' : 'grid')}}>
 
 						<div className='roomImageContainer' onClick={this.showImageModal}>
 							<img 
 								className='roomImage'
 								onLoad={this.handleImageLoaded}
 								onError={this.killMe}
-								src={this.state.image}
-								alt={this.state.title}
+								src={image}
+								alt={title}
 							/>
 							<div className='imageOverlay'>
 								<Icon name='zoom-in' inverted size='huge' />
@@ -180,54 +190,59 @@ class ForumRoom extends React.Component {
 						</div>
 
 					<header className='roomTitle'>
-						<Link to={`/post/${this.state._id}`}>
-							<h3>{this.state.title}</h3>
+						<Link to={`/post/${_id}`}>
+							<h3>{title}</h3>
 						</Link>
 					</header>
 
 					<main className='roomDescription'>
-						<p>{this.state.description}</p>
+						<p>{description}</p>
 					</main>
 
 					<footer className='roomFooter'>
+
 						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+							<Statistic className='leftStatistic'>
+								<p>Author: {authorNick}</p>
+								<p>Created: {creationDate}</p>
+							</Statistic>
 							<Statistic className='roomStat'>
 								<Statistic.Value>
-									<Link to={`/post/${this.state._id}`}>
-										<Icon name='comments outline'> {this.state.comments}</Icon>
+									<Link to={`/post/${_id}`}>
+										<Icon name='comments outline'> {comments}</Icon>
 									</Link>
 								</Statistic.Value>
 							</Statistic>
 
 							<Statistic className='roomStat'>
-								<Statistic.Value><Icon name='eye'/>  {this.state.views}</Statistic.Value>
+								<Statistic.Value><Icon name='eye'/>  {views}</Statistic.Value>
 							</Statistic>
 							
 
 							<Statistic className='roomStat' style={{cursor:'pointer'}} onClick={this.updateUpvote} >
 								<Statistic.Value>
 									<Icon 
-										style={{color:(this.context.loggedIn && this.state.liked ? 'green' : '')}} 
-										name='thumbs up' />  {this.state.upvotes}
+										style={{color:(this.context.loggedIn && liked ? 'green' : '')}} 
+										name='thumbs up' />  {upvotes}
 								</Statistic.Value>
 							</Statistic>
 						</Statistic.Group>
 					</footer>
 
-					<ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
+					<ImageModal image={image} alt={title} ref={this.imageModal} />
 
 				</div>
 
 				{this.showLoginPrompt()}
 
 				
-				{this.state.showReplyForm ? (
+				{showReplyForm ? (
 					<Form reply style={{gridColumn:'1/-1'}}>
-						<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+						<Form.TextArea value={replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
 					</Form>
 				) : ''}
 
-				{this.state.showResponseButton ? (
+				{showResponseButton ? (
 					<Button  
 						className='createPostBtn'
 						style={{marginLeft:'80%'}}
@@ -235,7 +250,7 @@ class ForumRoom extends React.Component {
 						labelPosition='right' 
 						color='green' 
 						onClick={this.handleReplyBtnClick} >
-							{this.state.showReplyForm ? 'Submit' : 'Add response'}
+							{showReplyForm ? 'Submit' : 'Add response'}
 							<Icon name='comment alternate outline'></Icon>
 					</Button>
 				) : ''}
