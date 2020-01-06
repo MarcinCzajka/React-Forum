@@ -74,6 +74,14 @@ class RoomCreator extends React.Component {
     }
 
     error = () => {
+        if (!this.context.loggedIn) {
+            return (
+                <Message error
+                header = 'Error'
+                content = {<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>} />
+            )
+        }
+
         if (this.state.error) {
             return (
                 <Message error
