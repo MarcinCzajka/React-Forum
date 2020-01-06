@@ -5,6 +5,7 @@ import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../contexts/UserContext';
 import RoomPlaceholder from './placeholders/RoomPlaceholder';
 import ImageModal from './ImageModal';
+import moment from 'moment';
 import './global.css';
 import './ForumRoom.css';
 
@@ -160,6 +161,8 @@ class ForumRoom extends React.Component {
 	}
 	
 	render() {
+		const creationDate = moment(this.state.creationDate).format('YYYY-MM-DD');
+
 		return (
 			<article className='roomContainer'>
 				{this.state.loading ? <RoomPlaceholder /> : ''}
@@ -190,7 +193,11 @@ class ForumRoom extends React.Component {
 					</main>
 
 					<footer className='roomFooter'>
+
 						<Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+							<Statistic>
+								Created at: {creationDate}
+							</Statistic>
 							<Statistic className='roomStat'>
 								<Statistic.Value>
 									<Link to={`/post/${this.state._id}`}>
