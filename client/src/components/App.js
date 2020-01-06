@@ -39,6 +39,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        console.log(1)
         const data = isToken();
         if(data) this.setContextData(data);
         
