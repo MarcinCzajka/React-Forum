@@ -40,16 +40,15 @@ class ForumRoom extends React.Component {
 
 	static contextType = UserContext;
 
+	componentDidMount() {
+		this.setState({ isMounted: true });
+	}
+	
 	static getDerivedStateFromProps(props, state) {
 		if(state.isMounted) {
-			if(props.comments !== state.comments) return props;
 			if(!state.arePropsUpdated) return props;
 		}
 		return null;
-	}
-
-	componentDidMount() {
-		this.setState({ isMounted: true });
 	}
 
 	handleImageLoaded = () => {
@@ -62,7 +61,6 @@ class ForumRoom extends React.Component {
 	}
 
 	updateUpvote = (e) => {
-		
 		if(!this.context.loggedIn) return this.setState({
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
 		});
