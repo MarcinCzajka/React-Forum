@@ -6,6 +6,7 @@ import './global.css';
 import ChildrenOfPost from './ChildrenOfPost';
 import UserContext from '../contexts/UserContext';
 import PostPlaceholder from './placeholders/PostPlaceholder';
+import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import './ForumPost.css';
 
 class ForumPost extends React.Component {
@@ -23,7 +24,8 @@ class ForumPost extends React.Component {
 			cssVisibility: "hidden",
 			replyContent: "",
 			refreshChildren: false,
-			loading: true
+			loading: true,
+			avatarReady: false
 		}
 	}
 
@@ -37,6 +39,10 @@ class ForumPost extends React.Component {
 	
 	componentDidMount() {
 		this.getPostDetails();
+	}
+
+	onAvatarLoad = () => {
+		this.setState({avatarReady: true});
 	}
 	
 	render() {
@@ -54,11 +60,15 @@ class ForumPost extends React.Component {
 					<PostPlaceholder />
 				) : (
 					<Comment className="comment">
-						<Comment.Avatar 
-							className="avatar" 
-							src={this.state.avatar} >
-						</Comment.Avatar>
-
+						{!this.state.avatarReady ? (
+							<AvatarPlaceholder /> 
+							) : ''}
+							<Comment.Avatar 
+								style={{display:(this.state.avatarReady ? 'block' : 'none')}}
+								className="avatar" 
+								src={this.state.avatar}
+								onLoad={this.onAvatarLoad}>
+							</Comment.Avatar>
 						<Comment.Content>
 							<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
 							<Comment.Metadata className="metadata">
