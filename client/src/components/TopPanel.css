@@ -1,3 +1,12 @@
-.ui.tabular.menu .item:hover {
-    color: #7f7f7f !important;
+@media (min-width: 580px) {
+    #topPanelUsername {
+        position: absolute !important;
+        left: calc(50% - 3.7em) !important;
+    }
+}
+
+@media (max-width: 400px) {
+    #topPanelUsername {
+        display: none !important;
+    }
 }

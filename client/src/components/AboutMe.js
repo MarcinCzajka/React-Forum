@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext';
 import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
+import './AboutMe.css';
 
 class AboutMe extends React.Component {
     constructor(props) {
@@ -55,7 +56,7 @@ class AboutMe extends React.Component {
         const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
         
         return (
-            <Card >
+            <Card className='cardMiddle' >
                 <Helmet>
                     <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
                     <title>{userName} - React-forum</title>
