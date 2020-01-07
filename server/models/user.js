@@ -27,8 +27,7 @@ const userSchema = new mongoose.Schema({
     },
     avatar: {
         type: String,
-        minlength: 10,
-        default: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg"
+        minlength: 10
     },
     createdAt: {
         type: Date,
@@ -59,7 +58,7 @@ function validateUser(User) {
         name: Joi.string().min(5).max(15).required(),
         email: Joi.string().min(5).max(255).required().email(),
         password: new PasswordComplexity(complexityOptions).required(),
-        avatar: Joi.string().min(10)
+        avatar: Joi.string().min(10).allow('')
     };
     return Joi.validate(User, schema)
 };

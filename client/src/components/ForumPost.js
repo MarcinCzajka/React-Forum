@@ -20,7 +20,7 @@ class ForumPost extends React.Component {
 			content: "",
 			date: "",
 			authorNick: "",
-			avatar: "https://docs.appthemes.com/files/2011/08/gravatar-grey.jpg",
+			avatar: "",
 			cssVisibility: "hidden",
 			replyContent: "",
 			refreshChildren: false,
