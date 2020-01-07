@@ -1,10 +1,16 @@
 import React from 'react';
 import { Card, Image } from 'semantic-ui-react';
 import UserContext from '../contexts/UserContext';
+import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
 
 class AboutMe extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {avatarReady: false}
+    }
 
     static contextType = UserContext;
 
@@ -41,6 +47,10 @@ class AboutMe extends React.Component {
         document.getElementsByTagName('body')[0].appendChild(script);
     }
 
+    onAvatarLoad = () => {
+		this.setState({avatarReady: true});
+	}
+
     render() {
         const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
         
@@ -51,7 +61,11 @@ class AboutMe extends React.Component {
                     <title>{userName} - React-forum</title>
                 </Helmet>
 
-                <Image src={userAvatar} wrapped ui={false} />
+                {!this.state.avatarReady ? (
+                    <AvatarPlaceholder size='sizeAboutMe' /> 
+                    ) : ''}
+                <Image src={userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
+
                 <Card.Content>
                 <Card.Header>{userName}</Card.Header>
                 <Card.Meta>

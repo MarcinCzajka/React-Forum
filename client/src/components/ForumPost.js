@@ -61,7 +61,7 @@ class ForumPost extends React.Component {
 				) : (
 					<Comment className="comment">
 						{!this.state.avatarReady ? (
-							<AvatarPlaceholder /> 
+							<AvatarPlaceholder size='sizePostComment' /> 
 							) : ''}
 							<Comment.Avatar 
 								style={{display:(this.state.avatarReady ? 'block' : 'none')}}

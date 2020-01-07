@@ -6,7 +6,7 @@ class AvatarPlaceholder extends React.Component {
 
     render() {
         return (
-            <div className='avatarPlaceholderContainer' >
+            <div className={`avatarPlaceholderContainer ${this.props.size}`} >
                 <Icon className='avatarPlaceholder' name='user' />
             </div>
         )
