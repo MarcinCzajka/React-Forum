@@ -58,4 +58,24 @@ router.post('/', async (req, res) => {
     res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 });
 
+router.put('/avatar/:id', auth, async (req, res) => {
+    const { avatar } = req.body;
+
+    if(!validateString(avatar)) {
+        return res.status(400).send('Invalid url.');
+    }
+    console.log(req.user._id, req.params.id)
+    return
+
+    const result = await ForumRoom.findByIdAndUpdate(req.params.id, {avatar: avatar});
+    res.status(200).send(result.avatar);
+});
+
+function validateString(str) {
+    if(typeof str !== 'string') return false;
+    if(str === '') return false;
+
+    return true
+};
+
 module.exports = router;

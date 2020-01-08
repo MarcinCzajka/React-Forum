@@ -4,12 +4,13 @@ import UserContext from '../contexts/UserContext';
 import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
+import basePath from '../api/basePath';
 
 class AboutMe extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {avatarReady: false}
+        this.state = {avatarReady: false, avatarFromState: false};
     }
 
     static contextType = UserContext;
@@ -26,7 +27,7 @@ class AboutMe extends React.Component {
             maxFileSize: 5000000 }, (error, result) => { 
               if (!error && result && result.event === "success") { 
 
-                this.setState({image: result.info.secure_url});
+                this.updateImage(result.info.secure_url);
                 this.cloudinaryWidget.close();
               }
             }
@@ -49,7 +50,18 @@ class AboutMe extends React.Component {
 
     onAvatarLoad = () => {
 		this.setState({avatarReady: true});
-	}
+    }
+    
+    updateImage = (url) => {
+        basePath({
+            method: 'put',
+            url: `/api/users/avatar/${this.context.userId}`,
+            data: {
+                avatar: url
+            },
+            withCredentials: true
+        })
+    }
 
     render() {
         const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
@@ -64,7 +76,7 @@ class AboutMe extends React.Component {
                 {!this.state.avatarReady ? (
                     <AvatarPlaceholder size='sizeAboutMe' /> 
                     ) : ''}
-                <Image src={userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
+                <Image src={this.state.avatarFromState || userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
 
                 <Card.Content>
                 <Card.Header>{userName}</Card.Header>
