@@ -1,22 +1,24 @@
 import React from 'react';
-import { Card, Image } from 'semantic-ui-react';
+import { Card, Image, Icon } from 'semantic-ui-react';
 import UserContext from '../contexts/UserContext';
 import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
+import './AboutMe.css';
+import basePath from '../api/basePath';
 
 class AboutMe extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {avatarReady: false}
+        this.state = {avatarReady: false, avatarFromState: false};
     }
 
     static contextType = UserContext;
 
     componentDidMount() {
         this.downloadCloudinaryWidget();
-    }    
+    }
     
     createWidget = () => {
         this.cloudinaryWidget = window.cloudinary.createUploadWidget({
@@ -26,7 +28,7 @@ class AboutMe extends React.Component {
             maxFileSize: 5000000 }, (error, result) => { 
               if (!error && result && result.event === "success") { 
 
-                this.setState({image: result.info.secure_url});
+                this.updateImage(result.info.secure_url);
                 this.cloudinaryWidget.close();
               }
             }
@@ -49,28 +51,45 @@ class AboutMe extends React.Component {
 
     onAvatarLoad = () => {
 		this.setState({avatarReady: true});
-	}
+    }
+    
+    updateImage = (url) => {
+        basePath({
+            method: 'put',
+            url: `/api/users/avatar/${this.context.userId}`,
+            data: {
+                avatar: url
+            },
+            withCredentials: true
+        }).then(res => {
+            this.setState({avatarFromState: res.data});
+        });
+    }
 
     render() {
-        const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
+        const {loggedIn, userName, userAvatar, userEmail, userCreatedAt} = this.context;
+        const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
         
         return (
-            <Card >
+            <Card className='cardMiddle' >
                 <Helmet>
-                    <script defer src="https://widget.cloudinary.com/v2.0/global/all.js"></script>
-                    <title>{userName} - React-forum</title>
+                    <title>About Me - React-forum</title>
                 </Helmet>
+
+                <div onClick={this.showWidget} className='avatarOverlay'>
+                    <Icon name='file outline image' size='huge' inverted></Icon>
+                </div>
 
                 {!this.state.avatarReady ? (
                     <AvatarPlaceholder size='sizeAboutMe' /> 
                     ) : ''}
-                <Image src={userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
+                <Image src={this.state.avatarFromState || userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
 
                 <Card.Content>
                 <Card.Header>{userName}</Card.Header>
                 <Card.Meta>
-                    <p style={{color: '#111'}}>Created at: {moment().format('MMMM Do YYYY, dddd')}</p>
-                    <p>Email: {userEmail}</p>
+                    <p className='darkFont'>Created at: {createdAt}</p>
+                    <p className='darkFont'>Email: {userEmail}</p>
                 </Card.Meta>
                 </Card.Content>
             </Card>

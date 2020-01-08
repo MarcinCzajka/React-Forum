@@ -4,6 +4,7 @@ import { Menu } from "semantic-ui-react";
 import LoginForm from "./LoginForm";
 import SignUpForm from './SignUpForm';
 import { UserConsumer } from '../contexts/UserContext';
+import './TopPanel.css';
 
 class TopPanel extends React.Component {
     constructor(props) {
@@ -36,7 +37,7 @@ class TopPanel extends React.Component {
                                 <Menu.Item name={context.pages[2].name} />
                             </Link>
                         {context.loggedIn ? (
-                            <Menu.Item position='right' className='noHover'>
+                            <Menu.Item position='right' id='topPanelUsername' className='noHover'>
                                 {context.userName.toUpperCase()}
                             </Menu.Item>
                         ) : ''}
