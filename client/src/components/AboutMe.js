@@ -62,15 +62,12 @@ class AboutMe extends React.Component {
             },
             withCredentials: true
         }).then(res => {
-            console.log(res)
-            this.setState({avatarFromState: res.data.avatar});
+            this.setState({avatarFromState: res.data});
         });
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.context)
-        const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
+        const {loggedIn, userName, userAvatar, userEmail, userCreatedAt} = this.context;
         const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
         
         return (
