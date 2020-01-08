@@ -5,12 +5,13 @@ import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
 import './AboutMe.css';
+import basePath from '../api/basePath';
 
 class AboutMe extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {avatarReady: false}
+        this.state = {avatarReady: false, avatarFromState: false};
     }
 
     static contextType = UserContext;
@@ -27,7 +28,7 @@ class AboutMe extends React.Component {
             maxFileSize: 5000000 }, (error, result) => { 
               if (!error && result && result.event === "success") { 
 
-                this.submitNewAvatar(result.info.secure_url);
+                this.updateImage(result.info.secure_url);
                 this.cloudinaryWidget.close();
               }
             }
@@ -52,22 +53,23 @@ class AboutMe extends React.Component {
 		this.setState({avatarReady: true});
     }
     
-    submitNewAvatar = (avatarUrl) => {
-        if(!this.initialVerification()) return;
-        
+    updateImage = (url) => {
         basePath({
             method: 'put',
-            url: `/api/users/${}`,
-            headers: {
-                captchaToken: this.state.captchaToken
-            },
+            url: `/api/users/avatar/${this.context.userId}`,
             data: {
-                name: this.state.userName,
-                email: this.state.email,
-                password: this.state.password
+                avatar: url
+            },
+            withCredentials: true
+        }).then(res => {
+            console.log(res)
+            this.setState({avatarFromState: res.data.avatar});
+        });
     }
 
     render() {
+        console.log(this.state)
+        console.log(this.context)
         const {userName, userAvatar, userEmail, userCreatedAt} = this.context;
         const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
         
@@ -80,11 +82,11 @@ class AboutMe extends React.Component {
                 <div onClick={this.showWidget} className='avatarOverlay'>
                     <Icon name='file outline image' size='huge' inverted></Icon>
                 </div>
-                    {!this.state.avatarReady ? (
-                        <AvatarPlaceholder size='sizeAboutMe' /> 
-                        ) : ''}
-                    <Image src={userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
-                
+
+                {!this.state.avatarReady ? (
+                    <AvatarPlaceholder size='sizeAboutMe' /> 
+                    ) : ''}
+                <Image src={this.state.avatarFromState || userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
 
                 <Card.Content>
                 <Card.Header>{userName}</Card.Header>
