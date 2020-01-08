@@ -69,7 +69,8 @@ class AboutMe extends React.Component {
     render() {
         const {loggedIn, userName, userAvatar, userEmail, userCreatedAt} = this.context;
         const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
-        
+
+        console.log({display: (!this.state.avatarReady ? 'block': 'none') + ' !important'})
         return (
             <Card className='cardMiddle' >
                 <Helmet>
@@ -83,7 +84,11 @@ class AboutMe extends React.Component {
                 {!this.state.avatarReady ? (
                     <AvatarPlaceholder size='sizeAboutMe' /> 
                     ) : ''}
-                <Image src={this.state.avatarFromState || userAvatar} onLoad={this.onAvatarLoad} wrapped ui={false} />
+                <Image 
+                    src={this.state.avatarFromState || userAvatar}
+                    className={!this.state.avatarReady ? 'hidden' : ''}
+                    onLoad={this.onAvatarLoad} wrapped ui={false}
+                />
 
                 <Card.Content>
                 <Card.Header>{userName}</Card.Header>
