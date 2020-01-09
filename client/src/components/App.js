@@ -41,7 +41,6 @@ class App extends React.Component {
     componentDidMount() {
         const data = isToken();
         if(data) this.setContextData(data);
-        
         loadReCaptcha();
     }
 
@@ -52,7 +51,9 @@ class App extends React.Component {
             userId: data._id || this.state.userId,
             userAvatar: data.avatar || this.state.userAvatar,
             userCreatedAt: data.createdAt || this.state.userCreatedAt,
-            userEmail: data.email || this.state.userEmail
+            userEmail: data.email || this.state.userEmail,
+            screenWidth: data.screenWidth || this.state.screenWidth,
+            screenHeight: data.screenHeight || this.state.screenHeight
         })
     }
 
