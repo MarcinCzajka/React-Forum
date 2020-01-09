@@ -5,6 +5,10 @@ React based forum/dashboard with REST API in Node.js/Express.js
 Project written purely to master React and Node.js. I've chosen forum formula because it requires good ux
 and secure backend to be viable and those are the things i wanted to work on.
 
+## Live Demo on Heroku
+
+[React-forum on heroku](https://reactive-forum.herokuapp.com/)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
