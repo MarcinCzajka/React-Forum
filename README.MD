@@ -1,7 +1,66 @@
-ToDo:
-Authorisation based on persistent cookie that is generated each time, user logs in
-and can only be used once.
+# React-forum
 
-Rooms filter based on category of room
+React based forum/dashboard with REST API in Node.js/Express.js
 
-Different color schemes
+Project written purely to master React and Node.js. I've chosen forum formula because it requires good ux
+and secure backend to be viable and those are the things i wanted to work on.
+
+## Getting Started
+
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+
+### Installing
+
+A step by step series of examples that tell you how to get a development env running
+
+Clone repository to local machine
+
+```
+git clone https://github.com/MarcinCzajka/React-Forum.git
+cd react-forum
+```
+
+Install both client and server dependencies
+
+```
+npm run i-all
+```
+
+Run app
+
+```
+npm start
+```
+
+## Key Features
+
+```
+Frontend:
+* Fully responsive design
+* Single-page design with React-Router to provide exact URL and browsing history
+* Placeholders and loaders in places that might require longer loading
+```
+```
+Backend:
+* REST API
+* MongoDB database
+* Token based Authentication/Autorization
+```
+
+## Built With
+
+* [create-react-app](https://github.com/facebook/create-react-app/) - The web framework used
+* [Semantic ui](https://react.semantic-ui.com/) - UI framework
+* [express.js](https://github.com/expressjs/express/) - Server framework
+* [MongoDB](https://www.mongodb.com/) - Database provider
+* [mongoose](https://github.com/Automattic/mongoose/) - Used for object modelling for MongoDB
+* [axios](https://github.com/axios/axios/) - Used for HTTP requests
+
+## Authors
+
+* Marcin Czajka - [Github](https://github.com/MarcinCzajka)
+
+## License
+
+This project is licensed under the MIT License
+https://github.com/github-changelog-generator/github-changelog-generator#readme
