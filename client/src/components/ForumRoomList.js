@@ -13,14 +13,17 @@ class ForumRoomList extends React.Component {
             category: "General",
             activePage: 1,
             totalPages: 1,
-            roomsLimit: 5,
+            roomsLimit: 2,
             loading: true,
-            removedRoomsCount: 0
+            removedRoomsCount: 0,
+
+            windowWidth: window.innerWidth
         }
     }
 
     componentDidMount() {
         this.fetchForumRooms();
+        window.addEventListener("resize", this.handleResize.bind(this));
     }
 
     removeRoomFromState = (key) => {
@@ -40,15 +43,21 @@ class ForumRoomList extends React.Component {
     }
 
     pagination = () => {
-        const { activePage, totalPages } = this.state;
+        const { activePage, totalPages, windowWidth } = this.state;
+
+        const floated = windowWidth >= 960 ? 'right' : 'left';
 
         if(totalPages > 1) return (
             <Grid.Row columns={3}>
-                <Grid.Column floated='right'>
+                <Grid.Column floated={floated}>
                     <Pagination onPageChange={this.changePage} activePage={activePage} totalPages={totalPages} />
                 </Grid.Column>
             </Grid.Row>
         )
+    }
+
+    handleResize = () => {
+        this.setState({windowWidth: window.innerWidth});
     }
 
     render() {
