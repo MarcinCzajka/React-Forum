@@ -13,7 +13,7 @@ class ForumRoomList extends React.Component {
             category: "General",
             activePage: 1,
             totalPages: 1,
-            roomsLimit: 2,
+            roomsLimit: 5,
             loading: true,
             removedRoomsCount: 0,
 
