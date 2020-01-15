@@ -4,8 +4,9 @@ import UserContext from '../contexts/UserContext';
 import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
-import './AboutMe.css';
 import basePath from '../api/basePath';
+import getCloudinaryWidget from '../../utilities/getCloudinaryWidget';
+import './AboutMe.css';
 
 class AboutMe extends React.Component {
     constructor(props) {
@@ -17,7 +18,7 @@ class AboutMe extends React.Component {
     static contextType = UserContext;
 
     componentDidMount() {
-        this.downloadCloudinaryWidget();
+        getCloudinaryWidget(this.createWidget);
     }
     
     createWidget = () => {
@@ -28,7 +29,7 @@ class AboutMe extends React.Component {
             maxFileSize: 5000000 }, (error, result) => { 
               if (!error && result && result.event === "success") { 
 
-                this.updateImage(result.info.secure_url);
+                this.uploadImage(result.info.secure_url);
                 this.cloudinaryWidget.close();
               }
             }
@@ -39,21 +40,11 @@ class AboutMe extends React.Component {
         this.cloudinaryWidget.open();
     }
 
-    downloadCloudinaryWidget = () => {
-        const script = document.createElement('script');
-        script.addEventListener('load', this.createWidget);
-        script.async = true;
-        script.defer = true;
-        script.src = "https://widget.cloudinary.com/v2.0/global/all.js";
-
-        document.getElementsByTagName('body')[0].appendChild(script);
-    }
-
     onAvatarLoad = () => {
 		this.setState({avatarReady: true});
     }
     
-    updateImage = (url) => {
+    uploadImage = (url) => {
         basePath({
             method: 'put',
             url: `/api/users/avatar/${this.context.userId}`,
@@ -67,10 +58,9 @@ class AboutMe extends React.Component {
     }
 
     render() {
-        const {loggedIn, userName, userAvatar, userEmail, userCreatedAt} = this.context;
+        const { userName, userAvatar, userEmail, userCreatedAt} = this.context;
         const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
 
-        console.log({display: (!this.state.avatarReady ? 'block': 'none') + ' !important'})
         return (
             <Card className='cardMiddle' >
                 <Helmet>
@@ -84,6 +74,7 @@ class AboutMe extends React.Component {
                 {!this.state.avatarReady ? (
                     <AvatarPlaceholder size='sizeAboutMe' /> 
                     ) : ''}
+                    
                 <Image 
                     src={this.state.avatarFromState || userAvatar}
                     className={!this.state.avatarReady ? 'hidden' : ''}
