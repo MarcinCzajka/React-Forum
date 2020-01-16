@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import ImageModal from '../../imageModal/ImageModal';
-import '../post/ForumPost.css';
+import '../forumPost/ForumPost.css';
 import './PostCreator.css';
 
 class PostCreator extends React.Component {

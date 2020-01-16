@@ -1,7 +1,7 @@
 import React from 'react'
 import basePath from '../../../api/basePath';
 import { Grid, Pagination } from "semantic-ui-react";
-import ForumPost from '../post/ForumPost';
+import ForumPost from '../forumPost/ForumPost';
 
 class PostList extends React.Component {
     constructor(props) {

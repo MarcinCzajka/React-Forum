@@ -2,7 +2,7 @@ import React from 'react';
 import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
-import ForumPost from '../post/ForumPost';
+import ForumPost from '../forumPost/ForumPost';
 import RecursiveComment from '../comment/recursiveComment/RecursiveComment';
 import '../comment/recursiveComment/RecursiveComment.css';
 import './PostWithComments.css';
