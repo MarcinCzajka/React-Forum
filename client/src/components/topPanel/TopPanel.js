@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from "semantic-ui-react";
-import LoginForm from "./LoginForm";
-import SignUpForm from './SignUpForm';
-import { UserConsumer } from '../contexts/UserContext';
+import LoginForm from "../login/LoginForm";
+import SignUpForm from '../login/SignUpForm';
+import { UserConsumer } from '../../contexts/UserContext';
 import './TopPanel.css';
 
 class TopPanel extends React.Component {

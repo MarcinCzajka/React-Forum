@@ -1,14 +1,13 @@
 import React from 'react';
-import basePath from '../api/basePath';
+import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Button, Statistic, Icon, Message } from "semantic-ui-react";
-import UserContext from '../contexts/UserContext';
-import ImageModal from './ImageModal';
-import './global.css';
-import './ForumRoom.css';
-import './RoomCreator.css';
+import UserContext from '../../../contexts/UserContext';
+import ImageModal from '../../imageModal/ImageModal';
+import '../post/ForumPost.css';
+import './PostCreator.css';
 
-class RoomCreator extends React.Component {
+class PostCreator extends React.Component {
     constructor(props) {
         super(props);
 
@@ -217,4 +216,4 @@ class RoomCreator extends React.Component {
 
 }
 
-export default RoomCreator;
+export default PostCreator;

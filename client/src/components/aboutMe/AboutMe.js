@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, Image, Icon } from 'semantic-ui-react';
-import UserContext from '../contexts/UserContext';
-import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
+import UserContext from '../../contexts/UserContext';
+import AvatarPlaceholder from '../placeholders/AvatarPlaceholder';
 import moment from 'moment';
 import { Helmet } from "react-helmet";
-import basePath from '../api/basePath';
+import basePath from '../../api/basePath';
 import getCloudinaryWidget from '../../utilities/getCloudinaryWidget';
 import './AboutMe.css';
 

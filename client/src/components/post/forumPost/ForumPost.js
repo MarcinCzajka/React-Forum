@@ -1,15 +1,14 @@
 import React from 'react';
-import basePath from '../api/basePath';
+import basePath from '../../../api/basePath';
 import { Link } from 'react-router-dom';
 import { Form, Button, Statistic, Icon, Message } from "semantic-ui-react";
-import UserContext from '../contexts/UserContext';
-import RoomPlaceholder from './placeholders/RoomPlaceholder';
-import ImageModal from './ImageModal';
+import UserContext from '../../../contexts/UserContext';
+import RoomPlaceholder from '../../placeholders/RoomPlaceholder';
+import ImageModal from '../../imageModal/ImageModal';
 import moment from 'moment';
-import './global.css';
-import './ForumRoom.css';
+import './ForumPost.css';
 
-class ForumRoom extends React.Component {
+class ForumPost extends React.Component {
 	constructor(props) {
 		super(props);
 		
@@ -261,4 +260,4 @@ class ForumRoom extends React.Component {
 
 }
 
-export default ForumRoom;
+export default ForumPost;

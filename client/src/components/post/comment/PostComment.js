@@ -1,15 +1,14 @@
 import React from 'react';
-import basePath from '../api/basePath';
+import basePath from '../../../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
-import './global.css';
-import ChildrenOfPost from './ChildrenOfPost';
-import UserContext from '../contexts/UserContext';
-import PostPlaceholder from './placeholders/PostPlaceholder';
-import AvatarPlaceholder from './placeholders/AvatarPlaceholder';
-import './ForumPost.css';
+import RecursiveComment from './recursiveComment/RecursiveComment';
+import UserContext from '../../../contexts/UserContext';
+import PostPlaceholder from '../../placeholders/PostPlaceholder';
+import AvatarPlaceholder from '../../placeholders/AvatarPlaceholder';
+import './PostComment.css';
 
-class ForumPost extends React.Component {
+class PostComment extends React.Component {
 	constructor(props) {
 		super(props);
 		
@@ -56,50 +55,56 @@ class ForumPost extends React.Component {
 		
 		return (
 			<div className="ui large comments">
+
 				{this.state.loading ? (
 					<PostPlaceholder />
 				) : (
-					<Comment className="comment">
-						{!this.state.avatarReady ? (
-							<AvatarPlaceholder size='sizePostComment' /> 
-							) : ''}
-							<Comment.Avatar 
-								style={{display:(this.state.avatarReady ? 'block' : 'none')}}
-								className="avatar" 
-								src={this.state.avatar}
-								onLoad={this.onAvatarLoad}>
-							</Comment.Avatar>
-						<Comment.Content>
-							<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
-							<Comment.Metadata className="metadata">
-								<span className="date">{this.state.date}</span>
-							</Comment.Metadata>
-							<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
 
-						{this.context.loggedIn ? (
-							<Comment.Actions>
-								<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
-								{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
-							</Comment.Actions>
-						) : ''}
+				<Comment className="comment">
+
+					{!this.state.avatarReady ? (
+						<AvatarPlaceholder size='sizePostComment' /> 
+					) : ''}
+
+					<Comment.Avatar 
+						style={{display:(this.state.avatarReady ? 'block' : 'none')}}
+						className="avatar" 
+						src={this.state.avatar}
+						onLoad={this.onAvatarLoad}>
+					</Comment.Avatar>
+					
+					<Comment.Content>
+						<Comment.Author className="author" as='a'>{this.state.authorNick}</Comment.Author>
+						<Comment.Metadata className="metadata">
+							<span className="date">{this.state.date}</span>
+						</Comment.Metadata>
+						<Comment.Text as='p' className="text">{this.state.content}</Comment.Text>
+
+					{this.context.loggedIn ? (
+						<Comment.Actions>
+							<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
+							{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
+						</Comment.Actions>
+					) : ''}
+					
+						<Form reply className={this.state.cssVisibility}>
+							<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
+							<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
+						</Form>
 						
-							<Form reply className={this.state.cssVisibility}>
-								<Form.TextArea value={this.state.replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-								<Button onClick={this.handleReplyToPost} content='Add Reply' labelPosition='left' icon='edit' primary />
-							</Form>
-							
-						</Comment.Content>
+					</Comment.Content>
 
-					</Comment>
+				</Comment>
 				)}
-				<ChildrenOfPost
+				<RecursiveComment
 					parentId={this.state.id}
 					refreshChildren={this.state.refreshChildren}
 					handleReplyToPost={this.handleReplyToPost}
 					removePostFromState={this.props.removePostFromState}
 					addPostToState={this.props.addPostToState}
-					postsNotToRender={this.props.postsNotToRender}>
-				</ChildrenOfPost>
+					postsNotToRender={this.props.postsNotToRender}
+				>
+				</RecursiveComment>
 			</div>
 		);
 	}
@@ -185,4 +190,4 @@ class ForumPost extends React.Component {
 
 };
 
-export default ForumPost;
+export default PostComment;

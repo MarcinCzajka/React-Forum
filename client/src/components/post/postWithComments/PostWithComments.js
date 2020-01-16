@@ -1,12 +1,13 @@
 import React from 'react';
-import basePath from '../api/basePath';
+import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
-import ForumRoom from './ForumRoom';
-import ChildrenOfPost from './ChildrenOfPost';
-import './ForumPostsGroup.css';
+import ForumPost from '../post/ForumPost';
+import RecursiveComment from '../comment/recursiveComment/RecursiveComment';
+import '../comment/recursiveComment/RecursiveComment.css';
+import './PostWithComments.css';
 
-class ForumPostGroup extends React.Component {
+class PostWithComments extends React.Component {
     constructor(props) {
         super(props);
 
@@ -37,14 +38,14 @@ class ForumPostGroup extends React.Component {
 
                 <Grid centered className='roomGrid'>
                     <Comment.Group className='postGroupContainer'>
-                        <ForumRoom 
+                        <ForumPost 
                             showResponseButton={true}
                             className='roomInPostsGroup'
                             refreshPosts={this.refreshChildren}
                             {...this.state.roomDetails} 
                         />
                         <Segment className='initialPost'>
-                            <ChildrenOfPost
+                            <RecursiveComment
                                 sorting={'{"date":"-1"}'}
                                 roomId={this.props.match.params.id}
                                 parentId={this.props.match.params.id}
@@ -52,7 +53,7 @@ class ForumPostGroup extends React.Component {
                                 removePostFromState={this.removePostFromState} 
                                 addPostToState={this.addPostToState}
                                 postsNotToRender={this.state.postsNotToRender}>
-                            </ChildrenOfPost>
+                            </RecursiveComment>
                         </Segment>
                     </Comment.Group>
                 </Grid>
@@ -112,4 +113,4 @@ class ForumPostGroup extends React.Component {
 
 }
 
-export default ForumPostGroup;
+export default PostWithComments;

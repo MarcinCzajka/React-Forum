@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Helmet } from "react-helmet";
-import TopPanel from './TopPanel';
-import ForumRoomList from './ForumRoomList';
-import ForumPostsGroup from './ForumPostsGroup';
-import RoomCreator from './RoomCreator';
-import AboutMe from './AboutMe';
+import TopPanel from './topPanel/TopPanel';
+import PostList from './post/postList/PostList';
+import PostWithComments from './post/postWithComments/PostWithComments';
+import PostCreator from './post/postCreator/PostCreator';
+import AboutMe from './aboutMe/AboutMe';
 import "semantic-ui-css/semantic.min.css";
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
@@ -97,10 +97,10 @@ class App extends React.Component {
                     <UserProvider value={contextValue} >
                         <TopPanel />
                         <Switch>
-                            <Route path='/post/:id' exact component={ForumPostsGroup} />
+                            <Route path='/post/:id' exact component={PostWithComments} />
                             <Route path='/me' component={AboutMe} />
-                            <Route path='/new' component={RoomCreator} />
-                            <Route path='/' component={ForumRoomList} />
+                            <Route path='/new' component={PostCreator} />
+                            <Route path='/' component={PostList} />
                         </Switch>
                     </UserProvider>
                 </Router>

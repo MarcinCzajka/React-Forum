@@ -1,10 +1,9 @@
 import React from 'react'
-import basePath from '../api/basePath';
+import basePath from '../../../api/basePath';
 import { Grid, Pagination } from "semantic-ui-react";
-import ForumRoom from './ForumRoom';
-import './global.css';
+import ForumPost from '../post/ForumPost';
 
-class ForumRoomList extends React.Component {
+class PostList extends React.Component {
     constructor(props) {
         super(props);
 
@@ -64,7 +63,7 @@ class ForumRoomList extends React.Component {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <ForumRoom {...room} removeRoom={this.removeRoomFromState} />
+                    <ForumPost {...room} removeRoom={this.removeRoomFromState} />
                 </Grid.Row>
             );
         })
@@ -106,4 +105,4 @@ class ForumRoomList extends React.Component {
 
 }
 
-export default ForumRoomList;
+export default PostList;

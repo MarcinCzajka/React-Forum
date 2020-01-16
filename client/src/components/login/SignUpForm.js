@@ -1,8 +1,7 @@
 import React from 'react';
 import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
-import basePath from '../api/basePath';
-import UserContext from '../contexts/UserContext';
-import {UserConsumer} from '../contexts/UserContext';
+import basePath from '../../api/basePath';
+import UserContext from '../../contexts/UserContext';
 import Captcha from './Captcha';
 
 class SignUpForm extends React.Component {
@@ -100,63 +99,59 @@ class SignUpForm extends React.Component {
 
     render() {
         return (
-            <UserConsumer>
-                {context => (
-                    <div>
-                        {!context.loggedIn ? (
-                            <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name='Sign up!' />}
-                                open={this.state.open}
-                                onClose={this.close}
-                            >
-                                <Modal.Header>Sign up</Modal.Header>
-                                <Modal.Content style={{paddingTop: 0}}>
-                                    <Form size='small' onSubmit={this.submit} error >
-                                        <div>{this.error()}</div>
-                                        <br></br>
-                                        <Form.Field required>
-                                            <label>Username</label>
-                                            <input placeholder='Name' autoComplete='off' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
-                                        </Form.Field>
-                                        <Form.Field required>
-                                            <label>Email</label>
-                                            <input placeholder='Email' autoComplete="new-password" value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
-                                        </Form.Field>
-                                        <Form.Field required>
-                                            <label>Password</label>
-                                            <input 
-                                                type='password'
-                                                placeholder='Password'
-                                                spellCheck = "false"
-                                                autoCapitalize = "off"
-                                                autoComplete="new-password"
-                                                autoCorrect = "off"
-                                                value={this.state.password} 
-                                                onChange={(e) => this.setState({ password: e.target.value })} 
-                                            />
-                                            <input 
-                                                type='password'
-                                                placeholder='Repeat'
-                                                spellCheck = "false"
-                                                autoCapitalize = "off"
-                                                autoComplete="new-password"
-                                                autoCorrect = "off"
-                                                value={this.state.passwordRepeat} 
-                                                onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
-                                            />
-                                        </Form.Field>
+            <div>
+                {!this.context.loggedIn ? (
+                    <Modal size='tiny' trigger={<Menu.Item onClick={this.open} name='Sign up!' />}
+                        open={this.state.open}
+                        onClose={this.close}
+                    >
+                        <Modal.Header>Sign up</Modal.Header>
+                        <Modal.Content style={{paddingTop: 0}}>
+                            <Form size='small' onSubmit={this.submit} error >
+                                <div>{this.error()}</div>
+                                <br></br>
+                                <Form.Field required>
+                                    <label>Username</label>
+                                    <input placeholder='Name' autoComplete='off' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
+                                </Form.Field>
+                                <Form.Field required>
+                                    <label>Email</label>
+                                    <input placeholder='Email' autoComplete="new-password" value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
+                                </Form.Field>
+                                <Form.Field required>
+                                    <label>Password</label>
+                                    <input 
+                                        type='password'
+                                        placeholder='Password'
+                                        spellCheck = "false"
+                                        autoCapitalize = "off"
+                                        autoComplete="new-password"
+                                        autoCorrect = "off"
+                                        value={this.state.password} 
+                                        onChange={(e) => this.setState({ password: e.target.value })} 
+                                    />
+                                    <input 
+                                        type='password'
+                                        placeholder='Repeat'
+                                        spellCheck = "false"
+                                        autoCapitalize = "off"
+                                        autoComplete="new-password"
+                                        autoCorrect = "off"
+                                        value={this.state.passwordRepeat} 
+                                        onChange={(e) => this.setState({ passwordRepeat: e.target.value })} 
+                                    />
+                                </Form.Field>
 
-                                        <Form.Field>
-                                            <Captcha verifyCallback={this.verifyCaptcha} />
-                                        </Form.Field>
+                                <Form.Field>
+                                    <Captcha verifyCallback={this.verifyCaptcha} />
+                                </Form.Field>
 
-                                        <Button type='submit' fluid size='large'>Sign up</Button>
-                                    </Form>
-                                </Modal.Content>
-                            </Modal>
-                        ) : ''}
-                    </div>
-                )}
-            </UserConsumer>
+                                <Button type='submit' fluid size='large'>Sign up</Button>
+                            </Form>
+                        </Modal.Content>
+                    </Modal>
+                ) : ''}
+            </div>
         )
     }
 

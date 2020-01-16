@@ -1,10 +1,10 @@
 import React from 'react';
-import basePath from '../api/basePath';
+import basePath from '../../../../api/basePath';
 import { Comment } from "semantic-ui-react";
-import ForumPost from './ForumPost';
-import './ChildrenOfPost.css';
+import PostComment from '../PostComment';
+import './RecursiveComment.css';
 
-class ChildrenOfPost extends React.Component {
+class RecursiveComment extends React.Component {
 	constructor(props) {
 		super(props);
 		
@@ -14,7 +14,7 @@ class ChildrenOfPost extends React.Component {
 		};
 	}
 
-	componentDidUpdate(prevProps, prevState) {
+	componentDidUpdate(prevProps) {
 		if (this.props.refreshChildren !== prevProps.refreshChildren) {
 			this.fetchAllChildrenPosts();
 		};
@@ -26,18 +26,18 @@ class ChildrenOfPost extends React.Component {
 	
 	render() {
         const component = this.state.posts.map(item => {
-			return <ForumPost className="comment"
+			return <PostComment className="comment"
 					postId={item.id}
 					roomId={this.props.roomId}
 					key={item.key}
 					removePostFromState={this.props.removePostFromState}
 					addPostToState={this.props.addPostToState}
 					postsNotToRender={this.props.postsNotToRender}>
-				</ForumPost>
+				</PostComment>
         });
 
 		return (
-			<Comment.Group className="childrenOfPost">
+			<Comment.Group className="recursiveComment">
 				{component}
 			</Comment.Group>
 		);
@@ -65,4 +65,4 @@ class ChildrenOfPost extends React.Component {
 
 };
 
-export default ChildrenOfPost;
+export default RecursiveComment;
