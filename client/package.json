@@ -39,7 +39,12 @@
     "moduleDirectories": [
       "node_modules"
     ],
-    "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>/src/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ]
   },
   "browserslist": {
     "production": [
@@ -61,6 +66,7 @@
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "react-test-renderer": "^16.12.0",
