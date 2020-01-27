@@ -2,8 +2,7 @@
 import React from 'react';
 import { Message } from 'semantic-ui-react';
 
-export const ErrorMessage = props => {
-    console.log(props)
+export default props => {
     if(props.message) {
         return (
             <Message 

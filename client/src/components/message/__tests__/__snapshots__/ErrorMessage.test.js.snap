@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage component match snapshot with error 1`] = `
+<div
+  className="ui error message"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      Error
+    </div>
+    <p>
+      This is serious error message
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ErrorMessage component return empty string if no error message is provided 1`] = `""`;

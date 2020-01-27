@@ -3,7 +3,7 @@ import { Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../../api/basePath';
 import UserContext from '../../contexts/UserContext';
 import Captcha from './Captcha';
-import { ErrorMessage } from '../message/ErrorMessage';
+import ErrorMessage from '../message/ErrorMessage';
 
 class SignUpForm extends React.Component {
     constructor(props) {

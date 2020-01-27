@@ -1,9 +1,9 @@
 import React from 'react';
-import { Message, Button, Form, Modal, Menu, Checkbox } from 'semantic-ui-react';
+import { Button, Form, Modal, Menu, Checkbox } from 'semantic-ui-react';
 import basePath from '../../api/basePath';
 import UserContext from '../../contexts/UserContext';
 import jwt_decode from 'jwt-decode';
-import { ErrorMessage } from '../message/ErrorMessage';
+import ErrorMessage from '../message/ErrorMessage';
 import '../global.css';
 
 class LoginForm extends React.Component {

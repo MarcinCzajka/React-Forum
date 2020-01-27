@@ -24,18 +24,12 @@ exports[`LoginForm component match snapshot w/o user logged in 1`] = `
     </div>
     <div
       className="content"
-      style={
-        Object {
-          "paddingTop": 0,
-        }
-      }
     >
       <form
         className="ui small error form"
         onSubmit={[Function]}
       >
-        <div />
-        <br />
+        
         <div
           className="required field"
         >
