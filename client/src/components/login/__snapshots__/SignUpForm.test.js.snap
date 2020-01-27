@@ -1,0 +1,110 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignUpForm component match snapshot /w user logged in 1`] = `
+<div>
+  
+</div>
+`;
+
+exports[`SignUpForm component match snapshot w/o user logged in 1`] = `
+<div>
+  <div
+    className="ui page modals dimmer transition visible active"
+  >
+    <div
+      className="ui tiny modal transition visible active"
+      style={Object {}}
+    >
+      <div
+        className="header"
+      >
+        Sign up
+      </div>
+      <div
+        className="content"
+        style={
+          Object {
+            "paddingTop": 0,
+          }
+        }
+      >
+        <form
+          className="ui small error form"
+          onSubmit={[Function]}
+        >
+          <div />
+          <br />
+          <div
+            className="required field"
+          >
+            <label>
+              Username
+            </label>
+            <input
+              autoComplete="off"
+              onChange={[Function]}
+              placeholder="Name"
+              value=""
+            />
+          </div>
+          <div
+            className="required field"
+          >
+            <label>
+              Email
+            </label>
+            <input
+              autoComplete="new-password"
+              onChange={[Function]}
+              placeholder="Email"
+              value=""
+            />
+          </div>
+          <div
+            className="required field"
+          >
+            <label>
+              Password
+            </label>
+            <input
+              autoCapitalize="off"
+              autoComplete="new-password"
+              autoCorrect="off"
+              onChange={[Function]}
+              placeholder="Password"
+              spellCheck="false"
+              type="password"
+              value=""
+            />
+            <input
+              autoCapitalize="off"
+              autoComplete="new-password"
+              autoCorrect="off"
+              onChange={[Function]}
+              placeholder="Repeat"
+              spellCheck="false"
+              type="password"
+            />
+          </div>
+          <div
+            className="field"
+          >
+            <div
+              data-onloadcallbackname="onloadCallback"
+              data-verifycallbackname="verifyCallback"
+              id="g-recaptcha"
+            />
+          </div>
+          <button
+            className="ui large fluid button"
+            onClick={[Function]}
+            type="submit"
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+`;

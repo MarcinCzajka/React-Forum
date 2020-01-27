@@ -95,7 +95,10 @@ class LoginForm extends React.Component {
     render() {
         return (
             !this.context.loggedIn ? (
-            <Modal size='tiny' className='noMargin' trigger={<Menu.Item onClick={this.open} name="Log in" />}
+            <Modal 
+                size='tiny'
+                className='noMargin'
+                trigger={<Menu.Item onClick={this.open} name="Log in" />}
                 open={this.state.open}
                 onClose={this.close}
             >
