@@ -1,25 +1,25 @@
 import React from 'react';
 import { create } from "react-test-renderer";
-import SignUpForm from './SignUpForm';
-import { UserProvider } from '../../contexts/UserContext';
+import LoginForm from '../LoginForm';
+import { UserProvider } from '../../../contexts/UserContext';
 
 jest.mock('semantic-ui-react/dist/commonjs/addons/Portal/Portal', () => ({ children }) => children);
 
 const loggedIn = bool => {
     return {
         loggedIn: bool,
-        addShowSignupToContext: function(){}
+        addShowLoginToContext: function(){}
     }
 }
 
-describe('SignUpForm component', () => {
+describe('LoginForm component', () => {
     test('match snapshot w/o user logged in', () => {
-        const component = create(<UserProvider value={loggedIn(false)}><SignUpForm /></UserProvider>);
+        const component = create(<UserProvider value={loggedIn(false)}><LoginForm /></UserProvider>);
         expect(component).toMatchSnapshot();
     });
 
     test('match snapshot /w user logged in', () => {
-        const component = create(<UserProvider value={loggedIn(true)}><SignUpForm /></UserProvider>);
+        const component = create(<UserProvider value={loggedIn(true)}><LoginForm /></UserProvider>);
         expect(component).toMatchSnapshot();
     });
 
