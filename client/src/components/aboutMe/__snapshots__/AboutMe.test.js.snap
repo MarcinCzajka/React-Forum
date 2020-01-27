@@ -1,0 +1,56 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutMe component match snapshot /w user logged in 1`] = `
+<div
+  className="ui card cardMiddle"
+  onClick={[Function]}
+>
+  <div
+    className="avatarOverlay"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="file outline image huge inverted icon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="avatarPlaceholderContainer sizeAboutMe"
+  >
+    <i
+      aria-hidden="true"
+      className="user icon avatarPlaceholder"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="image hidden"
+    onLoad={[Function]}
+  >
+    <img />
+  </div>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    />
+    <div
+      className="meta"
+    >
+      <p
+        className="darkFont"
+      >
+        Created at: 
+        January 27th 2020, Monday
+      </p>
+      <p
+        className="darkFont"
+      >
+        Email: 
+      </p>
+    </div>
+  </div>
+</div>
+`;
