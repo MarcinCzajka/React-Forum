@@ -1,8 +1,9 @@
 import React from 'react';
-import { Message, Button, Form, Modal, Menu } from 'semantic-ui-react';
+import { Button, Form, Modal, Menu } from 'semantic-ui-react';
 import basePath from '../../api/basePath';
 import UserContext from '../../contexts/UserContext';
 import Captcha from './Captcha';
+import { ErrorMessage } from '../message/ErrorMessage';
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -57,16 +58,6 @@ class SignUpForm extends React.Component {
         });
     }
 
-    error = () => {
-        if (this.state.error) {
-            return (
-                <Message error
-                header = 'Error'
-                content = {this.state.error} />
-            )
-        }
-    }
-
     initialVerification = () => {
         if(!this.state.userName) {
             this.setState({error: 'Username is not allowed to be empty.'})
@@ -106,10 +97,9 @@ class SignUpForm extends React.Component {
                         onClose={this.close}
                     >
                         <Modal.Header>Sign up</Modal.Header>
-                        <Modal.Content style={{paddingTop: 0}}>
+                        <Modal.Content>
                             <Form size='small' onSubmit={this.submit} error >
-                                <div>{this.error()}</div>
-                                <br></br>
+                                <ErrorMessage message={this.state.error} />
                                 <Form.Field required>
                                     <label>Username</label>
                                     <input placeholder='Name' autoComplete='off' value={this.state.userName} onChange={ (e) => this.setState({ userName: e.target.value })} />
