@@ -1,11 +1,9 @@
 import React from 'react';
-import { create } from "react-test-renderer";
+import { shallow } from 'enzyme';
 import Captcha from '../Captcha';
 
 describe('Captcha component', () => {
-    test('match snapshot', () => {
-        const component = create(<Captcha />);
-        expect(component).toMatchSnapshot();
+    test('renders without crashing', () => {
+        shallow(<Captcha />);
     });
-
 });

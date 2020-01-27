@@ -22,12 +22,12 @@ class ImageModal extends React.Component {
     }
 
     render() {
-        const { open } = this.state
+        const { open, loading } = this.state
         
         return (
             <Dimmer page onClickOutside={this.close} active={open} >
                 <div className='modalImageContainer' >
-                    <Dimmer inverted active={this.state.loading}>
+                    <Dimmer inverted active={loading}>
                         <Loader size='big' />
                     </Dimmer>
                     <img className='modalImage' onLoad={this.hideLoader} alt={this.props.alt} src={this.props.image} />

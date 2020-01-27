@@ -73,7 +73,7 @@ class AboutMe extends React.Component {
 
                 {!this.state.avatarReady ? (
                     <AvatarPlaceholder size='sizeAboutMe' /> 
-                    ) : ''}
+                ) : ''}
                     
                 <Image 
                     src={this.state.avatarFromState || userAvatar}
