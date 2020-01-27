@@ -1,0 +1,295 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm component match snapshot /w user logged in 1`] = `
+<div
+  className="ui inverted tabular menu"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <div
+      className="item"
+      onClick={[Function]}
+    >
+      Page 1
+    </div>
+  </a>
+  <a
+    href="/me"
+    onClick={[Function]}
+  >
+    <div
+      className="item"
+      onClick={[Function]}
+    >
+      Page 2
+    </div>
+  </a>
+  <a
+    href="/new"
+    onClick={[Function]}
+  >
+    <div
+      className="item"
+      onClick={[Function]}
+    >
+      Page 3
+    </div>
+  </a>
+  <div
+    className="right item noHover"
+    id="topPanelUsername"
+    onClick={[Function]}
+  >
+    EXAMPLE NAME
+  </div>
+  <div
+    className="right menu"
+  >
+    <div>
+      
+    </div>
+    <a
+      className="item"
+      onClick={[Function]}
+    >
+      Log Out
+    </a>
+  </div>
+</div>
+`;
+
+exports[`LoginForm component match snapshot w/o user logged in 1`] = `
+<div
+  className="ui inverted tabular menu"
+>
+  <a
+    href="/"
+    onClick={[Function]}
+  >
+    <div
+      className="item"
+      onClick={[Function]}
+    >
+      Page 1
+    </div>
+  </a>
+  
+  <a
+    href="/new"
+    onClick={[Function]}
+  >
+    <div
+      className="item"
+      onClick={[Function]}
+    >
+      Page 3
+    </div>
+  </a>
+  
+  <div
+    className="right menu"
+  >
+    <div>
+      <div
+        className="ui page modals dimmer transition visible active"
+      >
+        <div
+          className="ui tiny modal transition visible active"
+          style={Object {}}
+        >
+          <div
+            className="header"
+          >
+            Sign up
+          </div>
+          <div
+            className="content"
+            style={
+              Object {
+                "paddingTop": 0,
+              }
+            }
+          >
+            <form
+              className="ui small error form"
+              onSubmit={[Function]}
+            >
+              <div />
+              <br />
+              <div
+                className="required field"
+              >
+                <label>
+                  Username
+                </label>
+                <input
+                  autoComplete="off"
+                  onChange={[Function]}
+                  placeholder="Name"
+                  value=""
+                />
+              </div>
+              <div
+                className="required field"
+              >
+                <label>
+                  Email
+                </label>
+                <input
+                  autoComplete="new-password"
+                  onChange={[Function]}
+                  placeholder="Email"
+                  value=""
+                />
+              </div>
+              <div
+                className="required field"
+              >
+                <label>
+                  Password
+                </label>
+                <input
+                  autoCapitalize="off"
+                  autoComplete="new-password"
+                  autoCorrect="off"
+                  onChange={[Function]}
+                  placeholder="Password"
+                  spellCheck="false"
+                  type="password"
+                  value=""
+                />
+                <input
+                  autoCapitalize="off"
+                  autoComplete="new-password"
+                  autoCorrect="off"
+                  onChange={[Function]}
+                  placeholder="Repeat"
+                  spellCheck="false"
+                  type="password"
+                />
+              </div>
+              <div
+                className="field"
+              >
+                <div
+                  data-onloadcallbackname="onloadCallback"
+                  data-verifycallbackname="verifyCallback"
+                  id="g-recaptcha"
+                />
+              </div>
+              <button
+                className="ui large fluid button"
+                onClick={[Function]}
+                type="submit"
+              >
+                Sign up
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      className="ui page modals dimmer transition visible active"
+    >
+      <div
+        className="ui tiny modal transition visible active noMargin"
+        style={Object {}}
+      >
+        <div
+          className="header"
+        >
+          Log in
+        </div>
+        <div
+          className="content"
+          style={
+            Object {
+              "paddingTop": 0,
+            }
+          }
+        >
+          <form
+            className="ui small error form"
+            onSubmit={[Function]}
+          >
+            <div />
+            <br />
+            <div
+              className="required field"
+            >
+              <label>
+                Email
+              </label>
+              <input
+                onChange={[Function]}
+                placeholder="Email"
+                value=""
+              />
+            </div>
+            <div
+              className="required field"
+            >
+              <label>
+                Password
+              </label>
+              <input
+                autoCapitalize="off"
+                autoComplete="new-password"
+                autoCorrect="off"
+                onChange={[Function]}
+                placeholder="Password"
+                spellCheck="false"
+                type="password"
+                value=""
+              />
+            </div>
+            <div
+              className="ui checkbox"
+              onChange={[Function]}
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              onMouseUp={[Function]}
+            >
+              <input
+                checked={false}
+                className="hidden"
+                readOnly={true}
+                tabIndex={0}
+                type="checkbox"
+              />
+              <label>
+                Stay logged in
+              </label>
+            </div>
+            <button
+              className="ui large fluid button"
+              onClick={[Function]}
+              style={
+                Object {
+                  "marginTop": "15px",
+                }
+              }
+              type="submit"
+            >
+              Sign in
+            </button>
+            <p>
+              Don't have account yet? 
+              <span
+                className="asLink"
+                onClick={[Function]}
+              >
+                Sign up
+              </span>
+              !
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
