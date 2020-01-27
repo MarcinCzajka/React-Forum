@@ -3,6 +3,7 @@ import { Message, Button, Form, Modal, Menu, Checkbox } from 'semantic-ui-react'
 import basePath from '../../api/basePath';
 import UserContext from '../../contexts/UserContext';
 import jwt_decode from 'jwt-decode';
+import { ErrorMessage } from '../message/ErrorMessage';
 import '../global.css';
 
 class LoginForm extends React.Component {
@@ -69,16 +70,6 @@ class LoginForm extends React.Component {
         })
     }
 
-    error = () => {
-        if (this.state.error) {
-            return (
-                <Message error
-                header = 'Error'
-                content = {this.state.error} />
-            )
-        }
-    }
-
     showSignup = () => {
         this.close();
         this.context.showSignup();
@@ -103,10 +94,9 @@ class LoginForm extends React.Component {
                 onClose={this.close}
             >
                 <Modal.Header>Log in</Modal.Header>
-                <Modal.Content style={{paddingTop: 0}}>
+                <Modal.Content>
                     <Form size='small' onSubmit={this.login} error >
-                        <div>{this.error()}</div>
-                        <br></br>
+                        <ErrorMessage message={this.state.error} />
                         <Form.Field required>
                             <label>Email</label>
                             <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
