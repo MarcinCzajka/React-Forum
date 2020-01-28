@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginFormContainer component displays correct button when logged in 1`] = `
+<a
+  className="item"
+  onClick={[Function]}
+>
+  Log Out
+</a>
+`;
+
+exports[`LoginFormContainer component displays correct button when logged out 1`] = `
+<a
+  className="item"
+  onClick={[Function]}
+>
+  Log In
+</a>
+`;
