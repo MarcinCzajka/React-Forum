@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Menu } from "semantic-ui-react";
 import LoginFormContainer from "../login/LoginFormContainer";
-import SignUpForm from '../signup/SignUpForm';
+import SignUpFormContainer from '../signup/SignUpFormContainer';
 import { UserConsumer } from '../../contexts/UserContext';
 import './TopPanel.css';
 
@@ -42,7 +42,7 @@ class TopPanel extends React.Component {
                             </Menu.Item>
                         ) : ''}
                         <Menu.Menu position='right'>
-                            <SignUpForm />
+                            <SignUpFormContainer />
                             <LoginFormContainer />
                         </Menu.Menu>
                     </Menu>

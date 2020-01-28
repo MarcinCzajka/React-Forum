@@ -17,6 +17,7 @@ class LoginFormContainer extends React.Component {
     static contextType = UserContext;
     
     componentDidMount() {
+        //Append function to context that will display LoginForm when called
         this.context.addShowLoginToContext(this.open);
     }
 
@@ -42,7 +43,8 @@ class LoginFormContainer extends React.Component {
     }
 
     showSignup = () => {
-        this.close();
+        //Hide LoginForm and display SignUpForm
+        this.hideLoginForm();
         this.context.showSignup();
     }
 
