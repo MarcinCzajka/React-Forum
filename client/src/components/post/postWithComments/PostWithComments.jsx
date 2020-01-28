@@ -20,7 +20,7 @@ class PostWithComments extends React.Component {
     }
 
     componentDidMount() {
-        //get id from URI and get ForumPost details
+        //Pull id from URI and get ForumPost details
         getForumPost(this.props.match.params.id)
             .then(response => {
                 this.setState({roomDetails: {...response, arePropsUpdated: true}})
@@ -29,18 +29,6 @@ class PostWithComments extends React.Component {
                 console.log(err);
             })
 
-    }
-
-    removeCommentFromState = (id) => {
-        const comments = this.state.comments.filter(item => item.id !== id);
-
-        const commentsNotToRender = this.state.commentsNotToRender.slice();
-        if(commentsNotToRender.indexOf(id) === -1) commentsNotToRender.push(id)
-
-        this.setState({
-            comments: comments,
-            commentsNotToRender: commentsNotToRender
-        })
     }
 
     addCommentToState = (id) => {
@@ -60,6 +48,18 @@ class PostWithComments extends React.Component {
                 comments: comments
             });
         }
+    }
+
+    removeCommentFromState = (id) => {
+        const comments = this.state.comments.filter(item => item.id !== id);
+
+        const commentsNotToRender = this.state.commentsNotToRender.slice();
+        if(commentsNotToRender.indexOf(id) === -1) commentsNotToRender.push(id)
+
+        this.setState({
+            comments: comments,
+            commentsNotToRender: commentsNotToRender
+        })
     }
 
     refreshChildren = () => {
