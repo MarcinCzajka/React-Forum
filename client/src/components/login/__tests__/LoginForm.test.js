@@ -1,25 +1,15 @@
 import React from 'react';
 import { create } from "react-test-renderer";
-import LoginForm from '../LoginForm';
-import { UserProvider } from '../../../contexts/UserContext';
-
-jest.mock('semantic-ui-react/dist/commonjs/addons/Portal/Portal', () => ({ children }) => children);
-
-const loggedIn = bool => {
-    return {
-        loggedIn: bool,
-        addShowLoginToContext: function(){}
-    }
-}
+import { shallow } from 'enzyme';
+import LoginForm from '../form/LoginForm';
 
 describe('LoginForm component', () => {
-    test('match snapshot w/o user logged in', () => {
-        const component = create(<UserProvider value={loggedIn(false)}><LoginForm /></UserProvider>);
-        expect(component).toMatchSnapshot();
+    test('renders without crashing', () => {
+        shallow(<LoginForm />);
     });
 
-    test('match snapshot /w user logged in', () => {
-        const component = create(<UserProvider value={loggedIn(true)}><LoginForm /></UserProvider>);
+    test('match snapshot', () => {
+        const component = create(<LoginForm />);
         expect(component).toMatchSnapshot();
     });
 

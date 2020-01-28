@@ -3,7 +3,7 @@ import { create } from "react-test-renderer";
 import ErrorMessage from '../ErrorMessage';
 
 describe('ErrorMessage component', () => {
-   test('match snapshot with error', () => {
+   test('match snapshot with error message provided in props', () => {
        const component = create(<ErrorMessage message='This is serious error message' />);
        expect(component).toMatchSnapshot();
    });

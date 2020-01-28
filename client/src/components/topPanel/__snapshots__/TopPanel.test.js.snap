@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginForm component match snapshot /w user logged in 1`] = `
+exports[`TopPanel component match snapshot /w user logged in 1`] = `
 <div
   className="ui inverted tabular menu"
 >
@@ -60,7 +60,7 @@ exports[`LoginForm component match snapshot /w user logged in 1`] = `
 </div>
 `;
 
-exports[`LoginForm component match snapshot w/o user logged in 1`] = `
+exports[`TopPanel component match snapshot w/o user logged in 1`] = `
 <div
   className="ui inverted tabular menu"
 >
@@ -185,11 +185,17 @@ exports[`LoginForm component match snapshot w/o user logged in 1`] = `
         </div>
       </div>
     </div>
+    <a
+      className="item"
+      onClick={[Function]}
+    >
+      Log In
+    </a>
     <div
       className="ui page modals dimmer transition visible active"
     >
       <div
-        className="ui tiny modal transition visible active noMargin"
+        className="ui tiny modal transition visible active"
         style={Object {}}
       >
         <div

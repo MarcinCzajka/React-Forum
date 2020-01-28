@@ -20,7 +20,7 @@ const context = (loggedIn) => ({
 });
 
 
-describe('LoginForm component', () => {
+describe('TopPanel component', () => {
     test('renders without crashing', () => {
         shallow(<Router><TopPanel /></Router>);
     });

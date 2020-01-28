@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorMessage component match snapshot with error 1`] = `
+exports[`ErrorMessage component match snapshot with error message provided in props 1`] = `
 <div
   className="ui error message"
 >
