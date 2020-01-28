@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ErrorMessage component match snapshot with error message provided in props 1`] = `
+exports[`ErrorMessage component match snapshot with error message provided in props 1/2 1`] = `
 <div
   className="ui error message"
 >
@@ -14,6 +14,25 @@ exports[`ErrorMessage component match snapshot with error message provided in pr
     </div>
     <p>
       This is serious error message
+    </p>
+  </div>
+</div>
+`;
+
+exports[`ErrorMessage component match snapshot with error message provided in props 2/2 1`] = `
+<div
+  className="ui error message"
+>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      Error
+    </div>
+    <p>
+      This is very different serious error message
     </p>
   </div>
 </div>
