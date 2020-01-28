@@ -4,6 +4,9 @@ import { shallow } from 'enzyme';
 import LoginFormContainer from '../LoginFormContainer';
 import { UserProvider } from '../../../contexts/UserContext';
 
+//This line is needed to render semantic-ui Modal content because of Portals used in this component
+jest.mock('semantic-ui-react/dist/commonjs/addons/Portal/Portal', () => ({ children }) => children);
+
 const context = (loggedIn) => {
     return {
         loggedIn: loggedIn,
