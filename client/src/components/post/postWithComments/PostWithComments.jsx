@@ -1,9 +1,9 @@
 import React from 'react';
-import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPost from '../forumPost/ForumPost';
 import RecursiveComment from '../comment/recursiveComment/RecursiveComment';
+import getForumPost from '../businessLogic/getForumPost';
 import '../comment/recursiveComment/RecursiveComment.css';
 import './PostWithComments.css';
 
@@ -13,14 +13,53 @@ class PostWithComments extends React.Component {
 
         this.state = {
             roomDetails: {},
-            posts: [],
-            postsNotToRender: [],
+            comments: [],
+            commentsNotToRender: [],
             refreshChildren: false
         }
     }
 
     componentDidMount() {
-        this.getForumRoom();
+        //get id from URI and get ForumPost details
+        getForumPost(this.props.match.params.id)
+            .then(response => {
+                this.setState({roomDetails: {...response, arePropsUpdated: true}})
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+    }
+
+    removeCommentFromState = (id) => {
+        const comments = this.state.comments.filter(item => item.id !== id);
+
+        const commentsNotToRender = this.state.commentsNotToRender.slice();
+        if(commentsNotToRender.indexOf(id) === -1) commentsNotToRender.push(id)
+
+        this.setState({
+            comments: comments,
+            commentsNotToRender: commentsNotToRender
+        })
+    }
+
+    addCommentToState = (id) => {
+        const comments = this.state.comments.slice();
+        const index = comments.findIndex(item => {
+            return item.id === id;
+        });
+
+        if (index === -1) {
+            comments.push({
+                id: id,
+                key: id,
+                shouldPostRender: true
+            });
+
+            this.setState({
+                comments: comments
+            });
+        }
     }
 
     refreshChildren = () => {
@@ -38,11 +77,11 @@ class PostWithComments extends React.Component {
 
                 <Grid centered className='roomGrid'>
                     <Comment.Group className='postGroupContainer'>
-                        <ForumPost 
+                        <ForumPost
                             showResponseButton={true}
                             className='roomInPostsGroup'
                             refreshPosts={this.refreshChildren}
-                            {...this.state.roomDetails} 
+                            {...this.state.roomDetails}
                         />
                         <Segment className='initialPost'>
                             <RecursiveComment
@@ -50,9 +89,9 @@ class PostWithComments extends React.Component {
                                 roomId={this.props.match.params.id}
                                 parentId={this.props.match.params.id}
                                 refreshChildren={this.state.refreshChildren}
-                                removePostFromState={this.removePostFromState} 
-                                addPostToState={this.addPostToState}
-                                postsNotToRender={this.state.postsNotToRender}>
+                                removeCommentFromState={this.removeCommentFromState} 
+                                addCommentToState={this.addCommentToState}
+                                commentsNotToRender={this.state.commentsNotToRender}>
                             </RecursiveComment>
                         </Segment>
                     </Comment.Group>
@@ -60,56 +99,6 @@ class PostWithComments extends React.Component {
             </>
         )
     }
-
-    getForumRoom = () => {
-        basePath({
-            method: "get",
-            url: `/api/rooms/${this.props.match.params.id}`
-        })
-        .then(res => {
-            this.setState({roomDetails: {...res.data, ...{arePropsUpdated: true}}})
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
-    removePostFromState = (id) => {
-        const posts = this.state.posts.slice();
-        const postsNotToRender = this.state.postsNotToRender.slice();
-
-        let index = posts.findIndex(item => {
-          return item.id === id;
-        })
-
-        if (index !== -1) {
-            posts.splice(index, 1);
-            postsNotToRender.push(id);
-
-            this.setState({
-                posts: posts,
-                postsNotToRender: postsNotToRender
-            })
-        }
-      }
-
-      addPostToState = (id) => {
-        const posts = this.state.posts.slice();
-        let index = posts.findIndex(item => {
-          return item.id === id;
-        });
-        if (index === -1) {
-            posts.push({
-                id: id,
-                key: id,
-                shouldPostRender: true
-            });
-
-            this.setState({
-                posts: posts
-            });
-        }
-      }
 
 }
 

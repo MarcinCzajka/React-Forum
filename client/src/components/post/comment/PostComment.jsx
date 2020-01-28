@@ -45,11 +45,12 @@ class PostComment extends React.Component {
 	}
 	
 	render() {
-		const postsNotToRender = this.props.postsNotToRender.slice();
-		let shouldPostRender = postsNotToRender.findIndex(id => {
+		const commentsNotToRender = this.props.commentsNotToRender.slice();
+		const shouldCommentRender = commentsNotToRender.findIndex(id => {
           return id === this.state.id;
 		});
-        if (shouldPostRender !== -1) {
+
+        if (shouldCommentRender !== -1) {
             return "";
 		}
 		
@@ -100,9 +101,9 @@ class PostComment extends React.Component {
 					parentId={this.state.id}
 					refreshChildren={this.state.refreshChildren}
 					handleReplyToPost={this.handleReplyToPost}
-					removePostFromState={this.props.removePostFromState}
-					addPostToState={this.props.addPostToState}
-					postsNotToRender={this.props.postsNotToRender}
+					removeCommentFromState={this.props.removeCommentFromState}
+					addCommentToState={this.props.addCommentToState}
+					commentsNotToRender={this.props.commentsNotToRender}
 				>
 				</RecursiveComment>
 			</div>
@@ -172,7 +173,7 @@ class PostComment extends React.Component {
 				loading: false
 			});
 		});
-		this.props.addPostToState(this.state.id);
+		this.props.addCommentToState(this.state.id);
 	};
 
 	removeThisPost = async () => {

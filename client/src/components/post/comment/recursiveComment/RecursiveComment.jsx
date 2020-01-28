@@ -10,7 +10,7 @@ class RecursiveComment extends React.Component {
 		
 		this.state = { 
             parentId: this.props.parentId,
-            posts: []
+            comments: []
 		};
 	}
 
@@ -25,20 +25,21 @@ class RecursiveComment extends React.Component {
 	};
 	
 	render() {
-        const component = this.state.posts.map(item => {
-			return <PostComment className="comment"
+        const comments = this.state.comments.map(item => {
+			return <PostComment 
+					className="comment"
 					postId={item.id}
 					roomId={this.props.roomId}
 					key={item.key}
-					removePostFromState={this.props.removePostFromState}
-					addPostToState={this.props.addPostToState}
-					postsNotToRender={this.props.postsNotToRender}>
+					removeCommentFromState={this.props.removeCommentFromState}
+					addCommentToState={this.props.addCommentToState}
+					commentsNotToRender={this.props.commentsNotToRender}>
 				</PostComment>
         });
 
 		return (
 			<Comment.Group className="recursiveComment">
-				{component}
+				{comments}
 			</Comment.Group>
 		);
 	}
@@ -56,7 +57,7 @@ class RecursiveComment extends React.Component {
                 return {id: item._id, key: item._id};
             });
 
-            this.setState({posts: arrayOfPosts});
+            this.setState({comments: arrayOfPosts});
 
 		});
 	};
