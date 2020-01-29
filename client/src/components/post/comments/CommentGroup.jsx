@@ -1,7 +1,8 @@
 import React from 'react';
 import { Comment } from "semantic-ui-react";
 import PostComment from './comment/PostComment';
-import { fetchResponseComments } from './getComments';
+import UserContext from '../../../contexts/UserContext';
+import { fetchResponseComments, removeCommentById, replyToComment } from './getComments';
 import './CommentGroup.css';
 
 class CommentGroup extends React.Component {
@@ -14,29 +15,54 @@ class CommentGroup extends React.Component {
             comments: []
 		};
 	}
+
+	static contextType = UserContext;
 	
 	componentDidMount() {
-		this.getChildrenPosts();
+		this.getComments();
 	};
 
-	getChildrenPosts = () => {
+	getComments = () => {
 		fetchResponseComments(this.state.parentId, this.state.mongoSorting)
 			.then(res => {
-				const arrayOfPosts = res.data.map(item => {
-					return {id: item._id, key: item._id};
-				});
-
-				this.setState({comments: arrayOfPosts});
+				this.setState({comments: res.data});
 			});
 	};
+
+	handleReply = (roomId, content, responseTo) => {
+		replyToComment(this.context.userId, roomId, content, responseTo)
+			.then(res => {
+				console.log(res)
+			})
+			.catch(err => {
+				console.log(err);
+			})
+	}
+
+	removeComment = id => {
+		removeCommentById(id) 
+			.then(res => {
+				//When successfull - fetch comments again
+				this.getComments();
+			})
+			.catch(err => {
+				console.log(err)
+			})
+	}
 	
 	render() {
         const comments = this.state.comments.map(item => {
 			return <PostComment 
+						postId={item._id}
+						key={item._id}
+						authorId={item.authorId}
+						content={item.content}
+						date={item.date}
+						responseTo={item.responseTo}
+						roomId={item.roomId}
 						className="comment"
-						postId={item.id}
-						roomId={this.props.roomId}
-						key={item.key}
+						handleReply={this.handleReply}
+						removeComment={this.removeComment}
 					/>
         });
 

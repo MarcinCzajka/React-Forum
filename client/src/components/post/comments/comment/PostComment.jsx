@@ -1,7 +1,7 @@
 import React from 'react';
 import basePath from '../../../../api/basePath';
+import moment from 'moment';
 import { Comment, Form, Button } from "semantic-ui-react";
-import moment from "moment";
 import CommentGroup from '../CommentGroup';
 import UserContext from '../../../../contexts/UserContext';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
@@ -14,30 +14,29 @@ class PostComment extends React.Component {
 		
 		this.state = { 
 			id: this.props.postId,
+			authorId: this.props.authorId,
+			content: this.props.content,
+			date: this.props.date,
+			responseTo: this.props.responseTo,
 			roomId: this.props.roomId,
-			authorId: "",
-			content: "",
-			date: "",
 			authorNick: "",
 			avatar: "",
 			cssVisibility: "hidden",
 			replyContent: "",
-			refreshChildren: false,
 			loading: true,
 			avatarReady: false
 		}
 	}
 
 	static contextType = UserContext;
-
-	refreshChildren() {
-		this.setState({
-			refreshChildren: !this.state.refreshChildren
-		})
-	}
 	
 	componentDidMount() {
-		this.getPostDetails();
+		this.getPostAuthorDetails()
+	}
+
+	handleReplyToPost = () => {
+		const { id, roomId, replyContent } = this.state;
+		this.props.handleReply(roomId, replyContent, id)
 	}
 
 	onAvatarLoad = () => {
@@ -45,6 +44,7 @@ class PostComment extends React.Component {
 	}
 	
 	render() {
+		const { id } = this.state;
 		return (
 			<div className="ui large comments">
 
@@ -75,7 +75,7 @@ class PostComment extends React.Component {
 					{this.context.loggedIn ? (
 						<Comment.Actions>
 							<Button size='mini' onClick={this.changeReplyFormVisibility}>Reply</Button>
-							{this.context.userId === this.state.authorId ? <Button size='mini' onClick={this.removeThisPost}>Delete</Button> : ''}
+							{this.context.userId === this.state.authorId ? <Button size='mini' onClick={() => {this.props.removeComment(id)}}>Delete</Button> : ''}
 						</Comment.Actions>
 					) : ''}
 					
@@ -89,7 +89,7 @@ class PostComment extends React.Component {
 				</Comment>
 				)}
 				<CommentGroup
-					parentId={this.state.id}
+					parentId={id}
 					refreshChildren={this.state.refreshChildren}
 					handleReplyToPost={this.handleReplyToPost}
 					removeCommentFromState={this.props.removeCommentFromState}
@@ -103,28 +103,6 @@ class PostComment extends React.Component {
 
 	changeReplyFormVisibility = () => {
 		this.setState({cssVisibility: this.state.cssVisibility === "hidden" ? "shown" : "hidden"});
-	}
-
-
-	handleReplyToPost = async () => {
-		await basePath({
-		  method: "post",
-		  url: `/api/posts/`,
-		  data: {
-			  authorId: this.context.userId,
-			  roomId: this.state.roomId,
-			  content: this.state.replyContent,
-			  responseTo: this.state.id
-		  },
-		  withCredentials: true
-	  })
-	  .then((res) => {
-		if(res.status === 200) {
-			this.refreshChildren();
-			this.changeReplyFormVisibility();
-			this.setState({replyContent: ""});
-		}
-	  })
 	}
 
 	getPostDetails = async () => {
@@ -142,9 +120,9 @@ class PostComment extends React.Component {
 			});
 		})
 		.then(() => {
-			this.getPostAuthorDetails()
-		});
-	};
+			
+		})
+	}
 
 	getPostAuthorDetails = async () => {
 		await basePath({
@@ -156,28 +134,15 @@ class PostComment extends React.Component {
 				authorNick: res.data.name || "",
 				avatar: res.data.avatar || "",
 				loading: false
-			});
+			})
 		})
 		.catch(err => {
 			this.setState({
 				authorNick: "Deleted user.",
 				loading: false
-			});
-		});
-	};
-
-	removeThisPost = async () => {
-		await basePath({
-			method: "delete",
-			url: `/api/posts/${this.state.id}`,
-            withCredentials: true
+			})
 		})
-		.then(res => {
-			if(res.status === 200){
-				this.props.removePostFromState(this.state.id);
-			};
-		});
-	};
+	}
 
 };
 
