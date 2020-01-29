@@ -1,11 +1,11 @@
 import React from 'react';
-import basePath from '../../../api/basePath';
+import basePath from '../../../../api/basePath';
 import { Comment, Form, Button } from "semantic-ui-react";
 import moment from "moment";
-import RecursiveComment from './recursiveComment/RecursiveComment';
-import UserContext from '../../../contexts/UserContext';
-import PostPlaceholder from '../../placeholders/PostPlaceholder';
-import AvatarPlaceholder from '../../placeholders/AvatarPlaceholder';
+import CommentGroup from '../CommentGroup';
+import UserContext from '../../../../contexts/UserContext';
+import PostPlaceholder from '../../../placeholders/PostPlaceholder';
+import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
 import './PostComment.css';
 
 class PostComment extends React.Component {
@@ -45,15 +45,6 @@ class PostComment extends React.Component {
 	}
 	
 	render() {
-		const commentsNotToRender = this.props.commentsNotToRender.slice();
-		const shouldCommentRender = commentsNotToRender.findIndex(id => {
-          return id === this.state.id;
-		});
-
-        if (shouldCommentRender !== -1) {
-            return "";
-		}
-		
 		return (
 			<div className="ui large comments">
 
@@ -97,7 +88,7 @@ class PostComment extends React.Component {
 
 				</Comment>
 				)}
-				<RecursiveComment
+				<CommentGroup
 					parentId={this.state.id}
 					refreshChildren={this.state.refreshChildren}
 					handleReplyToPost={this.handleReplyToPost}
@@ -105,7 +96,7 @@ class PostComment extends React.Component {
 					addCommentToState={this.props.addCommentToState}
 					commentsNotToRender={this.props.commentsNotToRender}
 				>
-				</RecursiveComment>
+				</CommentGroup>
 			</div>
 		);
 	}
@@ -173,7 +164,6 @@ class PostComment extends React.Component {
 				loading: false
 			});
 		});
-		this.props.addCommentToState(this.state.id);
 	};
 
 	removeThisPost = async () => {

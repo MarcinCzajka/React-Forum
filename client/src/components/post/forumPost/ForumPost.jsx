@@ -31,8 +31,7 @@ class ForumPost extends React.Component {
 			arePropsUpdated: false,
 			loading: true,
 			errorMsg: '',
-			comments: 0,
-			showResponseButton: this.props.showResponseButton
+			comments: 0
 		}
 
 		this.imageModal = React.createRef();
@@ -166,7 +165,7 @@ class ForumPost extends React.Component {
 	}
 	
 	render() {
-		const {_id, loading, image, title, description, authorNick = '', comments, views, liked, upvotes, showReplyForm, replyContent, showResponseButton} = this.state;
+		const {_id, loading, image, title, description, authorNick = '', comments, views, liked, upvotes, showReplyForm, replyContent} = this.state;
 		const creationDate = moment(this.state.creationDate).format('YYYY-MM-DD');
 
 		return (
@@ -239,19 +238,6 @@ class ForumPost extends React.Component {
 					<Form reply style={{gridColumn:'1/-1'}}>
 						<Form.TextArea value={replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
 					</Form>
-				) : ''}
-
-				{showResponseButton ? (
-					<Button  
-						className='createPostBtn'
-						style={{marginLeft:'80%'}}
-						icon 
-						labelPosition='right' 
-						color='green' 
-						onClick={this.handleReplyBtnClick} >
-							{showReplyForm ? 'Submit' : 'Add response'}
-							<Icon name='comment alternate outline'></Icon>
-					</Button>
 				) : ''}
 
 			</article>
