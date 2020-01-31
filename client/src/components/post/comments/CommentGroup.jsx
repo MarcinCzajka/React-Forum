@@ -81,7 +81,7 @@ class CommentGroup extends React.Component {
 	render() {
         const comments = this.state.comments.map(item => {
 			const author = this.state.authors.find(author => author.id === item.authorId);
-			
+
 			return <PostComment 
 						showPlaceholder={!author ? true : false}
 						postId={item._id}
@@ -98,8 +98,6 @@ class CommentGroup extends React.Component {
 						removeComment={this.removeComment}
 					/>
 		});
-
-		console.log(comments)
 
 		return (
 			<Comment.Group className="recursiveComment">

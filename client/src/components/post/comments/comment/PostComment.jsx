@@ -16,9 +16,7 @@ class PostComment extends React.Component {
 			id: this.props.postId,
 			authorId: this.props.authorId,
 			content: this.props.content,
-			date: moment(this.props.date)
-				.format("MMMM Do YYYY, h:mm:ss")
-				.toString(),
+			date: this.props.date,
 			responseTo: this.props.responseTo,
 			roomId: this.props.roomId,
 			authorNick: this.props.authorNick,
@@ -31,12 +29,18 @@ class PostComment extends React.Component {
 
 	static contextType = UserContext;
 
-	static getDerivedStateFromProps(props,) {
-		return props
+	static getDerivedStateFromProps(props) {
+		const result = {...props};
+			result.date = moment(result.date)
+			.format("MMMM Do YYYY, h:mm:ss")
+			.toString();
+
+		return result
 	}
 
 	handleReplyToPost = () => {
 		const { id, roomId, replyContent } = this.state;
+		
 		this.props.handleReply(roomId, replyContent, id)
 	}
 
