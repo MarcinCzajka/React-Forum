@@ -93,6 +93,7 @@ class CommentGroup extends React.Component {
 						roomId={item.roomId}
 						authorNick={(author ? author.authorNick : '')}
 						avatar={(author ? author.avatar : '')}
+						userId={this.context.userId}
 						className="comment"
 						handleReply={this.handleReply}
 						removeComment={this.removeComment}
