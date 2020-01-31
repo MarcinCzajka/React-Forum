@@ -31,7 +31,7 @@ class PostComment extends React.Component {
 
 	static contextType = UserContext;
 
-	static getDerivedStateFromProps(props, state) {
+	static getDerivedStateFromProps(props,) {
 		return props
 	}
 
@@ -45,7 +45,16 @@ class PostComment extends React.Component {
 	}
 	
 	render() {
-		const { id, avatarReady, avatar, authorNick, date, content, authorId, cssVisibility, replyContent, showPlaceholder } = this.state;
+		const { id, 
+			avatarReady, 
+			avatar, 
+			authorNick, 
+			date, 
+			content, 
+			authorId, 
+			cssVisibility,
+			replyContent, 
+			showPlaceholder } = this.state;
 		
 		return (
 			<div className="ui large comments">

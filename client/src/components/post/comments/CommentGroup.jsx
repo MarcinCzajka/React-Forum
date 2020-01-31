@@ -13,7 +13,8 @@ class CommentGroup extends React.Component {
 		this.state = { 
 			parentId: this.props.parentId,
 			mongoSorting: this.props.sorting,
-            comments: []
+			comments: [],
+			authors: []
 		}
 	}
 
@@ -26,10 +27,9 @@ class CommentGroup extends React.Component {
 	getComments = () => {
 		fetchResponseComments(this.state.parentId, this.state.mongoSorting)
 			.then(res => {
-				const comments = res.data.map((item, index) => {
-					this.getAuthor(item.authorId, index);
+				const comments = res.data.map(item => {
+					this.getAuthor(item.authorId);
 
-					item.showPlaceholder = true;
 					return item
 				});
 
@@ -37,27 +37,32 @@ class CommentGroup extends React.Component {
 			})
 	}
 
-	getAuthor = (id, index) => {
-		let authorNick = '';
-		let avatar = '';
+	getAuthor = (id) => {
+		if(this.state.authors.find(author => author.id === id)) return;
+
+		let result = {};
 
 		getUserDetails(id)
 			.then(res => {
-				if(res.data.name) authorNick = res.data.name;
-				if(res.data.avatar) avatar = res.data.avatar;
+				result = {
+					id: id,
+					authorNick: res.data.name,
+					avatar: res.data.avatar
+				};
 			})
 			.catch(err => {
-				authorNick = 'Deleted user.';
+				result = {
+					id: id,
+					authorNick: 'Deleted user.',
+				};
 			})
 			.finally(() => {
-				const commentsWithAuthor = this.state.comments;
-					commentsWithAuthor[index].authorNick = authorNick;
-					commentsWithAuthor[index].avatar = avatar;
-					commentsWithAuthor[index].showPlaceholder = false;
+				const { authors } = this.state;
+				if(authors.find(author => author.id === id)) return;
 
-				this.setState({
-					comments: commentsWithAuthor
-				})
+				authors.push(result);
+
+				this.setState({authors: authors});
 			})
 	}
 
@@ -75,8 +80,10 @@ class CommentGroup extends React.Component {
 	
 	render() {
         const comments = this.state.comments.map(item => {
+			const author = this.state.authors.find(author => author.id === item.authorId);
+			
 			return <PostComment 
-						showPlaceholder={item.showPlaceholder}
+						showPlaceholder={!author ? true : false}
 						postId={item._id}
 						key={item._id}
 						authorId={item.authorId}
@@ -84,13 +91,15 @@ class CommentGroup extends React.Component {
 						date={item.date}
 						responseTo={item.responseTo}
 						roomId={item.roomId}
-						authorNick={item.authorNick}
-						avatar={item.avatar}
+						authorNick={(author ? author.authorNick : '')}
+						avatar={(author ? author.avatar : '')}
 						className="comment"
 						handleReply={this.handleReply}
 						removeComment={this.removeComment}
 					/>
 		});
+
+		console.log(comments)
 
 		return (
 			<Comment.Group className="recursiveComment">
