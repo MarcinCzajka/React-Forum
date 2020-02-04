@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import { Comment } from "semantic-ui-react";
 import CommentGroup from '../CommentGroup';
-import { UserConsumer } from '../../../../contexts/UserContext';
 import ReplyForm from '../replyForm/ReplyForm';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
@@ -57,50 +56,48 @@ class PostComment extends React.Component {
 			showPlaceholder } = this.state;
 		
 		return (
-			<UserConsumer>
-				<div className="ui large comments">
+			<div className="ui large comments">
 
-					{showPlaceholder ? (
-						<PostPlaceholder />
-					) : (
-						<Comment className="comment">
+				{showPlaceholder ? (
+					<PostPlaceholder />
+				) : (
+					<Comment className="comment">
 
-							{!avatarReady ? (
-								<AvatarPlaceholder size='sizePostComment' /> 
-							) : ''}
+						{!avatarReady ? (
+							<AvatarPlaceholder size='sizePostComment' /> 
+						) : ''}
 
-							<Comment.Avatar 
-								style={{display:(avatarReady ? 'block' : 'none')}}
-								className="avatar" 
-								src={avatar}
-								onLoad={this.onAvatarLoad}>
-							</Comment.Avatar>
+						<Comment.Avatar 
+							style={{display:(avatarReady ? 'block' : 'none')}}
+							className="avatar" 
+							src={avatar}
+							onLoad={this.onAvatarLoad}>
+						</Comment.Avatar>
+						
+						<Comment.Content>
+							<Comment.Author className="author" as='a'>{authorNick}</Comment.Author>
+							<Comment.Metadata className="metadata">
+								<span className="date">{date}</span>
+							</Comment.Metadata>
+							<Comment.Text as='p' className="text">{content}</Comment.Text>
+
+						<ReplyForm 
+							postId={id}
+							roomId={roomId}
+							authorId={authorId}
+							userId={this.props.userId}
+							handleReply={this.props.handleReply} 
+						/>
 							
-							<Comment.Content>
-								<Comment.Author className="author" as='a'>{authorNick}</Comment.Author>
-								<Comment.Metadata className="metadata">
-									<span className="date">{date}</span>
-								</Comment.Metadata>
-								<Comment.Text as='p' className="text">{content}</Comment.Text>
+						</Comment.Content>
+					</Comment>
+				)}
 
-							<ReplyForm 
-								postId={id}
-								roomId={roomId}
-								authorId={authorId}
-								userId={this.props.userId}
-								handleReply={this.props.handleReply} 
-							/>
-								
-							</Comment.Content>
-						</Comment>
-					)}
+				<CommentGroup 
+					parentId={id} >
+				</CommentGroup>
 
-					<CommentGroup 
-						parentId={id} >
-					</CommentGroup>
-
-				</div>
-			</UserConsumer>
+			</div>
 		);
 	}
 

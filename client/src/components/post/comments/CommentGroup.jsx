@@ -73,13 +73,15 @@ class CommentGroup extends React.Component {
 	removeComment = id => {
 		removeCommentById(id) 
 			.then(res => {
-				//When successfull - fetch comments again
-				this.getComments();
+				console.log(res)
+
+				//Loop throught comments and remove comment with id from res
 			})
 	}
 	
 	render() {
         const comments = this.state.comments.map(item => {
+
 			const author = this.state.authors.find(author => author.id === item.authorId);
 
 			return <PostComment 
@@ -99,6 +101,8 @@ class CommentGroup extends React.Component {
 						removeComment={this.removeComment}
 					/>
 		});
+
+		console.log(comments)
 
 		return (
 			<Comment.Group className="recursiveComment">
