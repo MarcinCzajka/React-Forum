@@ -86,7 +86,8 @@ class PostComment extends React.Component {
 							roomId={roomId}
 							authorId={authorId}
 							userId={this.props.userId}
-							handleReply={this.props.handleReply} 
+							handleReply={this.props.handleReply}
+							removeComment={this.props.removeComment}
 						/>
 							
 						</Comment.Content>
