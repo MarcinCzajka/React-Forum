@@ -1,0 +1,25 @@
+{
+    "feedPageLink": "Feed",
+    "aboutMeLink": "Me",
+    "newPostLink": "New",
+
+    "signUp": {
+        "button": "Sign Up",
+        "modalHeader": "Sign up",
+        "label": {
+            "username": "Username",
+            "usernamePlaceholder": "Name",
+            "email": "Email",
+            "emailPlaceholder": "Email",
+            "password": "Password",
+            "passwordPlaceholder": "Password",
+            "passrepeat": "Password",
+            "passrepeatPlaceholder": "Repeat"
+        }
+    },
+
+    "login": {
+        "loginButton": "Login",
+        "logoutButton": "Log Out"
+    }
+}

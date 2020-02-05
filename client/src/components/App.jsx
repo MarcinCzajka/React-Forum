@@ -1,12 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Helmet } from "react-helmet";
+import locale from '../locale/en/dictionary.json';
 import TopPanel from './topPanel/TopPanel';
 import PostList from './post/postList/PostList';
 import PostWithComments from './post/postWithComments/PostWithComments';
 import PostCreator from './post/postCreator/PostCreator';
 import AboutMe from './aboutMe/AboutMe';
 import "semantic-ui-css/semantic.min.css";
+import { LocaleProvider } from '../contexts/LocaleContext';
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
 import './global.css';
@@ -27,9 +29,9 @@ class App extends React.Component {
             userCreatedAt: '',
             userEmail: '',
             pages: [
-                {name: 'Feed'},
-                {name: 'Me'},
-                {name: 'New'}
+                locale.feedPageLink,
+                locale.aboutMeLink,
+                locale.newPostLink
             ]
         };
 
@@ -81,6 +83,8 @@ class App extends React.Component {
             pages: this.state.pages,
             showLogin: this.state.showLogin,
             showSignup: this.state.showSignup,
+
+            locale: locale,
             
             setContextData: this.setContextData,
             addShowLoginToContext: this.addShowLoginToContext,
@@ -88,7 +92,7 @@ class App extends React.Component {
         };
         
         return (
-            <>                 
+            <LocaleProvider value={locale}>     
                 <Helmet>
                     <title>{this.state.appName}</title>
                 </Helmet>
@@ -104,7 +108,7 @@ class App extends React.Component {
                         </Switch>
                     </UserProvider>
                 </Router>
-            </>
+            </LocaleProvider>
         )
     }
 }

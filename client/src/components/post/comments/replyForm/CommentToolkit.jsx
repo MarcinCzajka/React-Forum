@@ -1,7 +1,7 @@
 import React from 'react';
 import { Comment, Form, Button } from "semantic-ui-react";
 
-class ReplyForm extends React.Component {
+class CommentToolkit extends React.Component {
     constructor(props) {
         super(props);
 
@@ -10,6 +10,21 @@ class ReplyForm extends React.Component {
             displayTextArea: false
         }
     }
+
+    resetState = () => {
+        this.setState({
+            textAreaContent: '',
+            displayTextArea: false
+        })
+    }
+
+    handleReply = () => {
+        const { roomId, postId } = this.props;
+
+        this.props.handleReply(roomId, this.state.textAreaContent, postId)
+            .then(this.resetState)
+    }
+
     render() {
         const { postId, roomId, userId, authorId, removeComment } = this.props;
         return (
@@ -29,12 +44,12 @@ class ReplyForm extends React.Component {
                             onChange={e => this.setState({textAreaContent: e.target.value})} 
                         />
 
-                        <Button 
-                            onClick={() => {this.handleReply(roomId, this.state.textAreaContent, postId)}} 
-                            content='Add Reply' 
-                            labelPosition='left' 
-                            icon='edit' 
-                            primary 
+                        <Button
+                            onClick={this.handleReply}
+                            content='Add Reply'
+                            labelPosition='left'
+                            icon='edit'
+                            primary
                         />
 
                     </Form>
@@ -46,4 +61,4 @@ class ReplyForm extends React.Component {
 
 }
 
-export default ReplyForm
+export default CommentToolkit

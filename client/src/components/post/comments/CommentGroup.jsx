@@ -67,7 +67,19 @@ class CommentGroup extends React.Component {
 	}
 
 	handleReply = (roomId, content, responseTo) => {
-		replyToComment(this.context.userId, roomId, content, responseTo)
+		return new Promise((resolve, reject) => {
+			replyToComment(this.context.userId, roomId, content, responseTo)
+				.then(res => {
+					const comments = this.state.comments;
+					comments.push(res.data)
+
+					this.setState({comments: comments})
+					resolve();
+				})
+				.catch(err => {
+					console.log(err)
+				})
+		})
 	}
 
 	removeComment = id => {
@@ -87,6 +99,7 @@ class CommentGroup extends React.Component {
 			const author = this.state.authors.find(author => author.id === item.authorId);
 
 			return <PostComment 
+						className="comment"
 						showPlaceholder={!author ? true : false}
 						postId={item._id}
 						key={item._id}
@@ -98,8 +111,6 @@ class CommentGroup extends React.Component {
 						authorNick={(author ? author.authorNick : '')}
 						avatar={(author ? author.avatar : '')}
 						userId={this.context.userId}
-						className="comment"
-						handleReply={this.handleReply}
 						removeComment={this.removeComment}
 					/>
 		});

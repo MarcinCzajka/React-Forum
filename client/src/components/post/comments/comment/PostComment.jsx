@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import { Comment } from "semantic-ui-react";
 import CommentGroup from '../CommentGroup';
-import ReplyForm from '../replyForm/ReplyForm';
+import CommentToolkit from '../replyForm/CommentToolkit';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
 import './PostComment.css';
@@ -23,6 +23,8 @@ class PostComment extends React.Component {
 			avatar: this.props.avatar,
 			avatarReady: false
 		}
+
+		this.handleReplyRef = React.createRef();
 	}
 
 	static getDerivedStateFromProps(props) {
@@ -37,7 +39,7 @@ class PostComment extends React.Component {
 	handleReplyToPost = () => {
 		const { id, roomId, replyContent } = this.state;
 		
-		this.props.handleReply(roomId, replyContent, id)
+		this.handleReplyRef(roomId, replyContent, id);
 	}
 
 	onAvatarLoad = () => {
@@ -81,12 +83,12 @@ class PostComment extends React.Component {
 							</Comment.Metadata>
 							<Comment.Text as='p' className="text">{content}</Comment.Text>
 
-						<ReplyForm 
+						<CommentToolkit 
 							postId={id}
 							roomId={roomId}
 							authorId={authorId}
 							userId={this.props.userId}
-							handleReply={this.props.handleReply}
+							handleReply={this.handleReplyToPost}
 							removeComment={this.props.removeComment}
 						/>
 							
@@ -95,7 +97,8 @@ class PostComment extends React.Component {
 				)}
 
 				<CommentGroup 
-					parentId={id} >
+					parentId={id} 
+					ref={this.handleReplyRef} >
 				</CommentGroup>
 
 			</div>

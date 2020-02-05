@@ -36,7 +36,6 @@ export const removeCommentById = (id) => {
 }
 
 export const replyToComment = (userId, roomId, content, responseTo) => {
-    console.log(userId, roomId, content, responseTo)
     return new Promise((resolve, reject) => {
         basePath({
             method: "post",
