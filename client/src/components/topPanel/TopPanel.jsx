@@ -12,7 +12,7 @@ export default props => {
         <LocaleConsumer>
             {locale => (
                 <UserConsumer>
-                    {context => (
+                    {user => (
 
                         <Menu tabular inverted>
 
@@ -20,7 +20,7 @@ export default props => {
                                 <Menu.Item name={locale.feedPageLink} />
                             </Link>
 
-                            {context.loggedIn ? (
+                            {user.loggedIn ? (
                                 <Link to='/me'>
                                     <Menu.Item name={locale.aboutMeLink} />
                                 </Link>
@@ -31,9 +31,9 @@ export default props => {
                                 <Menu.Item name={locale.newPostLink} />
                             </Link>
 
-                            {context.loggedIn ? (
+                            {user.loggedIn ? (
                                 <Menu.Item position='right' id='topPanelUsername' className='noHover'>
-                                    {context.userName.toUpperCase()}
+                                    {user.userName.toUpperCase()}
                                 </Menu.Item>
                             ) : ''}
 

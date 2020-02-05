@@ -4,6 +4,7 @@ import SignUpForm from './form/SignUpForm';
 import UserContext from '../../contexts/UserContext';
 import initialVerification from './initialVerification';
 import createAccount from './createAccount';
+import { LocaleConsumer } from '../../contexts/LocaleContext';
 
 class SignUpFormContainer extends React.Component {
     constructor(props) {
@@ -54,15 +55,19 @@ class SignUpFormContainer extends React.Component {
     render() {
         if(this.context.loggedIn) return '';
         return (
-            <>
-                <Menu.Item onClick={this.open} name='Sign up!' />
-                <SignUpForm 
-                    open={this.state.open}
-                    onClose={this.hideSignUpForm}
-                    submit={this.submit}
-                    errorMessage={this.state.errorMessage}
-                />
-            </>
+            <LocaleConsumer>
+                {locale => (
+                    <>
+                        <Menu.Item onClick={this.open} name={locale.signUp.button} />
+                        <SignUpForm 
+                            open={this.state.open}
+                            onClose={this.hideSignUpForm}
+                            submit={this.submit}
+                            errorMessage={this.state.errorMessage}
+                        />
+                    </>
+                )} 
+            </LocaleConsumer>
         )
     }
 

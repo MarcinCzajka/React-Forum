@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Form, Modal, Checkbox } from 'semantic-ui-react';
 import ErrorMessage from '../../message/ErrorMessage';
+import { LocaleConsumer } from '../../../contexts/LocaleContext';
 
 class LoginForm extends React.Component {
 
@@ -18,55 +19,63 @@ class LoginForm extends React.Component {
         const { open, onClose, handleLogin, errorMessage, showSignup } = this.props;
 
         return (
-            <Modal 
-                size='tiny'
-                open={open}
-                onClose={onClose}
-            >
-                <Modal.Header>Log in</Modal.Header>
-
-                <Modal.Content>
-                    <Form 
-                        error
-                        size='small'
-                        onSubmit={ () => { handleLogin(this.state) }}
+            <LocaleConsumer>
+                {locale => (
+                    <Modal 
+                        size='tiny'
+                        open={open}
+                        onClose={onClose}
                     >
+                        <Modal.Header>{locale.login.modalHeader}</Modal.Header>
 
-                        <ErrorMessage message={errorMessage} />
+                        <Modal.Content>
+                            <Form 
+                                error
+                                size='small'
+                                onSubmit={ () => { handleLogin(this.state) }}
+                            >
 
-                        <Form.Field required>
-                            <label>Email</label>
-                            <input placeholder='Email' value={this.state.email} onChange={ (e) => this.setState({ email: e.target.value })} />
-                        </Form.Field>
+                                <ErrorMessage message={errorMessage} />
 
-                        <Form.Field required>
-                            <label>Password</label>
-                            <input 
-                                type='password'
-                                placeholder='Password' 
-                                autoComplete = "new-password"
-                                spellCheck = "false"
-                                autoCapitalize = "off"
-                                autoCorrect = "off"
-                                value={this.state.password} 
-                                onChange={ (e) => this.setState({ password: e.target.value })} 
-                            />
-                        </Form.Field>
+                                <Form.Field required>
+                                    <label>{locale.login.label.email}</label>
+                                    <input
+                                        value={this.state.email}
+                                        placeholder={locale.login.label.emailPlaceholder}
+                                        onChange={ (e) => this.setState({ email: e.target.value })}
+                                    />
+                                </Form.Field>
 
-                        <Checkbox
-                            checked={this.state.stayLogged}
-                            label='Stay logged in' 
-                            onChange={() => this.setState({ stayLogged: !this.state.stayLogged })} 
-                        />
+                                <Form.Field required>
+                                    <label>{locale.login.label.password}</label>
+                                    <input 
+                                        type='password'
+                                        placeholder={locale.login.label.passwordPlaceholder} 
+                                        autoComplete = "new-password"
+                                        spellCheck = "false"
+                                        autoCapitalize = "off"
+                                        autoCorrect = "off"
+                                        value={this.state.password} 
+                                        onChange={ (e) => this.setState({ password: e.target.value })} 
+                                    />
+                                </Form.Field>
 
-                        <Button style={{'marginTop':'15px'}} type='submit' fluid size='large'>Sign in</Button>
+                                <Checkbox
+                                    checked={this.state.stayLogged}
+                                    label={locale.login.stayLoggedIn}
+                                    onChange={() => this.setState({ stayLogged: !this.state.stayLogged })} 
+                                />
 
-                        <p>Don't have account yet? <span className='asLink' onClick={showSignup}>Sign up</span>!</p>
+                                <Button style={{'marginTop':'15px'}} type='submit' fluid size='large'>{locale.login.submitButton}</Button>
 
-                    </Form>
-                </Modal.Content>
-                
-            </Modal>
+                                <p>{locale.login.noAccountYet} <span className='asLink' onClick={showSignup}>{locale.login.signUpLink}</span>!</p>
+
+                            </Form>
+                        </Modal.Content>
+                        
+                    </Modal>
+                )}
+            </LocaleConsumer>
         )
     }
 

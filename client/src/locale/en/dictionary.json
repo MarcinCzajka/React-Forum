@@ -1,4 +1,6 @@
 {
+    "locale": "en",
+    "appName": "React-forum",
     "feedPageLink": "Feed",
     "aboutMeLink": "Me",
     "newPostLink": "New",
@@ -20,6 +22,26 @@
 
     "login": {
         "loginButton": "Login",
-        "logoutButton": "Log Out"
+        "logoutButton": "Log Out",
+        "submitButton": "Sign in",
+        "modalHeader": "Log in",
+        "stayLoggedIn": "Stay logged in",
+        "noAccountYet": "Don't have account yet?",
+        "signUpLink": "Sign up",
+        "label": {
+            "email": "Email",
+            "emailPlaceholder": "Email",
+            "password": "Password",
+            "passwordPlaceholder": "Password"
+        }
+    },
+
+    "postCreator": {
+        "title": "Create new Post",
+        "createPostButton": "Create post",
+        "changeTitlePlaceholder": "Change title",
+        "changeContentPlaceholder": "Type description of your post here...",
+        "lettersLeftCounterOne": "",
+        "lettersLeftCounterTwo": "letters left."
     }
 }

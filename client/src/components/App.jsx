@@ -20,19 +20,13 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            appName: 'React-forum',
-            selectedPage: 'Feed',
+            selectedPage: locale.feedPageLink,
             loggedIn: false,
             userName: '',
             userId: '',
             userAvatar: '',
             userCreatedAt: '',
-            userEmail: '',
-            pages: [
-                locale.feedPageLink,
-                locale.aboutMeLink,
-                locale.newPostLink
-            ]
+            userEmail: ''
         };
 
         this.setContextData = this.setContextData.bind(this);
@@ -73,18 +67,14 @@ class App extends React.Component {
 
     render() {
         const contextValue = {
-            appName: this.state.appName,
             loggedIn: this.state.loggedIn,
             userName: this.state.userName,
             userId: this.state.userId,
             userAvatar: this.state.userAvatar,
             userEmail: this.state.userEmail,
             userCreatedAt: this.state.userCreatedAt,
-            pages: this.state.pages,
             showLogin: this.state.showLogin,
             showSignup: this.state.showSignup,
-
-            locale: locale,
             
             setContextData: this.setContextData,
             addShowLoginToContext: this.addShowLoginToContext,
@@ -94,7 +84,7 @@ class App extends React.Component {
         return (
             <LocaleProvider value={locale}>     
                 <Helmet>
-                    <title>{this.state.appName}</title>
+                    <title>{locale.appName}</title>
                 </Helmet>
 
                 <Router>

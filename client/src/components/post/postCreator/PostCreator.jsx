@@ -3,6 +3,7 @@ import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
+import { LocaleConsumer } from '../../../contexts/LocaleContext';
 import ImageModal from '../../imageModal/ImageModal';
 import '../forumPost/ForumPost.css';
 import './PostCreator.css';
@@ -131,86 +132,94 @@ class PostCreator extends React.Component {
 
     render() {
         return (
-            <>
-                <Helmet>
-                    <title>Create new Post - {this.context.appName}</title>
-                </Helmet>
+            <LocaleConsumer>
+                {locale => (
+                    <>
+                        <Helmet>
+                            <title>{locale.postCreator.title} - {locale.appName}</title>
+                        </Helmet>
 
-                <article className='roomContainer'>
-                    <div>{this.error()}</div>
-                    <div className='roomGrid noMargin noPadding' >
+                        <article className='roomContainer'>
+                            <div>{this.error()}</div>
+                            <div className='roomGrid noMargin noPadding' >
 
-                            <div className='roomImageContainer imageContainerInCreation' >
-                                <img 
-                                    className='roomImage'
-                                    src={this.state.image}
-                                    alt={this.state.title}
-                                />
-                                <div className='imageOverlay imageOverlayInCreation' >
-                                    <Icon id='zoomIcon' name='zoom-in' inverted size='huge' onClick={this.showImageModal} />
-                                    <Icon id='uploadIcon' name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
-                                </div>
-                            </div>
+                                    <div className='roomImageContainer imageContainerInCreation' >
+                                        <img 
+                                            className='roomImage'
+                                            src={this.state.image}
+                                            alt={this.state.title}
+                                        />
+                                        <div className='imageOverlay imageOverlayInCreation' >
+                                            <Icon id='zoomIcon' name='zoom-in' inverted size='huge' onClick={this.showImageModal} />
+                                            <Icon id='uploadIcon' name='file outline image' size='huge' inverted onClick={this.showWidget}></Icon>
+                                        </div>
+                                    </div>
 
-                        <header className='roomTitle roomTitleCreator noMargin noPadding' onClick={this.editTitle}>
-                            <textarea 
-                                className='titleInput'
-                                placeholder='Change title'
-                                value={this.state.title} 
-                                onChange={this.changeTitle}>
-                            </textarea>
+                                <header className='roomTitle roomTitleCreator noMargin noPadding' onClick={this.editTitle}>
+                                    <textarea 
+                                        className='titleInput'
+                                        value={this.state.title} 
+                                        placeholder={locale.postCreator.changeTitlePlaceholder}
+                                        onChange={this.changeTitle}>
+                                    </textarea>
 
-                            <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
-                                <Icon name='edit outline'></Icon>
-                            </div>
-                        </header>
+                                    <div className='titleOverlay' onClick={() => this.focus('titleInput')}>
+                                        <Icon name='edit outline'></Icon>
+                                    </div>
+                                </header>
 
-                        <main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
-                            <textarea 
-                                className='descriptionInput'
-                                placeholder='Type description of your post here'
-                                value={this.state.description} 
-                                onChange={e => {this.setState({description: e.target.value})}}>
-                            </textarea>
+                                <main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
+                                    <textarea 
+                                        className='descriptionInput'
+                                        value={this.state.description} 
+                                        placeholder={locale.postCreator.changeContentPlaceholder}
+                                        onChange={e => {this.setState({description: e.target.value})}}>
+                                    </textarea>
 
-                            <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
+                                    <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
 
-                            <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
-                                <Icon name='edit outline' size='big'></Icon>
-                            </div>
-                        </main>
+                                    <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
+                                        <Icon name='edit outline' size='big'></Icon>
+                                    </div>
+                                </main>
 
-                        <footer className='roomFooter'>
-                            <Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
-                                <Statistic className='roomStat'>
-                                    <Statistic.Value>
-                                        <Icon name='comments outline'> 0</Icon>
-                                    </Statistic.Value>
-                                </Statistic>
+                                <footer className='roomFooter'>
+                                    <Statistic.Group size='mini' className='maxWidth roomStats noMargin'>
+                                        <Statistic className='roomStat'>
+                                            <Statistic.Value>
+                                                <Icon name='comments outline'> 0</Icon>
+                                            </Statistic.Value>
+                                        </Statistic>
 
-                                <Statistic className='roomStat'>
-                                    <Statistic.Value><Icon name='eye'/>  0</Statistic.Value>
-                                </Statistic>
+                                        <Statistic className='roomStat'>
+                                            <Statistic.Value><Icon name='eye'/>  0</Statistic.Value>
+                                        </Statistic>
+                                        
+
+                                        <Statistic className='roomStat' >
+                                            <Statistic.Value>
+                                                <Icon name='thumbs up' />  0
+                                            </Statistic.Value>
+                                        </Statistic>
+                                    </Statistic.Group>
+                                </footer>
                                 
+                                <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewRoom} >
+                                    {locale.postCreator.createPostButton}
+                                    <Icon name='paper plane' />
+                                </Button>
 
-                                <Statistic className='roomStat' >
-                                    <Statistic.Value>
-                                        <Icon name='thumbs up' />  0
-                                    </Statistic.Value>
-                                </Statistic>
-                            </Statistic.Group>
-                        </footer>
-                        
-                        <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewRoom} >
-                            Create post
-                            <Icon name='paper plane' />
-                        </Button>
+                                <ImageModal
+                                    image={this.state.image}
+                                    alt={this.state.title}
+                                    ref={this.imageModal}
+                                />
 
-                        <ImageModal image={this.state.image} alt={this.state.title} ref={this.imageModal} />
-
-                    </div>
-                </article>
-            </>
+                            </div>
+                        </article>
+                    </>
+                )}
+            </LocaleConsumer>
         )
     }
 

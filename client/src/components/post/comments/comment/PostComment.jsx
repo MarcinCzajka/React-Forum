@@ -11,15 +11,7 @@ class PostComment extends React.Component {
 	constructor(props) {
 		super(props);
 		
-		this.state = { 
-			showPlaceholder: this.props.showPlaceholder,
-			id: this.props.postId,
-			authorId: this.props.authorId,
-			content: this.props.content,
-			date: this.props.date,
-			responseTo: this.props.responseTo,
-			roomId: this.props.roomId,
-			authorNick: this.props.authorNick,
+		this.state = {
 			avatar: this.props.avatar,
 			avatarReady: false
 		}
@@ -27,66 +19,53 @@ class PostComment extends React.Component {
 		this.handleReplyRef = React.createRef();
 	}
 
-	static getDerivedStateFromProps(props) {
-		const result = {...props};
-			result.date = moment(result.date)
-			.format("MMMM Do YYYY, h:mm:ss")
-			.toString();
-
-		return result
-	}
-
 	handleReplyToPost = () => {
-		const { id, roomId, replyContent } = this.state;
+		const { roomId, replyContent, postId } = this.props;
 		
-		this.handleReplyRef(roomId, replyContent, id);
+		this.handleReplyRef(roomId, replyContent, postId);
 	}
 
 	onAvatarLoad = () => {
 		this.setState({avatarReady: true});
 	}
+
+	formattedDate = () => {
+		return moment(this.props.date)
+			.format("MMMM Do YYYY, h:mm:ss")
+			.toString();	
+	}
 	
 	render() {
-		const { id,
-			roomId,
-			avatarReady,
-			avatar,
-			authorNick,
-			date,
-			content,
-			authorId,
-			showPlaceholder } = this.state;
-		
 		return (
 			<div className="ui large comments">
 
-				{showPlaceholder ? (
+				{this.props.showPlaceholder ? (
 					<PostPlaceholder />
 				) : (
 					<Comment className="comment">
 
-						{!avatarReady ? (
+						{!this.state.avatarReady ? (
 							<AvatarPlaceholder size='sizePostComment' /> 
 						) : ''}
 
 						<Comment.Avatar 
-							style={{display:(avatarReady ? 'block' : 'none')}}
+							style={{display:(this.state.avatarReady ? 'block' : 'none')}}
 							className="avatar" 
-							src={avatar}
+							src={this.props.avatar}
 							onLoad={this.onAvatarLoad}>
 						</Comment.Avatar>
 						
 						<Comment.Content>
-							<Comment.Author className="author" as='a'>{authorNick}</Comment.Author>
+							<Comment.Author className="author" as='a'>{this.props.authorNick}</Comment.Author>
 							<Comment.Metadata className="metadata">
-								<span className="date">{date}</span>
+								<span className="date">{this.formattedDate()}</span>
 							</Comment.Metadata>
-							<Comment.Text as='p' className="text">{content}</Comment.Text>
+							<Comment.Text as='p' className="text">{this.props.content}</Comment.Text>
 
 						<CommentToolkit 
-							postId={id}
-							roomId={roomId}
-							authorId={authorId}
+							postId={this.props.postId}
+							roomId={this.props.roomId}
+							authorId={this.props.authorId}
 							userId={this.props.userId}
 							handleReply={this.handleReplyToPost}
 							removeComment={this.props.removeComment}
@@ -97,7 +76,7 @@ class PostComment extends React.Component {
 				)}
 
 				<CommentGroup 
-					parentId={id} 
+					parentId={this.props.postId} 
 					ref={this.handleReplyRef} >
 				</CommentGroup>
 

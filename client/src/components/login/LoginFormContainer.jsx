@@ -4,6 +4,7 @@ import UserContext from '../../contexts/UserContext';
 import LoginForm from './form/LoginForm';
 import login from './login';
 import handleLogout from './logout';
+import { LocaleConsumer } from '../../contexts/LocaleContext';
 
 class LoginFormContainer extends React.Component {
     constructor(props) {
@@ -58,20 +59,24 @@ class LoginFormContainer extends React.Component {
 
     render() {
         return (
-            !this.context.loggedIn ? (
-                <>
-                    <Menu.Item onClick={this.showLoginForm} name="Log in" />
-                    <LoginForm 
-                        open={this.state.open}
-                        onClose={this.hideLoginForm}
-                        handleLogin={this.handleLogin}
-                        errorMessage={this.state.errorMessage}
-                        showSignup={this.showSignup}
-                    />
-                </>
-            ) : (
-                <Menu.Item onClick={() => handleLogout(this.context)} name="Log out" />
-            )
+            <LocaleConsumer>
+                {locale => (
+                    !this.context.loggedIn ? (
+                        <>
+                            <Menu.Item onClick={this.showLoginForm} name={locale.login.loginButton} />
+                            <LoginForm 
+                                open={this.state.open}
+                                onClose={this.hideLoginForm}
+                                handleLogin={this.handleLogin}
+                                errorMessage={this.state.errorMessage}
+                                showSignup={this.showSignup}
+                            />
+                        </>
+                    ) : (
+                        <Menu.Item onClick={() => handleLogout(this.context)} name={locale.login.logoutButton} />
+                    )
+                )}
+            </LocaleConsumer>
         )
     }
 
