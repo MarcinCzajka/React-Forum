@@ -5,6 +5,7 @@ import CommentGroup from '../CommentGroup';
 import CommentToolkit from '../replyForm/CommentToolkit';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
+import { LocaleConsumer } from '../../contexts/LocaleContext';
 import './PostComment.css';
 
 class PostComment extends React.Component {
@@ -12,7 +13,6 @@ class PostComment extends React.Component {
 		super(props);
 		
 		this.state = {
-			avatar: this.props.avatar,
 			avatarReady: false
 		}
 
@@ -29,10 +29,11 @@ class PostComment extends React.Component {
 		this.setState({avatarReady: true});
 	}
 
-	formattedDate = () => {
+	formattedDate = (locale) => {
 		return moment(this.props.date)
 			.format("MMMM Do YYYY, h:mm:ss")
-			.toString();	
+			.toString()
+			.locale(locale);
 	}
 	
 	render() {
