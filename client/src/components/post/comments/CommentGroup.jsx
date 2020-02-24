@@ -31,15 +31,16 @@ class CommentGroup extends React.Component {
 
 	getComments = () => {
 		fetchResponseComments(this.state.parentId, this.state.mongoSorting)
-			.then(res => {
-				const comments = res.data.map(item => {
-					this.getAuthor(item.authorId);
+		.then(res => {
 
-					return item
-				});
+			const comments = res.data.map(item => {
+				this.getAuthor(item.authorId);
 
-				this.setState({comments: comments});
+				return item;
 			})
+
+			this.setState({comments: comments});
+		})
 	}
 
 	getAuthor = (id) => {
@@ -74,17 +75,18 @@ class CommentGroup extends React.Component {
 	handleReply = (roomId, content, responseTo) => {
 		return new Promise((resolve, reject) => {
 			replyToComment(this.context.userId, roomId, content, responseTo)
-				.then(res => {
-					const comments = this.state.comments;
+			.then(res => {
+				const comments = this.state.comments;
 
-					comments.push(res.data);
-
-					this.setState({comments: comments});
-					resolve();
-				})
-				.catch(err => {
-					reject(err);
-				})
+				comments.push(res.data);
+				this.getAuthor(res.data.authorId)
+				
+				this.setState({comments: comments});
+				resolve();
+			})
+			.catch(err => {
+				reject(err);
+			})
 		})
 	}
 
@@ -120,7 +122,7 @@ class CommentGroup extends React.Component {
 				handleReply={this.handleReply}
 				removeComment={this.removeComment}
 			/>
-		});
+		})
 
 		return (
 			<Comment.Group className="recursiveComment">
@@ -132,7 +134,9 @@ class CommentGroup extends React.Component {
 
 CommentGroup.propTypes = {
 	parentId: PropTypes.string.isRequired,
-	mongoSorting: PropTypes.string
+	mongoSorting: PropTypes.string,
+	setHandleReply: PropTypes.func,
+	initialPost: PropTypes.bool
 }
 
 export default CommentGroup;

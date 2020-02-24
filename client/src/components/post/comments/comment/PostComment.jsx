@@ -20,6 +20,8 @@ class PostComment extends React.Component {
 				.toString()
 		}
 
+		/*Function to passed to Toolkit and CommentGroup children 
+		to allow Toolkit to append children its sibling CommentGroup */
 		this.handleReply = null;
 		this.setHandleReply = func => {
 			this.handleReply = func;
