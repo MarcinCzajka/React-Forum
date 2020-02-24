@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Form, Modal, Checkbox } from 'semantic-ui-react';
 import ErrorMessage from '../../message/ErrorMessage';
 import { LocaleConsumer } from '../../../contexts/LocaleContext';
@@ -78,7 +79,14 @@ class LoginForm extends React.Component {
             </LocaleConsumer>
         )
     }
+}
 
+LoginForm.propTypes = {
+    open: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+    handleLogin: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string,
+    showSignup: PropTypes.func.isRequired
 }
 
 export default LoginForm;

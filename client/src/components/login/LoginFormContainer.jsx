@@ -18,7 +18,7 @@ class LoginFormContainer extends React.Component {
     static contextType = UserContext;
     
     componentDidMount() {
-        //Append function to context that will display LoginForm when called
+        //Append function that will display LoginForm to context
         this.context.addShowLoginToContext(this.open);
     }
 

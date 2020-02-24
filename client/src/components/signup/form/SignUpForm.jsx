@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Form, Modal } from 'semantic-ui-react';
 import Captcha from './Captcha';
 import ErrorMessage from '../../message/ErrorMessage';
@@ -106,6 +107,13 @@ class SignUpForm extends React.Component {
         )
     }
 
+}
+
+SignUpForm.propTypes = {
+    open: PropTypes.func.isRequired, 
+    onClose: PropTypes.func.isRequired,
+    submit: PropTypes.func.isRequired,
+    errorMessage: PropTypes.string
 }
 
 export default SignUpForm;

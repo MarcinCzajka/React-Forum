@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Dimmer, Icon, Loader } from "semantic-ui-react";
 import './ImageModal.css'
 
@@ -36,6 +37,11 @@ class ImageModal extends React.Component {
             </Dimmer>
         )
     }
+}
+
+ImageModal.propTypes = {
+    image: PropTypes.string.isRequired,
+    alt: PropTypes.string
 }
 
 export default ImageModal

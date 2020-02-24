@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { ReCaptcha } from 'react-recaptcha-google'
 
 class Captcha extends React.Component {
@@ -28,6 +29,10 @@ class Captcha extends React.Component {
             />
         )
     }
+}
+
+Captcha.propTypes = {
+    verifyCallback: PropTypes.func.isRequired
 }
 
 export default Captcha
