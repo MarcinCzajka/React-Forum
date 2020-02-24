@@ -79,7 +79,7 @@ class CommentGroup extends React.Component {
 				const comments = this.state.comments;
 
 				comments.push(res.data);
-				this.getAuthor(res.data.authorId)
+				this.getAuthor(res.data.authorId);
 				
 				this.setState({comments: comments});
 				resolve();

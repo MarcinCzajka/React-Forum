@@ -12,18 +12,16 @@ class CommentToolkit extends React.Component {
         }
     }
 
-    resetState = () => {
-        this.setState({
-            textAreaContent: '',
-            displayTextArea: false
-        })
-    }
-
     handleReply = () => {
         const { roomId, postId, handleReply } = this.props;
 
         handleReply(roomId, this.state.textAreaContent, postId)
-            .then(this.resetState)
+            .then(res => {
+                this.setState({
+                    textAreaContent: '',
+                    displayTextArea: false
+                })
+            })
     }
 
     render() {
