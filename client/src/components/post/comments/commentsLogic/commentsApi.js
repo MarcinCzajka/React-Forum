@@ -1,4 +1,4 @@
-import basePath from '../../../api/basePath';
+import basePath from '../../../../api/basePath';
 
 export const fetchResponseComments = (parentId, mongoSorting) => {
     //Fetch all comments with value "responseTo" equal to id
@@ -26,12 +26,12 @@ export const removeCommentById = (id) => {
 			url: `/api/posts/${id}`,
             withCredentials: true
 		})
-            .then(res => {
-                resolve(res);
-            })
-            .catch(err => {
-                reject(err);
-            })
+        .then(res => {
+            resolve(res);
+        })
+        .catch(err => {
+            reject(err);
+        })
     })
 }
 

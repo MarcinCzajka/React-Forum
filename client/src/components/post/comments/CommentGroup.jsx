@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Comment } from "semantic-ui-react";
 import PostComment from './comment/PostComment';
 import UserContext from '../../../contexts/UserContext';
-import { fetchResponseComments, removeCommentById, replyToComment } from './getComments';
-import getUserDetails from './getUserDetails';
+import { replyToComment, 
+	removeCommentById, 
+	fetchResponseComments } from './commentsLogic/commentsApi';
+import getUserDetails from './commentsLogic/getUserDetails';
 import './CommentGroup.css';
 
 class CommentGroup extends React.Component {
@@ -21,6 +24,8 @@ class CommentGroup extends React.Component {
 	static contextType = UserContext;
 	
 	componentDidMount() {
+		if(!this.props.initialPost) this.props.setHandleReply(this.handleReply);
+
 		this.getComments();
 	}
 
@@ -71,13 +76,14 @@ class CommentGroup extends React.Component {
 			replyToComment(this.context.userId, roomId, content, responseTo)
 				.then(res => {
 					const comments = this.state.comments;
-					comments.push(res.data)
 
-					this.setState({comments: comments})
+					comments.push(res.data);
+
+					this.setState({comments: comments});
 					resolve();
 				})
 				.catch(err => {
-					console.log(err)
+					reject(err);
 				})
 		})
 	}
@@ -98,30 +104,35 @@ class CommentGroup extends React.Component {
 
 			const author = this.state.authors.find(author => author.id === item.authorId);
 
-			return <PostComment 
-						className="comment"
-						showPlaceholder={!author ? true : false}
-						postId={item._id}
-						key={item._id}
-						authorId={item.authorId}
-						content={item.content}
-						date={item.date}
-						responseTo={item.responseTo}
-						roomId={item.roomId}
-						authorNick={(author ? author.authorNick : '')}
-						avatar={(author ? author.avatar : '')}
-						userId={this.context.userId}
-						removeComment={this.removeComment}
-					/>
+			return <PostComment
+				className="comment"
+				showPlaceholder={!author ? true : false}
+				postId={item._id}
+				key={item._id}
+				authorId={item.authorId}
+				content={item.content}
+				date={item.date}
+				responseTo={item.responseTo}
+				roomId={item.roomId}
+				authorNick={(author ? author.authorNick : '')}
+				avatar={(author ? author.avatar : '')}
+				userId={this.context.userId}
+				handleReply={this.handleReply}
+				removeComment={this.removeComment}
+			/>
 		});
 
 		return (
 			<Comment.Group className="recursiveComment">
 				{comments}
 			</Comment.Group>
-		);
+		)
 	}
+}
 
-};
+CommentGroup.propTypes = {
+	parentId: PropTypes.string.isRequired,
+	mongoSorting: PropTypes.string
+}
 
 export default CommentGroup;

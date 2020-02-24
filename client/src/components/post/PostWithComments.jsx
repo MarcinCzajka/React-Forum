@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
-import ForumPost from '../forumPost/ForumPost';
-import CommentGroup from '../comments/CommentGroup';
-import getForumPost from '../businessLogic/getForumPost';
-import '../comments/CommentGroup.css';
+import ForumPost from './forumPost/ForumPost';
+import CommentGroup from './comments/CommentGroup';
+import getForumPost from './businessLogic/getForumPost';
+import './comments/CommentGroup.css';
 import './PostWithComments.css';
 
 class PostWithComments extends React.Component {
@@ -46,6 +46,7 @@ class PostWithComments extends React.Component {
                         <Segment className='initialPost'>
                             <CommentGroup
                                 sorting={'{"date":"-1"}'}
+                                initialPost={true}
                                 roomId={this.props.match.params.id}
                                 parentId={this.props.match.params.id}
                             />

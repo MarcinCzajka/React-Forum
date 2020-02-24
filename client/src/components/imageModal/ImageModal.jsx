@@ -40,7 +40,7 @@ class ImageModal extends React.Component {
 }
 
 ImageModal.propTypes = {
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
     alt: PropTypes.string
 }
 

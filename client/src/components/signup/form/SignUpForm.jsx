@@ -110,7 +110,7 @@ class SignUpForm extends React.Component {
 }
 
 SignUpForm.propTypes = {
-    open: PropTypes.func.isRequired, 
+    open: PropTypes.bool, 
     onClose: PropTypes.func.isRequired,
     submit: PropTypes.func.isRequired,
     errorMessage: PropTypes.string

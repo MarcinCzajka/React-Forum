@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
 }
 
 LoginForm.propTypes = {
-    open: PropTypes.func.isRequired,
+    open: PropTypes.bool,
     onClose: PropTypes.func.isRequired,
     handleLogin: PropTypes.func.isRequired,
     errorMessage: PropTypes.string,

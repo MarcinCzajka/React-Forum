@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Comment, Form, Button } from "semantic-ui-react";
 
 class CommentToolkit extends React.Component {
@@ -19,31 +20,30 @@ class CommentToolkit extends React.Component {
     }
 
     handleReply = () => {
-        const { roomId, postId } = this.props;
+        const { roomId, postId, handleReply } = this.props;
 
-        this.props.handleReply(roomId, this.state.textAreaContent, postId)
+        handleReply(roomId, this.state.textAreaContent, postId)
             .then(this.resetState)
     }
 
     render() {
-        const { postId, roomId, userId, authorId, removeComment } = this.props;
+        const { authorId, userId, postId, removeComment } = this.props;
+
         return (
             <>
                 {this.props.userId ? (
                     <Comment.Actions>
                         <Button size='mini' onClick={() => {this.setState({displayTextArea: true})}}>Reply</Button>
-                        {userId === authorId ? <Button size='mini' onClick={() => {removeComment(this.props.postId)}}>Delete</Button> : ''}
+                        {userId === authorId ? <Button size='mini' onClick={() => {removeComment(postId)}}>Delete</Button> : ''}
                     </Comment.Actions>
                 ) : ''}
             
                 {this.state.displayTextArea ? (
                     <Form reply>
-
                         <Form.TextArea 
                             value={this.state.textAreaContent} 
                             onChange={e => this.setState({textAreaContent: e.target.value})} 
                         />
-
                         <Button
                             onClick={this.handleReply}
                             content='Add Reply'
@@ -51,14 +51,20 @@ class CommentToolkit extends React.Component {
                             icon='edit'
                             primary
                         />
-
                     </Form>
                 ) : ''}
             </>
         )
     }
+}
 
-
+CommentToolkit.propTypes = {
+    roomId: PropTypes.string.isRequired,
+    postId: PropTypes.string.isRequired,
+    userId: PropTypes.string,
+    authorId: PropTypes.string.isRequired,
+    handleReply: PropTypes.func.isRequired,
+    removeComment: PropTypes.func.isRequired
 }
 
 export default CommentToolkit

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Comment } from "semantic-ui-react";
 import CommentGroup from '../CommentGroup';
@@ -19,13 +20,10 @@ class PostComment extends React.Component {
 				.toString()
 		}
 
-		this.handleReplyRef = React.createRef();
-	}
-
-	handleReplyToPost = () => {
-		const { roomId, replyContent, postId } = this.props;
-		
-		this.handleReplyRef(roomId, replyContent, postId);
+		this.handleReply = null;
+		this.setHandleReply = func => {
+			this.handleReply = func;
+		}
 	}
 
 	onAvatarLoad = () => {
@@ -66,7 +64,7 @@ class PostComment extends React.Component {
 									roomId={this.props.roomId}
 									authorId={this.props.authorId}
 									userId={this.props.userId}
-									handleReply={this.handleReplyToPost}
+									handleReply={this.handleReply}
 									removeComment={this.props.removeComment}
 								/>
 									
@@ -75,16 +73,30 @@ class PostComment extends React.Component {
 						)}
 
 						<CommentGroup 
-							parentId={this.props.postId} 
-							ref={this.handleReplyRef} >
-						</CommentGroup>
+							parentId={this.props.postId}
+							setHandleReply={this.setHandleReply}
+						/>
 
 					</div>
 				)}
 			</LocaleConsumer>
-		);
+		)
 	}
+}
 
-};
+PostComment.propTypes = {
+	date: PropTypes.string.isRequired,
+	roomId: PropTypes.string.isRequired,
+	postId: PropTypes.string.isRequired,
+	showPlaceholder: PropTypes.bool,
+	authorId: PropTypes.string.isRequired,
+	authorNick: PropTypes.string.isRequired,
+	avatar: PropTypes.string,
+	content: PropTypes.string,
+	userId: PropTypes.string,
+	replyContent: PropTypes.string,
+	handleReply: PropTypes.func.isRequired,
+	removeComment: PropTypes.func.isRequired
+}
 
 export default PostComment;
