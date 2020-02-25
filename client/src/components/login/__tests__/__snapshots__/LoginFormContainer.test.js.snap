@@ -15,7 +15,7 @@ Array [
     className="item"
     onClick={[Function]}
   >
-    Log In
+    Login
   </a>,
   <div
     className="ui page modals dimmer transition visible active"
@@ -97,7 +97,8 @@ Array [
             Sign in
           </button>
           <p>
-            Don't have account yet? 
+            Don't have account yet?
+             
             <span
               className="asLink"
               onClick={[Function]}

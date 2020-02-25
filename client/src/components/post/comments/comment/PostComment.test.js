@@ -1,5 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import { create } from "react-test-renderer";
 import PostComment from './PostComment';
 import { LocaleProvider } from '../../../../contexts/LocaleContext';
 import locale from '../../../../locale/en/dictionary.json';

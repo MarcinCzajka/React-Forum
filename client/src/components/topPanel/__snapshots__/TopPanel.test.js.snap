@@ -12,7 +12,7 @@ exports[`TopPanel component match snapshot /w user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Page 1
+      Feed
     </div>
   </a>
   <a
@@ -23,7 +23,7 @@ exports[`TopPanel component match snapshot /w user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Page 2
+      Me
     </div>
   </a>
   <a
@@ -34,7 +34,7 @@ exports[`TopPanel component match snapshot /w user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Page 3
+      New
     </div>
   </a>
   <div
@@ -70,7 +70,7 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Page 1
+      Feed
     </div>
   </a>
   
@@ -82,7 +82,7 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Page 3
+      New
     </div>
   </a>
   
@@ -192,7 +192,7 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Log In
+      Login
     </a>
     <div
       className="ui page modals dimmer transition visible active"
@@ -274,7 +274,8 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
               Sign in
             </button>
             <p>
-              Don't have account yet? 
+              Don't have account yet?
+               
               <span
                 className="asLink"
                 onClick={[Function]}

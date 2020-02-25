@@ -43,7 +43,7 @@ exports[`AboutMe component match snapshot /w user logged in 1`] = `
         className="darkFont"
       >
         Created at: 
-        January 29th 2020, Wednesday
+        February 25th 2020, Tuesday
       </p>
       <p
         className="darkFont"
