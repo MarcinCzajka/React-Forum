@@ -36,6 +36,7 @@ describe('PostComment component', () => {
 
     test('match snapshot while showing placeholder 1/1', () => {
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={true}
             postId={postId}
@@ -51,6 +52,7 @@ describe('PostComment component', () => {
 
     test('match snapshot /w changing date 1/3', () => {
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -67,6 +69,7 @@ describe('PostComment component', () => {
     test('match snapshot /w changing date 2/3', () => {
         date = '2019-12-18T22:36:40.643Z'
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -83,6 +86,7 @@ describe('PostComment component', () => {
     test('match snapshot /w changing date 3/3', () => {
         date = '2019-12-20T20:18:54.783Z'
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -99,6 +103,7 @@ describe('PostComment component', () => {
     test('match snapshot /w changing Author Name 1/2', () => {
         authorNick = 'Deleted User.';
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -115,6 +120,7 @@ describe('PostComment component', () => {
     test('match snapshot /w changing Author Name 2/2', () => {
         authorNick = 'LiterallyNobody66';
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -130,6 +136,7 @@ describe('PostComment component', () => {
 
     test('match snapshot /w Avatar 1/1', () => {
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -147,6 +154,7 @@ describe('PostComment component', () => {
     test('match snapshot /w Changing Content 1/2', () => {
         content = 'very different stuff';
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}
@@ -164,6 +172,7 @@ describe('PostComment component', () => {
     test('match snapshot /w Changing Content 2/2', () => {
         content = '123234tdgdsss43';
         const component = create(<LocaleProvider value={locale}><PostComment 
+            date={date}
             roomId={roomId}
             showPlaceholder={false}
             postId={postId}

@@ -81,7 +81,8 @@ exports[`LoginForm component match snapshot 1`] = `
           Sign in
         </button>
         <p>
-          Don't have account yet? 
+          Don't have account yet?
+           
           <span
             className="asLink"
           >
