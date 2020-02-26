@@ -5,7 +5,7 @@ import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import { LocaleConsumer } from '../../../contexts/LocaleContext';
 import ImageModal from '../../imageModal/ImageModal';
-import '../forumPost/ForumPost.css';
+import '../forumPost/layout/ForumPost.css';
 import './PostCreator.css';
 
 class PostCreator extends React.Component {

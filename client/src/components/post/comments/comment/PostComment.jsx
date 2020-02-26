@@ -6,7 +6,6 @@ import CommentGroup from '../CommentGroup';
 import CommentToolkit from '../replyForm/CommentToolkit';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
-import { LocaleConsumer } from '../../../../contexts/LocaleContext';
 import './PostComment.css';
 
 class PostComment extends React.Component {
@@ -33,55 +32,52 @@ class PostComment extends React.Component {
 	}
 	
 	render() {
+		const { avatarReady, date } = this.state;
 		return (
-			<LocaleConsumer>
-				{locale => (
-					<div className="ui large comments">
+			<div className="ui large comments">
 
-						{this.props.showPlaceholder ? (
-							<PostPlaceholder />
-						) : (
-							<Comment className="comment">
+				{this.props.showPlaceholder ? (
+					<PostPlaceholder />
+				) : (
+					<Comment className="comment">
 
-								{!this.state.avatarReady ? (
-									<AvatarPlaceholder size='sizePostComment' /> 
-								) : ''}
+						{!avatarReady ? (
+							<AvatarPlaceholder size='sizePostComment' /> 
+						) : ''}
 
-								<Comment.Avatar 
-									style={{display:(this.state.avatarReady ? 'block' : 'none')}}
-									className="avatar" 
-									src={this.props.avatar}
-									onLoad={this.onAvatarLoad}>
-								</Comment.Avatar>
-								
-								<Comment.Content>
-									<Comment.Author className="author" as='a'>{this.props.authorNick}</Comment.Author>
-									<Comment.Metadata className="metadata">
-										<span className="date">{this.state.date}</span>
-									</Comment.Metadata>
-									<Comment.Text as='p' className="text">{this.props.content}</Comment.Text>
+						<Comment.Avatar 
+							style={{display:(avatarReady ? 'block' : 'none')}}
+							className="avatar" 
+							src={this.props.avatar}
+							onLoad={this.onAvatarLoad}>
+						</Comment.Avatar>
+						
+						<Comment.Content>
+							<Comment.Author className="author" as='a'>{this.props.authorNick}</Comment.Author>
+							<Comment.Metadata className="metadata">
+								<span className="date">{date}</span>
+							</Comment.Metadata>
+							<Comment.Text as='p' className="text">{this.props.content}</Comment.Text>
 
-								<CommentToolkit 
-									postId={this.props.postId}
-									roomId={this.props.roomId}
-									authorId={this.props.authorId}
-									userId={this.props.userId}
-									handleReply={this.handleReply}
-									removeComment={this.props.removeComment}
-								/>
-									
-								</Comment.Content>
-							</Comment>
-						)}
-
-						<CommentGroup 
-							parentId={this.props.postId}
-							setHandleReply={this.setHandleReply}
+						<CommentToolkit 
+							postId={this.props.postId}
+							roomId={this.props.roomId}
+							authorId={this.props.authorId}
+							userId={this.props.userId}
+							handleReply={this.handleReply}
+							removeComment={this.props.removeComment}
 						/>
-
-					</div>
+							
+						</Comment.Content>
+					</Comment>
 				)}
-			</LocaleConsumer>
+
+				<CommentGroup 
+					parentId={this.props.postId}
+					setHandleReply={this.setHandleReply}
+				/>
+
+			</div>
 		)
 	}
 }

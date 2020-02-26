@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
-import ForumPost from './forumPost/ForumPost';
+import ForumPostContainer from './forumPost/ForumPostContainer';
 import CommentGroup from './comments/CommentGroup';
 import getForumPost from './businessLogic/getForumPost';
 import './comments/CommentGroup.css';
@@ -39,7 +39,7 @@ class PostWithComments extends React.Component {
                 <Grid centered className='roomGrid'>
                     <Comment.Group className='postGroupContainer'>
 
-                        <ForumPost
+                        <ForumPostContainer
                             {...this.state.roomDetails}
                         />
 

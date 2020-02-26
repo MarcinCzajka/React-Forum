@@ -1,7 +1,7 @@
 import React from 'react'
 import basePath from '../../../api/basePath';
 import { Grid, Pagination } from "semantic-ui-react";
-import ForumPost from '../forumPost/ForumPost';
+import ForumPostContainer from '../forumPost/ForumPostContainer';
 
 class PostList extends React.Component {
     constructor(props) {
@@ -59,24 +59,6 @@ class PostList extends React.Component {
         this.setState({windowWidth: window.innerWidth});
     }
 
-    render() {
-        const forumRooms = this.state.rooms.map(room => {
-            return (
-                <Grid.Row key={room.key} centered>
-                    <ForumPost {...room} removeRoom={this.removeRoomFromState} />
-                </Grid.Row>
-            );
-        })
-        
-        return (
-            <Grid className='noMargin'>
-                {this.pagination()}
-                    {forumRooms}
-                {this.pagination()}
-            </Grid>
-        );
-    }
-
     fetchForumRooms = (page = 1) => {
         basePath({
 			method: "get",
@@ -101,6 +83,24 @@ class PostList extends React.Component {
         .finally(() => {
             this.setState({loading: false})
         })
+    }
+
+    render() {
+        const forumRooms = this.state.rooms.map(room => {
+            return (
+                <Grid.Row key={room.key} centered>
+                    <ForumPostContainer {...room} removeRoom={this.removeRoomFromState} />
+                </Grid.Row>
+            );
+        })
+        
+        return (
+            <Grid className='noMargin'>
+                {this.pagination()}
+                    {forumRooms}
+                {this.pagination()}
+            </Grid>
+        );
     }
 
 }
