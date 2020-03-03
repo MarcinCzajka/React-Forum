@@ -1,10 +1,10 @@
 import React from 'react';
 import { create } from "react-test-renderer";
-import RoomPlaceholder from '../RoomPlaceholder';
+import ForumPostPlaceholder from '../ForumPostPlaceholder';
 
 describe('Captcha component', () => {
     test('match snapshot', () => {
-        const component = create(<RoomPlaceholder />);
+        const component = create(<ForumPostPlaceholder />);
         expect(component).toMatchSnapshot();
     });
 
