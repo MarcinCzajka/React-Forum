@@ -52,7 +52,7 @@ const ForumPost = props => (
 	</div>
 )
 
-ForumPostFooter.propTypes = {
+ForumPost.propTypes = {
     _id: PropTypes.string.isRequired,
 	image: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,

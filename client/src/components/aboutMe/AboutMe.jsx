@@ -61,8 +61,6 @@ class AboutMe extends React.Component {
         const { userName, userAvatar, userEmail, userCreatedAt} = this.context;
         const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
 
-        console.log(userName, userAvatar, userEmail, userCreatedAt)
-
         return (
             <Card className='cardMiddle' >
                 <Helmet>
