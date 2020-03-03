@@ -2,7 +2,7 @@ import React from 'react';
 import basePath from '../../../api/basePath';
 import { Form, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
-import RoomPlaceholder from '../../placeholders/RoomPlaceholder';
+import ForumPostPlaceholder from '../../placeholders/ForumPostPlaceholder';
 import ForumPost from './layout/ForumPost';
 
 class ForumPostContainer extends React.Component {
@@ -24,7 +24,6 @@ class ForumPostContainer extends React.Component {
 			views: this.props.views,
 			showReplyForm: false,
 			replyContent: '',
-			isMounted: false,
 			arePropsUpdated: false,
 			isLoading: true,
 			errorMsg: '',
@@ -36,20 +35,7 @@ class ForumPostContainer extends React.Component {
 	static contextType = UserContext;
 
 	componentDidMount() {
-		this.setState({ isMounted: true });
-	}
-
-	componentDidUpdate() {
-		if(this.state.arePropsUpdated && !this.state.authorNick) {
-			this.getPostAuthorDetails();
-		}
-	}
-	
-	static getDerivedStateFromProps(props, state) {
-		if(state.isMounted) {
-			if(!state.arePropsUpdated) return props;
-		}
-		return null;
+		this.getPostAuthorDetails();
 	}
 
 	handleImageLoaded = () => {
@@ -165,7 +151,7 @@ class ForumPostContainer extends React.Component {
 
 		return (
 			<article className='roomContainer'>
-				{isLoading ? <RoomPlaceholder /> : ''}
+				{isLoading ? <ForumPostPlaceholder /> : ''}
 
 				<ForumPost 
 					isLoading={isLoading}

@@ -2,9 +2,9 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPostContainer from './forumPost/ForumPostContainer';
+import ForumPostPlaceholder from '../placeholders/ForumPostPlaceholder';
 import CommentGroup from './comments/CommentGroup';
-import getForumPost from './businessLogic/getForumPost';
-import './comments/CommentGroup.css';
+import getForumPost from './businessLogic/forumPostApi';
 import './PostWithComments.css';
 
 class PostWithComments extends React.Component {
@@ -13,14 +13,15 @@ class PostWithComments extends React.Component {
 
         this.state = {
             roomDetails: {},
+            postDetailsReady: false
         }
     }
 
     componentDidMount() {
         //Pull id from URI and get ForumPost details
         getForumPost(this.props.match.params.id)
-            .then(response => {
-                this.setState({roomDetails: {...response, arePropsUpdated: true}})
+            .then(res => {
+                this.setState({roomDetails: res, postDetailsReady: true})
             })
             .catch(err => {
                 console.log(err);
@@ -39,9 +40,15 @@ class PostWithComments extends React.Component {
                 <Grid centered className='roomGrid'>
                     <Comment.Group className='postGroupContainer'>
 
-                        <ForumPostContainer
-                            {...this.state.roomDetails}
-                        />
+                        {this.state.postDetailsReady ? (
+                            <ForumPostContainer
+                                {...this.state.roomDetails}
+                            />
+                        ) : (
+                            <div className='roomContainer'>
+                                <ForumPostPlaceholder /> 
+                            </div>
+                        )}
 
                         <Segment className='initialPost'>
                             <CommentGroup
