@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AboutMe component match snapshot /w user logged in 1`] = `
+exports[`AboutMe component match snapshot /w user logged in 1/2 1`] = `
 <div
   className="ui card cardMiddle"
   onClick={[Function]}
@@ -35,7 +35,9 @@ exports[`AboutMe component match snapshot /w user logged in 1`] = `
   >
     <div
       className="header"
-    />
+    >
+      User1
+    </div>
     <div
       className="meta"
     >
@@ -43,12 +45,71 @@ exports[`AboutMe component match snapshot /w user logged in 1`] = `
         className="darkFont"
       >
         Created at: 
-        February 26th 2020, Wednesday
+        December 5th 2019, Thursday
       </p>
       <p
         className="darkFont"
       >
         Email: 
+        Email@g.com
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AboutMe component match snapshot /w user logged in 2/2 1`] = `
+<div
+  className="ui card cardMiddle"
+  onClick={[Function]}
+>
+  <div
+    className="avatarOverlay"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="file outline image huge inverted icon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="avatarPlaceholderContainer sizeAboutMe"
+  >
+    <i
+      aria-hidden="true"
+      className="user icon avatarPlaceholder"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="image hidden"
+    onLoad={[Function]}
+  >
+    <img />
+  </div>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      U s ER
+    </div>
+    <div
+      className="meta"
+    >
+      <p
+        className="darkFont"
+      >
+        Created at: 
+        February 4th 2020, Tuesday
+      </p>
+      <p
+        className="darkFont"
+      >
+        Email: 
+        differentemail@gfds.com
       </p>
     </div>
   </div>
