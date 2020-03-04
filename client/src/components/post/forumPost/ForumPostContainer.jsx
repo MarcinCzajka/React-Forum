@@ -1,16 +1,20 @@
 import React from 'react';
-import basePath from '../../../api/basePath';
 import { Form, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import ForumPostPlaceholder from '../../placeholders/ForumPostPlaceholder';
 import ForumPost from './layout/ForumPost';
+import { getForumPost, 
+		 getPostAuthor,
+		 getCommentsCount,
+		 upvoteForumPost,
+		 replyToForumPost } from './forumPostLogic/forumPostApi';
 
 class ForumPostContainer extends React.Component {
 	constructor(props) {
 		super(props);
 		
 		this.state = { 
-			_id: this.props._id,
+			_id: this.props.id,
 			authorId: this.props.authorId,
 			creationDate: this.props.creationDate,
 			lastActivityDate: this.props.lastActivityDate,
@@ -24,9 +28,9 @@ class ForumPostContainer extends React.Component {
 			views: this.props.views,
 			showReplyForm: false,
 			replyContent: '',
-			arePropsUpdated: false,
+			commentsCount: 0,
 			isLoading: true,
-			errorMsg: '',
+			errorMsg: ''
 		}
 
 		this.imageModalRef = React.createRef();
@@ -35,98 +39,67 @@ class ForumPostContainer extends React.Component {
 	static contextType = UserContext;
 
 	componentDidMount() {
-		this.getPostAuthorDetails();
+		this.getPostDetails();
+		this.getNrOfComments();
+	}
+
+	getPostDetails = () => {
+		getForumPost(this.state._id)
+			.then(res => {
+				this.getPostAuthorDetails();
+			})
+	}
+
+	getPostAuthorDetails = () => {
+		getPostAuthor()
+			.then(res => {
+				this.setState({
+					authorNick: res.name || "",
+					avatar: res.avatar || ""
+				});
+			})
+			.catch(err => {
+				this.setState({
+					authorNick: "Deleted user."
+				});
+			})
+	}
+
+	getNrOfComments = () => {
+		getCommentsCount(this.state._id)
+			.then(commentsCount => {
+				if(commentsCount > 0) {
+					this.setState({commentsCount: commentsCount});
+				}
+			})
 	}
 
 	handleImageLoaded = () => {
-		this.getNrOfComments();
 		this.setState({ isLoading: false });
 	}
 
-	killMe = () => {
-		this.props.removeRoom(this.state._id);
-	}
-
-	updateUpvote = (e) => {
+	updateUpvote = () => {
 		if(!this.context.loggedIn) return this.setState({
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
 		});
 
-		basePath({
-			method: "put",
-			url: `/api/rooms/${this.state._id}`,
-			body: {},
-			withCredentials: true
-		})
-		.then(res => {
-			this.setState({upvotes: res.data.upvotes, isLikedByUser: res.data.liked});
-		})
-		.catch(err => {
-			console.log(err)
-		})
-	}
-
-	showLoginPrompt = () => {
-		if(this.state.errorMsg && !this.context.loggedIn) {
-			return (
-				<Message warning attached='bottom'>
-					<Message.Header>{this.state.errorMsg}</Message.Header>
-				</Message>
-			)
-		}
+		upvoteForumPost()
+			.then(res => {
+				this.setState({upvotes: res.upvotes, isLikedByUser: res.liked});
+			})
+			.catch(err => {
+				this.setState({errorMsg: err})
+			})
 	}
 	
 	handleReplyToPost = () => {
-		basePath({
-		  method: 'POST',
-		  url: `/api/posts/`,
-		  data: {
-			  authorId: this.context.userId,
-			  roomId: this.state._id,
-			  content: this.state.replyContent,
-			  responseTo: this.state._id
-		  },
-		  withCredentials: true
-	  })
-	  .then((res) => {
-		if(res.status === 200) {
-			this.props.refreshPosts();
-			this.setState({replyContent: '', showReplyForm: false});
-		}
-	  })
-	}
-
-	getPostAuthorDetails = () => {
-		basePath({
-			method: 'GET',
-			url: `/api/users/${this.state.authorId}`
-		})
-		.then(res => {
-			this.setState({
-				authorNick: res.data.name || "",
-				avatar: res.data.avatar || ""
-			});
-		})
-		.catch(err => {
-			this.setState({
-				authorNick: "Deleted user."
-			});
-		})
-	}
-
-	getNrOfComments = () => {
-        const query = 'room=' + this.state._id;
-		basePath({
-		  method: "get",
-		  url: `/api/posts/responseTo?${query}`,
-		  withCredentials: true
-      })
-      .then(res => {
-		  if(res.data.comments > 0) this.setState({comments: res.data.comments})
-	  })
-	  .catch(err => {
-		  console.log(err)
-	  })
+		replyToForumPost(this.context.userId, this.state._id, this.state.replyContent)
+			.then(res => {
+				if(res.status === 200) {
+					this.props.refreshPosts();
+					this.setState({replyContent: '', showReplyForm: false});
+				}
+			})
 	}
 	
 	showImageModal = () => {
@@ -145,14 +118,20 @@ class ForumPostContainer extends React.Component {
 		}
 		
 	}
+
+	removeMeFromList = () => {
+		//Function to be used in case Image is no longer available
+		this.props.removeForumPost(this.state._id);
+	}
 	
 	render() {
-		const {_id, creationDate, isLoading, image, title, description, authorNick = '', comments, views, isLikedByUser, upvotes, showReplyForm, replyContent} = this.state;
+		const {_id, creationDate, isLoading, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent} = this.state;
 
 		return (
 			<article className='roomContainer'>
-				{isLoading ? <ForumPostPlaceholder /> : ''}
 
+				{isLoading ? <ForumPostPlaceholder /> : ''} 
+				
 				<ForumPost 
 					isLoading={isLoading}
 					_id={_id}
@@ -162,18 +141,21 @@ class ForumPostContainer extends React.Component {
 					description={description}
 					imageModalRef={this.imageModalRef}
 					showImageModal={this.showImageModal}
-					removePost={this.killMe}
 					authorNick={authorNick}
 					creationDate={creationDate}
-					comments={comments}
+					commentsCount={commentsCount}
 					views={views}
 					upvotes={upvotes}
 					isLikedByUser={isLikedByUser}
 					updateUpvote={this.updateUpvote}
+					removePost={this.removeMeFromList}
 				/>
 
-				{this.showLoginPrompt()}
-
+				{this.state.errorMsg && !this.context.loggedIn ? (
+					<Message warning attached='bottom'>
+						<Message.Header>{this.state.errorMsg}</Message.Header>
+					</Message>
+				) : ''}
 				
 				{showReplyForm ? (
 					<Form reply style={{gridColumn:'1/-1'}}>

@@ -1,10 +1,7 @@
 import React from 'react';
-import { Helmet } from "react-helmet";
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPostContainer from './forumPost/ForumPostContainer';
-import ForumPostPlaceholder from '../placeholders/ForumPostPlaceholder';
 import CommentGroup from './comments/CommentGroup';
-import getForumPost from './businessLogic/forumPostApi';
 import './PostWithComments.css';
 
 class PostWithComments extends React.Component {
@@ -12,56 +9,36 @@ class PostWithComments extends React.Component {
         super(props);
 
         this.state = {
-            roomDetails: {},
-            postDetailsReady: false
+            forumPostId: this.props.match.params.id
         }
     }
 
-    componentDidMount() {
-        //Pull id from URI and get ForumPost details
-        getForumPost(this.props.match.params.id)
-            .then(res => {
-                this.setState({roomDetails: res, postDetailsReady: true})
-            })
-            .catch(err => {
-                console.log(err);
-            })
+    removeForumPost = () => {
+        //Function to be used in case Image is no longer available
+        window.location = window.location.origin;
     }
 
     render() {
-        const title = `${(this.state.roomDetails.title ? this.state.roomDetails.title + ' - ' : '')}React-forum`;
-        
         return (
-            <>
-                <Helmet>
-                    <title>{title}</title>
-                </Helmet>
+            <Grid centered className='roomGrid'>
+                <Comment.Group className='postGroupContainer'>
 
-                <Grid centered className='roomGrid'>
-                    <Comment.Group className='postGroupContainer'>
+                    <ForumPostContainer
+                        id={this.state.forumPostId}
+                        removeForumPost={this.removeForumPost}
+                    />
 
-                        {this.state.postDetailsReady ? (
-                            <ForumPostContainer
-                                {...this.state.roomDetails}
-                            />
-                        ) : (
-                            <div className='roomContainer'>
-                                <ForumPostPlaceholder /> 
-                            </div>
-                        )}
-
-                        <Segment className='initialPost'>
-                            <CommentGroup
-                                sorting={'{"date":"-1"}'}
-                                initialPost={true}
-                                roomId={this.props.match.params.id}
-                                parentId={this.props.match.params.id}
-                            />
-                        </Segment>
-                        
-                    </Comment.Group>
-                </Grid>
-            </>
+                    <Segment className='initialPost'>
+                        <CommentGroup
+                            sorting={'{"date":"-1"}'}
+                            initialPost={true}
+                            roomId={this.props.match.params.id}
+                            parentId={this.props.match.params.id}
+                        />
+                    </Segment>
+                    
+                </Comment.Group>
+            </Grid>
         )
     }
 

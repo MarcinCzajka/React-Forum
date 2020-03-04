@@ -25,7 +25,8 @@ class PostList extends React.Component {
         window.addEventListener("resize", this.handleResize.bind(this));
     }
 
-    removeRoomFromState = (key) => {
+    removeForumPostFromState = (key) => {
+		//Function to be used in case Image is no longer available
         const rooms = this.state.rooms.filter(room => {
             return room.key !== key
         })
@@ -89,7 +90,7 @@ class PostList extends React.Component {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <ForumPostContainer {...room} removeRoom={this.removeRoomFromState} />
+                    <ForumPostContainer {...room} removeForumPost={this.removeForumPostFromState} />
                 </Grid.Row>
             );
         })
