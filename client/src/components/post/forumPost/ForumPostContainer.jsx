@@ -90,7 +90,7 @@ class ForumPostContainer extends React.Component {
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
 		});
 
-		upvoteForumPost()
+		upvoteForumPost(this.state._id)
 			.then(res => {
 				this.setState({upvotes: res.upvotes, isLikedByUser: res.liked});
 			})
