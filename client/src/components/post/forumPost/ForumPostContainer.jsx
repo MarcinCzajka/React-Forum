@@ -14,18 +14,8 @@ class ForumPostContainer extends React.Component {
 		super(props);
 		
 		this.state = { 
-			_id: this.props.id,
-			authorId: this.props.authorId,
-			creationDate: this.props.creationDate,
-			lastActivityDate: this.props.lastActivityDate,
-			title: this.props.title,
-			description: this.props.description,
-			category: this.props.category,
-			image: this.props.image,
-			colorScheme: this.props.colorScheme,
+			_id: this.props._id,
 			isLikedByUser: false,
-			upvotes: this.props.upvotes,
-			views: this.props.views,
 			showReplyForm: false,
 			replyContent: '',
 			commentsCount: 0,
@@ -46,7 +36,19 @@ class ForumPostContainer extends React.Component {
 	getPostDetails = () => {
 		getForumPost(this.state._id)
 			.then(res => {
-				this.getPostAuthorDetails();
+				this.setState({
+					authorId: res.authorId,
+					category: res.category,
+					creationDate: res.creationDate,
+					description: res.description,
+					image: res.image,
+					lastActivityDate: res.lastActivityDate,
+					title: res.title,
+					upvotes: res.upvotes,
+					views: res.views,
+				});
+
+				this.getPostAuthorDetails(res.authorId);
 			})
 	}
 
