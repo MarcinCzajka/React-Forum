@@ -19,6 +19,7 @@ class ForumPostContainer extends React.Component {
 			showReplyForm: false,
 			replyContent: '',
 			commentsCount: 0,
+			isDownloaded: false,
 			isLoading: true,
 			errorMsg: ''
 		}
@@ -46,14 +47,16 @@ class ForumPostContainer extends React.Component {
 					title: res.title,
 					upvotes: res.upvotes,
 					views: res.views,
+					isDownloaded: true
 				});
 
-				this.getPostAuthorDetails(res.authorId);
+				this.getPostAuthorDetails();
+				this.getNrOfComments();
 			})
 	}
 
 	getPostAuthorDetails = () => {
-		getPostAuthor()
+		getPostAuthor(this.state.authorId)
 			.then(res => {
 				this.setState({
 					authorNick: res.name || "",
@@ -127,31 +130,33 @@ class ForumPostContainer extends React.Component {
 	}
 	
 	render() {
-		const {_id, creationDate, isLoading, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent} = this.state;
+		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent} = this.state;
 
 		return (
 			<article className='roomContainer'>
 
 				{isLoading ? <ForumPostPlaceholder /> : ''} 
 				
-				<ForumPost 
-					isLoading={isLoading}
-					_id={_id}
-					image={image}
-					handleImageLoaded={this.handleImageLoaded}
-					title={title}
-					description={description}
-					imageModalRef={this.imageModalRef}
-					showImageModal={this.showImageModal}
-					authorNick={authorNick}
-					creationDate={creationDate}
-					commentsCount={commentsCount}
-					views={views}
-					upvotes={upvotes}
-					isLikedByUser={isLikedByUser}
-					updateUpvote={this.updateUpvote}
-					removePost={this.removeMeFromList}
-				/>
+				{isDownloaded ? (
+					<ForumPost 
+						isLoading={isLoading}
+						_id={_id}
+						image={image}
+						handleImageLoaded={this.handleImageLoaded}
+						title={title}
+						description={description}
+						imageModalRef={this.imageModalRef}
+						showImageModal={this.showImageModal}
+						authorNick={authorNick}
+						creationDate={creationDate}
+						commentsCount={commentsCount}
+						views={views}
+						upvotes={upvotes}
+						isLikedByUser={isLikedByUser}
+						updateUpvote={this.updateUpvote}
+						removePost={this.removeMeFromList}
+					/>
+				) : ''}
 
 				{this.state.errorMsg && !this.context.loggedIn ? (
 					<Message warning attached='bottom'>

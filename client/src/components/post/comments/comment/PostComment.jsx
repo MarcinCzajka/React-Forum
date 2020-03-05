@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import { Comment } from "semantic-ui-react";
 import CommentGroup from '../CommentGroup';
-import CommentToolkit from '../replyForm/CommentToolkit';
+import CommentToolkit from './commentToolkit/CommentToolkit';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
 import './PostComment.css';

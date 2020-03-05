@@ -39,7 +39,7 @@ const ForumPost = props => (
 				_id={props._id}
 				authorNick={props.authorNick}
 				creationDate={props.creationDate}
-				comments={props.comments}
+				commentsCount={props.commentsCount}
 				views={props.views}
 				upvotes={props.upvotes}
 				isLikedByUser={props.isLikedByUser}

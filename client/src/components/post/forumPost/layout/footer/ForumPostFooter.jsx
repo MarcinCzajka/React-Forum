@@ -13,7 +13,7 @@ const ForumPostFooter = props => (
         <Statistic className='roomStat'>
             <Statistic.Value>
                 <Link to={`/post/${props._id}`}>
-                    <Icon name='comments outline'> {props.comments}</Icon>
+                    <Icon name='comments outline'> {props.commentsCount}</Icon>
                 </Link>
             </Statistic.Value>
         </Statistic>
@@ -43,7 +43,7 @@ ForumPostFooter.propTypes = {
     _id: PropTypes.string.isRequired,
 	authorNick: PropTypes.string.isRequired,
     creationDate: PropTypes.string.isRequired,
-    comments: PropTypes.number,
+    commentsCount: PropTypes.number,
     views: PropTypes.number,
     upvotes: PropTypes.number,
     isLikedByUser: PropTypes.bool,
