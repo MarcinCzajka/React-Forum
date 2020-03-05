@@ -30,6 +30,8 @@ class ForumPostContainer extends React.Component {
 	static contextType = UserContext;
 
 	componentDidMount() {
+		if(!this.state._id) this.removeMeFromList();
+
 		this.getPostDetails();
 		this.getNrOfComments();
 	}
@@ -121,7 +123,6 @@ class ForumPostContainer extends React.Component {
 		} else {
 			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
 		}
-		
 	}
 
 	removeMeFromList = () => {

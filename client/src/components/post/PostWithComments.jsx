@@ -19,12 +19,13 @@ class PostWithComments extends React.Component {
     }
 
     render() {
+        const { forumPostId } = this.state;
         return (
             <Grid centered className='roomGrid'>
                 <Comment.Group className='postGroupContainer'>
 
                     <ForumPostContainer
-                        id={this.state.forumPostId}
+                        _id={forumPostId}
                         removeForumPost={this.removeForumPost}
                     />
 
@@ -32,8 +33,8 @@ class PostWithComments extends React.Component {
                         <CommentGroup
                             sorting={'{"date":"-1"}'}
                             initialPost={true}
-                            roomId={this.props.match.params.id}
-                            parentId={this.props.match.params.id}
+                            roomId={forumPostId}
+                            parentId={forumPostId}
                         />
                     </Segment>
                     

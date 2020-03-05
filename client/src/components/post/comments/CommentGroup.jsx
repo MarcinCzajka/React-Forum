@@ -115,7 +115,7 @@ class CommentGroup extends React.Component {
 				content={item.content}
 				date={item.date}
 				responseTo={item.responseTo}
-				roomId={item.roomId}
+				roomId={this.props.roomId}
 				authorNick={(author ? author.authorNick : '')}
 				avatar={(author ? author.avatar : '')}
 				userId={this.context.userId}

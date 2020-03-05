@@ -74,6 +74,7 @@ class PostComment extends React.Component {
 
 				<CommentGroup 
 					parentId={this.props.postId}
+					roomId={this.props.roomId}
 					setHandleReply={this.setHandleReply}
 				/>
 
