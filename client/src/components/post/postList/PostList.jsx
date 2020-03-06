@@ -90,7 +90,10 @@ class PostList extends React.Component {
         const forumRooms = this.state.rooms.map(room => {
             return (
                 <Grid.Row key={room.key} centered>
-                    <ForumPostContainer {...room} removeForumPost={this.removeForumPostFromState} />
+                    <ForumPostContainer {...room} 
+                        removeForumPost={this.removeForumPostFromState} 
+                        isReplyPossible={false}
+                    />
                 </Grid.Row>
             );
         })

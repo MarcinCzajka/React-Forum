@@ -1,8 +1,10 @@
 import React from 'react';
-import { Form, Message } from "semantic-ui-react";
+import PropTypes from 'prop-types';
+import { Message, Button } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import ForumPostPlaceholder from '../../placeholders/ForumPostPlaceholder';
 import ForumPost from './layout/ForumPost';
+import NewComment from './newComment/NewComment';
 import { getForumPost, 
 		 getPostAuthor,
 		 getCommentsCount,
@@ -21,7 +23,8 @@ class ForumPostContainer extends React.Component {
 			commentsCount: 0,
 			isDownloaded: false,
 			isLoading: true,
-			errorMsg: ''
+			errorMsg: '',
+			isReplyPossible: this.props.isReplyPossible
 		}
 
 		this.imageModalRef = React.createRef();
@@ -98,12 +101,32 @@ class ForumPostContainer extends React.Component {
 				this.setState({errorMsg: err})
 			})
 	}
+
+	handleReplyChange = (e) => {
+		this.setState({replyContent: e.target.value});
+	}
+
+	handleShowReplyClick = () => {
+		this.setState({showReplyForm: true});
+	}
+
+	handleReplyBtnClick = () => {
+		if(!this.context.loggedIn) return this.setState({
+			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can post response!</p>
+		});
+
+		if(this.state.replyContent) {
+			this.handleReplyToPost();
+		} else {
+			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
+		}
+	}
 	
 	handleReplyToPost = () => {
 		replyToForumPost(this.context.userId, this.state._id, this.state.replyContent)
 			.then(res => {
 				if(res.status === 200) {
-					this.props.refreshPosts();
+					this.props.refreshComments();
 					this.setState({replyContent: '', showReplyForm: false});
 				}
 			})
@@ -113,25 +136,13 @@ class ForumPostContainer extends React.Component {
 		this.imageModalRef.current.open();
 	}
 
-	handleReplyBtnClick = () => {
-		if(!this.context.loggedIn) return this.setState({
-			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
-		});
-
-		if(this.state.replyContent) {
-			this.handleReplyToPost();
-		} else {
-			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
-		}
-	}
-
 	removeMeFromList = () => {
 		//Function to be used in case Image is no longer available
 		this.props.removeForumPost(this.state._id);
 	}
 	
 	render() {
-		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent} = this.state;
+		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent, isReplyPossible} = this.state;
 
 		return (
 			<article className='roomContainer'>
@@ -164,16 +175,38 @@ class ForumPostContainer extends React.Component {
 						<Message.Header>{this.state.errorMsg}</Message.Header>
 					</Message>
 				) : ''}
-				
-				{showReplyForm ? (
-					<Form reply style={{gridColumn:'1/-1'}}>
-						<Form.TextArea value={replyContent} onChange={e => this.setState({replyContent: e.target.value})} />
-					</Form>
+
+				{isReplyPossible && !isLoading ? (
+					<>
+						<Button 
+							circular
+							color='teal'
+							size='massive'
+							icon='comment alternate outline'
+							onClick={this.handleShowReplyClick}
+						/>
+						
+						<NewComment 
+							active={showReplyForm}
+							replyContent={replyContent}
+							handleReplyChange={this.handleReplyChange}
+							handleReplyToPost={this.handleReplyToPost}
+						/>
+					</>
 				) : ''}
 
 			</article>
 		)
 	}
+}
+
+ForumPostContainer.defaultProps = {
+    isReplyPossible: true
+}
+
+ForumPostContainer.propTypes = {
+	_id: PropTypes.string.isRequired,
+	isReplyPossible: PropTypes.bool
 }
 
 export default ForumPostContainer;

@@ -13,6 +13,10 @@ class PostWithComments extends React.Component {
         }
     }
 
+    refreshComments = () => {
+        window.location.reload();
+    }
+
     removeForumPost = () => {
         //Function to be used in case Image is no longer available
         window.location = window.location.origin;
@@ -26,6 +30,7 @@ class PostWithComments extends React.Component {
 
                     <ForumPostContainer
                         _id={forumPostId}
+                        refreshComments={this.refreshComments}
                         removeForumPost={this.removeForumPost}
                     />
 
