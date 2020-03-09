@@ -4,7 +4,8 @@ import ForumPostContainer from '../forumPost/ForumPostContainer';
 import CommentGroup from '../comments/CommentGroup';
 import NewComment from './newComment/NewComment';
 import UserContext from '../../../contexts/UserContext';
-import './PostWithComments.css';import { replyToForumPost } from '../forumPost/forumPostLogic/forumPostApi';
+import './PostWithComments.css';
+import { replyToForumPost } from '../forumPost/forumPostLogic/forumPostApi';
 
 class PostWithComments extends React.Component {
     constructor(props) {

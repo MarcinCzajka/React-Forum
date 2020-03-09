@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewComment component match snapshot 1`] = `
+<div
+  className="ui centered grid roomGrid"
+>
+  <div
+    className="ui comments postGroupContainer"
+  >
+    <article
+      className="roomContainer"
+    >
+      <div
+        style={
+          Object {
+            "display": "flex",
+          }
+        }
+      >
+        <div
+          className="ui placeholder"
+          style={
+            Object {
+              "height": "150px",
+              "width": "220px",
+            }
+          }
+        >
+          <div
+            className="image"
+          />
+        </div>
+        <div
+          className="ui placeholder"
+          style={
+            Object {
+              "height": "100%",
+              "margin": "10px",
+              "width": "100%",
+            }
+          }
+        >
+          <div
+            className="line"
+          />
+          <div
+            className="line"
+          />
+          <div
+            className="line"
+          />
+          <div
+            className="line"
+          />
+        </div>
+      </div>
+      
+      
+    </article>
+    
+    
+  </div>
+</div>
+`;
