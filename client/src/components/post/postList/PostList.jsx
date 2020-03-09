@@ -91,8 +91,7 @@ class PostList extends React.Component {
             return (
                 <Grid.Row key={room.key} centered>
                     <ForumPostContainer {...room} 
-                        removeForumPost={this.removeForumPostFromState} 
-                        isReplyPossible={false}
+                        removeForumPost={this.removeForumPostFromState}
                     />
                 </Grid.Row>
             );

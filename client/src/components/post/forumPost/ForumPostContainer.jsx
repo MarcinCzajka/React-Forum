@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Message, Button } from "semantic-ui-react";
+import { Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import ForumPostPlaceholder from '../../placeholders/ForumPostPlaceholder';
 import ForumPost from './layout/ForumPost';
-import NewComment from './newComment/NewComment';
 import { getForumPost, 
 		 getPostAuthor,
 		 getCommentsCount,
-		 upvoteForumPost,
-		 replyToForumPost } from './forumPostLogic/forumPostApi';
+		 upvoteForumPost } from './forumPostLogic/forumPostApi';
 
 class ForumPostContainer extends React.Component {
 	constructor(props) {
@@ -18,13 +16,11 @@ class ForumPostContainer extends React.Component {
 		this.state = { 
 			_id: this.props._id,
 			isLikedByUser: false,
-			showReplyForm: false,
 			replyContent: '',
 			commentsCount: 0,
 			isDownloaded: false,
 			isLoading: true,
-			errorMsg: '',
-			isReplyPossible: this.props.isReplyPossible
+			errorMsg: ''
 		}
 
 		this.imageModalRef = React.createRef();
@@ -81,11 +77,14 @@ class ForumPostContainer extends React.Component {
 				if(commentsCount > 0) {
 					this.setState({commentsCount: commentsCount});
 				}
+
+				if(this.props.setReady) this.props.setReady(Boolean(commentsCount));
 			})
 	}
 
 	handleImageLoaded = () => {
 		this.setState({ isLoading: false });
+		if(this.props.setReady) this.props.setReady(Boolean(this.state.commentsCount));
 	}
 
 	updateUpvote = () => {
@@ -102,14 +101,6 @@ class ForumPostContainer extends React.Component {
 			})
 	}
 
-	handleReplyChange = (e) => {
-		this.setState({replyContent: e.target.value});
-	}
-
-	handleShowReplyClick = () => {
-		this.setState({showReplyForm: true});
-	}
-
 	handleReplyBtnClick = () => {
 		if(!this.context.loggedIn) return this.setState({
 			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can post response!</p>
@@ -122,16 +113,6 @@ class ForumPostContainer extends React.Component {
 		}
 	}
 	
-	handleReplyToPost = () => {
-		replyToForumPost(this.context.userId, this.state._id, this.state.replyContent)
-			.then(res => {
-				if(res.status === 200) {
-					this.props.refreshComments();
-					this.setState({replyContent: '', showReplyForm: false});
-				}
-			})
-	}
-	
 	showImageModal = () => {
 		this.imageModalRef.current.open();
 	}
@@ -142,7 +123,7 @@ class ForumPostContainer extends React.Component {
 	}
 	
 	render() {
-		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes, showReplyForm, replyContent, isReplyPossible} = this.state;
+		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes } = this.state;
 
 		return (
 			<article className='roomContainer'>
@@ -176,37 +157,14 @@ class ForumPostContainer extends React.Component {
 					</Message>
 				) : ''}
 
-				{isReplyPossible && !isLoading ? (
-					<>
-						<Button 
-							circular
-							color='teal'
-							size='massive'
-							icon='comment alternate outline'
-							onClick={this.handleShowReplyClick}
-						/>
-						
-						<NewComment 
-							active={showReplyForm}
-							replyContent={replyContent}
-							handleReplyChange={this.handleReplyChange}
-							handleReplyToPost={this.handleReplyToPost}
-						/>
-					</>
-				) : ''}
-
 			</article>
 		)
 	}
 }
 
-ForumPostContainer.defaultProps = {
-    isReplyPossible: true
-}
-
 ForumPostContainer.propTypes = {
 	_id: PropTypes.string.isRequired,
-	isReplyPossible: PropTypes.bool
+	setReady: PropTypes.func
 }
 
 export default ForumPostContainer;
