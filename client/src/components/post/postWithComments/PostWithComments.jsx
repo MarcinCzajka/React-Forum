@@ -17,6 +17,8 @@ class PostWithComments extends React.Component {
             replyContent: '',
             showReplyForm: false
         }
+
+        this.forumPostRef = React.createRef();
     }
 
 	static contextType = UserContext;
@@ -35,6 +37,16 @@ class PostWithComments extends React.Component {
     
     hideReplyForm = () => {
 		this.setState({replyContent: '', showReplyForm: false});
+	}
+
+	handleReplyBtnClick = () => {
+		if(!this.context.loggedIn) return this.forumPostRef.current.showLoginPrompt('post');
+
+		if(this.state.replyContent) {
+			this.handleReplyToPost();
+		} else {
+			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
+		}
 	}
 	
 	handleReplyToPost = () => {
@@ -66,6 +78,7 @@ class PostWithComments extends React.Component {
                         refreshComments={this.refreshComments}
                         removeForumPost={this.removeForumPost}
                         setReady={this.setReady}
+                        ref={this.forumPostRef}
                     />
                     
                     {forumPostReady ? (
@@ -73,7 +86,7 @@ class PostWithComments extends React.Component {
                             active={showReplyForm}
                             replyContent={replyContent}
                             handleReplyChange={this.handleReplyChange}
-                            handleReplyToPost={this.handleReplyToPost}
+                            handleReplyBtnClick={this.handleReplyBtnClick}
                             changeReplyFormVisibility={this.changeReplyFormVisibility}
                         />
                     ) : ''}

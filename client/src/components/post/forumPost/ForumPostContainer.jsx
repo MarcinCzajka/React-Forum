@@ -88,9 +88,7 @@ class ForumPostContainer extends React.Component {
 	}
 
 	updateUpvote = () => {
-		if(!this.context.loggedIn) return this.setState({
-			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can vote!</p>
-		});
+		if(!this.context.loggedIn) return this.showLoginPrompt('vote');
 
 		upvoteForumPost(this.state._id)
 			.then(res => {
@@ -101,16 +99,10 @@ class ForumPostContainer extends React.Component {
 			})
 	}
 
-	handleReplyBtnClick = () => {
-		if(!this.context.loggedIn) return this.setState({
-			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can post response!</p>
+	showLoginPrompt = (interaction) => {
+		this.setState({
+			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can {interaction}!</p>
 		});
-
-		if(this.state.replyContent) {
-			this.handleReplyToPost();
-		} else {
-			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
-		}
 	}
 	
 	showImageModal = () => {

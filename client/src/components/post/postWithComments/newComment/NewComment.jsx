@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form, Button } from 'semantic-ui-react';
+import './NewComment.css';
 
 const NewComment = props => {
     return (
-        <Form reply style={{marginTop: '0.5em'}}>
+        <Form className='newCommentForm' reply>
             <Button 
                 circular
                 color='teal'
@@ -12,10 +13,20 @@ const NewComment = props => {
                 icon='comment alternate outline'
                 onClick={props.changeReplyFormVisibility}
             />
-            <Form.TextArea 
-                style={{display: (props.active ? 'block' : 'none'), marginTop: '0.5em'}}
-                value={props.replyContent}
-                onChange={props.handleReplyChange} />
+
+            {props.active ? (
+                <>
+                    <Form.TextArea 
+                        style={{marginTop: '0.5em'}}
+                        value={props.replyContent}
+                        onChange={props.handleReplyChange}
+                    />
+
+                    <Button 
+                        onClick={props.handleReplyBtnClick}
+                    />
+                </>
+            ) : ''}
         </Form>
     )
 }
@@ -29,7 +40,7 @@ NewComment.propTypes = {
     replyContent: PropTypes.string,
     active: PropTypes.bool,
     handleReplyChange: PropTypes.func.isRequired,
-    handleReplyToPost: PropTypes.func.isRequired,
+    handleReplyBtnClick: PropTypes.func.isRequired,
     changeReplyFormVisibility: PropTypes.func.isRequired
 }
 

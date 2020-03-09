@@ -1,0 +1,131 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewComment component match snapshot w/ being active 1`] = `
+<form
+  className="ui reply form newCommentForm"
+  onSubmit={[Function]}
+>
+  <button
+    className="ui teal massive circular icon button"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="comment alternate outline icon"
+      onClick={[Function]}
+    />
+  </button>
+  <div
+    className="field"
+  >
+    <textarea
+      onChange={[Function]}
+      onInput={[Function]}
+      rows={3}
+      style={
+        Object {
+          "marginTop": "0.5em",
+        }
+      }
+      value=""
+    />
+  </div>
+  <button
+    className="ui button"
+    onClick={[Function]}
+  />
+</form>
+`;
+
+exports[`NewComment component match snapshot w/ replyContent 1/2 1`] = `
+<form
+  className="ui reply form newCommentForm"
+  onSubmit={[Function]}
+>
+  <button
+    className="ui teal massive circular icon button"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="comment alternate outline icon"
+      onClick={[Function]}
+    />
+  </button>
+  <div
+    className="field"
+  >
+    <textarea
+      onChange={[Function]}
+      onInput={[Function]}
+      rows={3}
+      style={
+        Object {
+          "marginTop": "0.5em",
+        }
+      }
+      value="123"
+    />
+  </div>
+  <button
+    className="ui button"
+    onClick={[Function]}
+  />
+</form>
+`;
+
+exports[`NewComment component match snapshot w/ replyContent 1/2 2`] = `
+<form
+  className="ui reply form newCommentForm"
+  onSubmit={[Function]}
+>
+  <button
+    className="ui teal massive circular icon button"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="comment alternate outline icon"
+      onClick={[Function]}
+    />
+  </button>
+  <div
+    className="field"
+  >
+    <textarea
+      onChange={[Function]}
+      onInput={[Function]}
+      rows={3}
+      style={
+        Object {
+          "marginTop": "0.5em",
+        }
+      }
+      value="asdfsdgdfgsd sdfsdf dsfdsgfdg dfdf"
+    />
+  </div>
+  <button
+    className="ui button"
+    onClick={[Function]}
+  />
+</form>
+`;
+
+exports[`NewComment component match snapshot w/o being active 1`] = `
+<form
+  className="ui reply form newCommentForm"
+  onSubmit={[Function]}
+>
+  <button
+    className="ui teal massive circular icon button"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="comment alternate outline icon"
+      onClick={[Function]}
+    />
+  </button>
+  
+</form>
+`;
