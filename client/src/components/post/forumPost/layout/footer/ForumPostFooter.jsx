@@ -36,7 +36,8 @@ const ForumPostFooter = props => (
 ForumPostFooter.defaultProps = {
     comments: 0,
     views: 0,
-    upvotes: 0
+    upvotes: 0,
+    isLikedByUser: false
 }
 
 ForumPostFooter.propTypes = {
