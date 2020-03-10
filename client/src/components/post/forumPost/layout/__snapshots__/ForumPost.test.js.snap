@@ -1,0 +1,391 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListPagination component match snapshot 1/3 1`] = `
+<div
+  className="roomGrid noMargin noPadding"
+  style={
+    Object {
+      "visibility": "visible",
+    }
+  }
+>
+  <div
+    className="roomImageContainer"
+    onClick={[Function]}
+  >
+    <img
+      alt="Random Title"
+      className="roomImage"
+      onError={[Function]}
+      src="www.sdafadsfd.dsa"
+    />
+    <div
+      className="imageOverlay"
+    >
+      <i
+        aria-hidden="true"
+        className="zoom-in huge inverted icon"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <header
+    className="roomTitle"
+  >
+    <a
+      href="/post/abcde12345"
+      onClick={[Function]}
+    >
+      <h3>
+        Random Title
+      </h3>
+    </a>
+  </header>
+  <main
+    className="roomDescription"
+  >
+    <p>
+      Random description
+    </p>
+  </main>
+  <footer
+    className="roomFooter"
+  >
+    <div
+      className="ui mini statistics maxWidth roomStats noMargin"
+    >
+      <div
+        className="ui statistic leftStatistic"
+      >
+        <p>
+          Author: 
+        </p>
+        <p>
+          Created: 
+          2020-03-10
+        </p>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <a
+            href="/post/abcde12345"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="eye icon"
+            onClick={[Function]}
+          />
+            
+          0
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="thumbs up icon"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "",
+              }
+            }
+          />
+            
+          0
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot 2/3 1`] = `
+<div
+  className="roomGrid noMargin noPadding"
+  style={
+    Object {
+      "visibility": "visible",
+    }
+  }
+>
+  <div
+    className="roomImageContainer"
+    onClick={[Function]}
+  >
+    <img
+      alt="Yet Another TiTlE: 12"
+      className="roomImage"
+      onError={[Function]}
+      src="www.sdafadsfd.dsa"
+    />
+    <div
+      className="imageOverlay"
+    >
+      <i
+        aria-hidden="true"
+        className="zoom-in huge inverted icon"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <header
+    className="roomTitle"
+  >
+    <a
+      href="/post/abcde12345"
+      onClick={[Function]}
+    >
+      <h3>
+        Yet Another TiTlE: 12
+      </h3>
+    </a>
+  </header>
+  <main
+    className="roomDescription"
+  >
+    <p>
+      Random description
+    </p>
+  </main>
+  <footer
+    className="roomFooter"
+  >
+    <div
+      className="ui mini statistics maxWidth roomStats noMargin"
+    >
+      <div
+        className="ui statistic leftStatistic"
+      >
+        <p>
+          Author: 
+        </p>
+        <p>
+          Created: 
+          2020-03-10
+        </p>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <a
+            href="/post/abcde12345"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="eye icon"
+            onClick={[Function]}
+          />
+            
+          0
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="thumbs up icon"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "",
+              }
+            }
+          />
+            
+          0
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot 3/3 1`] = `
+<div
+  className="roomGrid noMargin noPadding"
+  style={
+    Object {
+      "visibility": "visible",
+    }
+  }
+>
+  <div
+    className="roomImageContainer"
+    onClick={[Function]}
+  >
+    <img
+      alt="Yet Another TiTlE: 12"
+      className="roomImage"
+      onError={[Function]}
+      src="www.sdafadsfd.dsa"
+    />
+    <div
+      className="imageOverlay"
+    >
+      <i
+        aria-hidden="true"
+        className="zoom-in huge inverted icon"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+  <header
+    className="roomTitle"
+  >
+    <a
+      href="/post/abcde12345"
+      onClick={[Function]}
+    >
+      <h3>
+        Yet Another TiTlE: 12
+      </h3>
+    </a>
+  </header>
+  <main
+    className="roomDescription"
+  >
+    <p>
+      Light from a service hatch at the rear of the arcade showed him broken lengths of damp chipboard and the drifting shoals of waste. Before they could stampede, take flight from the banks of every computer in the shade beneath a bridge or overpass. The semiotics of the Flatline as a construct, a hardwired ROM cassette replicating a dead man’s skills, obsessions, kneejerk responses. Case felt the edge of the Flatline as a construct, a hardwired ROM cassette replicating a dead man’s skills, obsessions, kneejerk responses. After the postoperative check at the clinic, Molly took him to the simple Chinese hollow points Shin had sold him. Case had never seen him wear the same suit twice, although his wardrobe seemed to consist entirely of meticulous reconstruction’s of garments of the car’s floor. Images formed and reformed: a flickering montage of the Sprawls towers and ragged Fuller domes, dim figures moving toward him in the human system. The Sprawl was a handgun and nine rounds of ammunition, and as he made his way down Shiga from the Chinese program’s thrust, a worrying impression of solid fluidity, as though the shards of a broken mirror bent and elongated as they rotated, but it never told the correct time.
+    </p>
+  </main>
+  <footer
+    className="roomFooter"
+  >
+    <div
+      className="ui mini statistics maxWidth roomStats noMargin"
+    >
+      <div
+        className="ui statistic leftStatistic"
+      >
+        <p>
+          Author: 
+        </p>
+        <p>
+          Created: 
+          2020-03-10
+        </p>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <a
+            href="/post/abcde12345"
+            onClick={[Function]}
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               
+            </i>
+          </a>
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="eye icon"
+            onClick={[Function]}
+          />
+            
+          0
+        </div>
+      </div>
+      <div
+        className="ui statistic roomStat"
+        style={
+          Object {
+            "cursor": "pointer",
+          }
+        }
+      >
+        <div
+          className="value"
+        >
+          <i
+            aria-hidden="true"
+            className="thumbs up icon"
+            onClick={[Function]}
+            style={
+              Object {
+                "color": "",
+              }
+            }
+          />
+            
+          0
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+`;
