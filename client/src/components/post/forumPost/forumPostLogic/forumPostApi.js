@@ -15,6 +15,25 @@ export const getForumPost = postId => {
     })
 }
 
+export const getForumPosts = (pageNr, postsLimit) => {
+    return new Promise((resolve, reject) => {
+        basePath({
+            method: "get",
+            url: `/api/rooms/`,
+            params: {
+                roomsLimit: postsLimit,
+                page: pageNr
+            }
+        })
+        .then(res => {
+            resolve(res.data);
+        })
+        .catch(err => {
+            reject(err);
+        })
+    })
+}
+
 export const getPostAuthor = authorId => {
     return new Promise((resolve, reject) => {
         basePath({
