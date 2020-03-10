@@ -1,10 +1,11 @@
 import React from 'react';
-import basePath from '../../../api/basePath';
 import { Helmet } from "react-helmet";
 import { Button, Statistic, Icon, Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import { LocaleConsumer } from '../../../contexts/LocaleContext';
 import ImageModal from '../../imageModal/ImageModal';
+import ErrorMessage from '../../message/ErrorMessage';
+import { createForumPost } from '../forumPost/forumPostLogic/forumPostApi';
 import '../forumPost/layout/ForumPost.css';
 import './PostCreator.css';
 
@@ -41,57 +42,23 @@ class PostCreator extends React.Component {
         return <span style={{color: color}}>{result} letters left.</span>
     }
 
-    createNewRoom = () => {
-        basePath({
-            method: "post",
-            url: `/api/rooms/`,
-            data: {
-                authorId: this.context.userId,
-                title: this.state.title,
-                description: this.state.description,
-                category: this.state.category,
-                image: this.state.image,
-                creationDate: new Date().toISOString()
-            },
-            withCredentials: true
-        })
-        .then((res) => {
-            if (res.status === 200) {
-                this.setState({
-                    'open': false,
-                    description: '',
-                    category: 'General',
-                    image: ''
-                });
-            };
-
-            window.location = window.location.origin + '/post/' + res.data._id;
-        })
-        .catch(err => {
-            console.log(err);
-            this.setState({ error: err.response.data });
-        })
-    }
-
-    error = () => {
-        if (!this.context.loggedIn) {
-            return (
-                <Message error
-                header = 'Error'
-                content = {<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>} />
-            )
-        }
-
-        if (this.state.error) {
-            return (
-                <Message error
-                header = 'Error'
-                content = {this.state.error} />
-            )
-        }
+    createNewForumPost = () => {
+        const { title, description, category, image } = this.state;
+        createForumPost(this.context.userId, title, description, category, image)
+            .then((res) => {
+                if (res.status === 200) {
+                    //Change location to new post location
+                    window.location = window.location.origin + '/post/' + res.data._id;
+                }
+            })
+            .catch(err => {
+                this.setState({ error: err.response.data });
+            })
     }
 
     focus = (className) => {
+        if(typeof className !== 'string') return
+        
         document.getElementsByClassName(className)[0].focus();
     }
 
@@ -140,7 +107,17 @@ class PostCreator extends React.Component {
                         </Helmet>
 
                         <article className='roomContainer'>
-                            <div>{this.error()}</div>
+
+                            <div>
+                                {!this.context.loggedIn ? (
+                                    <ErrorMessage 
+                                        message={<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>}  
+                                    />
+                                ) : this.state.error ? (
+                                    <ErrorMessage message={this.state.error} />
+                                ) : ''}
+                            </div>
+
                             <div className='roomGrid noMargin noPadding' >
 
                                     <div className='roomImageContainer imageContainerInCreation' >
@@ -204,7 +181,7 @@ class PostCreator extends React.Component {
                                     </Statistic.Group>
                                 </footer>
                                 
-                                <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewRoom} >
+                                <Button className='createPostBtn' icon labelPosition='right' color='blue' onClick={this.createNewForumPost} >
                                     {locale.postCreator.createPostButton}
                                     <Icon name='paper plane' />
                                 </Button>

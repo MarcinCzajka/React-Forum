@@ -103,3 +103,27 @@ export const replyToForumPost = (authorId, forumPostId, content) => {
         })
     })
 }
+
+export const createForumPost = (userId, title, description, category, image) => {
+    return new Promise((resolve, reject) => {
+        basePath({
+            method: 'POST',
+            url: `/api/rooms/`,
+            data: {
+                authorId: userId,
+                title: title,
+                description: description,
+                category: category,
+                image: image,
+                creationDate: new Date().toISOString()
+            },
+            withCredentials: true
+        })
+        .then((res) => {
+            resolve(res);
+        })
+        .catch(err => {
+            reject(err);
+        })
+    })
+}
