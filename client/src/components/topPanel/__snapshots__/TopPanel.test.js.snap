@@ -2,7 +2,8 @@
 
 exports[`TopPanel component match snapshot /w user logged in 1`] = `
 <div
-  className="ui inverted tabular menu"
+  className="ui inverted tabular noMargin menu"
+  id="topPanel"
 >
   <a
     href="/"
@@ -60,7 +61,8 @@ exports[`TopPanel component match snapshot /w user logged in 1`] = `
 
 exports[`TopPanel component match snapshot w/o user logged in 1`] = `
 <div
-  className="ui inverted tabular menu"
+  className="ui inverted tabular noMargin menu"
+  id="topPanel"
 >
   <a
     href="/"
