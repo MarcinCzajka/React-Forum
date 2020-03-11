@@ -1,17 +1,20 @@
 :root {
-    --mainBackground: #f3eded; 
-    --firstColor: #f5c16c;
-    --secondColor: #df8931;
-    --thirdColor: #85410a;
-    --linkColor: #1e70bf;
+    --mainBackground: #32dbc6; 
+    --topPanelBackground: #f9fce5;
+    --firstColor: #49beb7;
+    --secondColor: #1d3836;
+    --thirdColor: #f9fce5;
+    --linkColor: #fa745a;
 }
 
 body {
-    background-color: var(--firstColor);
+    background-color: var(--mainBackground);
 }
 
 #topPanel {
-    background-color: var(--secondColor) !important;
+    background-color: var(--topPanelBackground) !important;
+    box-shadow: 0 -3px 6px 0 inset rgba(112, 175, 126, 0.5),
+                0 3px 6px 0 rgba(67, 104, 75, 0.7) !important;
 
     a div {
         color: var(--linkColor);
@@ -25,23 +28,23 @@ body {
 }
 
 .postContainerOverlay {
-    background-color: var(--secondColor) !important;
+    background-color: var(--thirdColor) !important;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: -12px -12px 12px 0 rgba(255, 255, 255, 0.2),
-                6px 6px 8px 0 rgba(184, 116, 13, .3);
+    box-shadow: -8px -8px 12px 0 rgba(176, 250, 192, 0.8),
+                6px 6px 12px 0 rgba(100, 156, 112, 0.7);
 
     .roomTitle a {
         color: var(--linkColor);
     }
 
     .roomDescription p {
-        color: var(--thirdColor);
+        color: var(--secondColor);
         font-weight: 600;
     }
 
     .roomFooter {
-        color: var(--thirdColor);
+        color: var(--secondColor);
         font-weight: 400;
     }
 }

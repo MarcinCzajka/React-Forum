@@ -1,8 +1,3 @@
-:root {
-    --roomBorder: none;
-    --roomBorder1: 2px solid rgba(6, 12, 15, 0.33);
-}
-
 .roomContainer {
     min-width: 60vw;
     max-width: 850px;
@@ -19,17 +14,11 @@
 .roomTitle {
     grid-row: 1;
     grid-column: 5 / -1;
-
-    border-top: var(--roomBorder);
-    border-right: var(--roomBorder);
-    border-bottom: var(--roomBorder);
 }
 
 .roomDescription {
     grid-row: 2 / 6;
     grid-column: 5 / -1;
-    border-right: var(--roomBorder);
-    border-bottom: var(--roomBorder);
     padding: 10px;
     text-align: left;
 }
@@ -39,7 +28,6 @@
     overflow: hidden;
     width: 100%;
     height: 100%;
-    border: var(--roomBorder);
 
     cursor: pointer;
 
@@ -57,6 +45,7 @@
     height: 100%;
     min-width: 100%;
     object-fit: cover;
+    border-radius: 5px;
 }
 
 .imageOverlay {
@@ -85,9 +74,9 @@
 .roomFooter {
     grid-row: 6;
     grid-column: 5 / -1;
-
-    border-bottom: var(--roomBorder);
-    border-right: var(--roomBorder);
+    padding-top: 8px;
+    margin-left: 12px;
+    border-top: 3px dotted rgba(6, 12, 15, 0.20);
 }
 
 .roomStats {
@@ -127,16 +116,11 @@
     .roomTitle {
         grid-row: 1;
         grid-column: 1 / -1;
-
-        border-left: var(--roomBorder);
-        border-bottom: 0;
     }
 
     .roomDescription {
         grid-row: 3;
         grid-column: 1 / -1;
-
-        border-left: var(--roomBorder);
     }
 
     .roomImageContainer {
@@ -155,8 +139,6 @@
     .roomFooter {
         grid-row: 4;
         grid-column: 1 / -1;
-
-        border-left: var(--roomBorder);
     }
 
     .roomTextContainer {
