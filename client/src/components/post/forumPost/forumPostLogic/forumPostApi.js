@@ -26,6 +26,7 @@ export const getForumPosts = (pageNr, postsLimit) => {
             }
         })
         .then(res => {
+            console.log(res)
             resolve(res.data);
         })
         .catch(err => {

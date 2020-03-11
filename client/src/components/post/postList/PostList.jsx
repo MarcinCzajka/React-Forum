@@ -48,7 +48,7 @@ class PostList extends React.Component {
     fetchForumPosts = (pageNr = 1) => {
         const { postsLimit } = this.state;
         
-        getForumPosts(postsLimit, pageNr)
+        getForumPosts(pageNr, postsLimit)
             .then(res => {
                 const forumPosts = res.rooms.map(item => {
                     return {...item, ...{key: item._id}}
@@ -77,6 +77,7 @@ class PostList extends React.Component {
             windowWidth: this.state.windowWidth,
             changePage: this.changePage
         }
+        console.log(forumPosts)
         
         return (
             <Grid className='noMargin'>
