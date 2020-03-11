@@ -6,7 +6,7 @@ import moment from 'moment';
 import { Helmet } from "react-helmet";
 import basePath from '../../api/basePath';
 import getCloudinaryWidget from '../../utilities/getCloudinaryWidget';
-import './AboutMe.css';
+import './AboutMe.scss';
 
 class AboutMe extends React.Component {
     constructor(props) {

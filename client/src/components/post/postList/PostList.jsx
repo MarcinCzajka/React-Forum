@@ -77,10 +77,9 @@ class PostList extends React.Component {
             windowWidth: this.state.windowWidth,
             changePage: this.changePage
         }
-        console.log(forumPosts)
         
         return (
-            <Grid className='noMargin'>
+            <Grid id='postList' className='noMargin'>
                 <PostListPagination 
                     {...paginationProps}
                 />

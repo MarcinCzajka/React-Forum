@@ -6,7 +6,7 @@ import CommentGroup from '../CommentGroup';
 import CommentToolkit from './commentToolkit/CommentToolkit';
 import PostPlaceholder from '../../../placeholders/PostPlaceholder';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
-import './PostComment.css';
+import './PostComment.scss';
 
 class PostComment extends React.Component {
 	constructor(props) {

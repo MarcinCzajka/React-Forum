@@ -1,0 +1,14 @@
+:root {
+    --firstColor: #21e6c1; 
+    --secondColor: #278ea5;
+    --thirdColor: #1f4287;
+    --fourthColor: #071e3d;
+}
+
+#topPanel {
+    background-color: var(--secondColor);
+}
+
+#postList {
+    background-color: var(--firstColor);
+}

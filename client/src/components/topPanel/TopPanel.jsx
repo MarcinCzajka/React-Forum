@@ -5,7 +5,7 @@ import LoginFormContainer from "../login/LoginFormContainer";
 import SignUpFormContainer from '../signup/SignUpFormContainer';
 import { LocaleConsumer } from '../../contexts/LocaleContext';
 import { UserConsumer } from '../../contexts/UserContext';
-import './TopPanel.css';
+import './TopPanel.scss';
 
 export default props => {
     return (
@@ -14,7 +14,7 @@ export default props => {
                 <UserConsumer>
                     {user => (
 
-                        <Menu tabular inverted>
+                        <Menu tabular inverted id='topPanel' className='noMargin'>
 
                             <Link to=''>
                                 <Menu.Item name={locale.feedPageLink} />

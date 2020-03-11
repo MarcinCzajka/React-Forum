@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Dimmer, Icon, Loader } from "semantic-ui-react";
-import './ImageModal.css'
+import './ImageModal.scss'
 
 class ImageModal extends React.Component {
     constructor(props) {

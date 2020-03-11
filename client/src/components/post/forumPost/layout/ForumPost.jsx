@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Icon } from "semantic-ui-react";
 import ForumPostFooter from './footer/ForumPostFooter';
 import ImageModal from '../../../imageModal/ImageModal';
-import './ForumPost.css';
+import './ForumPost.scss';
 
 const ForumPost = props => (
 	<div className='roomGrid noMargin noPadding'

@@ -12,8 +12,8 @@ import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
 import { loadReCaptcha } from 'react-recaptcha-google'
 import "semantic-ui-css/semantic.min.css";
-import './global.css';
-
+import './global.scss';
+import './overlay.scss';
 
 class App extends React.Component {
     constructor(props) {

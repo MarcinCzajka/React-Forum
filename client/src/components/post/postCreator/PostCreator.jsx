@@ -6,8 +6,8 @@ import { LocaleConsumer } from '../../../contexts/LocaleContext';
 import ImageModal from '../../imageModal/ImageModal';
 import ErrorMessage from '../../message/ErrorMessage';
 import { createForumPost } from '../forumPost/forumPostLogic/forumPostApi';
-import '../forumPost/layout/ForumPost.css';
-import './PostCreator.css';
+import '../forumPost/layout/ForumPost.scss';
+import './PostCreator.scss';
 
 class PostCreator extends React.Component {
     constructor(props) {

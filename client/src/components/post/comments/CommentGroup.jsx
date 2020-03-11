@@ -7,7 +7,7 @@ import { replyToComment,
 	removeCommentById, 
 	fetchResponseComments } from './commentsLogic/commentsApi';
 import getUserDetails from './commentsLogic/getUserDetails';
-import './CommentGroup.css';
+import './CommentGroup.scss';
 
 class CommentGroup extends React.Component {
 	constructor(props) {

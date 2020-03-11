@@ -1,6 +1,6 @@
 import React from 'react';
 import { Icon } from "semantic-ui-react";
-import './AvatarPlaceholder.css';
+import './AvatarPlaceholder.scss';
 
 export default props => {
     return (
