@@ -1,6 +1,6 @@
 import React from 'react';
 import { Helmet } from "react-helmet";
-import { Button, Statistic, Icon, Message } from "semantic-ui-react";
+import { Button, Statistic, Icon } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import { LocaleConsumer } from '../../../contexts/LocaleContext';
 import ImageModal from '../../imageModal/ImageModal';
@@ -98,6 +98,7 @@ class PostCreator extends React.Component {
     }
 
     render() {
+        const { title, description, image, error } = this.state;
         return (
             <LocaleConsumer>
                 {locale => (
@@ -113,8 +114,8 @@ class PostCreator extends React.Component {
                                     <ErrorMessage 
                                         message={<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>}  
                                     />
-                                ) : this.state.error ? (
-                                    <ErrorMessage message={this.state.error} />
+                                ) : error ? (
+                                    <ErrorMessage message={error} />
                                 ) : ''}
                             </div>
 
@@ -123,8 +124,8 @@ class PostCreator extends React.Component {
                                     <div className='roomImageContainer imageContainerInCreation' >
                                         <img 
                                             className='roomImage'
-                                            src={this.state.image}
-                                            alt={this.state.title}
+                                            src={image}
+                                            alt={title}
                                         />
                                         <div className='imageOverlay imageOverlayInCreation' >
                                             <Icon id='zoomIcon' name='zoom-in' inverted size='huge' onClick={this.showImageModal} />
@@ -135,7 +136,7 @@ class PostCreator extends React.Component {
                                 <header className='roomTitle roomTitleCreator noMargin noPadding' onClick={this.editTitle}>
                                     <textarea 
                                         className='titleInput'
-                                        value={this.state.title} 
+                                        value={title} 
                                         placeholder={locale.postCreator.changeTitlePlaceholder}
                                         onChange={this.changeTitle}>
                                     </textarea>
@@ -148,12 +149,14 @@ class PostCreator extends React.Component {
                                 <main className='roomDescription noMargin noPadding' onClick={this.editDescription}>
                                     <textarea 
                                         className='descriptionInput'
-                                        value={this.state.description} 
+                                        value={description} 
                                         placeholder={locale.postCreator.changeContentPlaceholder}
                                         onChange={e => {this.setState({description: e.target.value})}}>
                                     </textarea>
 
-                                    <p>{this.spaceLeftCounter(this.state.description, 500)}</p>
+                                    <p style={{color: (description.length <= 25)}}>
+                                        {description.length} letters left.
+                                    </p>
 
                                     <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>
                                         <Icon name='edit outline' size='big'></Icon>
@@ -187,8 +190,8 @@ class PostCreator extends React.Component {
                                 </Button>
 
                                 <ImageModal
-                                    image={this.state.image}
-                                    alt={this.state.title}
+                                    image={image}
+                                    alt={title}
                                     ref={this.imageModal}
                                 />
 

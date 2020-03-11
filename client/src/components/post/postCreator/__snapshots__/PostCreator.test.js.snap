@@ -1,0 +1,668 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListPagination component match snapshot /w locale and user logged in 1`] = `
+<article
+  className="roomContainer"
+>
+  <div>
+    
+  </div>
+  <div
+    className="roomGrid noMargin noPadding"
+  >
+    <div
+      className="roomImageContainer imageContainerInCreation"
+    >
+      <img
+        alt=""
+        className="roomImage"
+        src=""
+      />
+      <div
+        className="imageOverlay imageOverlayInCreation"
+      >
+        <i
+          aria-hidden="true"
+          className="zoom-in huge inverted icon"
+          id="zoomIcon"
+          onClick={[Function]}
+        />
+        <i
+          aria-hidden="true"
+          className="file outline image huge inverted icon"
+          id="uploadIcon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <header
+      className="roomTitle roomTitleCreator noMargin noPadding"
+    >
+      <textarea
+        className="titleInput"
+        onChange={[Function]}
+        placeholder="abcde"
+        value=""
+      />
+      <div
+        className="titleOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline icon"
+          onClick={[Function]}
+        />
+      </div>
+    </header>
+    <main
+      className="roomDescription noMargin noPadding"
+    >
+      <textarea
+        className="descriptionInput"
+        onChange={[Function]}
+        placeholder="fdsfds"
+        value=""
+      />
+      <p
+        style={
+          Object {
+            "color": true,
+          }
+        }
+      >
+        0
+         letters left.
+      </p>
+      <div
+        className="descriptionOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline big icon"
+          onClick={[Function]}
+        />
+      </div>
+    </main>
+    <footer
+      className="roomFooter"
+    >
+      <div
+        className="ui mini statistics maxWidth roomStats noMargin"
+      >
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               0
+            </i>
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="eye icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="thumbs up icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+      </div>
+    </footer>
+    <button
+      className="ui blue icon right labeled button createPostBtn"
+      onClick={[Function]}
+    >
+      afdfsddf
+      <i
+        aria-hidden="true"
+        className="paper plane icon"
+        onClick={[Function]}
+      />
+    </button>
+  </div>
+</article>
+`;
+
+exports[`PostListPagination component match snapshot /w locale and user logged out 1`] = `
+<article
+  className="roomContainer"
+>
+  <div>
+    <div
+      className="ui error message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="roomGrid noMargin noPadding"
+  >
+    <div
+      className="roomImageContainer imageContainerInCreation"
+    >
+      <img
+        alt=""
+        className="roomImage"
+        src=""
+      />
+      <div
+        className="imageOverlay imageOverlayInCreation"
+      >
+        <i
+          aria-hidden="true"
+          className="zoom-in huge inverted icon"
+          id="zoomIcon"
+          onClick={[Function]}
+        />
+        <i
+          aria-hidden="true"
+          className="file outline image huge inverted icon"
+          id="uploadIcon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <header
+      className="roomTitle roomTitleCreator noMargin noPadding"
+    >
+      <textarea
+        className="titleInput"
+        onChange={[Function]}
+        placeholder="abcde"
+        value=""
+      />
+      <div
+        className="titleOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline icon"
+          onClick={[Function]}
+        />
+      </div>
+    </header>
+    <main
+      className="roomDescription noMargin noPadding"
+    >
+      <textarea
+        className="descriptionInput"
+        onChange={[Function]}
+        placeholder="fdsfds"
+        value=""
+      />
+      <p
+        style={
+          Object {
+            "color": true,
+          }
+        }
+      >
+        0
+         letters left.
+      </p>
+      <div
+        className="descriptionOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline big icon"
+          onClick={[Function]}
+        />
+      </div>
+    </main>
+    <footer
+      className="roomFooter"
+    >
+      <div
+        className="ui mini statistics maxWidth roomStats noMargin"
+      >
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               0
+            </i>
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="eye icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="thumbs up icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+      </div>
+    </footer>
+    <button
+      className="ui blue icon right labeled button createPostBtn"
+      onClick={[Function]}
+    >
+      afdfsddf
+      <i
+        aria-hidden="true"
+        className="paper plane icon"
+        onClick={[Function]}
+      />
+    </button>
+  </div>
+</article>
+`;
+
+exports[`PostListPagination component match snapshot /w locale and w/o userContext 1`] = `
+<article
+  className="roomContainer"
+>
+  <div>
+    <div
+      className="ui error message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="roomGrid noMargin noPadding"
+  >
+    <div
+      className="roomImageContainer imageContainerInCreation"
+    >
+      <img
+        alt=""
+        className="roomImage"
+        src=""
+      />
+      <div
+        className="imageOverlay imageOverlayInCreation"
+      >
+        <i
+          aria-hidden="true"
+          className="zoom-in huge inverted icon"
+          id="zoomIcon"
+          onClick={[Function]}
+        />
+        <i
+          aria-hidden="true"
+          className="file outline image huge inverted icon"
+          id="uploadIcon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <header
+      className="roomTitle roomTitleCreator noMargin noPadding"
+    >
+      <textarea
+        className="titleInput"
+        onChange={[Function]}
+        placeholder="abcde"
+        value=""
+      />
+      <div
+        className="titleOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline icon"
+          onClick={[Function]}
+        />
+      </div>
+    </header>
+    <main
+      className="roomDescription noMargin noPadding"
+    >
+      <textarea
+        className="descriptionInput"
+        onChange={[Function]}
+        placeholder="fdsfds"
+        value=""
+      />
+      <p
+        style={
+          Object {
+            "color": true,
+          }
+        }
+      >
+        0
+         letters left.
+      </p>
+      <div
+        className="descriptionOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline big icon"
+          onClick={[Function]}
+        />
+      </div>
+    </main>
+    <footer
+      className="roomFooter"
+    >
+      <div
+        className="ui mini statistics maxWidth roomStats noMargin"
+      >
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               0
+            </i>
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="eye icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="thumbs up icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+      </div>
+    </footer>
+    <button
+      className="ui blue icon right labeled button createPostBtn"
+      onClick={[Function]}
+    >
+      afdfsddf
+      <i
+        aria-hidden="true"
+        className="paper plane icon"
+        onClick={[Function]}
+      />
+    </button>
+  </div>
+</article>
+`;
+
+exports[`PostListPagination component match snapshot w/o locale and userContext 1`] = `
+<article
+  className="roomContainer"
+>
+  <div>
+    <div
+      className="ui error message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div
+    className="roomGrid noMargin noPadding"
+  >
+    <div
+      className="roomImageContainer imageContainerInCreation"
+    >
+      <img
+        alt=""
+        className="roomImage"
+        src=""
+      />
+      <div
+        className="imageOverlay imageOverlayInCreation"
+      >
+        <i
+          aria-hidden="true"
+          className="zoom-in huge inverted icon"
+          id="zoomIcon"
+          onClick={[Function]}
+        />
+        <i
+          aria-hidden="true"
+          className="file outline image huge inverted icon"
+          id="uploadIcon"
+          onClick={[Function]}
+        />
+      </div>
+    </div>
+    <header
+      className="roomTitle roomTitleCreator noMargin noPadding"
+    >
+      <textarea
+        className="titleInput"
+        onChange={[Function]}
+        placeholder="abcde"
+        value=""
+      />
+      <div
+        className="titleOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline icon"
+          onClick={[Function]}
+        />
+      </div>
+    </header>
+    <main
+      className="roomDescription noMargin noPadding"
+    >
+      <textarea
+        className="descriptionInput"
+        onChange={[Function]}
+        placeholder="fdsfds"
+        value=""
+      />
+      <p
+        style={
+          Object {
+            "color": true,
+          }
+        }
+      >
+        0
+         letters left.
+      </p>
+      <div
+        className="descriptionOverlay"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="edit outline big icon"
+          onClick={[Function]}
+        />
+      </div>
+    </main>
+    <footer
+      className="roomFooter"
+    >
+      <div
+        className="ui mini statistics maxWidth roomStats noMargin"
+      >
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="comments outline icon"
+              onClick={[Function]}
+            >
+               0
+            </i>
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="eye icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+        <div
+          className="ui statistic roomStat"
+        >
+          <div
+            className="value"
+          >
+            <i
+              aria-hidden="true"
+              className="thumbs up icon"
+              onClick={[Function]}
+            />
+              0
+          </div>
+        </div>
+      </div>
+    </footer>
+    <button
+      className="ui blue icon right labeled button createPostBtn"
+      onClick={[Function]}
+    >
+      afdfsddf
+      <i
+        aria-hidden="true"
+        className="paper plane icon"
+        onClick={[Function]}
+      />
+    </button>
+  </div>
+</article>
+`;

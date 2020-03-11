@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Helmet } from "react-helmet";
+import { LocaleProvider } from '../contexts/LocaleContext';
 import locale from '../locale/en/dictionary.json';
 import TopPanel from './topPanel/TopPanel';
 import PostList from './post/postList/PostList';
 import PostWithComments from './post/postWithComments/PostWithComments';
 import PostCreator from './post/postCreator/PostCreator';
 import AboutMe from './aboutMe/AboutMe';
-import { LocaleProvider } from '../contexts/LocaleContext';
 import { UserProvider } from '../contexts/UserContext';
 import isToken from '../middleware/isToken';
 import { loadReCaptcha } from 'react-recaptcha-google'
