@@ -9,6 +9,10 @@ const requiredProps = {
     image: 'www.sdafadsfd.dsa',
     title: 'Random Title',
     description: 'Random description',
+    _id: 'abcde12345',
+    updateUpvote: ()=>{},
+    authorNick: 'abcde asddf',
+    creationDate: '2019-12-17T15:50:53.238Z',
     showImageModal: () => {},
     removePost: () => {}
 }
