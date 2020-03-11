@@ -3,6 +3,7 @@ import { Grid } from "semantic-ui-react";
 import ForumPostContainer from '../forumPost/ForumPostContainer';
 import PostListPagination from './pagination/PostListPagination';
 import { getForumPosts } from '../forumPost/forumPostLogic/forumPostApi';
+import './PostList.scss';
 
 class PostList extends React.Component {
     constructor(props) {

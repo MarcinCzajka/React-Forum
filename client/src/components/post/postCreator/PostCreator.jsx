@@ -34,13 +34,6 @@ class PostCreator extends React.Component {
     showImageModal = () => {
         if(this.state.image) this.imageModal.current.open();
     }
-    
-    spaceLeftCounter = (str, limit) => {
-        const result = limit - str.length;
-        const color = (result < 25 ? 'red' : '');
-        
-        return <span style={{color: color}}>{result} letters left.</span>
-    }
 
     createNewForumPost = () => {
         const { title, description, category, image } = this.state;
@@ -107,7 +100,7 @@ class PostCreator extends React.Component {
                             <title>{locale.postCreator.title} - {locale.appName}</title>
                         </Helmet>
 
-                        <article className='roomContainer'>
+                        <article className='roomContainer postContainerOverlay'>
 
                             <div>
                                 {!this.context.loggedIn ? (
@@ -155,7 +148,7 @@ class PostCreator extends React.Component {
                                     </textarea>
 
                                     <p style={{color: (description.length <= 25)}}>
-                                        {description.length} letters left.
+                                        {500 - description.length} letters left.
                                     </p>
 
                                     <div className='descriptionOverlay' onClick={() => this.focus('descriptionInput')}>

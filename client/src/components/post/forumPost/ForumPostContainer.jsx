@@ -118,7 +118,7 @@ class ForumPostContainer extends React.Component {
 		const {_id, creationDate, isLoading, isDownloaded, image, title, description, authorNick = '', commentsCount, views, isLikedByUser, upvotes } = this.state;
 
 		return (
-			<article className='roomContainer'>
+			<article className='roomContainer postContainerOverlay'>
 
 				{isLoading ? <ForumPostPlaceholder /> : ''} 
 				

@@ -1,14 +1,64 @@
 :root {
-    --firstColor: #21e6c1; 
-    --secondColor: #278ea5;
-    --thirdColor: #1f4287;
-    --fourthColor: #071e3d;
+    --mainBackground: #f3eded; 
+    --firstColor: #f5c16c;
+    --secondColor: #df8931;
+    --thirdColor: #85410a;
+    --linkColor: #1e70bf;
+}
+
+body {
+    background-color: var(--firstColor);
 }
 
 #topPanel {
-    background-color: var(--secondColor);
+    background-color: var(--secondColor) !important;
+
+    a div {
+        color: var(--linkColor);
+        font-weight: 800;
+    }
+
+    a {
+        color: var(--linkColor) !important;
+        font-weight: 800;
+    }
 }
 
-#postList {
-    background-color: var(--firstColor);
+.postContainerOverlay {
+    background-color: var(--secondColor) !important;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: -12px -12px 12px 0 rgba(255, 255, 255, 0.2),
+                6px 6px 8px 0 rgba(184, 116, 13, .3);
+
+    .roomTitle a {
+        color: var(--linkColor);
+    }
+
+    .roomDescription p {
+        color: var(--thirdColor);
+        font-weight: 600;
+    }
+
+    .roomFooter {
+        color: var(--thirdColor);
+        font-weight: 400;
+    }
+}
+
+.postPlaceholder {
+    background-color: var(--secondColor) !important;
+
+    .image {
+        background-color: var(--secondColor) !important;
+    }
+
+    .line {
+        background-color: var(--secondColor) !important;
+    }
+
+    .placeholder {
+        background-color: var(--secondColor) !important;
+    }
+
 }

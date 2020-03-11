@@ -1,0 +1,14 @@
+.postPlaceholder {
+    display: flex;
+
+    :first-child {
+        height: 150px;
+        width: 220px;
+    }  
+    
+    :last-child {
+        width: 100%;
+        margin: 10px;
+    }
+
+}

@@ -1,5 +1,6 @@
 :root {
-    --roomBorder: 2px solid rgba(6, 12, 15, 0.33);
+    --roomBorder: none;
+    --roomBorder1: 2px solid rgba(6, 12, 15, 0.33);
 }
 
 .roomContainer {
@@ -19,12 +20,9 @@
     grid-row: 1;
     grid-column: 5 / -1;
 
-    background-color: rgba(6, 12, 15, 0.09);
     border-top: var(--roomBorder);
     border-right: var(--roomBorder);
     border-bottom: var(--roomBorder);
-
-    text-decoration: #1e70bf;
 }
 
 .roomDescription {

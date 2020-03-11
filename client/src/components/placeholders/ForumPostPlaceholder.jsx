@@ -1,13 +1,14 @@
 import React from 'react';
 import { Placeholder } from 'semantic-ui-react';
+import './ForumPostPlaceholder.scss';
 
 export default () => {
     return (
-        <div style={{display: 'flex'}}>
-            <Placeholder style={{ height: '150px', width: '220px' }}>
+        <div className='postPlaceholder' >
+            <Placeholder className='imageOverlay' >
                 <Placeholder.Image />
             </Placeholder>
-            <Placeholder style={{ height: '100%', width: '100%', margin:'10px'}}>
+            <Placeholder >
                 <Placeholder.Line />
                 <Placeholder.Line />
                 <Placeholder.Line />

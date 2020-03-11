@@ -8,7 +8,7 @@ import './ForumPost.scss';
 
 const ForumPost = props => (
 	<div className='roomGrid noMargin noPadding'
-		style={{visibility: (props.isLoading ? 'hidden' : 'visible')}}
+		style={{visibility: (props.isLoading ? 'hidden' : 'visible'), position: (props.isLoading ? 'absolute' : 'relative')}}
 	>
 
 		<div className='roomImageContainer' onClick={props.showImageModal}>
@@ -26,7 +26,7 @@ const ForumPost = props => (
 
 		<header className='roomTitle'>
 			<Link to={`/post/${props._id}`}>
-				<h3>{props.title}</h3>
+				<h4>{props.title}</h4>
 			</Link>
 		</header>
 
