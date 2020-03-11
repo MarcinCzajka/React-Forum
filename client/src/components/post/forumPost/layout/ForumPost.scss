@@ -9,6 +9,8 @@
     grid-gap: 0;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(5, 1fr) auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .roomTitle {

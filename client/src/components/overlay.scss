@@ -1,10 +1,11 @@
 :root {
-    --mainBackground: #32dbc6; 
-    --topPanelBackground: #f9fce5;
+    --mainBackground: #f1e4e4; 
+    --topPanelBackground: #02af8d;
+    --topPanelLinkColor: #e4e4e4;
     --firstColor: #49beb7;
-    --secondColor: #1d3836;
-    --thirdColor: #f9fce5;
-    --linkColor: #fa745a;
+    --textColor: #111;
+    --postBackground: #f1e4e4;
+    --postLinkColor: #9450a5;
 }
 
 body {
@@ -13,55 +14,62 @@ body {
 
 #topPanel {
     background-color: var(--topPanelBackground) !important;
-    box-shadow: 0 -3px 6px 0 inset rgba(112, 175, 126, 0.5),
-                0 3px 6px 0 rgba(67, 104, 75, 0.7) !important;
 
     a div {
-        color: var(--linkColor);
+        color: var(--topPanelLinkColor);
         font-weight: 800;
     }
 
     a {
-        color: var(--linkColor) !important;
+        color: var(--topPanelLinkColor) !important;
         font-weight: 800;
     }
 }
 
 .postContainerOverlay {
-    background-color: var(--thirdColor) !important;
+    background-color: var(--postBackground) !important;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: -8px -8px 12px 0 rgba(176, 250, 192, 0.8),
-                6px 6px 12px 0 rgba(100, 156, 112, 0.7);
+    box-shadow: -10px -10px 12px 0 rgba(255, 255, 255, 0.5),
+                10px 10px 12px 0 rgba(0, 0, 0, 0.1);
+
+    .roomGrid {
+        min-height: 230px;
+    }
 
     .roomTitle a {
-        color: var(--linkColor);
+        color: var(--postLinkColor);
     }
 
     .roomDescription p {
-        color: var(--secondColor);
+        color: var(--textColor);
         font-weight: 600;
     }
 
     .roomFooter {
-        color: var(--secondColor);
+        color: var(--textColor);
         font-weight: 400;
     }
 }
 
 .postPlaceholder {
-    background-color: var(--secondColor) !important;
+    background-color: var(--textColor) !important;
 
     .image {
-        background-color: var(--secondColor) !important;
+        background-color: var(--textColor) !important;
     }
 
     .line {
-        background-color: var(--secondColor) !important;
+        background-color: var(--textColor) !important;
     }
 
     .placeholder {
-        background-color: var(--secondColor) !important;
+        background-color: var(--textColor) !important;
     }
 
+}
+
+.centered.row {
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
