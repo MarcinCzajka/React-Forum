@@ -1,10 +1,10 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import SignUpForm from './form/SignUpForm';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../../contexts/UserContext';
 import initialVerification from './initialVerification';
 import createAccount from './createAccount';
-import { LocaleConsumer } from '../../contexts/LocaleContext';
+import { LocaleConsumer } from '../../../contexts/LocaleContext';
 
 class SignUpFormContainer extends React.Component {
     constructor(props) {

@@ -1,4 +1,4 @@
-import basePath from '../../api/basePath';
+import basePath from '../../../api/basePath';
 import jwt_decode from 'jwt-decode';
 
 export default (email, password) => {

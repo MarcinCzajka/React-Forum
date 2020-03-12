@@ -1,10 +1,10 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import UserContext from '../../contexts/UserContext';
+import UserContext from '../../../contexts/UserContext';
 import LoginForm from './form/LoginForm';
 import login from './login';
 import handleLogout from './logout';
-import { LocaleConsumer } from '../../contexts/LocaleContext';
+import { LocaleConsumer } from '../../../contexts/LocaleContext';
 
 class LoginFormContainer extends React.Component {
     constructor(props) {

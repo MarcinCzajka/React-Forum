@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Form, Modal, Checkbox } from 'semantic-ui-react';
-import ErrorMessage from '../../message/ErrorMessage';
-import { LocaleConsumer } from '../../../contexts/LocaleContext';
+import ErrorMessage from '../../../message/ErrorMessage';
+import { LocaleConsumer } from '../../../../contexts/LocaleContext';
 
 class LoginForm extends React.Component {
 

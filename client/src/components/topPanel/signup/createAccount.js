@@ -1,4 +1,4 @@
-import basePath from '../../api/basePath';
+import basePath from '../../../api/basePath';
 
 export default data => {
     return new Promise((resolve, reject) => {
