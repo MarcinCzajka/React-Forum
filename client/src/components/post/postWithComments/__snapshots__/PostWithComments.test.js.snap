@@ -8,23 +8,13 @@ exports[`NewComment component match snapshot 1`] = `
     className="ui comments postGroupContainer"
   >
     <article
-      className="roomContainer"
+      className="roomContainer postContainerOverlay"
     >
       <div
-        style={
-          Object {
-            "display": "flex",
-          }
-        }
+        className="postPlaceholder"
       >
         <div
-          className="ui placeholder"
-          style={
-            Object {
-              "height": "150px",
-              "width": "220px",
-            }
-          }
+          className="ui placeholder imageOverlay"
         >
           <div
             className="image"
@@ -32,13 +22,6 @@ exports[`NewComment component match snapshot 1`] = `
         </div>
         <div
           className="ui placeholder"
-          style={
-            Object {
-              "height": "100%",
-              "margin": "10px",
-              "width": "100%",
-            }
-          }
         >
           <div
             className="line"

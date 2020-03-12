@@ -2,7 +2,7 @@
 
 exports[`PostListPagination component match snapshot /w locale and user logged in 1`] = `
 <article
-  className="roomContainer"
+  className="roomContainer postContainerOverlay"
 >
   <div>
     
@@ -71,7 +71,7 @@ exports[`PostListPagination component match snapshot /w locale and user logged i
           }
         }
       >
-        0
+        500
          letters left.
       </p>
       <div
@@ -153,7 +153,7 @@ exports[`PostListPagination component match snapshot /w locale and user logged i
 
 exports[`PostListPagination component match snapshot /w locale and user logged out 1`] = `
 <article
-  className="roomContainer"
+  className="roomContainer postContainerOverlay"
 >
   <div>
     <div
@@ -243,7 +243,7 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
           }
         }
       >
-        0
+        500
          letters left.
       </p>
       <div
@@ -325,7 +325,7 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
 
 exports[`PostListPagination component match snapshot /w locale and w/o userContext 1`] = `
 <article
-  className="roomContainer"
+  className="roomContainer postContainerOverlay"
 >
   <div>
     <div
@@ -415,7 +415,7 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
           }
         }
       >
-        0
+        500
          letters left.
       </p>
       <div
@@ -497,7 +497,7 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
 
 exports[`PostListPagination component match snapshot w/o locale and userContext 1`] = `
 <article
-  className="roomContainer"
+  className="roomContainer postContainerOverlay"
 >
   <div>
     <div
@@ -587,7 +587,7 @@ exports[`PostListPagination component match snapshot w/o locale and userContext 
           }
         }
       >
-        0
+        500
          letters left.
       </p>
       <div
