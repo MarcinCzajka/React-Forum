@@ -21,7 +21,7 @@
     },
 
     "login": {
-        "loginButton": "Login",
+        "loginButton": "Log in",
         "logoutButton": "Log Out",
         "submitButton": "Sign in",
         "modalHeader": "Log in",

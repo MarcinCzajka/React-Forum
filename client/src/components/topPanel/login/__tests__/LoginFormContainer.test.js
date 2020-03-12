@@ -2,9 +2,9 @@ import React from 'react';
 import { create } from "react-test-renderer";
 import { shallow } from 'enzyme';
 import LoginFormContainer from '../LoginFormContainer';
-import { UserProvider } from '../../../contexts/UserContext';
-import { LocaleProvider } from '../../../contexts/LocaleContext';
-import locale from '../../../locale/en/dictionary.json';
+import { UserProvider } from '../../../../contexts/UserContext';
+import { LocaleProvider } from '../../../../contexts/LocaleContext';
+import locale from '../../../../locale/en/dictionary.json';
 
 //This line is needed to render semantic-ui Modal content because of Portals used in this component
 jest.mock('semantic-ui-react/dist/commonjs/addons/Portal/Portal', () => ({ children }) => children);

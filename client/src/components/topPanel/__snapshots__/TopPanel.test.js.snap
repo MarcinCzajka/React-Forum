@@ -194,7 +194,7 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
       className="item"
       onClick={[Function]}
     >
-      Login
+      Log In
     </a>
     <div
       className="ui page modals dimmer transition visible active"
