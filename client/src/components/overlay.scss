@@ -5,7 +5,9 @@
     --firstColor: #49beb7;
     --textColor: #111;
     --postBackground: #f1e4e4;
-    --postLinkColor: #9450a5;
+    --postLinkColor: #4183c4;
+    --postShadow: -10px -10px 12px 0 rgba(255, 255, 255, 0.5),
+                10px 10px 12px 0 rgba(0, 0, 0, 0.1);
     --topPanelBtnShadow: -4px -4px 12px 0 rgba(255, 255, 255, 0.3),
                         4px 4px 12px 0 rgba(0, 0, 0, 0.15);
     --topPanelReverseShadow: -2px -2px 10px 0 rgba(0, 0, 0, 0.15),
@@ -56,8 +58,7 @@ body {
     background-color: var(--postBackground) !important;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: -10px -10px 12px 0 rgba(255, 255, 255, 0.5),
-                10px 10px 12px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: var(--postShadow);
 
     .roomGrid {
         min-height: 230px;
@@ -95,7 +96,20 @@ body {
 
 }
 
+.asLink {
+    color: var(--postLinkColor);
+
+    &:hover {
+        color: var(--postLinkColor);
+        cursor: pointer;
+    }
+}
+
 .centered.row {
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.cardMiddle {
+    box-shadow: var(--postShadow) !important;
 }

@@ -59,7 +59,7 @@ class AboutMe extends React.Component {
 
     render() {
         const { userName, userAvatar, userEmail, userCreatedAt} = this.context;
-        const createdAt = moment(userCreatedAt).format('MMMM Do YYYY, dddd')
+        const createdAt = moment(userCreatedAt).format('MMMM Do YYYY');
 
         return (
             <Card className='cardMiddle' >
@@ -82,9 +82,9 @@ class AboutMe extends React.Component {
                 />
 
                 <Card.Content>
-                <Card.Header>{userName}</Card.Header>
+                <Card.Header><p>{userName}</p></Card.Header>
                 <Card.Meta>
-                    <p className='darkFont'>Created at: {createdAt}</p>
+                    <p className='darkFont'>Created at: <p>{createdAt}</p></p>
                     <p className='darkFont'>Email: {userEmail}</p>
                 </Card.Meta>
                 </Card.Content>
