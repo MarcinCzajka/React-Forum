@@ -1,3 +1,7 @@
+.postContainerOverlay {
+    margin-top: 4em;
+}
+
 .roomContainer {
     margin-left: auto;
     margin-right: auto;
@@ -21,6 +25,7 @@
     text-align:center !important;
     width: 100%;
     height: 100%;
+    margin-left: 5px !important;
     resize: none;
 }
 
@@ -32,8 +37,9 @@
 }
 
 .descriptionInput {
-    width: 100%;
+    width: calc(100% - 5px);
     height: 100%;
+    margin: 5px 0 5px 10px;
     resize: none;
 }
 
@@ -88,6 +94,6 @@ textarea::placeholder {
 }
 
 .createPostBtn {
-    grid-column: 12;
     margin-top: 0.5em !important;
+    margin-left: 69% !important;
 }
