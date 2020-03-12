@@ -18,14 +18,10 @@
         cursor: pointer;
     }
 
-    p {
-        display: flex;
-        align-items: center;
-    }
 }
 
 #topPanelUsername {
-    top: calc(25% - 10px);
+    top: calc(50% - 25px);
 }
 
 @media (min-width: 580px) {
