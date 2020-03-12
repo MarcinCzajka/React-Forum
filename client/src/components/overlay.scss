@@ -6,6 +6,8 @@
     --textColor: #111;
     --postBackground: #f1e4e4;
     --postLinkColor: #9450a5;
+    --topPanelBtnShadow: -5px -5px 12px 0 rgba(255, 255, 255, 0.3),
+                        5px 5px 12px 0 rgba(0, 0, 0, 0.15);
 }
 
 body {
@@ -15,12 +17,24 @@ body {
 #topPanel {
     background-color: var(--topPanelBackground) !important;
 
-    a div {
-        color: var(--topPanelLinkColor);
+    &>div div {
+        box-shadow: var(--topPanelBtnShadow);
+        border-radius: 15px;
     }
 
     a {
         color: var(--topPanelLinkColor) !important;
+        box-shadow: var(--topPanelBtnShadow);
+
+        border-radius: 15px;
+
+        div {
+            color: var(--topPanelLinkColor) !important;
+        }
+
+    }
+
+    div {
     }
 }
 
