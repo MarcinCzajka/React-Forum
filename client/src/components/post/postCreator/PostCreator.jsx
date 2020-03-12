@@ -184,18 +184,18 @@ class PostCreator extends React.Component {
                                 />
 
                             </div>
+                                
+                            <Button 
+                                className='createPostBtn' 
+                                icon labelPosition='right' 
+                                color='blue' 
+                                onClick={this.createNewForumPost} 
+                            >
+                                {locale.postCreator.createPostButton}
+                                <Icon name='paper plane' />
+                            </Button>
 
                         </article>
-                                
-                        <Button 
-                            className='createPostBtn' 
-                            icon labelPosition='right' 
-                            color='blue' 
-                            onClick={this.createNewForumPost} 
-                        >
-                            {locale.postCreator.createPostButton}
-                            <Icon name='paper plane' />
-                        </Button>
                     </>
                 )}
             </LocaleConsumer>

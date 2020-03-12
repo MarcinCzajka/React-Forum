@@ -3,6 +3,7 @@
 }
 
 .roomContainer {
+    position: relative;
     margin-left: auto;
     margin-right: auto;
 }
@@ -94,6 +95,8 @@ textarea::placeholder {
 }
 
 .createPostBtn {
-    margin-top: 0.5em !important;
-    margin-left: 69% !important;
+    position: absolute !important;
+    right: 0;
+    bottom: -70px;
+    border-radius: 15px;
 }
