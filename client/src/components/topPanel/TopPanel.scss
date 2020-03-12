@@ -1,5 +1,24 @@
 #topPanel {
+    position: relative;
     height: 60px;
+
+    a {
+        display: flex;
+        align-items: center;
+    }
+
+    div {
+        cursor: pointer;
+    }
+
+    p {
+        display: flex;
+        align-items: center;
+    }
+}
+
+#topPanelUsername {
+    top: calc(25% - 10px);
 }
 
 @media (min-width: 580px) {

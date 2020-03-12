@@ -58,7 +58,7 @@ class SignUpFormContainer extends React.Component {
             <LocaleConsumer>
                 {locale => (
                     <>
-                        <Menu.Item onClick={this.open} name={locale.signUp.button} />
+                        <Menu.Item as='div' onClick={this.open} name={locale.signUp.button} />
                         <SignUpForm 
                             open={this.state.open}
                             onClose={this.hideSignUpForm}

@@ -63,7 +63,7 @@ class LoginFormContainer extends React.Component {
                 {locale => (
                     !this.context.loggedIn ? (
                         <>
-                            <Menu.Item onClick={this.showLoginForm} name={locale.login.loginButton} />
+                            <Menu.Item as='div' onClick={this.showLoginForm} name={locale.login.loginButton} />
                             <LoginForm 
                                 open={this.state.open}
                                 onClose={this.hideLoginForm}
@@ -73,7 +73,7 @@ class LoginFormContainer extends React.Component {
                             />
                         </>
                     ) : (
-                        <Menu.Item onClick={() => handleLogout(this.context)} name={locale.login.logoutButton} />
+                        <Menu.Item as='div' onClick={() => handleLogout(this.context)} name={locale.login.logoutButton} />
                     )
                 )}
             </LocaleConsumer>

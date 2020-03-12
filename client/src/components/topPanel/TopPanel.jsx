@@ -32,7 +32,7 @@ export default props => {
                             </Link>
 
                             {user.loggedIn ? (
-                                <Menu.Item position='right' id='topPanelUsername' className='noHover'>
+                                <Menu.Item as='p' position='right' id='topPanelUsername' className='noHover'>
                                     {user.userName.toUpperCase()}
                                 </Menu.Item>
                             ) : ''}
