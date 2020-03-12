@@ -5,7 +5,7 @@ import './ForumPostPlaceholder.scss';
 export default () => {
     return (
         <div className='postPlaceholder' >
-            <Placeholder className='imageOverlay' >
+            <Placeholder >
                 <Placeholder.Image />
             </Placeholder>
             <Placeholder >

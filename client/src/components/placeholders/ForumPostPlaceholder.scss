@@ -1,14 +1,18 @@
 .postPlaceholder {
     display: flex;
 
-    :first-child {
-        height: 150px;
-        width: 220px;
-    }  
+    &>div:first-child {
+        height: 170px;
+        width: 300px;
+    }
     
-    :last-child {
+    &>div:last-child {
         width: 100%;
-        margin: 10px;
+        margin: 50px 0 50px 50px;
+    }
+
+    .line {
+        padding: 10px; 
     }
 
 }

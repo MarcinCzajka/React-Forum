@@ -77,21 +77,17 @@ body {
         color: var(--textColor);
         font-weight: 400;
     }
-}
 
-.postPlaceholder {
-    background-color: var(--textColor) !important;
+    .postPlaceholder {
 
-    .image {
-        background-color: var(--textColor) !important;
-    }
-
-    .line {
-        background-color: var(--textColor) !important;
-    }
-
-    .placeholder {
-        background-color: var(--textColor) !important;
+        .placeholder {
+            background-color: rgba(0, 0, 0, .1);
+        }
+    
+        .line {
+            background-color: var(--postBackground) !important;
+        }
+    
     }
 
 }
