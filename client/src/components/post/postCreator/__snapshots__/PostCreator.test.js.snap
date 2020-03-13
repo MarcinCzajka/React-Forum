@@ -4,9 +4,6 @@ exports[`PostListPagination component match snapshot /w locale and user logged i
 <article
   className="roomContainer postContainerOverlay"
 >
-  <div>
-    
-  </div>
   <div
     className="roomGrid noMargin noPadding"
   >
@@ -136,6 +133,9 @@ exports[`PostListPagination component match snapshot /w locale and user logged i
         </div>
       </div>
     </footer>
+  </div>
+  <div>
+    
   </div>
   <button
     className="ui blue icon right labeled button createPostBtn"
@@ -155,30 +155,6 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
 <article
   className="roomContainer postContainerOverlay"
 >
-  <div>
-    <div
-      className="ui error message"
-    >
-      <div
-        className="content"
-      >
-        <div
-          className="header"
-        >
-          Error
-        </div>
-        <p>
-          Only 
-          <span
-            className="asLink"
-          >
-            logged in
-          </span>
-           users can post new stuff.
-        </p>
-      </div>
-    </div>
-  </div>
   <div
     className="roomGrid noMargin noPadding"
   >
@@ -308,6 +284,30 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
         </div>
       </div>
     </footer>
+  </div>
+  <div>
+    <div
+      className="ui error bottom attached message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
   </div>
   <button
     className="ui blue icon right labeled button createPostBtn"
@@ -327,30 +327,6 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
 <article
   className="roomContainer postContainerOverlay"
 >
-  <div>
-    <div
-      className="ui error message"
-    >
-      <div
-        className="content"
-      >
-        <div
-          className="header"
-        >
-          Error
-        </div>
-        <p>
-          Only 
-          <span
-            className="asLink"
-          >
-            logged in
-          </span>
-           users can post new stuff.
-        </p>
-      </div>
-    </div>
-  </div>
   <div
     className="roomGrid noMargin noPadding"
   >
@@ -480,6 +456,30 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
         </div>
       </div>
     </footer>
+  </div>
+  <div>
+    <div
+      className="ui error bottom attached message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
   </div>
   <button
     className="ui blue icon right labeled button createPostBtn"
@@ -499,30 +499,6 @@ exports[`PostListPagination component match snapshot w/o locale and userContext 
 <article
   className="roomContainer postContainerOverlay"
 >
-  <div>
-    <div
-      className="ui error message"
-    >
-      <div
-        className="content"
-      >
-        <div
-          className="header"
-        >
-          Error
-        </div>
-        <p>
-          Only 
-          <span
-            className="asLink"
-          >
-            logged in
-          </span>
-           users can post new stuff.
-        </p>
-      </div>
-    </div>
-  </div>
   <div
     className="roomGrid noMargin noPadding"
   >
@@ -652,6 +628,30 @@ exports[`PostListPagination component match snapshot w/o locale and userContext 
         </div>
       </div>
     </footer>
+  </div>
+  <div>
+    <div
+      className="ui error bottom attached message"
+    >
+      <div
+        className="content"
+      >
+        <div
+          className="header"
+        >
+          Error
+        </div>
+        <p>
+          Only 
+          <span
+            className="asLink"
+          >
+            logged in
+          </span>
+           users can post new stuff.
+        </p>
+      </div>
+    </div>
   </div>
   <button
     className="ui blue icon right labeled button createPostBtn"
