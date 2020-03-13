@@ -38,23 +38,23 @@ exports[`TopPanel component match snapshot /w user logged in 1`] = `
       New
     </div>
   </a>
-  <div
+  <p
     className="right item noHover"
     id="topPanelUsername"
     onClick={[Function]}
   >
     EXAMPLE NAME
-  </div>
+  </p>
   <div
     className="right menu"
   >
     
-    <a
+    <div
       className="item"
       onClick={[Function]}
     >
       Log Out
-    </a>
+    </div>
   </div>
 </div>
 `;
@@ -91,12 +91,12 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
   <div
     className="right menu"
   >
-    <a
+    <div
       className="item"
       onClick={[Function]}
     >
       Sign Up
-    </a>
+    </div>
     <div
       className="ui page modals dimmer transition visible active"
     >
@@ -190,12 +190,12 @@ exports[`TopPanel component match snapshot w/o user logged in 1`] = `
         </div>
       </div>
     </div>
-    <a
+    <div
       className="item"
       onClick={[Function]}
     >
       Log In
-    </a>
+    </div>
     <div
       className="ui page modals dimmer transition visible active"
     >

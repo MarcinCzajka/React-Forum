@@ -136,18 +136,18 @@ exports[`PostListPagination component match snapshot /w locale and user logged i
         </div>
       </div>
     </footer>
-    <button
-      className="ui blue icon right labeled button createPostBtn"
-      onClick={[Function]}
-    >
-      afdfsddf
-      <i
-        aria-hidden="true"
-        className="paper plane icon"
-        onClick={[Function]}
-      />
-    </button>
   </div>
+  <button
+    className="ui blue icon right labeled button createPostBtn"
+    onClick={[Function]}
+  >
+    afdfsddf
+    <i
+      aria-hidden="true"
+      className="paper plane icon"
+      onClick={[Function]}
+    />
+  </button>
 </article>
 `;
 
@@ -308,18 +308,18 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
         </div>
       </div>
     </footer>
-    <button
-      className="ui blue icon right labeled button createPostBtn"
-      onClick={[Function]}
-    >
-      afdfsddf
-      <i
-        aria-hidden="true"
-        className="paper plane icon"
-        onClick={[Function]}
-      />
-    </button>
   </div>
+  <button
+    className="ui blue icon right labeled button createPostBtn"
+    onClick={[Function]}
+  >
+    afdfsddf
+    <i
+      aria-hidden="true"
+      className="paper plane icon"
+      onClick={[Function]}
+    />
+  </button>
 </article>
 `;
 
@@ -480,18 +480,18 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
         </div>
       </div>
     </footer>
-    <button
-      className="ui blue icon right labeled button createPostBtn"
-      onClick={[Function]}
-    >
-      afdfsddf
-      <i
-        aria-hidden="true"
-        className="paper plane icon"
-        onClick={[Function]}
-      />
-    </button>
   </div>
+  <button
+    className="ui blue icon right labeled button createPostBtn"
+    onClick={[Function]}
+  >
+    afdfsddf
+    <i
+      aria-hidden="true"
+      className="paper plane icon"
+      onClick={[Function]}
+    />
+  </button>
 </article>
 `;
 
@@ -652,17 +652,17 @@ exports[`PostListPagination component match snapshot w/o locale and userContext 
         </div>
       </div>
     </footer>
-    <button
-      className="ui blue icon right labeled button createPostBtn"
-      onClick={[Function]}
-    >
-      afdfsddf
-      <i
-        aria-hidden="true"
-        className="paper plane icon"
-        onClick={[Function]}
-      />
-    </button>
   </div>
+  <button
+    className="ui blue icon right labeled button createPostBtn"
+    onClick={[Function]}
+  >
+    afdfsddf
+    <i
+      aria-hidden="true"
+      className="paper plane icon"
+      onClick={[Function]}
+    />
+  </button>
 </article>
 `;

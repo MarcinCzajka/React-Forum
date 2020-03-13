@@ -101,7 +101,7 @@ class ForumPostContainer extends React.Component {
 
 	showLoginPrompt = (interaction) => {
 		this.setState({
-			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>login</span> before you can {interaction}!</p>
+			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>Log in</span> before you can {interaction}!</p>
 		});
 	}
 	

@@ -5,7 +5,7 @@ exports[`Captcha component match snapshot 1`] = `
   className="postPlaceholder"
 >
   <div
-    className="ui placeholder imageOverlay"
+    className="ui placeholder"
   >
     <div
       className="image"

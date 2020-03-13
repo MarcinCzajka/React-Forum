@@ -1,22 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`LoginFormContainer component displays correct button when logged in 1`] = `
-<a
+<div
   className="item"
   onClick={[Function]}
 >
   Log Out
-</a>
+</div>
 `;
 
 exports[`LoginFormContainer component displays correct button when logged out 1`] = `
 Array [
-  <a
+  <div
     className="item"
     onClick={[Function]}
   >
     Log In
-  </a>,
+  </div>,
   <div
     className="ui page modals dimmer transition visible active"
   >

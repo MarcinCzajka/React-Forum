@@ -36,7 +36,9 @@ exports[`AboutMe component match snapshot /w user logged in 1/2 1`] = `
     <div
       className="header"
     >
-      User1
+      <p>
+        User1
+      </p>
     </div>
     <div
       className="meta"
@@ -45,7 +47,9 @@ exports[`AboutMe component match snapshot /w user logged in 1/2 1`] = `
         className="darkFont"
       >
         Created at: 
-        December 5th 2019, Thursday
+        <p>
+          December 5th 2019
+        </p>
       </p>
       <p
         className="darkFont"
@@ -94,7 +98,9 @@ exports[`AboutMe component match snapshot /w user logged in 2/2 1`] = `
     <div
       className="header"
     >
-      U s ER
+      <p>
+        U s ER
+      </p>
     </div>
     <div
       className="meta"
@@ -103,7 +109,9 @@ exports[`AboutMe component match snapshot /w user logged in 2/2 1`] = `
         className="darkFont"
       >
         Created at: 
-        February 4th 2020, Tuesday
+        <p>
+          February 4th 2020
+        </p>
       </p>
       <p
         className="darkFont"

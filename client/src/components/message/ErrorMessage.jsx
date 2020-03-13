@@ -7,8 +7,9 @@ export default props => {
         return (
             <Message 
                 error
-                header = 'Error'
-                content = {props.message} 
+                attached={props.attached}
+                header='Error'
+                content={props.message} 
             />
         ) 
     } else {

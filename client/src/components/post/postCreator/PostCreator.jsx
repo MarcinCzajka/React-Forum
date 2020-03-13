@@ -102,16 +102,6 @@ class PostCreator extends React.Component {
 
                         <article className='roomContainer postContainerOverlay'>
 
-                            <div>
-                                {!this.context.loggedIn ? (
-                                    <ErrorMessage 
-                                        message={<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>}  
-                                    />
-                                ) : error ? (
-                                    <ErrorMessage message={error} />
-                                ) : ''}
-                            </div>
-
                             <div className='roomGrid noMargin noPadding' >
 
                                     <div className='roomImageContainer imageContainerInCreation' >
@@ -183,6 +173,17 @@ class PostCreator extends React.Component {
                                     ref={this.imageModal}
                                 />
 
+                            </div>
+
+                            <div>
+                                {!this.context.loggedIn ? (
+                                    <ErrorMessage
+                                        attached='bottom'
+                                        message={<p>Only <span className='asLink' onClick={this.context.showLogin}>logged in</span> users can post new stuff.</p>}  
+                                    />
+                                ) : error ? (
+                                    <ErrorMessage attached='bottom' message={error} />
+                                ) : ''}
                             </div>
                                 
                             <Button 
