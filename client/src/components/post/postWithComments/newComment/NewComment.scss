@@ -1,3 +1,23 @@
-.newCommentForm {
-    margin-top: 0.5em !important;
+.newCommentContainer {
+    max-width: 100% !important;
+    margin-bottom: 2.5em !important;
+
+    textarea {
+        resize: none;
+        width: calc(100% - 5em);
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        height: 3em;
+        padding: 0.6em;
+    }
+
+    .pseudoLoggedIn {
+        width: 9px;
+        height: 9px;
+        border-radius: 5px;
+        position: absolute;
+        background-color: #95d731;
+        left: 2.2em;
+        top: 2.2em;
+    }
 }

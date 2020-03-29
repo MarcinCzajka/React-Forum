@@ -77,14 +77,11 @@ class ForumPostContainer extends React.Component {
 				if(commentsCount > 0) {
 					this.setState({commentsCount: commentsCount});
 				}
-
-				if(this.props.setReady) this.props.setReady(Boolean(commentsCount));
 			})
 	}
 
 	handleImageLoaded = () => {
 		this.setState({ isLoading: false });
-		if(this.props.setReady) this.props.setReady(Boolean(this.state.commentsCount));
 	}
 
 	updateUpvote = () => {
@@ -155,8 +152,7 @@ class ForumPostContainer extends React.Component {
 }
 
 ForumPostContainer.propTypes = {
-	_id: PropTypes.string.isRequired,
-	setReady: PropTypes.func
+	_id: PropTypes.string.isRequired
 }
 
 export default ForumPostContainer;

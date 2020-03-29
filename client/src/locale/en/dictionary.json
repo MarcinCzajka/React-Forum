@@ -43,5 +43,9 @@
         "changeContentPlaceholder": "Type description of your post here...",
         "lettersLeftCounterOne": "",
         "lettersLeftCounterTwo": "letters left."
+    },
+
+    "forumPost": {
+        "newCommentPrompt": "Post new comment..."
     }
 }

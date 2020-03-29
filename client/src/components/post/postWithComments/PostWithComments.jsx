@@ -1,8 +1,8 @@
 import React from 'react';
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPostContainer from '../forumPost/ForumPostContainer';
-import CommentGroup from '../comments/CommentGroup';
 import NewComment from './newComment/NewComment';
+import CommentGroup from '../comments/CommentGroup';
 import UserContext from '../../../contexts/UserContext';
 import { replyToForumPost } from '../forumPost/forumPostLogic/forumPostApi';
 import './PostWithComments.scss';
@@ -14,9 +14,7 @@ class PostWithComments extends React.Component {
         this.state = {
             forumPostId: this.props.match.params.id,
             forumPostReady: false,
-            areComments: false,
-            replyContent: '',
-            showReplyForm: false
+            replyContent: ''
         }
 
         this.forumPostRef = React.createRef();
@@ -24,30 +22,12 @@ class PostWithComments extends React.Component {
 
 	static contextType = UserContext;
 
-    setReady = (areComments) => {
-        this.setState({forumPostReady: true, areComments: areComments})
-    }
-
 	handleReplyChange = (e) => {
 		this.setState({replyContent: e.target.value});
 	}
-
-	changeReplyFormVisibility = () => {
-		this.setState({showReplyForm: !this.state.showReplyForm});
-    }
     
     hideReplyForm = () => {
 		this.setState({replyContent: '', showReplyForm: false});
-	}
-
-	handleReplyBtnClick = () => {
-		if(!this.context.loggedIn) return this.forumPostRef.current.showLoginPrompt('post');
-
-		if(this.state.replyContent) {
-			this.handleReplyToPost();
-		} else {
-			this.setState({showReplyForm: !this.state.showReplyForm, replyContent: ''});
-		}
 	}
 	
 	handleReplyToPost = () => {
@@ -69,7 +49,8 @@ class PostWithComments extends React.Component {
     }
 
     render() {
-        const { forumPostId, replyContent, showReplyForm, forumPostReady, areComments } = this.state;
+        const { forumPostId, replyContent } = this.state;
+
         return (
             <Grid centered className='roomGrid'>
                 <Comment.Group className='postGroupContainer'>
@@ -78,30 +59,25 @@ class PostWithComments extends React.Component {
                         _id={forumPostId}
                         refreshComments={this.refreshComments}
                         removeForumPost={this.removeForumPost}
-                        setReady={this.setReady}
                         ref={this.forumPostRef}
                     />
-                    
-                    {forumPostReady ? (
-                        <NewComment 
-                            active={showReplyForm}
-                            replyContent={replyContent}
-                            handleReplyChange={this.handleReplyChange}
-                            handleReplyBtnClick={this.handleReplyBtnClick}
-                            changeReplyFormVisibility={this.changeReplyFormVisibility}
-                        />
-                    ) : ''}
 
-                    {areComments ? (
-                        <Segment className='initialPost'>
-                            <CommentGroup
-                                sorting={'{"date":"-1"}'}
-                                initialPost={true}
-                                roomId={forumPostId}
-                                parentId={forumPostId}
-                            />
-                        </Segment>
-                    ) : ''}
+                    <Segment className='initialPost neuromorphSegment'>
+
+                        <NewComment
+                            replyContent={replyContent}
+                            userAvatar={this.context.userAvatar}
+                            handleReplyChange={this.handleReplyChange}
+                            handleReplyToPost={this.handleReplyToPost}
+                        />
+
+                        <CommentGroup
+                            sorting={'{"date":"-1"}'}
+                            initialPost={true}
+                            roomId={forumPostId}
+                            parentId={forumPostId}
+                        />
+                    </Segment>
                     
                 </Comment.Group>
             </Grid>
