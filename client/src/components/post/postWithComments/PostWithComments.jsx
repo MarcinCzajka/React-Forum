@@ -22,12 +22,8 @@ class PostWithComments extends React.Component {
 
 	static contextType = UserContext;
 
-	handleReplyChange = (e) => {
-		this.setState({replyContent: e.target.value});
-	}
-    
-    hideReplyForm = () => {
-		this.setState({replyContent: '', showReplyForm: false});
+	handleReplyChange = (value) => {
+		this.setState({replyContent: value});
 	}
 	
 	handleReplyToPost = () => {

@@ -45,7 +45,9 @@
         "lettersLeftCounterTwo": "letters left."
     },
 
-    "forumPost": {
-        "newCommentPrompt": "Post new comment..."
+    "postWithComment": {
+        "textareaPlaceholder": "Post new comment...",
+        "cancelButton": "Cancel",
+        "commentButton": "Comment"
     }
 }

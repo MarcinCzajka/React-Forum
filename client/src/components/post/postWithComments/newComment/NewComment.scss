@@ -1,6 +1,5 @@
 .newCommentContainer {
     max-width: 100% !important;
-    margin-bottom: 2.5em !important;
 
     textarea {
         resize: none;
@@ -19,5 +18,9 @@
         background-color: #95d731;
         left: 2.2em;
         top: 2.2em;
+    }
+
+    .buttonContainer {
+        margin: 0.5em 1.5em 0 0;
     }
 }
