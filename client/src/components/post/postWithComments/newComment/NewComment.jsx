@@ -46,6 +46,7 @@ class NewComment extends React.Component {
                             <div className='pseudoLoggedIn'></div>
 
                             <textarea 
+                                className={this.state.showButtonContainer ? 'active' : ''}
                                 placeholder={locale.postWithComment.textareaPlaceholder}
                                 value={this.props.replyContent}
                                 onChange={({target}) => this.props.handleReplyChange(target.value)}

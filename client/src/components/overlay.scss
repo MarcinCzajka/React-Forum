@@ -6,6 +6,7 @@
     --textColor: #111;
     --postBackground: #f1e4e4;
     --postLinkColor: #4183c4;
+    --defaultBorderRadius: 5px;
     --postShadow: -10px -10px 12px 0 rgba(255, 255, 255, 0.5),
                 10px 10px 12px 0 rgba(0, 0, 0, 0.1);
     --topPanelBtnShadow: -4px -4px 12px 0 rgba(255, 255, 255, 0.3),
@@ -57,11 +58,15 @@ body {
 .postContainerOverlay {
     background-color: var(--postBackground) !important;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: var(--defaultBorderRadius);
     box-shadow: var(--postShadow);
 
     .roomGrid {
         min-height: 230px;
+    }
+
+    .roomImageContainer {
+        border-radius: var(--defaultBorderRadius) 0 0 var(--defaultBorderRadius);
     }
 
     .roomTitle a {
