@@ -6,6 +6,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "caniuse-lite": "^1.0.30001023",
+    "classnames": "^2.2.6",
     "css-loader": "^3.4.2",
     "jwt-decode": "^2.2.0",
     "moment": "^2.24.0",

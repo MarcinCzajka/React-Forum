@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import { Comment, Button } from 'semantic-ui-react';
 import AvatarPlaceholder from '../../../placeholders/AvatarPlaceholder';
 import { LocaleConsumer } from '../../../../contexts/LocaleContext';
@@ -26,55 +27,58 @@ class NewComment extends React.Component {
     }
 
     render() {
+        const {avatarReady, showButtonContainer } = this.state;
+
         return (
             <LocaleConsumer>
                 {locale => (
-                    <div className="ui large comments newCommentContainer">
+                    <div style={{display: this.props.active ? '' : 'none'}} className="ui large comments newCommentContainer">
 
                         <Comment className="comment">
 
-                            {!this.state.avatarReady ? (
+                            {!avatarReady ? (
                                 <AvatarPlaceholder size='sizePostComment' /> 
                             ) : ''}
 
                             <Comment.Avatar 
-                                style={{display:(this.state.avatarReady ? 'block' : 'none')}}
+                                style={{display:(avatarReady ? 'block' : 'none')}}
                                 className="avatar" 
                                 src={this.props.userAvatar}
                                 onLoad={this.handleAvatarLoaded}>
                             </Comment.Avatar>
                             <div className='pseudoLoggedIn'></div>
 
+
                             <textarea 
-                                className={this.state.showButtonContainer ? 'active' : ''}
+                                className={showButtonContainer ? 'active' : ''}
                                 placeholder={locale.postWithComment.textareaPlaceholder}
                                 value={this.props.replyContent}
                                 onChange={({target}) => this.props.handleReplyChange(target.value)}
                                 onFocus={this.showButtonContainer}>
                             </textarea>
 
-                            {this.state.showButtonContainer ? (
-                                <div className='buttonContainer'>
 
-                                    <Button 
-                                        compact
-                                        floated='right'
-                                        basic={this.props.replyContent ? false : true}
-                                        color={this.props.replyContent ? 'teal' : 'grey'}
-                                        content={locale.postWithComment.commentButton} 
-                                        onClick={this.props.handleReplyToPost}
-                                    />
+                            <div className={classNames({buttonContainer: true, hiddenButtonContainer: !showButtonContainer})}>
 
-                                    <Button 
-                                        compact
-                                        basic
-                                        floated='right'
-                                        content={locale.postWithComment.cancelButton} 
-                                        onClick={this.handleCancelClick}
-                                    />
+                                <Button 
+                                    compact
+                                    floated='right'
+                                    color='teal'
+                                    disabled={!this.props.replyContent}
+                                    content={locale.postWithComment.commentButton} 
+                                    onClick={this.props.handleReplyToPost}
+                                />
 
-                                </div>
-                            ) : ''}
+                                <Button 
+                                    compact
+                                    floated='right'
+                                    basic
+                                    content={locale.postWithComment.cancelButton} 
+                                    onClick={this.handleCancelClick}
+                                />
+
+                            </div>
+
 
                         </Comment>
                     </div>
@@ -86,10 +90,12 @@ class NewComment extends React.Component {
 }
 
 NewComment.defaultProps = {
+    active: true,
     replyContent: ''
 }
 
 NewComment.propTypes = {
+    active: PropTypes.bool,
     userAvatar: PropTypes.string,
     replyContent: PropTypes.string,
     handleReplyChange: PropTypes.func.isRequired,

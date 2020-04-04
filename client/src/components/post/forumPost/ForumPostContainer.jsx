@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Message } from "semantic-ui-react";
 import UserContext from '../../../contexts/UserContext';
 import ForumPostPlaceholder from '../../placeholders/ForumPostPlaceholder';
 import ForumPost from './layout/ForumPost';
+import WarningMessage from '../../message/WarningMessage';
 import { getForumPost, 
 		 getPostAuthor,
 		 getCommentsCount,
@@ -98,7 +98,7 @@ class ForumPostContainer extends React.Component {
 
 	showLoginPrompt = (interaction) => {
 		this.setState({
-			errorMsg: <p>You must <span className='asLink' onClick={this.context.showLogin}>Log in</span> before you can {interaction}!</p>
+			errorMsg: <>You must <span className='asLink' onClick={this.context.showLogin}>Log in</span> before you can {interaction}!</>
 		});
 	}
 	
@@ -141,9 +141,10 @@ class ForumPostContainer extends React.Component {
 				) : ''}
 
 				{this.state.errorMsg && !this.context.loggedIn ? (
-					<Message warning attached='bottom'>
-						<Message.Header>{this.state.errorMsg}</Message.Header>
-					</Message>
+					<WarningMessage
+						attached='bottom'
+						message={this.state.errorMsg}
+					/>
 				) : ''}
 
 			</article>

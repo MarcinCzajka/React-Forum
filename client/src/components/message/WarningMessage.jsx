@@ -6,9 +6,9 @@ export default props => {
     if(props.message) {
         return (
             <Message
-                error
+                warning
                 attached={props.attached}
-                content={props.message}
+                header={props.message}
             />
         ) 
     } else {

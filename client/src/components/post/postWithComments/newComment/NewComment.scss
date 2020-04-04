@@ -28,14 +28,12 @@
     }
 
     .buttonContainer {
-        padding: 0.5em 1.5em 0 0;
-        animation-name: expand;
-        animation-duration: 0.2s;
-        animation-fill-mode: forwards;
+        padding: 0.5em 2.5em 1em 0;
+        transition: padding 0.2s ease-out;
 
-        @keyframes expand {
-            0% {padding-bottom: 0}
-            100% {padding-bottom: 2em}
+        &.hiddenButtonContainer {
+            padding: 0.5em 2.5em 0 0;
+            visibility: hidden;
         }
     }
 }

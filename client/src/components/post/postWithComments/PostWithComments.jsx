@@ -3,6 +3,7 @@ import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPostContainer from '../forumPost/ForumPostContainer';
 import NewComment from './newComment/NewComment';
 import CommentGroup from '../comments/CommentGroup';
+import WarningMessage from '../../message/WarningMessage';
 import UserContext from '../../../contexts/UserContext';
 import { replyToForumPost } from '../forumPost/forumPostLogic/forumPostApi';
 import './PostWithComments.scss';
@@ -14,7 +15,8 @@ class PostWithComments extends React.Component {
         this.state = {
             forumPostId: this.props.match.params.id,
             forumPostReady: false,
-            replyContent: ''
+            replyContent: '',
+            errorMsg: ''
         }
 
         this.forumPostRef = React.createRef();
@@ -27,12 +29,16 @@ class PostWithComments extends React.Component {
 	}
 	
 	handleReplyToPost = () => {
-		replyToForumPost(this.context.userId, this.state.forumPostId, this.state.replyContent)
-			.then(res => {
-				if(res.status === 200) {
-					this.refreshComments();
-				}
-			})
+        if(!this.context.loggedIn) {
+            this.showLoginPrompt();
+        } else {
+            replyToForumPost(this.context.userId, this.state.forumPostId, this.state.replyContent)
+                .then(res => {
+                    if(res.status === 200) {
+                        this.refreshComments();
+                    }
+                })
+        }
 	}
 
     refreshComments = () => {
@@ -42,6 +48,10 @@ class PostWithComments extends React.Component {
     removeForumPost = () => {
         //Function to be used in case Image is no longer available
         window.location = window.location.origin;
+    }
+
+    showLoginPrompt = () => {
+        this.setState({errorMsg: <>You must <span className='asLink' onClick={this.context.showLogin}>Log in</span> before you can comment!</>})
     }
 
     render() {
@@ -59,6 +69,12 @@ class PostWithComments extends React.Component {
                     />
 
                     <Segment className='initialPost neuromorphSegment'>
+
+                        {this.state.errorMsg && !this.context.loggedIn ? (
+                            <WarningMessage
+                                message={this.state.errorMsg}
+                            />
+                        ) : ''}
 
                         <NewComment
                             replyContent={replyContent}
