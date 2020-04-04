@@ -5,7 +5,7 @@ import { shallow } from 'enzyme';
 import TopPanel from './TopPanel';
 import { UserProvider } from '../../contexts/UserContext';
 import { LocaleProvider } from '../../contexts/LocaleContext';
-import locale from '../../locale/en/dictionary.json';
+import locale from '../../locale/JestLocale/dictionary.json';
 
 jest.mock('semantic-ui-react/dist/commonjs/addons/Portal/Portal', () => ({ children }) => children);
 

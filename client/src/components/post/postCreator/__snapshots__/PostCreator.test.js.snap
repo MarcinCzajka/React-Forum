@@ -292,11 +292,6 @@ exports[`PostListPagination component match snapshot /w locale and user logged o
       <div
         className="content"
       >
-        <div
-          className="header"
-        >
-          Error
-        </div>
         <p>
           Only 
           <span
@@ -464,11 +459,6 @@ exports[`PostListPagination component match snapshot /w locale and w/o userConte
       <div
         className="content"
       >
-        <div
-          className="header"
-        >
-          Error
-        </div>
         <p>
           Only 
           <span
@@ -636,11 +626,6 @@ exports[`PostListPagination component match snapshot w/o locale and userContext 
       <div
         className="content"
       >
-        <div
-          className="header"
-        >
-          Error
-        </div>
         <p>
           Only 
           <span

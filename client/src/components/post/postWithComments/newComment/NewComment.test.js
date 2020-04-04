@@ -2,37 +2,39 @@ import React from 'react';
 import { create } from "react-test-renderer";
 import { shallow } from 'enzyme';
 import NewComment from './NewComment';
+import { LocaleProvider } from '../../../../contexts/LocaleContext';
+import testLocale from '../../../../locale/JestLocale/dictionary.json';
 
-const emptyFnc = () => {};
+const emptyFnc = function() {};
 
 const defaultProps = {
-    handleReplyChange:emptyFnc,
-    handleReplyBtnClick:emptyFnc,
-    changeReplyFormVisibility:emptyFnc
+    handleReplyChange: emptyFnc,
+    handleReplyBtnClick: emptyFnc,
+    changeReplyFormVisibility: emptyFnc
 }
 
 describe('NewComment component', () => {
     test('renders without crashing', () => {
-        shallow(<NewComment defaultProps />);
+        shallow(<LocaleProvider value={testLocale}><NewComment {...defaultProps} /></LocaleProvider>);
     });
 
     test('match snapshot w/o being active', () => {
-        const component = create(<NewComment defaultProps />);
+        const component = create(<LocaleProvider value={testLocale}><NewComment {...defaultProps} /></LocaleProvider>);
         expect(component).toMatchSnapshot();
     });
 
     test('match snapshot w/ being active', () => {
-        const component = create(<NewComment active={true} defaultProps />);
+        const component = create(<LocaleProvider value={testLocale}><NewComment active={true} {...defaultProps} /></LocaleProvider>);
         expect(component).toMatchSnapshot();
     });
 
     test('match snapshot w/ replyContent 1/2', () => {
-        const component = create(<NewComment active={true} replyContent='123' defaultProps />);
+        const component = create(<LocaleProvider value={testLocale}><NewComment active={true} replyContent='123' {...defaultProps} /></LocaleProvider>);
         expect(component).toMatchSnapshot();
     });
 
-    test('match snapshot w/ replyContent 1/2', () => {
-        const component = create(<NewComment active={true} replyContent='asdfsdgdfgsd sdfsdf dsfdsgfdg dfdf' defaultProps />);
+    test('match snapshot w/ replyContent 2/2', () => {
+        const component = create(<LocaleProvider value={testLocale}><NewComment active={true} replyContent='asdfsdgdfgsd sdfsdf dsfdsgfdg dfdf' {...defaultProps} /></LocaleProvider>);
         expect(component).toMatchSnapshot();
     });
 

@@ -7,11 +7,6 @@ exports[`ErrorMessage component match snapshot with error message provided in pr
   <div
     className="content"
   >
-    <div
-      className="header"
-    >
-      Error
-    </div>
     <p>
       This is serious error message
     </p>
@@ -26,11 +21,6 @@ exports[`ErrorMessage component match snapshot with error message provided in pr
   <div
     className="content"
   >
-    <div
-      className="header"
-    >
-      Error
-    </div>
     <p>
       This is very different serious error message
     </p>

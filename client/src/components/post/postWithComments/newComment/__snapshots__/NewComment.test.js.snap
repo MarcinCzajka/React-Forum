@@ -1,131 +1,245 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`NewComment component match snapshot w/ being active 1`] = `
-<form
-  className="ui reply form newCommentForm"
-  onSubmit={[Function]}
+<div
+  className="ui large comments newCommentContainer"
+  style={
+    Object {
+      "display": "",
+    }
+  }
 >
-  <button
-    className="ui teal massive circular icon button"
-    onClick={[Function]}
-  >
-    <i
-      aria-hidden="true"
-      className="comment alternate outline icon"
-      onClick={[Function]}
-    />
-  </button>
   <div
-    className="field"
+    className="comment comment"
   >
-    <textarea
-      onChange={[Function]}
-      onInput={[Function]}
-      rows={3}
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
       style={
         Object {
-          "marginTop": "0.5em",
+          "display": "none",
         }
       }
+    />
+    <div
+      className="pseudoLoggedIn"
+    />
+    <textarea
+      className=""
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Post new comment..."
       value=""
     />
+    <div
+      className="buttonContainer hiddenButtonContainer"
+    >
+      <button
+        className="ui teal compact disabled right floated button"
+        disabled={true}
+        onClick={[Function]}
+        tabIndex={-1}
+      >
+        Comment
+      </button>
+      <button
+        className="ui basic compact right floated button"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+    </div>
   </div>
-  <button
-    className="ui button"
-    onClick={[Function]}
-  />
-</form>
+</div>
 `;
 
 exports[`NewComment component match snapshot w/ replyContent 1/2 1`] = `
-<form
-  className="ui reply form newCommentForm"
-  onSubmit={[Function]}
+<div
+  className="ui large comments newCommentContainer"
+  style={
+    Object {
+      "display": "",
+    }
+  }
 >
-  <button
-    className="ui teal massive circular icon button"
-    onClick={[Function]}
-  >
-    <i
-      aria-hidden="true"
-      className="comment alternate outline icon"
-      onClick={[Function]}
-    />
-  </button>
   <div
-    className="field"
+    className="comment comment"
   >
-    <textarea
-      onChange={[Function]}
-      onInput={[Function]}
-      rows={3}
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
       style={
         Object {
-          "marginTop": "0.5em",
+          "display": "none",
         }
       }
+    />
+    <div
+      className="pseudoLoggedIn"
+    />
+    <textarea
+      className=""
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Post new comment..."
       value="123"
     />
+    <div
+      className="buttonContainer hiddenButtonContainer"
+    >
+      <button
+        className="ui teal compact right floated button"
+        onClick={[Function]}
+      >
+        Comment
+      </button>
+      <button
+        className="ui basic compact right floated button"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+    </div>
   </div>
-  <button
-    className="ui button"
-    onClick={[Function]}
-  />
-</form>
+</div>
 `;
 
-exports[`NewComment component match snapshot w/ replyContent 1/2 2`] = `
-<form
-  className="ui reply form newCommentForm"
-  onSubmit={[Function]}
+exports[`NewComment component match snapshot w/ replyContent 2/2 1`] = `
+<div
+  className="ui large comments newCommentContainer"
+  style={
+    Object {
+      "display": "",
+    }
+  }
 >
-  <button
-    className="ui teal massive circular icon button"
-    onClick={[Function]}
-  >
-    <i
-      aria-hidden="true"
-      className="comment alternate outline icon"
-      onClick={[Function]}
-    />
-  </button>
   <div
-    className="field"
+    className="comment comment"
   >
-    <textarea
-      onChange={[Function]}
-      onInput={[Function]}
-      rows={3}
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
       style={
         Object {
-          "marginTop": "0.5em",
+          "display": "none",
         }
       }
+    />
+    <div
+      className="pseudoLoggedIn"
+    />
+    <textarea
+      className=""
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Post new comment..."
       value="asdfsdgdfgsd sdfsdf dsfdsgfdg dfdf"
     />
+    <div
+      className="buttonContainer hiddenButtonContainer"
+    >
+      <button
+        className="ui teal compact right floated button"
+        onClick={[Function]}
+      >
+        Comment
+      </button>
+      <button
+        className="ui basic compact right floated button"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+    </div>
   </div>
-  <button
-    className="ui button"
-    onClick={[Function]}
-  />
-</form>
+</div>
 `;
 
 exports[`NewComment component match snapshot w/o being active 1`] = `
-<form
-  className="ui reply form newCommentForm"
-  onSubmit={[Function]}
+<div
+  className="ui large comments newCommentContainer"
+  style={
+    Object {
+      "display": "",
+    }
+  }
 >
-  <button
-    className="ui teal massive circular icon button"
-    onClick={[Function]}
+  <div
+    className="comment comment"
   >
-    <i
-      aria-hidden="true"
-      className="comment alternate outline icon"
-      onClick={[Function]}
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
     />
-  </button>
-  
-</form>
+    <div
+      className="pseudoLoggedIn"
+    />
+    <textarea
+      className=""
+      onChange={[Function]}
+      onFocus={[Function]}
+      placeholder="Post new comment..."
+      value=""
+    />
+    <div
+      className="buttonContainer hiddenButtonContainer"
+    >
+      <button
+        className="ui teal compact disabled right floated button"
+        disabled={true}
+        onClick={[Function]}
+        tabIndex={-1}
+      >
+        Comment
+      </button>
+      <button
+        className="ui basic compact right floated button"
+        onClick={[Function]}
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
 `;
