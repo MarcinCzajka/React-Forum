@@ -1,24 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Comment, Form, Button } from "semantic-ui-react";
+import { Comment, Button } from "semantic-ui-react";
+import NewComment from '../../newComment/NewComment';
 
 class CommentToolkit extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            textAreaContent: '',
+            replyContent: '',
             displayTextArea: false
         }
+    }
+
+    handleReplyChange = (value) => {
+        this.setState({replyContent: value});
     }
 
     handleReply = () => {
         const { roomId, postId, handleReply } = this.props;
 
-        handleReply(roomId, this.state.textAreaContent, postId)
+        handleReply(roomId, this.state.replyContent, postId)
             .then(res => {
                 this.setState({
-                    textAreaContent: '',
+                    replyContent: '',
                     displayTextArea: false
                 })
             })
@@ -37,19 +42,12 @@ class CommentToolkit extends React.Component {
                 ) : ''}
             
                 {this.state.displayTextArea ? (
-                    <Form reply>
-                        <Form.TextArea 
-                            value={this.state.textAreaContent} 
-                            onChange={e => this.setState({textAreaContent: e.target.value})} 
-                        />
-                        <Button
-                            onClick={this.handleReply}
-                            content='Add Reply'
-                            labelPosition='left'
-                            icon='edit'
-                            primary
-                        />
-                    </Form>
+                    <NewComment
+                        replyContent={this.state.replyContent}
+                        userAvatar={this.context.userAvatar}
+                        handleReplyChange={this.handleReplyChange}
+                        handleReplyToPost={this.handleReply}
+                    />
                 ) : ''}
             </>
         )
@@ -59,6 +57,7 @@ class CommentToolkit extends React.Component {
 CommentToolkit.propTypes = {
     roomId: PropTypes.string.isRequired,
     postId: PropTypes.string.isRequired,
+    userAvatar: PropTypes.string,
     userId: PropTypes.string,
     authorId: PropTypes.string.isRequired,
     handleReply: PropTypes.func.isRequired,

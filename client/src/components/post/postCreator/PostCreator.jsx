@@ -106,6 +106,7 @@ class PostCreator extends React.Component {
 
                                     <div className='roomImageContainer imageContainerInCreation' >
                                         <img 
+                                            style={!image ? {display: 'none'} : {}}
                                             className='roomImage'
                                             src={image}
                                             alt={title}

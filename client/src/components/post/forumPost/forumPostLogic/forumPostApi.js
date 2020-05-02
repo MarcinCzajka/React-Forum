@@ -115,7 +115,7 @@ export const createForumPost = (userId, title, description, category, image) => 
                 description: description,
                 category: category,
                 image: image,
-                creationDate: new Date().toISOString()
+                date: new Date().toISOString()
             },
             withCredentials: true
         })

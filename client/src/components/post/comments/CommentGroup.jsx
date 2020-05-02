@@ -119,6 +119,7 @@ class CommentGroup extends React.Component {
 				authorNick={(author ? author.authorNick : '')}
 				avatar={(author ? author.avatar : '')}
 				userId={this.context.userId}
+				userAvatar={this.context.userAvatar}
 				handleReply={this.handleReply}
 				removeComment={this.removeComment}
 			/>

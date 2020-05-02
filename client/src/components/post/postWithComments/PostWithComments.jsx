@@ -1,7 +1,7 @@
 import React from 'react';
 import { Comment, Grid, Segment } from "semantic-ui-react";
 import ForumPostContainer from '../forumPost/ForumPostContainer';
-import NewComment from './newComment/NewComment';
+import NewComment from '../comments/newComment/NewComment';
 import CommentGroup from '../comments/CommentGroup';
 import WarningMessage from '../../message/WarningMessage';
 import UserContext from '../../../contexts/UserContext';
