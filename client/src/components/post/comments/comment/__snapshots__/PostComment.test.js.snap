@@ -1,0 +1,620 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostComment component match snapshot /w Avatar 1/1 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <img
+        src="www"
+      />
+    </div>
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        LiterallyNobody66
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w Changing Content 1/2 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <img
+        src="www"
+      />
+    </div>
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        LiterallyNobody66
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        very different stuff
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w Changing Content 2/2 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    >
+      <img
+        src="www"
+      />
+    </div>
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        LiterallyNobody66
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        123234tdgdsss43
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w changing Author Name 1/2 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        Deleted User.
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w changing Author Name 2/2 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        LiterallyNobody66
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w changing date 1/3 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        Testotron
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 17th 2019, 4:50:53
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w changing date 2/3 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        Testotron
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 18th 2019, 11:36:40
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot /w changing date 3/3 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="comment comment"
+  >
+    <div
+      className="avatarPlaceholderContainer sizePostComment"
+    >
+      <i
+        aria-hidden="true"
+        className="user icon avatarPlaceholder"
+        onClick={[Function]}
+      />
+    </div>
+    <div
+      className="avatar avatar"
+      onLoad={[Function]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+    />
+    <div
+      className="content"
+    >
+      <a
+        className="author author"
+      >
+        Testotron
+      </a>
+      <div
+        className="metadata metadata"
+      >
+        <span
+          className="date"
+        >
+          December 20th 2019, 9:18:54
+        </span>
+      </div>
+      <p
+        className="text text"
+      >
+        Super comment 123
+      </p>
+      <div
+        className="actions"
+      >
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Reply
+        </button>
+        <button
+          className="ui mini button"
+          onClick={[Function]}
+        >
+          Delete
+        </button>
+      </div>
+      
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;
+
+exports[`PostComment component match snapshot while showing placeholder 1/1 1`] = `
+<div
+  className="ui large comments"
+>
+  <div
+    className="ui placeholder"
+  >
+    <div
+      className="image header"
+    >
+      <div
+        className="line"
+      />
+    </div>
+    <div
+      className="paragraph"
+    >
+      <div
+        className="line"
+      />
+      <div
+        className="line"
+      />
+    </div>
+  </div>
+  <div
+    className="ui comments recursiveComment"
+  />
+</div>
+`;

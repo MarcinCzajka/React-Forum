@@ -1,0 +1,8 @@
+.recursiveComment {
+    width: auto;
+}
+
+:not(.initialPost) > .recursiveComment {
+    position:relative;
+    left: 4vw;
+}

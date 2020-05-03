@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageModal component match snapshot /w image source 1`] = `
+<div
+  className="ui page dimmer"
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <div
+      className="modalImageContainer"
+    >
+      <div
+        className="ui active transition visible inverted dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui big loader"
+          />
+        </div>
+      </div>
+      <img
+        alt="sample alt text"
+        className="modalImage"
+        onLoad={[Function]}
+        src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAAUA
+AAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO
+    9TXL0Y4OHwAAAABJRU5ErkJggg=="
+      />
+      <i
+        aria-hidden="true"
+        className="times icon modalCloseIcon"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;
+
+exports[`ImageModal component match snapshot w/o image source 1`] = `
+<div
+  className="ui page dimmer"
+  onClick={[Function]}
+>
+  <div
+    className="content"
+  >
+    <div
+      className="modalImageContainer"
+    >
+      <div
+        className="ui active transition visible inverted dimmer"
+        onClick={[Function]}
+      >
+        <div
+          className="content"
+        >
+          <div
+            className="ui big loader"
+          />
+        </div>
+      </div>
+      <img
+        className="modalImage"
+        onLoad={[Function]}
+      />
+      <i
+        aria-hidden="true"
+        className="times icon modalCloseIcon"
+        onClick={[Function]}
+      />
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginForm component match snapshot 1`] = `
+<div
+  className="ui page modals dimmer transition visible active"
+>
+  <div
+    className="ui tiny modal transition visible active"
+    style={Object {}}
+  >
+    <div
+      className="header"
+    >
+      Log in
+    </div>
+    <div
+      className="content"
+    >
+      <form
+        className="ui small error form"
+        onSubmit={[Function]}
+      >
+        
+        <div
+          className="required field"
+        >
+          <label>
+            Email
+          </label>
+          <input
+            onChange={[Function]}
+            placeholder="Email"
+            value=""
+          />
+        </div>
+        <div
+          className="required field"
+        >
+          <label>
+            Password
+          </label>
+          <input
+            autoCapitalize="off"
+            autoComplete="new-password"
+            autoCorrect="off"
+            onChange={[Function]}
+            placeholder="Password"
+            spellCheck="false"
+            type="password"
+            value=""
+          />
+        </div>
+        <div
+          className="ui checkbox"
+          onChange={[Function]}
+          onClick={[Function]}
+          onMouseDown={[Function]}
+          onMouseUp={[Function]}
+        >
+          <input
+            checked={false}
+            className="hidden"
+            readOnly={true}
+            tabIndex={0}
+            type="checkbox"
+          />
+          <label>
+            Stay logged in
+          </label>
+        </div>
+        <button
+          className="ui large fluid button"
+          onClick={[Function]}
+          style={
+            Object {
+              "marginTop": "15px",
+            }
+          }
+          type="submit"
+        >
+          Sign in
+        </button>
+        <p>
+          Don't have account yet?
+           
+          <span
+            className="asLink"
+          >
+            Sign up
+          </span>
+          !
+        </p>
+      </form>
+    </div>
+  </div>
+</div>
+`;

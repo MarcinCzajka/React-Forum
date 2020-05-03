@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostComment component match snapshot 1/2 1`] = `
+<div
+  className="ui comments recursiveComment"
+/>
+`;
+
+exports[`PostComment component match snapshot 2/2 1`] = `
+<div
+  className="ui comments recursiveComment"
+/>
+`;

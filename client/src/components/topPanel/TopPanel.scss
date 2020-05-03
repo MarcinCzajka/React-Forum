@@ -1,0 +1,38 @@
+#topPanel {
+    position: relative;
+    height: 70px;
+
+    &>div div {
+        margin: 17px 30px 17px 0;
+        padding: 0 25px 0 25px;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        margin: 17px 0 17px 30px;
+        padding: 0 15px 0 15px;
+    }
+
+    div {
+        cursor: pointer;
+    }
+
+}
+
+#topPanelUsername {
+    top: calc(50% - 25px);
+}
+
+@media (min-width: 580px) {
+    #topPanelUsername {
+        position: absolute !important;
+        left: calc(50% - 3.7em) !important;
+    }
+}
+
+@media (max-width: 400px) {
+    #topPanelUsername {
+        display: none !important;
+    }
+}

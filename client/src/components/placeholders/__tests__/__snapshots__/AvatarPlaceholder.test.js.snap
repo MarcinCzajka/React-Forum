@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Captcha component match snapshot 1`] = `
+<div
+  className="avatarPlaceholderContainer undefined"
+>
+  <i
+    aria-hidden="true"
+    className="user icon avatarPlaceholder"
+    onClick={[Function]}
+  />
+</div>
+`;

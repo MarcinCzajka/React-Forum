@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Captcha component match snapshot 1`] = `
+<div
+  data-onloadcallbackname="onloadCallback"
+  data-verifycallbackname="verifyCallback"
+  id="g-recaptcha"
+/>
+`;

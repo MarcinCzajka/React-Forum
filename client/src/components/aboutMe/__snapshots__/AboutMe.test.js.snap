@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutMe component match snapshot /w user logged in 1/2 1`] = `
+<div
+  className="ui card cardMiddle"
+  onClick={[Function]}
+>
+  <div
+    className="avatarOverlay"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="file outline image huge inverted icon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="avatarPlaceholderContainer sizeAboutMe"
+  >
+    <i
+      aria-hidden="true"
+      className="user icon avatarPlaceholder"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="image hidden"
+    onLoad={[Function]}
+  >
+    <img />
+  </div>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      <p>
+        User1
+      </p>
+    </div>
+    <div
+      className="meta"
+    >
+      <p
+        className="darkFont"
+      >
+        Created at: 
+        <p>
+          December 5th 2019
+        </p>
+      </p>
+      <p
+        className="darkFont"
+      >
+        Email: 
+        Email@g.com
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AboutMe component match snapshot /w user logged in 2/2 1`] = `
+<div
+  className="ui card cardMiddle"
+  onClick={[Function]}
+>
+  <div
+    className="avatarOverlay"
+    onClick={[Function]}
+  >
+    <i
+      aria-hidden="true"
+      className="file outline image huge inverted icon"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="avatarPlaceholderContainer sizeAboutMe"
+  >
+    <i
+      aria-hidden="true"
+      className="user icon avatarPlaceholder"
+      onClick={[Function]}
+    />
+  </div>
+  <div
+    className="image hidden"
+    onLoad={[Function]}
+  >
+    <img />
+  </div>
+  <div
+    className="content"
+  >
+    <div
+      className="header"
+    >
+      <p>
+        U s ER
+      </p>
+    </div>
+    <div
+      className="meta"
+    >
+      <p
+        className="darkFont"
+      >
+        Created at: 
+        <p>
+          February 4th 2020
+        </p>
+      </p>
+      <p
+        className="darkFont"
+      >
+        Email: 
+        differentemail@gfds.com
+      </p>
+    </div>
+  </div>
+</div>
+`;
