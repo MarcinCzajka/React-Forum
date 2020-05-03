@@ -2,15 +2,8 @@
   "name": "react-forum-server",
   "version": "0.0.1",
   "scripts": {
-<<<<<<< HEAD
     "start": "node server",
     "build": "cd client/ && npm install && npm run build"
-=======
-    "start": "concurrently --kill-others \"npm run start-server\" \"npm run start-client\"",
-    "start-server": "cd server && npm start",
-    "start-client": "cd client && npm start",
-    "i-all": "echo Installing npm packages for both server and client. It might take few minutes... && npm i && concurrently \"cd client && npm install\" \"cd server && npm install\""
->>>>>>> master
   },
   "cacheDirectories": [
     "node_modules",
