@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListPagination component match snapshot 1/1 1`] = `
+Array [
+  "",
+  "",
+]
+`;

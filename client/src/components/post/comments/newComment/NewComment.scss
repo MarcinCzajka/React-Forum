@@ -1,0 +1,39 @@
+.newCommentContainer {
+    max-width: 100% !important;
+
+    textarea {
+        resize: none;
+        width: calc(100% - 5em);
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        height: 3em;
+        padding: 0.6em;
+
+        transition: border 0.2s ease-out, border-radius 0.2s ease-out;
+
+        &.active {
+            border-radius: 0;
+            border-bottom: 1px solid #222;
+        }
+    }
+
+    .pseudoLoggedIn {
+        width: 9px;
+        height: 9px;
+        border-radius: 5px;
+        position: absolute;
+        background-color: #95d731;
+        left: 2.2em;
+        top: 2.2em;
+    }
+
+    .buttonContainer {
+        padding: 0.5em 2.5em 1em 0;
+        transition: padding 0.2s ease-out;
+
+        &.hiddenButtonContainer {
+            padding: 0.5em 2.5em 0 0;
+            visibility: hidden;
+        }
+    }
+}

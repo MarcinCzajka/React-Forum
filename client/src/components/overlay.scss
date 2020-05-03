@@ -1,0 +1,145 @@
+:root {
+    --mainBackground: #f1e4e4; 
+    --topPanelBackground: #02af8d;
+    --topPanelLinkColor: #e4e4e4;
+    --firstColor: #49beb7;
+    --textColor: #111;
+    --postBackground: #f1e4e4;
+    --postLinkColor: #4183c4;
+    --defaultBorderRadius: 5px;
+    --postShadow: -10px -10px 12px 0 rgba(255, 255, 255, 0.5),
+                10px 10px 12px 0 rgba(0, 0, 0, 0.1);
+    --topPanelBtnShadow: -4px -4px 12px 0 rgba(255, 255, 255, 0.3),
+                        4px 4px 12px 0 rgba(0, 0, 0, 0.15);
+    --topPanelReverseShadow: -2px -2px 10px 0 rgba(0, 0, 0, 0.15),
+                        1.5px 1.5px 10px 0 rgba(255, 255, 255, 0.3);
+    --topPanelShadowTransition: box-shadow .08s ease-in-out;
+}
+
+body {
+    background-color: var(--mainBackground);
+}
+
+#topPanel {
+    background-color: var(--topPanelBackground) !important;
+    box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.35) !important;
+    font-family: 'Concert One', cursive;
+    letter-spacing: .1em;
+    font-weight: 400;
+
+    &>div div {
+        box-shadow: var(--topPanelBtnShadow);
+        transition: var(--topPanelShadowTransition);
+        border-radius: 15px;
+
+        &:hover {
+            box-shadow: var(--topPanelReverseShadow);
+        }
+    }
+
+    a {
+        color: var(--topPanelLinkColor) !important;
+        box-shadow: var(--topPanelBtnShadow);
+        transition: var(--topPanelShadowTransition);
+        border-radius: 15px;
+
+        div {
+            color: var(--topPanelLinkColor) !important;
+        }
+
+        &:hover {
+            box-shadow: var(--topPanelReverseShadow);
+        }
+
+    }
+
+    p {
+        box-shadow: var(--topPanelReverseShadow);
+    }
+}
+
+.postContainerOverlay {
+    background-color: var(--postBackground) !important;
+    padding: 15px;
+    border-radius: var(--defaultBorderRadius);
+    box-shadow: var(--postShadow);
+
+    .roomGrid {
+        min-height: 230px;
+    }
+
+    .roomImageContainer {
+        border-radius: var(--defaultBorderRadius) 0 0 var(--defaultBorderRadius);
+    }
+
+    .roomTitle a {
+        color: var(--postLinkColor);
+
+        &>h4 {
+            font-family: 'Zilla Slab', serif;
+            letter-spacing: .1em;
+        }
+    }
+
+    .roomDescription p {
+        color: var(--textColor);
+        font-weight: 600;
+        font-family: 'Zilla Slab', serif;
+    }
+
+    .roomFooter {
+        color: var(--textColor);
+        font-weight: 400;
+
+        & p {
+            font-family: 'Zilla Slab', serif;
+        }
+    }
+
+    .postPlaceholder {
+
+        .placeholder {
+            background-color: rgba(0, 0, 0, .1);
+        }
+    
+        .line {
+            background-color: var(--postBackground) !important;
+        }
+    
+    }
+
+}
+
+.asLink {
+    color: var(--postLinkColor);
+
+    &:hover {
+        color: var(--postLinkColor);
+        cursor: pointer;
+    }
+}
+
+.cardMiddle {
+    box-shadow: var(--postShadow) !important;
+}
+
+.createPostBtn {
+    box-shadow: -3px -3px 8px 0 rgba(255, 255, 255, 1),
+    3px 3px 8px 0 rgba(0, 0, 0, 0.6) !important;
+}
+
+.ui.error.message {
+    background-color: #f9bcbc !important;
+    color: #af110e !important;
+}
+
+.ui.bottom.attached.message {
+    margin-top: 15px !important;
+    box-shadow: var(--topPanelReverseShadow) !important;
+}
+
+.neuromorphSegment {
+    text-align: start;
+    margin-top: 3em !important;
+    box-shadow: var(--postShadow) !important;
+}

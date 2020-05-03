@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Captcha component match snapshot 1`] = `
+<div
+  className="postPlaceholder"
+>
+  <div
+    className="ui placeholder"
+  >
+    <div
+      className="image"
+    />
+  </div>
+  <div
+    className="ui placeholder"
+  >
+    <div
+      className="line"
+    />
+    <div
+      className="line"
+    />
+    <div
+      className="line"
+    />
+    <div
+      className="line"
+    />
+  </div>
+</div>
+`;

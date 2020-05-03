@@ -1,0 +1,961 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListPagination component match snapshot /w different data 1/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 2/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 3/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      333
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 4/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      1014
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 5/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      24
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 6/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "green",
+          }
+        }
+      />
+        
+      345
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 7/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-20
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 8/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-18
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 9/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      mArIaN
+    </p>
+    <p>
+      Created: 
+      2019-12-18
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w different data 10/10 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      gdffdsf1321243423413
+    </p>
+    <p>
+      Created: 
+      2019-12-18
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot /w only required props 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot - liked by user 1`] = `
+<div
+  className="ui mini statistics maxWidth roomStats noMargin"
+>
+  <div
+    className="ui statistic leftStatistic"
+  >
+    <p>
+      Author: 
+      abcde asddf
+    </p>
+    <p>
+      Created: 
+      2019-12-17
+    </p>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <a
+        href="/post/abcde12345"
+        onClick={[Function]}
+      >
+        <i
+          aria-hidden="true"
+          className="comments outline icon"
+          onClick={[Function]}
+        >
+           
+        </i>
+      </a>
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="eye icon"
+        onClick={[Function]}
+      />
+        
+      0
+    </div>
+  </div>
+  <div
+    className="ui statistic roomStat"
+    onClick={[Function]}
+    style={
+      Object {
+        "cursor": "pointer",
+      }
+    }
+  >
+    <div
+      className="value"
+    >
+      <i
+        aria-hidden="true"
+        className="thumbs up icon"
+        onClick={[Function]}
+        style={
+          Object {
+            "color": "green",
+          }
+        }
+      />
+        
+      0
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,36 @@
+html {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+}
+
+.hidden {
+    display: none !important;
+}
+.shown {
+    display: block !important;
+}
+
+.noMargin {
+    margin: 0 !important;
+}
+
+.noPadding {
+    padding: 0 !important;
+}
+
+.maxWidth {
+    width: 100% !important;
+}
+
+.postText {
+    text-align: left;
+}
+
+.noHover {
+    pointer-events: none !important;
+}
+
+.ui.tabular.menu .item:hover {
+    color: var(--topPanelLinkColor) !important;
+}

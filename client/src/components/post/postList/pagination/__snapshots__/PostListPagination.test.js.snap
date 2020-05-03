@@ -1,0 +1,825 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PostListPagination component match snapshot rwd /w props 1/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="left floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={1}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={2}
+      >
+        2
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={3}
+      >
+        3
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={4}
+      >
+        4
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={5}
+      >
+        5
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={2}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={5}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot rwd /w props 2/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="left floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={2}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={2}
+      >
+        2
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={3}
+      >
+        3
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={4}
+      >
+        4
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={5}
+      >
+        5
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={4}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={5}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot rwd /w props 3/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="left floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={9}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={true}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={-1}
+        type="ellipsisItem"
+        value={5}
+      >
+        ...
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={6}
+      >
+        6
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={7}
+      >
+        7
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={8}
+      >
+        8
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={9}
+      >
+        9
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={10}
+      >
+        10
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={10}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={10}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot w/o props 1`] = `""`;
+
+exports[`PostListPagination component match snapshot wide screen /w props 1/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="right floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={1}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={2}
+      >
+        2
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={3}
+      >
+        3
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={4}
+      >
+        4
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={5}
+      >
+        5
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={2}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={5}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot wide screen /w props 2/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="right floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={2}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={2}
+      >
+        2
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={3}
+      >
+        3
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={4}
+      >
+        4
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={5}
+      >
+        5
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={4}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={5}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`PostListPagination component match snapshot wide screen /w props 3/3 1`] = `
+<div
+  className="three column row"
+>
+  <div
+    className="right floated column"
+  >
+    <div
+      aria-label="Pagination Navigation"
+      className="ui pagination menu"
+      role="navigation"
+    >
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="First item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="firstItem"
+        value={1}
+      >
+        «
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Previous item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="prevItem"
+        value={9}
+      >
+        ⟨
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={1}
+      >
+        1
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={true}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={-1}
+        type="ellipsisItem"
+        value={5}
+      >
+        ...
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={6}
+      >
+        6
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={7}
+      >
+        7
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={8}
+      >
+        8
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={9}
+      >
+        9
+      </a>
+      <a
+        aria-current={true}
+        aria-disabled={false}
+        className="active item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="pageItem"
+        value={10}
+      >
+        10
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Next item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="nextItem"
+        value={10}
+      >
+        ⟩
+      </a>
+      <a
+        aria-current={false}
+        aria-disabled={false}
+        aria-label="Last item"
+        className="item"
+        onClick={[Function]}
+        onKeyDown={[Function]}
+        tabIndex={0}
+        type="lastItem"
+        value={10}
+      >
+        »
+      </a>
+    </div>
+  </div>
+</div>
+`;

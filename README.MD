@@ -1,6 +1,15 @@
 # React-forum
 
-React based forum/dashboard with REST API written in Node.js/Express.js and MongoDB
+React based forum/dashboard with REST API in Node.js/Express.js
+
+Project written purely to master React and Node.js. I've chosen forum formula because it requires good ux
+and secure backend to be viable and those are the things i wanted to work on.
+
+## Live Demo on Heroku
+
+[React-forum on heroku](https://reactive-forum.herokuapp.com/)
+
+It actually might take Heroku a while before it loads resources and launch as it dont keep apps at memory all the time.
 
 ## Getting Started
 
@@ -31,22 +40,23 @@ npm start
 
 ## Key Features
 
+```
 Frontend:
 * Fully responsive design
-* Single-page with React-router to provide exact url
-* Placeholders and loaders in places that require extended loading
-* Recursive comments
-
+* Single-page design with React-Router to provide exact URL and browsing history
+* Placeholders and loaders in places that might require longer loading
+```
+```
 Backend:
 * REST API
 * MongoDB database
-* Token based Authorization/Authentication (jwt)
-
+* Token based Authentication/Autorization
+```
 
 ## Built With
 
 * [create-react-app](https://github.com/facebook/create-react-app/) - The web framework used
-* [Semantic UI](https://react.semantic-ui.com/) - UI framework
+* [Semantic ui](https://react.semantic-ui.com/) - UI framework
 * [express.js](https://github.com/expressjs/express/) - Server framework
 * [MongoDB](https://www.mongodb.com/) - Database provider
 * [mongoose](https://github.com/Automattic/mongoose/) - Used for object modelling for MongoDB
