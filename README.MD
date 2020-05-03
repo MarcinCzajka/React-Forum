@@ -9,6 +9,8 @@ and secure backend to be viable and those are the things i wanted to work on.
 
 [React-forum on heroku](https://reactive-forum.herokuapp.com/)
 
+It actually might take Heroku a while before it loads resources and launch as it dont keep apps at memory all the time.
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
