@@ -23,6 +23,9 @@ body {
 #topPanel {
     background-color: var(--topPanelBackground) !important;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.35) !important;
+    font-family: 'Concert One', cursive;
+    letter-spacing: .1em;
+    font-weight: 400;
 
     &>div div {
         box-shadow: var(--topPanelBtnShadow);
@@ -71,16 +74,26 @@ body {
 
     .roomTitle a {
         color: var(--postLinkColor);
+
+        &>h4 {
+            font-family: 'Zilla Slab', serif;
+            letter-spacing: .1em;
+        }
     }
 
     .roomDescription p {
         color: var(--textColor);
         font-weight: 600;
+        font-family: 'Zilla Slab', serif;
     }
 
     .roomFooter {
         color: var(--textColor);
         font-weight: 400;
+
+        & p {
+            font-family: 'Zilla Slab', serif;
+        }
     }
 
     .postPlaceholder {

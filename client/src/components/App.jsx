@@ -80,11 +80,14 @@ class App extends React.Component {
             addShowLoginToContext: this.addShowLoginToContext,
             addShowSignupToContext: this.addShowSignupToContext
         };
-        
+
+
+        //Fonts that are to be downloaded are inserted here between <Helmet> tags and set in ./overlay.scss
         return (
             <LocaleProvider value={locale}>     
                 <Helmet>
                     <title>{locale.appName}</title>
+                    <link href="https://fonts.googleapis.com/css2?family=Concert+One&family=Zilla+Slab&display=swap" rel="stylesheet"/> 
                 </Helmet>
 
                 <Router>
